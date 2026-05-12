@@ -182,6 +182,16 @@ def _plot_scores(scores: dict[str, np.ndarray], thresholds: dict, path: Path) ->
     fig.savefig(path, dpi=150)
     plt.close(fig)
 
+def _plot_losses(losses: list[float], path: Path) -> None:
+    fig, ax = plt.subplots(figsize=(8, 4))
+    ax.plot(range(1, len(losses) + 1), losses, color="darkorange", lw=1.5)
+    ax.set_title("Autoencoder training loss")
+    ax.set_xlabel("Epoch")
+    ax.set_ylabel("MSE loss")
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+
 def train_anomaly_detection(out_dir: Path = ANOMALY_DIR) -> dict:
     out_dir.mkdir(parents=True, exist_ok=True)
     df = load_detection_features()
@@ -221,11 +231,19 @@ def train_anomaly_detection(out_dir: Path = ANOMALY_DIR) -> dict:
             "auc_roc": float(roc_auc_score(y_true, -scores)),
             "test_anomaly_count": int((test_scores[name] < thresholds[name]).sum()),
         }
+    metrics["Autoencoder"]["loss"] = {
+        "initial": float(ae_losses[0]) if ae_losses else None,
+        "final": float(ae_losses[-1]) if ae_losses else None,
+        "min": float(min(ae_losses)) if ae_losses else None,
+        "epochs": len(ae_losses),
+    }
 
     model_files = _save_models(models, scaler, thresholds)
     metrics_path = write_json(out_dir / "anomaly_metrics.json", metrics)
     plot_path = out_dir / "score_distribution.png"
+    loss_plot_path = out_dir / "autoencoder_loss.png"
     _plot_scores(test_scores, thresholds, plot_path)
+    _plot_losses(ae_losses, loss_plot_path)
     run_summary = write_run_summary(out_dir, "anomaly_train", {
         "rows": len(df),
         "train_rows": len(train_df),
@@ -240,6 +258,7 @@ def train_anomaly_detection(out_dir: Path = ANOMALY_DIR) -> dict:
             "features": str(features_csv),
             "metrics": str(metrics_path),
             "plot": str(plot_path),
+            "autoencoder_loss_plot": str(loss_plot_path),
             "run_summary": str(run_summary),
             **model_files,
         },
