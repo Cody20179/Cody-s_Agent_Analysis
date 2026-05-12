@@ -58,6 +58,7 @@ Public functions in `main.py` return a dict with:
 | `output_folder` | primary output folder |
 | `key_files` | important output paths |
 | `metrics` | model metrics, data status, or check result |
+| `artifacts` | image artifacts derived from `key_files` |
 
 Main callable API:
 
@@ -71,6 +72,21 @@ Main callable API:
 | `train_anomaly_detection()` | train anomaly models |
 | `check_anomaly(start, end, min_models=2)` | check a time interval for anomalies |
 | `run_all()` | run the main pipeline sequence |
+
+Image outputs are returned structurally. The model does not need to write image
+paths in natural language. For example:
+
+```json
+{
+  "artifacts": [
+    {
+      "type": "image",
+      "label": "plot",
+      "path": "/absolute/path/to/outputs/forecast/future_forecast.png"
+    }
+  ]
+}
+```
 
 ## Runtime
 
