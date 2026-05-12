@@ -1,0 +1,16 @@
+CNC Machine State Analysis Report
+Data range: 2025-09-15 15:10:00 ~ 2026-05-11 22:50:00
+GMM K: 4
+Features: I_mean, I_imbalance, Power, PF_abs, kVAh_rate
+
+[BIC/AIC]
+K=2 BIC=145261.8 AIC=144922.2
+K=3 BIC=61829.2 AIC=61315.8
+K=4 BIC=28287.3 AIC=27599.9 best
+
+[State Summary]
+State,count,hours,pct,I_mean_avg,Power_avg,kVAh_rate_avg
+Off,39817,3318.08,58.13,0.017,0.009,0.0015
+Running_High,11541,961.75,16.85,13.05,3.756,0.411
+Idle,9191,765.92,13.42,7.957,2.204,0.2535
+Running_Low,7943,661.92,11.6,11.221,3.266,0.3577

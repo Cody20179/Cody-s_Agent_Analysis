@@ -1,0 +1,33 @@
+{
+  "generated": "2026-05-11 20:47:12",
+  "rows": 19484,
+  "train_rows": 15587,
+  "test_rows": 3897,
+  "metrics": {
+    "IsolationForest": {
+      "accuracy": 0.9358572462020738,
+      "precision": 0.13636363636363635,
+      "recall": 0.012,
+      "f1": 0.022058823529411766,
+      "auc_roc": 0.8921539645881447,
+      "test_anomaly_count": 19
+    },
+    "OneClassSVM": {
+      "accuracy": 0.9920424403183024,
+      "precision": 0.8833922261484098,
+      "recall": 1.0,
+      "f1": 0.9380863039399625,
+      "auc_roc": 0.9999404670259173,
+      "test_anomaly_count": 33
+    },
+    "Autoencoder": {
+      "accuracy": 0.9901133349409211,
+      "precision": 0.8772563176895307,
+      "recall": 0.972,
+      "f1": 0.9222011385199241,
+      "auc_roc": 0.9991285604311009,
+      "test_anomaly_count": 34
+    }
+  },
+  "synthetic_validation": true
+}
