@@ -221,7 +221,7 @@ def train_forecast(target: str = "dy", models: list[str] | None = None, months_b
         "metrics": results,
         "files": {
             "metrics": str(metrics_path),
-            "plot": str(plot_path),
+            "forecast_test_overlay": str(plot_path),
             "config": str(FORECAST_MODELS_DIR / "training_config.json"),
             "models_dir": str(FORECAST_MODELS_DIR),
             "run_summary": str(run_summary),
@@ -264,4 +264,4 @@ def forecast_future(days: list[int] | None = None, model_names: list[str] | None
         "models": summary,
     })
     run_summary = write_run_summary(out_dir, "forecast_future", {"summary": summary})
-    return {"summary": summary, "files": {"report": str(report_path), "plot": str(plot_path), "run_summary": str(run_summary)}}
+    return {"summary": summary, "files": {"report": str(report_path), "future_forecast": str(plot_path), "run_summary": str(run_summary)}}
