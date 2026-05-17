@@ -182,6 +182,29 @@ def _plot_feature_distributions(valid: pd.DataFrame, out_dir: Path) -> Path:
     return path
 
 
+def _plot_training_input_features(df: pd.DataFrame, out_dir: Path) -> Path:
+    fig, axes = plt.subplots(4, 1, figsize=(16, 10), sharex=True)
+    series = [
+        ("I_mean", "Average current"),
+        ("Power", "Instantaneous total power"),
+        ("PF_abs", "Power factor abs"),
+        ("kVAh_rate", "kVAh positive difference"),
+    ]
+    for ax, (col, label) in zip(axes, series):
+        ax.plot(df["time"], df[col], lw=0.6)
+        ax.set_ylabel(label)
+        ax.grid(True, alpha=0.25)
+    axes[-1].set_xlabel("Time")
+    axes[-1].xaxis.set_major_locator(mdates.AutoDateLocator(minticks=4, maxticks=10))
+    axes[-1].xaxis.set_major_formatter(mdates.ConciseDateFormatter(axes[-1].xaxis.get_major_locator()))
+    fig.suptitle("GMM training input features before standardization", y=0.995)
+    fig.tight_layout()
+    path = out_dir / "training_input_features.png"
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+    return path
+
+
 def _plot_cluster_scatter(df: pd.DataFrame, out_dir: Path) -> Path:
     sample = df[df["cluster"] >= 0].copy()
     if len(sample) > 12000:
@@ -363,6 +386,7 @@ def _write_training_outputs(
         "cluster_profile_csv": str(profile_csv),
         "cluster_centers_csv": str(centers_csv),
         "metrics_json": str(metrics_json),
+        "training_input_features": str(_plot_training_input_features(df, train_dir)),
         "bic_curve": str(_plot_bic(bic_df, best_k, train_dir)),
         "feature_distributions": str(_plot_feature_distributions(valid, train_dir)),
         "cluster_scatter": str(_plot_cluster_scatter(labeled, train_dir)),

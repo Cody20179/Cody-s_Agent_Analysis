@@ -15,8 +15,8 @@ import pandas as pd
 
 LAG_STEPS = [1, 5, 10, 30, 60, 1440, 10080]
 ROLLING_WINS = [5, 30, 60]
-DEFAULT_MODELS = ["BaselineLastWeek", "Prophet"]
-OPTIONAL_MODELS = ["XGBoost", "LightGBM"]
+DEFAULT_MODELS = ["BaselineLastWeek", "Prophet", "XGBoost", "LightGBM"]
+OPTIONAL_MODELS: list[str] = []
 
 def _periods(days: int) -> int:
     return int(days * 24 * 60)
@@ -60,7 +60,8 @@ def _recursive_forecast(predict_fn, history: pd.DataFrame, target: str, periods:
         ]
         feat += [buffer[n - lag] if n - lag >= 0 else 0.0 for lag in LAG_STEPS]
         feat += [float(np.mean(buffer[n - win:])) if n - win >= 0 else 0.0 for win in ROLLING_WINS]
-        pred = float(predict_fn(np.array([feat], dtype=float))[0])
+        X_next = pd.DataFrame([feat], columns=_feature_cols())
+        pred = float(predict_fn(X_next)[0])
         if target == "dy":
             pred = max(0.0, pred)
             current_y += pred
@@ -107,7 +108,7 @@ def _train_prophet(train_df: pd.DataFrame, target: str, model_path: Path):
 
 def _train_tree(name: str, train_df: pd.DataFrame, target: str, model_path: Path):
     feat = _make_features(train_df, target)
-    X = feat[_feature_cols()].values
+    X = feat[_feature_cols()]
     y = feat[target].values
     if name == "XGBoost":
         import xgboost as xgb
@@ -173,6 +174,20 @@ def _plot_forecast(actual: pd.DataFrame, forecasts: dict[str, pd.DataFrame], pat
     fig.savefig(path, dpi=150)
     plt.close(fig)
 
+def _plot_training_input_series(df: pd.DataFrame, train_df: pd.DataFrame, test_df: pd.DataFrame, column: str, path: Path) -> None:
+    fig, ax = plt.subplots(figsize=(16, 5.5))
+    ax.plot(df["ds"], df[column], color="black", lw=0.8)
+    ax.axvspan(train_df["ds"].min(), train_df["ds"].max(), color="tab:blue", alpha=0.08, label="Train")
+    ax.axvspan(test_df["ds"].min(), test_df["ds"].max(), color="tab:orange", alpha=0.10, label="Test")
+    ax.set_ylabel(column)
+    ax.set_xlabel("Time")
+    ax.set_title(f"Forecast raw training input: {column}")
+    ax.legend(loc="upper left")
+    ax.grid(True, alpha=0.25)
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+
 def train_forecast(target: str = "dy", models: list[str] | None = None, months_back: int | None = None, raw_dir: Path = DATA_RAW, out_dir: Path = FORECAST_DIR) -> dict:
     if target not in ("dy", "y"):
         raise ValueError("target must be 'dy' or 'y'")
@@ -230,6 +245,10 @@ def train_forecast(target: str = "dy", models: list[str] | None = None, months_b
 
     actual.to_csv(train_dir / "test_actual.csv", index=False)
     metrics_path = write_json(train_dir / "forecast_metrics.json", results)
+    input_y_plot_path = train_dir / "training_input_y.png"
+    input_dy_plot_path = train_dir / "training_input_dy.png"
+    _plot_training_input_series(df, train_df, test_df, "y", input_y_plot_path)
+    _plot_training_input_series(df, train_df, test_df, "dy", input_dy_plot_path)
     plot_path = train_dir / "forecast_test_overlay.png"
     if forecasts:
         _plot_forecast(actual, forecasts, plot_path, "Forecast recursive test")
@@ -242,6 +261,8 @@ def train_forecast(target: str = "dy", models: list[str] | None = None, months_b
         "metrics": results,
         "files": {
             "metrics": str(metrics_path),
+            "training_input_y": str(input_y_plot_path),
+            "training_input_dy": str(input_dy_plot_path),
             "forecast_test_overlay": str(plot_path),
             "test_actual": str(train_dir / "test_actual.csv"),
             "config": str(_config_file(target)),

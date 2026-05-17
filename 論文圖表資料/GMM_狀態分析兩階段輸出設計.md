@@ -29,6 +29,7 @@
 | `models/state/gmm_state_model.pkl` | GMM 模型、標準化器、狀態對應表 |
 | `models/state/gmm_state_model_metadata.json` | 模型設定摘要 |
 | `outputs/state/training/training_metrics.json` | BIC、AIC、Silhouette 等訓練指標 |
+| `outputs/state/training/training_input_features.png` | GMM 進模型前的訓練特徵時間序列 |
 | `outputs/state/training/training_bic_aic.csv` | K 值模型選擇表 |
 | `outputs/state/training/training_cluster_centers.csv` | 各 cluster 中心與對應狀態 |
 
@@ -101,6 +102,7 @@ Raw sensor CSV
 
 | 圖表 | 來源 | 怎麼看 |
 |---|---|---|
+| 原始訓練特徵圖 | `training_input_features.png` | 看 GMM 實際吃進去的時間序列資料，包含平均電流、功率、功率因數與 kVAh 變化率。 |
 | 特徵分布圖 | `training_feature_distributions.png` | 看資料是否像多種狀態混在一起。若 `I_mean`、`Power` 有長尾或多峰，代表機台不是單一狀態。 |
 | BIC/AIC 曲線 | `bic_curve.png` | BIC 最低的 K 是主要選擇。若 K 增加但 BIC 沒明顯下降，代表多分群不值得。 |
 | cluster 散點圖 | `training_cluster_scatter.png` | 只把五維模型投影到 `I_mean` 與 `Power`。重疊不一定錯，因為真正分群還用了其他特徵。 |
@@ -201,6 +203,7 @@ Raw sensor CSV or new machine data
 | 編號 | 圖表名稱 | 來源 |
 |---|---|---|
 | 圖 3-x | GMM 訓練流程圖 | 本文件流程重畫 |
+| 圖 3-x | GMM 原始訓練特徵圖 | `outputs/state/training/training_input_features.png` |
 | 圖 3-x | BIC/AIC 模型選擇圖 | `outputs/state/training/bic_curve.png` |
 | 圖 3-x | GMM cluster 投影圖 | `outputs/state/training/training_cluster_scatter.png` |
 | 表 3-x | GMM 訓練品質指標 | `outputs/state/training/training_metrics.json` |

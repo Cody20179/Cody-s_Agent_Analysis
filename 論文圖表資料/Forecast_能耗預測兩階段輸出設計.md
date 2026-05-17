@@ -11,14 +11,14 @@
 
 ## Scope
 
-目前主要整理 BaselineLastWeek 與 Prophet。
+目前主要整理 BaselineLastWeek、Prophet、XGBoost 與 LightGBM。
 
 | 模型 | 角色 | 是否需要訓練模型檔 |
 |---|---|---|
 | BaselineLastWeek | 以上週同時間用電增量作為基準線 | 否 |
 | Prophet | 時間序列模型，學習日週週期性 | 是 |
-
-XGBoost 與 LightGBM 仍保留為 optional models，但論文若目前只驗證 Baseline 與 Prophet，結果章不應把 XGBoost/LightGBM 寫成主要成果。
+| XGBoost | 使用時間、lag、rolling 特徵的梯度提升樹 | 是 |
+| LightGBM | 使用時間、lag、rolling 特徵的梯度提升樹 | 是 |
 
 ## Contract
 
@@ -34,9 +34,13 @@ XGBoost 與 LightGBM 仍保留為 optional models，但論文若目前只驗證 
 | 檔案 | 用途 |
 |---|---|
 | `outputs/forecast/training/dy/forecast_metrics.json` | `dy` 目標下的模型測試指標 |
+| `outputs/forecast/training/dy/training_input_y.png` | 訓練前累積用電量 `y` 的時間序列樣貌 |
+| `outputs/forecast/training/dy/training_input_dy.png` | 訓練前每分鐘用電增量 `dy` 的時間序列樣貌 |
 | `outputs/forecast/training/dy/forecast_test_overlay.png` | 測試區間實際值與預測值比較 |
 | `outputs/forecast/training/dy/test_actual.csv` | 測試區間真實資料 |
 | `outputs/forecast/training/dy/test_forecast_Prophet.csv` | Prophet 測試區間預測 |
+| `outputs/forecast/training/dy/test_forecast_XGBoost.csv` | XGBoost 測試區間預測 |
+| `outputs/forecast/training/dy/test_forecast_LightGBM.csv` | LightGBM 測試區間預測 |
 | `models/forecast/Prophet_target_dy.json` | Prophet 訓練後模型 |
 | `models/forecast/training_config_dy.json` | `dy` 專用訓練設定 |
 
@@ -50,6 +54,8 @@ XGBoost 與 LightGBM 仍保留為 optional models，但論文若目前只驗證 
 | `outputs/forecast/application/dy/future_forecast.png` | 最近 7 天實際值與未來預測曲線 |
 | `outputs/forecast/application/dy/future_BaselineLastWeek.csv` | Baseline 未來預測明細 |
 | `outputs/forecast/application/dy/future_Prophet.csv` | Prophet 未來預測明細 |
+| `outputs/forecast/application/dy/future_XGBoost.csv` | XGBoost 未來預測明細 |
+| `outputs/forecast/application/dy/future_LightGBM.csv` | LightGBM 未來預測明細 |
 
 ## Rules
 
@@ -57,6 +63,7 @@ XGBoost 與 LightGBM 仍保留為 optional models，但論文若目前只驗證 
 - `forecast_future(target="dy")` 只回答使用既有模型對最新資料往後推估的結果。
 - BaselineLastWeek 是比較基準，不是機器學習模型。
 - Prophet 需要先訓練，之後可直接載入 `models/forecast/Prophet_target_<target>.json` 做未來預測。
+- XGBoost 與 LightGBM 需要 lag 與 rolling 特徵，若遞迴預測誤差快速累積，應在結果章標示為 review，不宜直接部署。
 - `dy` 與 `y` 必須分開報告，不能混在同一張表。
 - 論文主要建議使用 `dy`，因為它代表每分鐘耗電增量，比累積表值 `y` 更接近能耗變化。
 
@@ -67,8 +74,8 @@ XGBoost 與 LightGBM 仍保留為 optional models，但論文若目前只驗證 
 ```python
 from main import train_forecast, forecast_future
 
-train_forecast(target="dy", models=["BaselineLastWeek", "Prophet"])
-forecast_future(target="dy", model_names=["BaselineLastWeek", "Prophet"])
+train_forecast(target="dy")
+forecast_future(target="dy")
 ```
 
 更新資料後只做未來預測：
@@ -77,28 +84,28 @@ forecast_future(target="dy", model_names=["BaselineLastWeek", "Prophet"])
 from main import update_data, forecast_future
 
 update_data()
-forecast_future(target="dy", model_names=["BaselineLastWeek", "Prophet"])
+forecast_future(target="dy")
 ```
 
 若要比較 `y` 與 `dy`：
 
 ```python
-train_forecast(target="dy", models=["BaselineLastWeek", "Prophet"])
-forecast_future(target="dy", model_names=["BaselineLastWeek", "Prophet"])
+train_forecast(target="dy")
+forecast_future(target="dy")
 
-train_forecast(target="y", models=["BaselineLastWeek", "Prophet"])
-forecast_future(target="y", model_names=["BaselineLastWeek", "Prophet"])
+train_forecast(target="y")
+forecast_future(target="y")
 ```
 
 ## 論文寫法
 
 方法章可寫：
 
-> 本研究之能耗預測以累積用電量資料為基礎，並建立兩種預測目標。第一種為累積用電量 `y`，第二種為每分鐘用電增量 `dy`。其中 `dy` 由相鄰時間點累積用電量差分取得，並將負值裁切為 0，以避免電表回跳或資料雜訊造成不合理的負耗電量。模型訓練階段使用歷史資料切分為訓練集與測試集，並以 BaselineLastWeek 作為基準模型，Prophet 作為主要時間序列模型。
+> 本研究之能耗預測以累積用電量資料為基礎，並建立兩種預測目標。第一種為累積用電量 `y`，第二種為每分鐘用電增量 `dy`。其中 `dy` 由相鄰時間點累積用電量差分取得，並將負值裁切為 0，以避免電表回跳或資料雜訊造成不合理的負耗電量。模型訓練階段使用歷史資料切分為訓練集與測試集，並比較 BaselineLastWeek、Prophet、XGBoost 與 LightGBM 四種方法。
 
 結果章可寫：
 
-> 訓練完成後，本研究將已訓練之 Prophet 模型套用於最新資料點之後的未來時間區間，並輸出 3、7、14 與 30 天之累積用電量預測。BaselineLastWeek 則用於提供可解釋的比較基準，使模型成果不僅呈現絕對誤差，也能評估 Prophet 是否優於簡單週期性假設。
+> 訓練完成後，本研究將各模型套用於最新資料點之後的未來時間區間，並輸出 3、7、14 與 30 天之累積用電量預測。BaselineLastWeek 提供可解釋的週期性基準，Prophet 用於捕捉日週季節性，而 XGBoost 與 LightGBM 則作為 lag 與 rolling 特徵模型之比較。若樹模型於測試區間出現負 R2，表示其遞迴預測誤差累積嚴重，應列為不建議部署或需進一步調參之模型。
 
 ## 驗證指標
 
@@ -117,7 +124,9 @@ forecast_future(target="y", model_names=["BaselineLastWeek", "Prophet"])
 |---|---|---|
 | 圖 3-x | 能耗預測訓練流程圖 | 本文件流程重畫 |
 | 表 3-x | `y` 與 `dy` 目標定義表 | 本文件 Target 定義 |
-| 表 4-x | Baseline 與 Prophet 測試指標 | `outputs/forecast/training/dy/forecast_metrics.json` |
+| 圖 3-x | Forecast 原始累積用電量圖 | `outputs/forecast/training/dy/training_input_y.png` |
+| 圖 3-x | Forecast 原始每分鐘耗電增量圖 | `outputs/forecast/training/dy/training_input_dy.png` |
+| 表 4-x | 四模型測試指標 | `outputs/forecast/training/dy/forecast_metrics.json` |
 | 圖 4-x | 測試區間預測比較圖 | `outputs/forecast/training/dy/forecast_test_overlay.png` |
 | 圖 4-x | 未來能耗預測圖 | `outputs/forecast/application/dy/future_forecast.png` |
 | 表 4-x | 未來 3、7、14、30 天預測摘要 | `outputs/forecast/application/dy/future_forecast_report.json` |
