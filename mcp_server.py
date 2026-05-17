@@ -12,8 +12,10 @@ from main import (  # noqa: E402
     check_anomaly,
     data_status,
     forecast_future,
+    apply_state_model,
     run_all,
     run_state_analysis,
+    train_state_model,
     train_anomaly_detection,
     train_forecast,
     update_data,
@@ -58,6 +60,14 @@ async def tool_run_state_analysis(start: str = "", end: str = "") -> str:
     return await _run(run_state_analysis, start=start or None, end=end or None)
 
 @mcp.tool()
+async def tool_train_state_model(start: str = "", end: str = "") -> str:
+    return await _run(train_state_model, start=start or None, end=end or None)
+
+@mcp.tool()
+async def tool_apply_state_model(start: str = "", end: str = "") -> str:
+    return await _run(apply_state_model, start=start or None, end=end or None)
+
+@mcp.tool()
 async def tool_train_forecast(target: str = "dy", models: str = "", months_back: int = 0) -> str:
     model_arg = [x.strip() for x in models.split(",") if x.strip()] if models else None
     return await _run(train_forecast, target=target, models=model_arg, months_back=months_back or None)
@@ -82,4 +92,3 @@ async def tool_run_all() -> str:
 
 if __name__ == "__main__":
     mcp.run(transport="stdio")
-

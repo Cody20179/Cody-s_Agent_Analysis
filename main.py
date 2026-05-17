@@ -35,6 +35,31 @@ def run_state_analysis(start=None, end=None) -> dict:
     except Exception as exc:
         return err(str(exc))
 
+def train_state_model(start=None, end=None) -> dict:
+    try:
+        from src.state.gmm import train_state_model as _train_state_model
+        result = _train_state_model(start=start, end=end)
+        return ok(STATE_DIR, "GMM state model training finished", key_files=result["files"], metrics={
+            "best_k": result["best_k"],
+            "rows": result["rows"],
+            "training": result["training"],
+        })
+    except Exception as exc:
+        return err(str(exc))
+
+def apply_state_model(start=None, end=None) -> dict:
+    try:
+        from src.state.gmm import apply_state_model as _apply_state_model
+        result = _apply_state_model(start=start, end=end)
+        return ok(STATE_DIR, "GMM state model application finished", key_files=result["files"], metrics={
+            "best_k": result["best_k"],
+            "rows": result["rows"],
+            "state_summary": result["state_summary"],
+            "application": result["application"],
+        })
+    except Exception as exc:
+        return err(str(exc))
+
 def train_forecast(target: str = "dy", models: list[str] | None = None, months_back: int | None = None) -> dict:
     try:
         from src.forecast.pipeline import train_forecast as _train_forecast

@@ -25,6 +25,7 @@ __pycache__/
 data/_tmp_update/
 
 # generated analysis artifacts
+data/raw/
 data/processed/
 models/
 outputs/
