@@ -96,7 +96,10 @@ def check_anomaly(start: str, end: str, min_models: int = 2) -> dict:
     try:
         from src.anomaly.pipeline import check_anomaly as _check_anomaly
         result = _check_anomaly(start, end, min_models=min_models)
-        return ok(ANOMALY_DIR, "anomaly check finished", key_files={"detail_csv": result.get("detail_csv")}, metrics=result)
+        return ok(ANOMALY_DIR, "anomaly check finished", key_files={
+            "detail_csv": result.get("detail_csv"),
+            "timeline_plot": result.get("timeline_plot"),
+        }, metrics=result)
     except Exception as exc:
         return err(str(exc))
 

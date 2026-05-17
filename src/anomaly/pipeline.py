@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import IsolationForest
-from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, roc_auc_score
+from sklearn.metrics import accuracy_score, confusion_matrix, f1_score, precision_score, recall_score, roc_auc_score, roc_curve
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import OneClassSVM
 
@@ -192,8 +192,164 @@ def _plot_losses(losses: list[float], path: Path) -> None:
     fig.savefig(path, dpi=150)
     plt.close(fig)
 
+def _write_metrics_table(metrics: dict, path: Path) -> Path:
+    rows = []
+    for name, values in metrics.items():
+        rows.append({
+            "model": name,
+            "accuracy": values.get("accuracy"),
+            "precision": values.get("precision"),
+            "recall": values.get("recall"),
+            "f1": values.get("f1"),
+            "auc_roc": values.get("auc_roc"),
+            "test_anomaly_count": values.get("test_anomaly_count"),
+        })
+    pd.DataFrame(rows).to_csv(path, index=False)
+    return path
+
+def _plot_metric_bars(metrics: dict, path: Path) -> None:
+    rows = []
+    for name, values in metrics.items():
+        for metric in ["accuracy", "precision", "recall", "f1", "auc_roc"]:
+            rows.append({"model": name, "metric": metric, "value": values.get(metric)})
+    df = pd.DataFrame(rows)
+    pivot = df.pivot(index="metric", columns="model", values="value")
+    fig, ax = plt.subplots(figsize=(11, 5.5))
+    pivot.plot(kind="bar", ax=ax)
+    ax.set_ylim(0, 1.05)
+    ax.set_title("Anomaly detector validation metrics")
+    ax.set_xlabel("Metric")
+    ax.set_ylabel("Score")
+    ax.grid(True, axis="y", alpha=0.25)
+    ax.tick_params(axis="x", labelrotation=0)
+    ax.legend(loc="lower right")
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+
+def _plot_feature_distributions(combined: pd.DataFrame, path: Path) -> None:
+    fig, axes = plt.subplots(2, 5, figsize=(18, 7))
+    axes = axes.ravel()
+    normal = combined[combined["label"] == 0]
+    anomaly = combined[combined["label"] == 1]
+    for ax, col in zip(axes, FEATURE_COLS):
+        ax.hist(normal[col], bins=40, alpha=0.55, label="Normal", color="steelblue", density=True)
+        ax.hist(anomaly[col], bins=40, alpha=0.55, label="Synthetic anomaly", color="crimson", density=True)
+        ax.set_title(col)
+        ax.grid(True, axis="y", alpha=0.2)
+    axes[0].legend(loc="upper right")
+    fig.suptitle("Feature distributions: normal vs synthetic anomaly")
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+
+def _plot_score_by_label(eval_df: pd.DataFrame, thresholds: dict, path: Path) -> None:
+    fig, axes = plt.subplots(1, len(thresholds), figsize=(5.5 * len(thresholds), 4.5))
+    if len(thresholds) == 1:
+        axes = [axes]
+    for ax, name in zip(axes, thresholds):
+        normal = eval_df.loc[eval_df["label"] == 0, f"score_{name}"]
+        anomaly = eval_df.loc[eval_df["label"] == 1, f"score_{name}"]
+        ax.hist(normal, bins=50, alpha=0.65, label="Normal", color="steelblue", density=True)
+        ax.hist(anomaly, bins=50, alpha=0.65, label="Synthetic anomaly", color="crimson", density=True)
+        ax.axvline(thresholds[name], color="black", linestyle="--", lw=1.2, label="Threshold")
+        ax.set_title(name)
+        ax.set_xlabel("Anomaly score")
+        ax.grid(True, axis="y", alpha=0.2)
+    axes[0].legend(loc="upper left")
+    fig.suptitle("Detector score distributions by label")
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+
+def _plot_confusion_matrices(eval_df: pd.DataFrame, model_names: list[str], path: Path) -> None:
+    fig, axes = plt.subplots(1, len(model_names), figsize=(5 * len(model_names), 4.5))
+    if len(model_names) == 1:
+        axes = [axes]
+    for ax, name in zip(axes, model_names):
+        cm = confusion_matrix(eval_df["label"], eval_df[f"pred_{name}"], labels=[0, 1])
+        im = ax.imshow(cm, cmap="Blues")
+        ax.set_title(name)
+        ax.set_xticks([0, 1], labels=["Pred normal", "Pred anomaly"])
+        ax.set_yticks([0, 1], labels=["True normal", "True anomaly"])
+        for i in range(2):
+            for j in range(2):
+                ax.text(j, i, str(cm[i, j]), ha="center", va="center", color="black")
+        fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
+    fig.suptitle("Confusion matrices on synthetic validation")
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+
+def _plot_roc_curves(eval_df: pd.DataFrame, model_names: list[str], path: Path) -> None:
+    fig, ax = plt.subplots(figsize=(7, 6))
+    for name in model_names:
+        fpr, tpr, _ = roc_curve(eval_df["label"], -eval_df[f"score_{name}"])
+        auc_value = roc_auc_score(eval_df["label"], -eval_df[f"score_{name}"])
+        ax.plot(fpr, tpr, lw=1.8, label=f"{name} AUC={auc_value:.3f}")
+    ax.plot([0, 1], [0, 1], color="gray", linestyle="--", lw=1)
+    ax.set_title("ROC curves on synthetic validation")
+    ax.set_xlabel("False positive rate")
+    ax.set_ylabel("True positive rate")
+    ax.legend(loc="lower right")
+    ax.grid(True, alpha=0.25)
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+
+def _plot_anomaly_type_detection(eval_df: pd.DataFrame, model_names: list[str], table_path: Path, plot_path: Path) -> tuple[Path, Path]:
+    rows = []
+    anomalies = eval_df[eval_df["label"] == 1]
+    for anomaly_type, group in anomalies.groupby("anomaly_type"):
+        for name in model_names:
+            rows.append({
+                "anomaly_type": anomaly_type,
+                "model": name,
+                "detection_rate": float(group[f"pred_{name}"].mean()),
+                "rows": int(len(group)),
+            })
+    rate_df = pd.DataFrame(rows)
+    rate_df.to_csv(table_path, index=False)
+    if not rate_df.empty:
+        pivot = rate_df.pivot(index="anomaly_type", columns="model", values="detection_rate")
+        fig, ax = plt.subplots(figsize=(12, 5.5))
+        pivot.plot(kind="bar", ax=ax)
+        ax.set_ylim(0, 1.05)
+        ax.set_title("Detection rate by synthetic anomaly type")
+        ax.set_xlabel("Synthetic anomaly type")
+        ax.set_ylabel("Detection rate")
+        ax.grid(True, axis="y", alpha=0.25)
+        ax.tick_params(axis="x", labelrotation=20)
+        ax.legend(loc="lower right")
+        fig.tight_layout()
+        fig.savefig(plot_path, dpi=150)
+        plt.close(fig)
+    return table_path, plot_path
+
+def _plot_check_timeline(result: pd.DataFrame, anomaly_mask: pd.Series, path: Path) -> Path:
+    fig, axes = plt.subplots(3, 1, figsize=(14, 8), sharex=True)
+    for ax, col in zip(axes, ["I_mean", "V_mean", "Power"]):
+        ax.plot(result["time"], result[col], color="steelblue", lw=1.1, label=col)
+        flagged = result[anomaly_mask]
+        if not flagged.empty:
+            ax.scatter(flagged["time"], flagged[col], color="crimson", s=22, label="Anomaly vote >= threshold", zorder=5)
+        ax.set_ylabel(col)
+        ax.grid(True, alpha=0.25)
+        ax.legend(loc="upper left")
+    axes[-1].set_xlabel("Time")
+    fig.suptitle("Anomaly check timeline")
+    fig.autofmt_xdate()
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+    return path
+
 def train_anomaly_detection(out_dir: Path = ANOMALY_DIR) -> dict:
     out_dir.mkdir(parents=True, exist_ok=True)
+    plot_dir = out_dir / "plots"
+    table_dir = out_dir / "tables"
+    plot_dir.mkdir(parents=True, exist_ok=True)
+    table_dir.mkdir(parents=True, exist_ok=True)
     df = load_detection_features()
     features_csv = DATA_PROCESSED / "detection_features.csv"
     df.to_csv(features_csv, index=False)
@@ -214,15 +370,18 @@ def train_anomaly_detection(out_dir: Path = ANOMALY_DIR) -> dict:
 
     syn = _synthetic(test_df, n_each=50)
     combined = pd.concat([
-        test_df[FEATURE_COLS].assign(label=0),
-        syn[FEATURE_COLS].assign(label=1),
+        test_df[FEATURE_COLS].assign(label=0, anomaly_type="normal"),
+        syn[FEATURE_COLS + ["anomaly_type"]].assign(label=1),
     ], ignore_index=True)
     y_true = combined["label"].values
     X_combined = scaler.transform(combined[FEATURE_COLS].values)
+    eval_df = combined[["label", "anomaly_type"] + FEATURE_COLS].copy()
     metrics = {}
     for name, model in models.items():
         scores = _score(name, model, X_combined)
         pred = (scores < thresholds[name]).astype(int)
+        eval_df[f"score_{name}"] = scores
+        eval_df[f"pred_{name}"] = pred
         metrics[name] = {
             "accuracy": float(accuracy_score(y_true, pred)),
             "precision": float(precision_score(y_true, pred, zero_division=0)),
@@ -240,16 +399,36 @@ def train_anomaly_detection(out_dir: Path = ANOMALY_DIR) -> dict:
 
     model_files = _save_models(models, scaler, thresholds)
     metrics_path = write_json(out_dir / "anomaly_metrics.json", metrics)
+    eval_path = table_dir / "synthetic_validation_predictions.csv"
+    eval_df.to_csv(eval_path, index=False)
+    metrics_table_path = _write_metrics_table(metrics, table_dir / "model_metrics.csv")
+    type_rates_path, type_rates_plot_path = _plot_anomaly_type_detection(
+        eval_df,
+        list(models),
+        table_dir / "anomaly_type_detection_rate.csv",
+        plot_dir / "anomaly_type_detection_rate.png",
+    )
     plot_path = out_dir / "score_distribution.png"
     loss_plot_path = out_dir / "autoencoder_loss.png"
     _plot_scores(test_scores, thresholds, plot_path)
     _plot_losses(ae_losses, loss_plot_path)
+    metric_bar_path = plot_dir / "model_metrics.png"
+    feature_plot_path = plot_dir / "feature_distribution.png"
+    score_label_plot_path = plot_dir / "score_distribution_by_label.png"
+    confusion_plot_path = plot_dir / "confusion_matrix.png"
+    roc_plot_path = plot_dir / "roc_curve.png"
+    _plot_metric_bars(metrics, metric_bar_path)
+    _plot_feature_distributions(combined, feature_plot_path)
+    _plot_score_by_label(eval_df, thresholds, score_label_plot_path)
+    _plot_confusion_matrices(eval_df, list(models), confusion_plot_path)
+    _plot_roc_curves(eval_df, list(models), roc_plot_path)
     run_summary = write_run_summary(out_dir, "anomaly_train", {
         "rows": len(df),
         "train_rows": len(train_df),
         "test_rows": len(test_df),
         "metrics": metrics,
         "synthetic_validation": True,
+        "synthetic_rows": int((eval_df["label"] == 1).sum()),
     })
     return {
         "rows": len(df),
@@ -257,8 +436,19 @@ def train_anomaly_detection(out_dir: Path = ANOMALY_DIR) -> dict:
         "files": {
             "features": str(features_csv),
             "metrics": str(metrics_path),
+            "metrics_table": str(metrics_table_path),
+            "synthetic_validation_predictions": str(eval_path),
+            "anomaly_type_detection_rate": str(type_rates_path),
             "plot": str(plot_path),
             "autoencoder_loss_plot": str(loss_plot_path),
+            "metric_bar_plot": str(metric_bar_path),
+            "feature_distribution_plot": str(feature_plot_path),
+            "score_distribution_by_label_plot": str(score_label_plot_path),
+            "confusion_matrix_plot": str(confusion_plot_path),
+            "roc_curve_plot": str(roc_plot_path),
+            "anomaly_type_detection_rate_plot": str(type_rates_plot_path),
+            "plots_dir": str(plot_dir),
+            "tables_dir": str(table_dir),
             "run_summary": str(run_summary),
             **model_files,
         },
@@ -284,8 +474,11 @@ def check_anomaly(start: str, end: str, min_models: int = 2, out_dir: Path = ANO
     result["n_models_flagged"] = result[flag_cols].sum(axis=1)
     anomaly_mask = result["n_models_flagged"] >= min_models
     out_dir.mkdir(parents=True, exist_ok=True)
+    plot_dir = out_dir / "plots"
+    plot_dir.mkdir(parents=True, exist_ok=True)
     detail_path = out_dir / "last_anomaly_check.csv"
     result.to_csv(detail_path, index=False)
+    timeline_path = _plot_check_timeline(result, anomaly_mask, plot_dir / "last_anomaly_check_timeline.png")
     votes = {col.replace("is_anomaly_", ""): int(result[col].sum()) for col in flag_cols}
     return {
         "verdict": "ANOMALY" if bool(anomaly_mask.any()) else "NORMAL",
@@ -294,4 +487,5 @@ def check_anomaly(start: str, end: str, min_models: int = 2, out_dir: Path = ANO
         "anomaly_rate": float(anomaly_mask.mean()),
         "model_votes": votes,
         "detail_csv": str(detail_path),
+        "timeline_plot": str(timeline_path),
     }
