@@ -448,6 +448,39 @@ def _fit_direct_tree(name: str, train_frame: pd.DataFrame, target: str, days: in
         raise ValueError(f"unsupported direct tree model: {name}")
     return model
 
+def _baseline_direct_horizon(df: pd.DataFrame, test_frame: pd.DataFrame) -> np.ndarray:
+    source = df.set_index("ds")["dy"].sort_index()
+    full_index = pd.date_range(source.index.min(), source.index.max(), freq="1min")
+    fallback = float(source.tail(7 * 24 * 60).mean())
+    aligned = source.reindex(full_index).fillna(fallback)
+    cumsum = aligned.cumsum()
+    ref_origin = test_frame["ds"] - pd.Timedelta(days=7)
+    ref_end = test_frame["future_ds"] - pd.Timedelta(days=7)
+    valid = ref_origin.ge(cumsum.index.min()) & ref_end.le(cumsum.index.max())
+    increments = np.full(len(test_frame), fallback * (test_frame["future_ds"] - test_frame["ds"]).dt.total_seconds().to_numpy() / 60)
+    if valid.any():
+        end_values = cumsum.reindex(ref_end[valid]).to_numpy()
+        origin_values = cumsum.reindex(ref_origin[valid]).to_numpy()
+        increments[valid.to_numpy()] = end_values - origin_values
+    return test_frame["y"].to_numpy() + np.clip(increments, 0, None)
+
+def _prophet_prediction_series(train_df: pd.DataFrame, target: str, start: pd.Timestamp, end: pd.Timestamp) -> pd.Series:
+    from prophet import Prophet
+
+    model = Prophet(daily_seasonality=True, weekly_seasonality=True, yearly_seasonality=False)
+    model.fit(train_df[["ds", target]].rename(columns={target: "y"}))
+    future_dates = pd.date_range(start, end, freq="1min")
+    fc = model.predict(pd.DataFrame({"ds": future_dates}))[["ds", "yhat"]]
+    return pd.Series(fc["yhat"].to_numpy(), index=fc["ds"])
+
+def _prophet_direct_horizon(test_frame: pd.DataFrame, target: str, predicted: pd.Series) -> np.ndarray:
+    if target == "dy":
+        cumsum = pd.Series(np.clip(predicted.to_numpy(), 0, None), index=predicted.index).cumsum()
+        end_values = cumsum.reindex(test_frame["future_ds"]).to_numpy()
+        origin_values = cumsum.reindex(test_frame["ds"]).fillna(0).to_numpy()
+        return test_frame["y"].to_numpy() + np.clip(end_values - origin_values, 0, None)
+    return np.maximum(test_frame["y"].to_numpy(), predicted.reindex(test_frame["future_ds"]).to_numpy())
+
 def train_forecast(target: str = "dy", models: list[str] | None = None, months_back: int | None = None, raw_dir: Path = DATA_RAW, out_dir: Path = FORECAST_DIR) -> dict:
     if target not in ("dy", "y"):
         raise ValueError("target must be 'dy' or 'y'")
@@ -618,9 +651,23 @@ def train_direct_tree_forecast(
     if target not in ("dy", "y"):
         raise ValueError("target must be 'dy' or 'y'")
     days = days or DEFAULT_DIRECT_HORIZON_DAYS
-    model_names = models or ["XGBoost", "LightGBM"]
+    model_names = models or ["BaselineLastWeek", "Prophet", "XGBoost", "LightGBM"]
     direct_dir = out_dir / "direct_trees" / target
-    direct_dir.mkdir(parents=True, exist_ok=True)
+    backtest_dir = direct_dir / "backtests"
+    future_dir = direct_dir / "future"
+    plot_dir = direct_dir / "plots"
+    for path in (direct_dir, backtest_dir, future_dir, plot_dir):
+        path.mkdir(parents=True, exist_ok=True)
+    for pattern in (
+        "*_direct_backtest_*d.csv",
+        "future_direct_*.csv",
+        "*_direct_forecast.png",
+        "all_models_direct_forecast.png",
+        "direct_horizon_mae.png",
+    ):
+        for old_file in direct_dir.glob(pattern):
+            if old_file.is_file():
+                old_file.unlink()
 
     df = load_consumption(raw_dir)
     if months_back:
@@ -633,6 +680,21 @@ def train_direct_tree_forecast(
     latest_feature = _make_features(df, target).tail(1)
     latest_y = float(df["y"].iloc[-1])
     latest_time = df["ds"].iloc[-1]
+    prophet_validation = None
+    prophet_future = None
+    if "Prophet" in model_names:
+        prophet_validation = _prophet_prediction_series(
+            train_df,
+            target,
+            test_df["ds"].min() + pd.Timedelta(minutes=1),
+            df["ds"].max(),
+        )
+        prophet_future = _prophet_prediction_series(
+            df,
+            target,
+            latest_time + pd.Timedelta(minutes=1),
+            latest_time + pd.Timedelta(days=max(days)),
+        )
 
     for name in model_names:
         future_rows = []
@@ -644,17 +706,28 @@ def train_direct_tree_forecast(
                 metrics[name][f"{day}d"] = {"status": "skipped", "reason": "not enough horizon data"}
                 continue
 
-            model = _fit_direct_tree(name, train_frame, target, day)
-            pred = model.predict(test_frame[_feature_cols()])
-            if target == "dy":
-                yhat = test_frame["y"].values + np.clip(pred, 0, None)
+            if name == "BaselineLastWeek":
+                yhat = _baseline_direct_horizon(df, test_frame)
+                validation_strategy = "rolling_origin_last_week_direct_horizon"
+            elif name == "Prophet":
+                yhat = _prophet_direct_horizon(test_frame, target, prophet_validation)
+                validation_strategy = "rolling_origin_prophet_direct_horizon"
+            elif name in ("XGBoost", "LightGBM"):
+                model = _fit_direct_tree(name, train_frame, target, day)
+                pred = model.predict(test_frame[_feature_cols()])
+                if target == "dy":
+                    yhat = test_frame["y"].values + np.clip(pred, 0, None)
+                else:
+                    yhat = np.maximum(test_frame["y"].values, pred)
+                validation_strategy = "direct_horizon_supervised"
             else:
-                yhat = np.maximum(test_frame["y"].values, pred)
+                metrics[name][f"{day}d"] = {"status": "skipped", "reason": "unknown model"}
+                continue
             eval_metrics = evaluate(test_frame["future_y"].values, yhat)
             eval_metrics["mae_percent"] = float(eval_metrics["mae"] / test_frame["future_y"].mean() * 100)
             eval_metrics["rows_train"] = int(len(train_frame))
             eval_metrics["rows_test"] = int(len(test_frame))
-            eval_metrics["validation_strategy"] = "direct_horizon_supervised"
+            eval_metrics["validation_strategy"] = validation_strategy
             eval_metrics["deploy_recommendation"] = "review" if eval_metrics["r2"] < 0 else "ok"
             metrics[name][f"{day}d"] = {"status": "ok", **eval_metrics}
 
@@ -664,17 +737,34 @@ def train_direct_tree_forecast(
                 "actual_y": test_frame["future_y"].values,
                 "yhat": yhat,
             })
-            test_out.to_csv(direct_dir / f"{name}_direct_backtest_{day}d.csv", index=False)
+            test_out.to_csv(backtest_dir / f"{name}_direct_backtest_{day}d.csv", index=False)
 
-            final_frame = _make_direct_horizon_frame(df, target, day)
-            final_model = _fit_direct_tree(name, final_frame, target, day)
-            future_pred = float(final_model.predict(latest_feature[_feature_cols()])[0])
-            if target == "dy":
-                future_y = latest_y + max(0.0, future_pred)
-                increment = max(0.0, future_pred)
-            else:
-                future_y = max(latest_y, future_pred)
+            if name == "BaselineLastWeek":
+                future_frame = pd.DataFrame({
+                    "ds": [latest_time],
+                    "future_ds": [latest_time + pd.Timedelta(days=day)],
+                    "y": [latest_y],
+                })
+                future_y = float(_baseline_direct_horizon(df, future_frame)[0])
                 increment = future_y - latest_y
+            elif name == "Prophet":
+                future_frame = pd.DataFrame({
+                    "ds": [latest_time],
+                    "future_ds": [latest_time + pd.Timedelta(days=day)],
+                    "y": [latest_y],
+                })
+                future_y = float(_prophet_direct_horizon(future_frame, target, prophet_future)[0])
+                increment = future_y - latest_y
+            else:
+                final_frame = _make_direct_horizon_frame(df, target, day)
+                final_model = _fit_direct_tree(name, final_frame, target, day)
+                future_pred = float(final_model.predict(latest_feature[_feature_cols()])[0])
+                if target == "dy":
+                    future_y = latest_y + max(0.0, future_pred)
+                    increment = max(0.0, future_pred)
+                else:
+                    future_y = max(latest_y, future_pred)
+                    increment = future_y - latest_y
             future_rows.append({
                 "horizon_days": day,
                 "ds": latest_time + pd.Timedelta(days=day),
@@ -684,13 +774,13 @@ def train_direct_tree_forecast(
 
         if future_rows:
             future_df = pd.DataFrame(future_rows).sort_values("horizon_days")
-            future_df.to_csv(direct_dir / f"future_direct_{name}.csv", index=False)
+            future_df.to_csv(future_dir / f"future_direct_{name}.csv", index=False)
             future_forecasts[name] = future_df
             _plot_direct_future(
                 df,
                 future_df,
                 f"{name} direct horizon forecast",
-                direct_dir / f"{name}_direct_forecast.png",
+                plot_dir / f"{name}_direct_forecast.png",
                 color=MODEL_COLORS.get(name, "tab:blue"),
             )
 
@@ -702,14 +792,14 @@ def train_direct_tree_forecast(
         "models": model_names,
         "horizon_days": days,
         "default_horizon_days": DEFAULT_DIRECT_HORIZON_DAYS,
-        "strategy": "direct horizon supervised models; no recursive prediction feedback",
+        "strategy": "1 to 30 day horizon comparison; tree models use direct supervised horizons; baseline and Prophet use matching horizon validation outputs",
         "data_profile": profile,
         "lag_steps": LAG_STEPS,
         "rolling_wins": ROLLING_WINS,
     })
-    mae_plot = direct_dir / "direct_horizon_mae.png"
+    mae_plot = plot_dir / "direct_horizon_mae.png"
     _plot_direct_horizon_mae(metrics, mae_plot, f"{target} direct horizon MAE")
-    all_plot = direct_dir / "all_models_direct_forecast.png"
+    all_plot = plot_dir / "all_models_direct_forecast.png"
     _plot_direct_future_all(df, future_forecasts, all_plot)
     run_summary = write_run_summary(out_dir, f"forecast_direct_trees_{target}", {"metrics": metrics, "profile": profile})
     return {
@@ -722,6 +812,9 @@ def train_direct_tree_forecast(
             "direct_horizon_mae": str(mae_plot),
             "all_models_direct_forecast": str(all_plot),
             "output_dir": str(direct_dir),
+            "backtests_dir": str(backtest_dir),
+            "future_dir": str(future_dir),
+            "plots_dir": str(plot_dir),
             "run_summary": str(run_summary),
         },
     }
