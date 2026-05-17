@@ -243,10 +243,10 @@ def _plot_confidence(df: pd.DataFrame, out_dir: Path, prefix: str) -> Path:
 
 
 def _plot_timeline(df: pd.DataFrame, out_dir: Path, prefix: str) -> Path:
-    fig, axes = plt.subplots(2, 1, figsize=(16, 7), sharex=True, gridspec_kw={"height_ratios": [3, 1]})
+    fig, axes = plt.subplots(2, 1, figsize=(16, 8.5), sharex=True, gridspec_kw={"height_ratios": [3, 1.15]})
     axes[0].plot(df["time"], df["I_mean"], color="black", lw=0.6, label="I_mean")
     axes[0].plot(df["time"], df["Power"], color="tab:red", lw=0.6, alpha=0.5, label="Power")
-    axes[0].legend()
+    axes[0].legend(fontsize=10, loc="upper right")
     axes[0].grid(True, alpha=0.3)
     for state in [s for s in df["state"].dropna().unique() if s != "Unknown"]:
         axes[1].fill_between(
@@ -260,10 +260,12 @@ def _plot_timeline(df: pd.DataFrame, out_dir: Path, prefix: str) -> Path:
             label=state,
         )
     axes[1].set_yticks([])
-    axes[1].legend(ncol=4, fontsize=8, loc="upper center", bbox_to_anchor=(0.5, -0.05))
-    axes[0].xaxis.set_major_locator(mdates.AutoDateLocator(minticks=4, maxticks=10))
-    axes[0].xaxis.set_major_formatter(mdates.ConciseDateFormatter(axes[0].xaxis.get_major_locator()))
-    fig.tight_layout()
+    axes[1].set_ylim(0, 1)
+    axes[1].legend(ncol=4, fontsize=11, loc="center left", bbox_to_anchor=(0.01, 0.5), frameon=True)
+    axes[1].xaxis.set_major_locator(mdates.AutoDateLocator(minticks=4, maxticks=10))
+    axes[1].xaxis.set_major_formatter(mdates.ConciseDateFormatter(axes[1].xaxis.get_major_locator()))
+    axes[1].tick_params(axis="x", labelsize=11)
+    fig.subplots_adjust(bottom=0.12, hspace=0.10)
     path = out_dir / f"{prefix}_state_timeline.png"
     fig.savefig(path, dpi=150)
     plt.close(fig)
