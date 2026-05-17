@@ -76,6 +76,14 @@ def forecast_future(days: list[int] | None = None, model_names: list[str] | None
     except Exception as exc:
         return err(str(exc))
 
+def train_direct_tree_forecast(target: str = "dy", days: list[int] | None = None, models: list[str] | None = None, months_back: int | None = None) -> dict:
+    try:
+        from src.forecast.pipeline import train_direct_tree_forecast as _train_direct_tree_forecast
+        result = _train_direct_tree_forecast(target=target, days=days, models=models, months_back=months_back)
+        return ok(FORECAST_DIR, "direct tree forecast finished", key_files=result["files"], metrics=result["metrics"])
+    except Exception as exc:
+        return err(str(exc))
+
 def train_anomaly_detection() -> dict:
     try:
         from src.anomaly.pipeline import train_anomaly_detection as _train_anomaly_detection

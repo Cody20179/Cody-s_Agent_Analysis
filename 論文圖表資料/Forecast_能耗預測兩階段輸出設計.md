@@ -78,6 +78,48 @@
 - `dy` 與 `y` 必須分開報告，不能混在同一張表。
 - 論文主要建議使用 `dy`，因為它代表每分鐘耗電增量，比累積表值 `y` 更接近能耗變化。
 
+## XGBoost/LightGBM Direct Horizon 修正版
+
+原本的 XGBoost/LightGBM 是 recursive forecast：先預測下一分鐘，再把預測值放回 lag buffer 繼續往後推。當最新資料剛好停機或 `dy` 長時間為 0 時，模型容易掉入近零增量狀態，造成未來曲線接近平線。
+
+為避免和既有 recursive 結果混在一起，修正版獨立輸出於：
+
+| 項目 | 位置 |
+|---|---|
+| Direct horizon 結果資料夾 | `outputs/forecast/direct_trees/<target>/` |
+| Direct horizon 模型資料夾 | `models/forecast/direct_trees/<target>/` |
+| MCP 工具 | `tool_train_direct_tree_forecast` |
+| Python 入口 | `train_direct_tree_forecast()` |
+
+修正版不預測每一分鐘再遞迴，而是直接訓練不同 horizon 的監督式模型：
+
+```text
+目前時間 t 的 lag / rolling / time features
+→ 直接預測 t+3d、t+7d、t+14d、t+30d 的累積用電量或增量
+```
+
+輸出檔案：
+
+| 檔案 | 用途 |
+|---|---|
+| `direct_tree_metrics.json` | XGBoost/LightGBM 在 3、7、14、30 天 horizon 的直接預測指標 |
+| `direct_horizon_mae.png` | 不同 horizon 的 MAE 比較 |
+| `future_direct_XGBoost.csv` | XGBoost 未來 3、7、14、30 天直接預測 |
+| `future_direct_LightGBM.csv` | LightGBM 未來 3、7、14、30 天直接預測 |
+| `XGBoost_direct_forecast.png` | XGBoost direct horizon 預測圖 |
+| `LightGBM_direct_forecast.png` | LightGBM direct horizon 預測圖 |
+| `all_models_direct_forecast.png` | Direct horizon 全模型比較圖 |
+
+建議執行：
+
+```python
+from main import train_direct_tree_forecast
+
+train_direct_tree_forecast(target="dy")
+```
+
+論文應將 recursive 版本與 direct horizon 修正版分開討論。recursive 版本用於說明部署風險，direct horizon 版本才是 XGBoost/LightGBM 較合理的長期預測形式。
+
 ## 資料內容
 
 目前訓練資料由 `Electricity_consumption.csv` 建立，處理流程如下：
