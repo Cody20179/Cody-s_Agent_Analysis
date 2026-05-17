@@ -29,6 +29,8 @@ def run_state_analysis(start=None, end=None) -> dict:
             "best_k": result["best_k"],
             "rows": result["rows"],
             "state_summary": result["state_summary"],
+            "training": result.get("training", {}),
+            "application": result.get("application", {}),
         })
     except Exception as exc:
         return err(str(exc))
