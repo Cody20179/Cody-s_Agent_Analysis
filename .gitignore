@@ -24,8 +24,7 @@ __pycache__/
 # temporary update workspace
 data/_tmp_update/
 
-# Keep deployable artifacts tracked:
-# - data/raw/
-# - data/processed/
-# - models/
-# - outputs/
+# generated analysis artifacts
+data/processed/
+models/
+outputs/

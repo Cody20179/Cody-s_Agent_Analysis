@@ -158,6 +158,35 @@ def _plot_cluster_scatter(df: pd.DataFrame, out_dir: Path) -> Path:
     plt.close(fig)
     return path
 
+def _plot_standardized_boxplot(valid: pd.DataFrame, scaler: StandardScaler, out_dir: Path) -> Path:
+    X = pd.DataFrame(scaler.transform(valid[FEATURE_COLS]), columns=FEATURE_COLS)
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.boxplot([X[col].dropna() for col in FEATURE_COLS], labels=FEATURE_COLS, showfliers=False)
+    ax.axhline(0, color="black", lw=0.8, alpha=0.5)
+    ax.set_ylabel("Standardized value")
+    ax.set_title("Standardized feature scale after preprocessing")
+    fig.tight_layout()
+    path = out_dir / "training_standardized_feature_boxplot.png"
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+    return path
+
+def _plot_cluster_confidence(cluster_df: pd.DataFrame, out_dir: Path) -> Path:
+    fig, ax = plt.subplots(figsize=(8, 5))
+    groups = [
+        cluster_df.loc[cluster_df["cluster"].eq(cluster), "gmm_confidence"].dropna()
+        for cluster in sorted(cluster_df["cluster"].unique())
+    ]
+    ax.boxplot(groups, labels=[str(v) for v in sorted(cluster_df["cluster"].unique())], showfliers=False)
+    ax.set_xlabel("Cluster")
+    ax.set_ylabel("Maximum posterior probability")
+    ax.set_title("GMM assignment confidence by cluster")
+    fig.tight_layout()
+    path = out_dir / "training_cluster_confidence_boxplot.png"
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+    return path
+
 def _plot_confidence(df: pd.DataFrame, out_dir: Path) -> Path:
     values = df["gmm_confidence"].dropna()
     fig, ax = plt.subplots(figsize=(8, 4))
@@ -224,8 +253,11 @@ def _write_training_outputs(
         "cluster_profile_csv": str(profile_csv),
         "cluster_centers_csv": str(centers_csv),
         "metrics_json": str(metrics_json),
+        "bic_curve": str(_plot_bic(bic_df, best_k, train_dir)),
         "feature_distributions": str(_plot_feature_distributions(valid, train_dir)),
         "cluster_scatter": str(_plot_cluster_scatter(labeled, train_dir)),
+        "standardized_feature_boxplot": str(_plot_standardized_boxplot(valid, scaler, train_dir)),
+        "cluster_confidence_boxplot": str(_plot_cluster_confidence(cluster_df, train_dir)),
     }
     return metrics, files
 
@@ -287,6 +319,7 @@ def _write_application_outputs(labeled: pd.DataFrame, freq_min: int, out_dir: Pa
         "daily_state_hours_csv": str(daily_csv),
         "state_feature_profile_csv": str(profile_csv),
         "metrics_json": str(metrics_json),
+        "state_timeline": str(_plot_timeline(labeled, app_dir)),
         "transition_matrix_plot": str(transition_png),
         "daily_state_hours_plot": str(daily_png),
         "confidence_distribution": str(_plot_confidence(labeled, app_dir)),
@@ -370,8 +403,6 @@ def run_state_analysis(start=None, end=None, freq: str = "5min", k_range=range(2
     freq_min = int(pd.Timedelta(freq).total_seconds() / 60)
     summary = _summary(labeled, freq_min)
     report = _write_report(summary, bic_df, best_k, labeled, out_dir)
-    bic_plot = _plot_bic(bic_df, best_k, out_dir)
-    timeline = _plot_timeline(labeled, out_dir)
     training_metrics, training_files = _write_training_outputs(df, labeled, model, scaler, best_k, bic_df, out_dir)
     application_metrics, application_files = _write_application_outputs(labeled, freq_min, out_dir)
     run_summary = write_run_summary(out_dir, "state", {
@@ -394,8 +425,8 @@ def run_state_analysis(start=None, end=None, freq: str = "5min", k_range=range(2
             "state_labeled_csv": str(state_csv),
             "processed_state_labeled_csv": str(labeled_csv),
             "state_report": str(report),
-            "bic_curve": str(bic_plot),
-            "state_timeline": str(timeline),
+            "bic_curve": training_files["bic_curve"],
+            "state_timeline": application_files["state_timeline"],
             "run_summary": str(run_summary),
             "training": training_files,
             "application": application_files,
