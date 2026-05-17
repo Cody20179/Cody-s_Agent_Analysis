@@ -19,6 +19,7 @@ ROLLING_WINS = [5, 30, 60]
 DEFAULT_MODELS = ["BaselineLastWeek", "Prophet", "XGBoost", "LightGBM"]
 OPTIONAL_MODELS: list[str] = []
 DEFAULT_DIRECT_HORIZON_DAYS = list(range(1, 31))
+KEY_DIRECT_HORIZON_DAYS = [7, 14, 21, 30]
 MODEL_COLORS = {
     "BaselineLastWeek": "tab:gray",
     "Prophet": "tab:blue",
@@ -306,6 +307,46 @@ def _plot_direct_horizon_mae(metrics: dict, path: Path, title: str) -> None:
     fig.tight_layout()
     fig.savefig(path, dpi=150)
     plt.close(fig)
+
+def _write_direct_key_horizon_summary(metrics: dict, direct_dir: Path, plot_dir: Path) -> tuple[Path, Path]:
+    rows = []
+    for day in KEY_DIRECT_HORIZON_DAYS:
+        key = f"{day}d"
+        for name, horizons in metrics.items():
+            values = horizons.get(key, {})
+            if values.get("status") != "ok":
+                continue
+            rows.append({
+                "horizon_days": day,
+                "model": name,
+                "mae": values.get("mae"),
+                "rmse": values.get("rmse"),
+                "r2": values.get("r2"),
+                "mae_percent": values.get("mae_percent"),
+                "deploy_recommendation": values.get("deploy_recommendation"),
+                "validation_strategy": values.get("validation_strategy"),
+            })
+    summary = pd.DataFrame(rows)
+    csv_path = direct_dir / "direct_horizon_key_metrics.csv"
+    summary.to_csv(csv_path, index=False)
+
+    plot_path = plot_dir / "direct_horizon_key_mae.png"
+    if not summary.empty:
+        pivot = summary.pivot(index="horizon_days", columns="model", values="mae").sort_index()
+        fig, ax = plt.subplots(figsize=(11, 5.8))
+        pivot.plot(kind="bar", ax=ax, color=[MODEL_COLORS.get(c, "tab:blue") for c in pivot.columns])
+        ax.set_title("Key horizon MAE comparison")
+        ax.set_xlabel("Forecast horizon (days)")
+        ax.set_ylabel("MAE")
+        ax.grid(True, axis="y", alpha=0.25)
+        ax.tick_params(axis="x", labelrotation=0)
+        ax.legend(loc="upper left", ncols=2)
+        for container in ax.containers:
+            ax.bar_label(container, fmt="%.0f", fontsize=8, padding=2)
+        fig.tight_layout()
+        fig.savefig(plot_path, dpi=150)
+        plt.close(fig)
+    return csv_path, plot_path
 
 def _plot_direct_future(history: pd.DataFrame, forecast: pd.DataFrame, title: str, path: Path, color: str = "tab:blue", actual_ratio: int = 3) -> None:
     horizon = forecast["ds"].max() - history["ds"].max()
@@ -799,6 +840,7 @@ def train_direct_tree_forecast(
     })
     mae_plot = plot_dir / "direct_horizon_mae.png"
     _plot_direct_horizon_mae(metrics, mae_plot, f"{target} direct horizon MAE")
+    key_metrics_path, key_mae_plot = _write_direct_key_horizon_summary(metrics, direct_dir, plot_dir)
     all_plot = plot_dir / "all_models_direct_forecast.png"
     _plot_direct_future_all(df, future_forecasts, all_plot)
     run_summary = write_run_summary(out_dir, f"forecast_direct_trees_{target}", {"metrics": metrics, "profile": profile})
@@ -810,6 +852,8 @@ def train_direct_tree_forecast(
             "data_profile": str(profile_path),
             "config": str(config_path),
             "direct_horizon_mae": str(mae_plot),
+            "direct_horizon_key_metrics": str(key_metrics_path),
+            "direct_horizon_key_mae": str(key_mae_plot),
             "all_models_direct_forecast": str(all_plot),
             "output_dir": str(direct_dir),
             "backtests_dir": str(backtest_dir),
