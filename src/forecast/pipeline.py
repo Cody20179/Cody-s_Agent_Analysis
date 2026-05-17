@@ -72,6 +72,19 @@ def _recursive_forecast(predict_fn, history: pd.DataFrame, target: str, periods:
         rows.append({"ds": current_time, "yhat": current_y})
     return pd.DataFrame(rows)
 
+def _one_step_tree_forecast(predict_fn, history: pd.DataFrame, test_df: pd.DataFrame, target: str) -> pd.DataFrame:
+    combined = pd.concat([history, test_df], ignore_index=True)
+    feat = _make_features(combined, target)
+    feat = feat[feat["ds"].ge(test_df["ds"].min())].copy()
+    pred = predict_fn(feat[_feature_cols()])
+    if target == "dy":
+        previous_y = feat["y"].shift(1)
+        previous_y = previous_y.fillna(float(history["y"].iloc[-1]))
+        yhat = previous_y.values + np.clip(pred, 0, None)
+    else:
+        yhat = pred
+    return pd.DataFrame({"ds": feat["ds"].values, "yhat": yhat})
+
 def _baseline_last_week(history: pd.DataFrame, periods: int) -> pd.DataFrame:
     current_y = float(history["y"].iloc[-1])
     current_time = history["ds"].iloc[-1]
@@ -120,7 +133,7 @@ def _train_tree(name: str, train_df: pd.DataFrame, target: str, model_path: Path
         model = lgb.LGBMRegressor(n_estimators=400, learning_rate=0.05, max_depth=6, subsample=0.8, colsample_bytree=0.8, random_state=42, verbose=-1, n_jobs=-1)
         model.fit(X, y)
         model.booster_.save_model(str(model_path))
-    return lambda history, periods: _recursive_forecast(model.predict, history, target, periods)
+    return model.predict
 
 def _load_forecaster(name: str, path: Path, target: str):
     if name == "Prophet":
@@ -188,6 +201,37 @@ def _plot_training_input_series(df: pd.DataFrame, train_df: pd.DataFrame, test_d
     fig.savefig(path, dpi=150)
     plt.close(fig)
 
+def _data_profile(df: pd.DataFrame, train_df: pd.DataFrame, test_df: pd.DataFrame, months_back: int | None, target: str) -> dict:
+    gaps = df["ds"].diff().dt.total_seconds().fillna(60)
+    dy = df["dy"]
+    return {
+        "target": target,
+        "months_back": months_back,
+        "rows_total": int(len(df)),
+        "rows_train": int(len(train_df)),
+        "rows_test": int(len(test_df)),
+        "train_ratio": round(len(train_df) / max(len(df), 1), 4),
+        "test_ratio": round(len(test_df) / max(len(df), 1), 4),
+        "data_start": str(df["ds"].min()),
+        "data_end": str(df["ds"].max()),
+        "train_start": str(train_df["ds"].min()),
+        "train_end": str(train_df["ds"].max()),
+        "test_start": str(test_df["ds"].min()) if len(test_df) else None,
+        "test_end": str(test_df["ds"].max()) if len(test_df) else None,
+        "resample_frequency": "1min",
+        "outlier_rule": "dy <= Q3 + 3 * IQR after negative dy values clipped to 0",
+        "time_gap_count_after_filtering": int(gaps.gt(60).sum()),
+        "max_time_gap_minutes": float(gaps.max() / 60),
+        "dy_min": float(dy.min()),
+        "dy_mean": float(dy.mean()),
+        "dy_median": float(dy.median()),
+        "dy_q95": float(dy.quantile(0.95)),
+        "dy_q99": float(dy.quantile(0.99)),
+        "dy_max": float(dy.max()),
+        "y_min": float(df["y"].min()),
+        "y_max": float(df["y"].max()),
+    }
+
 def train_forecast(target: str = "dy", models: list[str] | None = None, months_back: int | None = None, raw_dir: Path = DATA_RAW, out_dir: Path = FORECAST_DIR) -> dict:
     if target not in ("dy", "y"):
         raise ValueError("target must be 'dy' or 'y'")
@@ -202,6 +246,7 @@ def train_forecast(target: str = "dy", models: list[str] | None = None, months_b
     periods = min(len(test_df), _periods(7))
     actual = test_df.iloc[:periods].copy()
     results, forecasts = {}, {}
+    data_profile = _data_profile(df, train_df, test_df, months_back, target)
 
     config = {
         "target": target,
@@ -210,12 +255,7 @@ def train_forecast(target: str = "dy", models: list[str] | None = None, months_b
         "default_models": DEFAULT_MODELS,
         "optional_models": OPTIONAL_MODELS,
         "months_back": months_back,
-        "data_start": str(df["ds"].min()),
-        "data_end": str(df["ds"].max()),
-        "train_start": str(train_df["ds"].min()),
-        "train_end": str(train_df["ds"].max()),
-        "test_start": str(test_df["ds"].min()) if len(test_df) else None,
-        "test_end": str(test_df["ds"].max()) if len(test_df) else None,
+        "data_profile": data_profile,
         "lag_steps": LAG_STEPS,
         "rolling_wins": ROLLING_WINS,
     }
@@ -226,25 +266,43 @@ def train_forecast(target: str = "dy", models: list[str] | None = None, months_b
         try:
             if name == "BaselineLastWeek":
                 fc = _baseline_last_week(train_df, periods)
+                metric_fc = fc
+                strategy = "recursive_last_week_increment_baseline"
             elif name == "Prophet":
                 fc = _train_prophet(train_df, target, _model_file(name, target))(train_df, periods)
+                metric_fc = fc
+                strategy = "direct_horizon_time_series"
             elif name in ("XGBoost", "LightGBM"):
-                fc = _train_tree(name, train_df, target, _model_file(name, target))(train_df, periods)
+                predict_fn = _train_tree(name, train_df, target, _model_file(name, target))
+                metric_fc = _one_step_tree_forecast(predict_fn, train_df, actual, target)
+                fc = _recursive_forecast(predict_fn, train_df, target, periods)
+                recursive_merged = actual.merge(fc, on="ds", how="inner")
+                recursive_metrics = evaluate(recursive_merged["y"], recursive_merged["yhat"])
+                recursive_metrics["mae_percent"] = float(recursive_metrics["mae"] / recursive_merged["y"].mean() * 100) if len(recursive_merged) else np.nan
+                fc.to_csv(train_dir / f"test_recursive_{name}.csv", index=False)
+                strategy = "one_step_lag_validation_with_recursive_stress_test"
             else:
                 results[name] = {"status": "skipped", "reason": "unknown model"}
                 continue
-            merged = actual.merge(fc, on="ds", how="inner")
+            merged = actual.merge(metric_fc, on="ds", how="inner")
             metrics = evaluate(merged["y"], merged["yhat"])
             metrics["mae_percent"] = float(metrics["mae"] / merged["y"].mean() * 100) if len(merged) else np.nan
             metrics["deploy_recommendation"] = "review" if metrics["r2"] < 0 else "ok"
-            results[name] = {"status": "ok", "target": target, **metrics}
-            forecasts[name] = fc
-            fc.to_csv(train_dir / f"test_forecast_{name}.csv", index=False)
+            result = {"status": "ok", "target": target, "validation_strategy": strategy, **metrics}
+            if name in ("XGBoost", "LightGBM"):
+                result["recursive_stress_test"] = {
+                    **recursive_metrics,
+                    "deploy_recommendation": "review" if recursive_metrics["r2"] < 0 else "ok",
+                }
+            results[name] = result
+            forecasts[name] = metric_fc
+            metric_fc.to_csv(train_dir / f"test_forecast_{name}.csv", index=False)
         except Exception as exc:
             results[name] = {"status": "error", "target": target, "reason": str(exc)}
 
     actual.to_csv(train_dir / "test_actual.csv", index=False)
     metrics_path = write_json(train_dir / "forecast_metrics.json", results)
+    data_profile_path = write_json(train_dir / "training_data_profile.json", data_profile)
     input_y_plot_path = train_dir / "training_input_y.png"
     input_dy_plot_path = train_dir / "training_input_dy.png"
     _plot_training_input_series(df, train_df, test_df, "y", input_y_plot_path)
@@ -261,6 +319,7 @@ def train_forecast(target: str = "dy", models: list[str] | None = None, months_b
         "metrics": results,
         "files": {
             "metrics": str(metrics_path),
+            "training_data_profile": str(data_profile_path),
             "training_input_y": str(input_y_plot_path),
             "training_input_dy": str(input_dy_plot_path),
             "forecast_test_overlay": str(plot_path),

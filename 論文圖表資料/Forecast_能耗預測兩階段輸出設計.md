@@ -34,6 +34,7 @@
 | 檔案 | 用途 |
 |---|---|
 | `outputs/forecast/training/dy/forecast_metrics.json` | `dy` 目標下的模型測試指標 |
+| `outputs/forecast/training/dy/training_data_profile.json` | 訓練資料範圍、數量、切分比例與前處理摘要 |
 | `outputs/forecast/training/dy/training_input_y.png` | 訓練前累積用電量 `y` 的時間序列樣貌 |
 | `outputs/forecast/training/dy/training_input_dy.png` | 訓練前每分鐘用電增量 `dy` 的時間序列樣貌 |
 | `outputs/forecast/training/dy/forecast_test_overlay.png` | 測試區間實際值與預測值比較 |
@@ -41,6 +42,8 @@
 | `outputs/forecast/training/dy/test_forecast_Prophet.csv` | Prophet 測試區間預測 |
 | `outputs/forecast/training/dy/test_forecast_XGBoost.csv` | XGBoost 測試區間預測 |
 | `outputs/forecast/training/dy/test_forecast_LightGBM.csv` | LightGBM 測試區間預測 |
+| `outputs/forecast/training/dy/test_recursive_XGBoost.csv` | XGBoost 長期遞迴壓力測試 |
+| `outputs/forecast/training/dy/test_recursive_LightGBM.csv` | LightGBM 長期遞迴壓力測試 |
 | `models/forecast/Prophet_target_dy.json` | Prophet 訓練後模型 |
 | `models/forecast/training_config_dy.json` | `dy` 專用訓練設定 |
 
@@ -63,9 +66,39 @@
 - `forecast_future(target="dy")` 只回答使用既有模型對最新資料往後推估的結果。
 - BaselineLastWeek 是比較基準，不是機器學習模型。
 - Prophet 需要先訓練，之後可直接載入 `models/forecast/Prophet_target_<target>.json` 做未來預測。
-- XGBoost 與 LightGBM 需要 lag 與 rolling 特徵，若遞迴預測誤差快速累積，應在結果章標示為 review，不宜直接部署。
+- XGBoost 與 LightGBM 需要 lag 與 rolling 特徵，訓練驗證以 one-step lag validation 為主。
+- XGBoost 與 LightGBM 若要做長期未來預測，需另看 recursive stress test，因為遞迴預測會把前一步誤差帶入下一步。
 - `dy` 與 `y` 必須分開報告，不能混在同一張表。
 - 論文主要建議使用 `dy`，因為它代表每分鐘耗電增量，比累積表值 `y` 更接近能耗變化。
+
+## 資料內容
+
+目前訓練資料由 `Electricity_consumption.csv` 建立，處理流程如下：
+
+| 項目 | 設定 |
+|---|---|
+| 原始欄位 | `svc_recv_ts_datetime`、`v1` |
+| 時間欄位 | 轉為 `ds` |
+| 累積用電量 | `y` |
+| 每分鐘增量 | `dy = diff(y)`，負值裁為 0 |
+| 重採樣 | 1 分鐘 |
+| 缺值處理 | forward fill |
+| 極端值處理 | `dy <= Q3 + 3 * IQR` |
+| 切分方式 | 時間序列 80% 訓練、20% 測試 |
+
+最新數量與範圍以 `outputs/forecast/training/<target>/training_data_profile.json` 為準。該檔包含：
+
+| 欄位 | 意義 |
+|---|---|
+| `rows_total` | 前處理後總筆數 |
+| `rows_train` | 訓練筆數 |
+| `rows_test` | 測試筆數 |
+| `train_ratio`、`test_ratio` | 訓練與測試比例 |
+| `data_start`、`data_end` | 全資料時間範圍 |
+| `train_start`、`train_end` | 訓練資料時間範圍 |
+| `test_start`、`test_end` | 測試資料時間範圍 |
+| `time_gap_count_after_filtering` | 極端值移除後造成的時間缺口數 |
+| `dy_mean`、`dy_q95`、`dy_q99` | 每分鐘增量分布摘要 |
 
 ## 建議執行方式
 
@@ -105,7 +138,7 @@ forecast_future(target="y")
 
 結果章可寫：
 
-> 訓練完成後，本研究將各模型套用於最新資料點之後的未來時間區間，並輸出 3、7、14 與 30 天之累積用電量預測。BaselineLastWeek 提供可解釋的週期性基準，Prophet 用於捕捉日週季節性，而 XGBoost 與 LightGBM 則作為 lag 與 rolling 特徵模型之比較。若樹模型於測試區間出現負 R2，表示其遞迴預測誤差累積嚴重，應列為不建議部署或需進一步調參之模型。
+> 訓練完成後，本研究將各模型套用於測試區間以評估預測能力。BaselineLastWeek 提供可解釋的週期性基準，Prophet 用於捕捉日週季節性，而 XGBoost 與 LightGBM 則作為 lag 與 rolling 特徵模型之比較。由於樹模型屬於監督式 one-step lag 預測，結果章需同時呈現 one-step validation 與 recursive stress test，以區分模型對已知歷史 lag 的擬合能力，以及在長期未來預測時誤差累積的部署風險。
 
 ## 驗證指標
 
@@ -126,6 +159,7 @@ forecast_future(target="y")
 | 表 3-x | `y` 與 `dy` 目標定義表 | 本文件 Target 定義 |
 | 圖 3-x | Forecast 原始累積用電量圖 | `outputs/forecast/training/dy/training_input_y.png` |
 | 圖 3-x | Forecast 原始每分鐘耗電增量圖 | `outputs/forecast/training/dy/training_input_dy.png` |
+| 表 3-x | Forecast 訓練資料摘要 | `outputs/forecast/training/dy/training_data_profile.json` |
 | 表 4-x | 四模型測試指標 | `outputs/forecast/training/dy/forecast_metrics.json` |
 | 圖 4-x | 測試區間預測比較圖 | `outputs/forecast/training/dy/forecast_test_overlay.png` |
 | 圖 4-x | 未來能耗預測圖 | `outputs/forecast/application/dy/future_forecast.png` |
