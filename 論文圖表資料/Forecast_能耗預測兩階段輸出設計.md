@@ -91,21 +91,23 @@
 | MCP 工具 | `tool_train_direct_tree_forecast` |
 | Python 入口 | `train_direct_tree_forecast()` |
 
-修正版不預測每一分鐘再遞迴，而是直接訓練不同 horizon 的監督式模型：
+修正版不預測每一分鐘再遞迴，而是直接訓練每日 horizon 的監督式模型：
 
 ```text
 目前時間 t 的 lag / rolling / time features
-→ 直接預測 t+3d、t+7d、t+14d、t+30d 的累積用電量或增量
+→ 直接預測 t+1d、t+2d、...、t+30d 的累積用電量或增量
 ```
+
+每一個 horizon 都是獨立訓練的模型，因此不會把第 1 天的預測值再餵回去推第 2 天，可避免 recursive forecast 常見的誤差累積與長期平線化問題。
 
 輸出檔案：
 
 | 檔案 | 用途 |
 |---|---|
-| `direct_tree_metrics.json` | XGBoost/LightGBM 在 3、7、14、30 天 horizon 的直接預測指標 |
-| `direct_horizon_mae.png` | 不同 horizon 的 MAE 比較 |
-| `future_direct_XGBoost.csv` | XGBoost 未來 3、7、14、30 天直接預測 |
-| `future_direct_LightGBM.csv` | LightGBM 未來 3、7、14、30 天直接預測 |
+| `direct_tree_metrics.json` | XGBoost/LightGBM 在 1 至 30 天 horizon 的直接預測指標 |
+| `direct_horizon_mae.png` | 1 至 30 天 horizon 的 MAE 變化 |
+| `future_direct_XGBoost.csv` | XGBoost 未來 1 至 30 天每日直接預測 |
+| `future_direct_LightGBM.csv` | LightGBM 未來 1 至 30 天每日直接預測 |
 | `XGBoost_direct_forecast.png` | XGBoost direct horizon 預測圖 |
 | `LightGBM_direct_forecast.png` | LightGBM direct horizon 預測圖 |
 | `all_models_direct_forecast.png` | Direct horizon 全模型比較圖 |
@@ -116,6 +118,12 @@
 from main import train_direct_tree_forecast
 
 train_direct_tree_forecast(target="dy")
+```
+
+若要指定少數 horizon 作為摘要圖，可以另外傳入：
+
+```python
+train_direct_tree_forecast(target="dy", days=[3, 7, 14, 30])
 ```
 
 論文應將 recursive 版本與 direct horizon 修正版分開討論。recursive 版本用於說明部署風險，direct horizon 版本才是 XGBoost/LightGBM 較合理的長期預測形式。

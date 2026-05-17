@@ -80,10 +80,10 @@ async def tool_forecast_future(days: str = "3,7,14,30", model_names: str = "", t
     return await _run(forecast_future, days=day_arg, model_names=model_arg, target=target or None)
 
 @mcp.tool()
-async def tool_train_direct_tree_forecast(target: str = "dy", days: str = "3,7,14,30", models: str = "", months_back: int = 0) -> str:
+async def tool_train_direct_tree_forecast(target: str = "dy", days: str = "", models: str = "", months_back: int = 0) -> str:
     day_arg = [int(x.strip()) for x in days.split(",") if x.strip()]
     model_arg = [x.strip() for x in models.split(",") if x.strip()] if models else None
-    return await _run(train_direct_tree_forecast, target=target, days=day_arg, models=model_arg, months_back=months_back or None)
+    return await _run(train_direct_tree_forecast, target=target, days=day_arg or None, models=model_arg, months_back=months_back or None)
 
 @mcp.tool()
 async def tool_train_anomaly_detection() -> str:

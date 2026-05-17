@@ -18,6 +18,7 @@ LAG_STEPS = [1, 5, 10, 30, 60, 1440, 10080]
 ROLLING_WINS = [5, 30, 60]
 DEFAULT_MODELS = ["BaselineLastWeek", "Prophet", "XGBoost", "LightGBM"]
 OPTIONAL_MODELS: list[str] = []
+DEFAULT_DIRECT_HORIZON_DAYS = list(range(1, 31))
 MODEL_COLORS = {
     "BaselineLastWeek": "tab:gray",
     "Prophet": "tab:blue",
@@ -292,10 +293,13 @@ def _plot_direct_horizon_mae(metrics: dict, path: Path, title: str) -> None:
         return
     df = pd.DataFrame(rows)
     pivot = df.pivot(index="horizon", columns="model", values="mae").sort_index()
-    fig, ax = plt.subplots(figsize=(10, 5))
-    pivot.plot(kind="bar", ax=ax, color=[MODEL_COLORS.get(c, "tab:blue") for c in pivot.columns])
+    fig, ax = plt.subplots(figsize=(12, 5.5))
+    if len(pivot) > 10:
+        pivot.plot(ax=ax, marker="o", color=[MODEL_COLORS.get(c, "tab:blue") for c in pivot.columns])
+    else:
+        pivot.plot(kind="bar", ax=ax, color=[MODEL_COLORS.get(c, "tab:blue") for c in pivot.columns])
     ax.set_ylabel("MAE")
-    ax.set_xlabel("Forecast horizon")
+    ax.set_xlabel("Forecast horizon (days)")
     ax.set_title(title)
     ax.grid(True, axis="y", alpha=0.25)
     ax.tick_params(axis="x", labelrotation=0)
@@ -613,7 +617,7 @@ def train_direct_tree_forecast(
 ) -> dict:
     if target not in ("dy", "y"):
         raise ValueError("target must be 'dy' or 'y'")
-    days = days or [3, 7, 14, 30]
+    days = days or DEFAULT_DIRECT_HORIZON_DAYS
     model_names = models or ["XGBoost", "LightGBM"]
     direct_dir = out_dir / "direct_trees" / target
     direct_dir.mkdir(parents=True, exist_ok=True)
@@ -697,6 +701,7 @@ def train_direct_tree_forecast(
         "target_definition": _target_definition(target),
         "models": model_names,
         "horizon_days": days,
+        "default_horizon_days": DEFAULT_DIRECT_HORIZON_DAYS,
         "strategy": "direct horizon supervised models; no recursive prediction feedback",
         "data_profile": profile,
         "lag_steps": LAG_STEPS,
