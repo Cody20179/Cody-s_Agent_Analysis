@@ -9,6 +9,7 @@ from src.data.loaders import evaluate, load_consumption, split_time
 
 import matplotlib
 matplotlib.use("Agg")
+import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -17,6 +18,12 @@ LAG_STEPS = [1, 5, 10, 30, 60, 1440, 10080]
 ROLLING_WINS = [5, 30, 60]
 DEFAULT_MODELS = ["BaselineLastWeek", "Prophet", "XGBoost", "LightGBM"]
 OPTIONAL_MODELS: list[str] = []
+MODEL_COLORS = {
+    "BaselineLastWeek": "tab:gray",
+    "Prophet": "tab:blue",
+    "XGBoost": "tab:orange",
+    "LightGBM": "tab:green",
+}
 
 def _periods(days: int) -> int:
     return int(days * 24 * 60)
@@ -187,6 +194,89 @@ def _plot_forecast(actual: pd.DataFrame, forecasts: dict[str, pd.DataFrame], pat
     fig.savefig(path, dpi=150)
     plt.close(fig)
 
+def _plot_metric_bar(results: dict, metric: str, path: Path, title: str) -> None:
+    rows = [
+        (name, values.get(metric))
+        for name, values in results.items()
+        if values.get("status") == "ok" and np.isfinite(values.get(metric, np.nan))
+    ]
+    if not rows:
+        return
+    names, values = zip(*rows)
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.bar(names, values, color=[MODEL_COLORS.get(name, "tab:blue") for name in names])
+    ax.set_ylabel(metric.upper())
+    ax.set_title(title)
+    ax.grid(True, axis="y", alpha=0.25)
+    ax.tick_params(axis="x", labelrotation=20)
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+
+def _plot_horizon_grid(actual: pd.DataFrame, forecast: pd.DataFrame, path: Path, title: str) -> None:
+    horizons = [3, 7, 14, 30]
+    fig, axes = plt.subplots(2, 2, figsize=(15, 8), sharey=True)
+    axes = axes.ravel()
+    for ax, days in zip(axes, horizons):
+        end = actual["ds"].min() + pd.Timedelta(days=days)
+        actual_slice = actual[actual["ds"].le(end)]
+        forecast_slice = forecast[forecast["ds"].le(end)]
+        ax.plot(actual_slice["ds"], actual_slice["y"], color="black", lw=1.0, label="Actual")
+        ax.plot(forecast_slice["ds"], forecast_slice["yhat"], color="tab:blue", lw=1.0, label="Predicted")
+        ax.set_title(f"{days} days")
+        ax.grid(True, alpha=0.25)
+        ax.xaxis.set_major_formatter(mdates.DateFormatter("%m-%d"))
+    axes[0].legend(loc="upper left")
+    fig.suptitle(title)
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+
+def _plot_future_single(history: pd.DataFrame, forecast: pd.DataFrame, name: str, path: Path, actual_ratio: int = 3) -> None:
+    horizon = forecast["ds"].max() - forecast["ds"].min() + pd.Timedelta(minutes=1)
+    history_start = history["ds"].max() - horizon * actual_ratio
+    hist = history[history["ds"].ge(history_start)].set_index("ds")["y"].resample("1h").mean().dropna().reset_index()
+    fc = forecast.set_index("ds")["yhat"].resample("1h").mean().dropna().reset_index()
+    fig, ax = plt.subplots(figsize=(14, 6))
+    ax.plot(hist["ds"], hist["y"], color="black", lw=1.2, label="Actual")
+    ax.axvline(history["ds"].max(), color="gray", linestyle="--", lw=1.0, label="Forecast start")
+    ax.plot(fc["ds"], fc["yhat"], color=MODEL_COLORS.get(name, "tab:blue"), lw=1.5, label=name)
+    ax.set_title(f"{name} future forecast")
+    ax.set_xlabel("Time")
+    ax.set_ylabel("Electricity consumption")
+    ax.legend(loc="upper left")
+    ax.grid(True, alpha=0.25)
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y-%m-%d"))
+    fig.autofmt_xdate()
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+
+def _plot_future_all(history: pd.DataFrame, forecasts: dict[str, pd.DataFrame], path: Path, actual_ratio: int = 3) -> None:
+    if not forecasts:
+        return
+    max_end = max(fc["ds"].max() for fc in forecasts.values())
+    min_start = min(fc["ds"].min() for fc in forecasts.values())
+    horizon = max_end - min_start + pd.Timedelta(minutes=1)
+    history_start = history["ds"].max() - horizon * actual_ratio
+    hist = history[history["ds"].ge(history_start)].set_index("ds")["y"].resample("1h").mean().dropna().reset_index()
+    fig, ax = plt.subplots(figsize=(16, 7))
+    ax.plot(hist["ds"], hist["y"], color="black", lw=1.3, label="Actual", zorder=10)
+    ax.axvline(history["ds"].max(), color="gray", linestyle="--", lw=1.0, label="Forecast start")
+    for name, forecast in forecasts.items():
+        fc = forecast.set_index("ds")["yhat"].resample("1h").mean().dropna().reset_index()
+        ax.plot(fc["ds"], fc["yhat"], lw=1.4, color=MODEL_COLORS.get(name), label=name)
+    ax.set_title("Future forecast - all models")
+    ax.set_xlabel("Time")
+    ax.set_ylabel("Electricity consumption")
+    ax.legend(loc="upper left")
+    ax.grid(True, alpha=0.25)
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y-%m-%d"))
+    fig.autofmt_xdate()
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+
 def _plot_training_input_series(df: pd.DataFrame, train_df: pd.DataFrame, test_df: pd.DataFrame, column: str, path: Path) -> None:
     fig, ax = plt.subplots(figsize=(16, 5.5))
     ax.plot(df["ds"], df[column], color="black", lw=0.8)
@@ -310,6 +400,16 @@ def train_forecast(target: str = "dy", models: list[str] | None = None, months_b
     plot_path = train_dir / "forecast_test_overlay.png"
     if forecasts:
         _plot_forecast(actual, forecasts, plot_path, "Forecast recursive test")
+        _plot_metric_bar(results, "mae", train_dir / "compare_backtest_mae.png", f"{target} validation MAE by model")
+        _plot_metric_bar(results, "r2", train_dir / "compare_backtest_r2.png", f"{target} validation R2 by model")
+        for name, fc in forecasts.items():
+            _plot_horizon_grid(actual, fc, train_dir / f"{name.lower()}_backtest_grid.png", f"{name} validation by horizon")
+        for name in model_names:
+            recursive_path = train_dir / f"test_recursive_{name}.csv"
+            forecast_path = recursive_path if recursive_path.exists() else train_dir / f"test_forecast_{name}.csv"
+            if forecast_path.exists():
+                rec_fc = pd.read_csv(forecast_path, parse_dates=["ds"])
+                _plot_horizon_grid(actual, rec_fc, train_dir / f"{name.lower()}_recursive_test.png", f"{name} recursive/direct test")
     run_summary = write_run_summary(out_dir, f"forecast_train_{target}", {"config": config, "metrics": results})
     return {
         "rows": len(df),
@@ -323,6 +423,8 @@ def train_forecast(target: str = "dy", models: list[str] | None = None, months_b
             "training_input_y": str(input_y_plot_path),
             "training_input_dy": str(input_dy_plot_path),
             "forecast_test_overlay": str(plot_path),
+            "compare_backtest_mae": str(train_dir / "compare_backtest_mae.png"),
+            "compare_backtest_r2": str(train_dir / "compare_backtest_r2.png"),
             "test_actual": str(train_dir / "test_actual.csv"),
             "config": str(_config_file(target)),
             "latest_config": str(FORECAST_MODELS_DIR / "training_config.json"),
@@ -361,11 +463,13 @@ def forecast_future(days: list[int] | None = None, model_names: list[str] | None
                     "increment": float(fc["yhat"].iloc[idx] - df["y"].iloc[-1]),
                 }
             fc.to_csv(app_dir / f"future_{name}.csv", index=False)
+            _plot_future_single(df, fc, name, app_dir / f"{name}_forecast.png")
         except Exception as exc:
             summary[name] = {"status": "error", "target": target, "reason": str(exc)}
     plot_path = app_dir / "future_forecast.png"
     if forecasts:
-        _plot_forecast(df.tail(7 * 24 * 60), forecasts, plot_path, "Future forecast")
+        _plot_future_all(df, forecasts, app_dir / "all_models_forecast.png")
+        _plot_future_all(df, forecasts, plot_path)
     report_path = write_json(app_dir / "future_forecast_report.json", {
         "target": target,
         "target_definition": _target_definition(target),

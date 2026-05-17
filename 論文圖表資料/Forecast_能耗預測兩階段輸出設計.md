@@ -44,6 +44,9 @@
 | `outputs/forecast/training/dy/test_forecast_LightGBM.csv` | LightGBM 測試區間預測 |
 | `outputs/forecast/training/dy/test_recursive_XGBoost.csv` | XGBoost 長期遞迴壓力測試 |
 | `outputs/forecast/training/dy/test_recursive_LightGBM.csv` | LightGBM 長期遞迴壓力測試 |
+| `outputs/forecast/training/dy/compare_backtest_mae.png` | 各模型測試 MAE 比較 |
+| `outputs/forecast/training/dy/prophet_backtest_grid.png` | Prophet 不同預測天數測試圖 |
+| `outputs/forecast/training/dy/xgboost_recursive_test.png` | XGBoost 長期遞迴壓力測試圖 |
 | `models/forecast/Prophet_target_dy.json` | Prophet 訓練後模型 |
 | `models/forecast/training_config_dy.json` | `dy` 專用訓練設定 |
 
@@ -59,6 +62,9 @@
 | `outputs/forecast/application/dy/future_Prophet.csv` | Prophet 未來預測明細 |
 | `outputs/forecast/application/dy/future_XGBoost.csv` | XGBoost 未來預測明細 |
 | `outputs/forecast/application/dy/future_LightGBM.csv` | LightGBM 未來預測明細 |
+| `outputs/forecast/application/dy/Prophet_forecast.png` | Prophet 單模型未來預測圖 |
+| `outputs/forecast/application/dy/XGBoost_forecast.png` | XGBoost 單模型未來預測圖 |
+| `outputs/forecast/application/dy/all_models_forecast.png` | 全模型未來預測比較圖 |
 
 ## Rules
 
@@ -68,6 +74,7 @@
 - Prophet 需要先訓練，之後可直接載入 `models/forecast/Prophet_target_<target>.json` 做未來預測。
 - XGBoost 與 LightGBM 需要 lag 與 rolling 特徵，訓練驗證以 one-step lag validation 為主。
 - XGBoost 與 LightGBM 若要做長期未來預測，需另看 recursive stress test，因為遞迴預測會把前一步誤差帶入下一步。
+- 未來預測圖使用約 3:1 的歷史與預測時間比例；若預測 30 天，圖中約呈現最近 90 天實際資料。
 - `dy` 與 `y` 必須分開報告，不能混在同一張表。
 - 論文主要建議使用 `dy`，因為它代表每分鐘耗電增量，比累積表值 `y` 更接近能耗變化。
 
@@ -164,3 +171,46 @@ forecast_future(target="y")
 | 圖 4-x | 測試區間預測比較圖 | `outputs/forecast/training/dy/forecast_test_overlay.png` |
 | 圖 4-x | 未來能耗預測圖 | `outputs/forecast/application/dy/future_forecast.png` |
 | 表 4-x | 未來 3、7、14、30 天預測摘要 | `outputs/forecast/application/dy/future_forecast_report.json` |
+
+XGBoost / LightGBM 不是模型完全爛掉，而是之前把它們用「7 天自由遞迴」方式評估，誤差會一直累積，所以看起來非常差。修正後我把指標拆成兩種：
+
+one-step lag validation
+用真實歷史 lag 特徵驗證模型本身有沒有學到
+
+recursive stress test
+用模型自己的前一步預測繼續往後推，測長期部署風險
+目前結果：
+
+dy:
+XGBoost one-step R2 = 0.9999999
+LightGBM one-step R2 = 0.9999999
+但 recursive stress test 還是 review
+
+y:
+XGBoost / LightGBM one-step 也不好
+代表累積值 y 不適合直接給樹模型做外推
+
+所以論文解釋應該是：
+
+dy + XGBoost/LightGBM 可以作為短期 one-step 能耗增量預測模型；
+但若要直接做長期未來預測，遞迴誤差累積風險很高。
+
+y + XGBoost/LightGBM 不建議作為主線，因為累積用電量是非平穩序列，樹模型不擅長外推。
+我也補了你說的資料內容：
+
+新增輸出：
+
+outputs/forecast/training/dy/training_data_profile.json
+outputs/forecast/training/y/training_data_profile.json
+裡面包含：
+
+總筆數: 346149
+訓練筆數: 276919
+測試筆數: 69230
+比例: 80% / 20%
+資料範圍: 2025-09-15 15:12:00 到 2026-05-16 22:58:00
+訓練範圍: 2025-09-15 15:12:00 到 2026-03-29 09:35:00
+測試範圍: 2026-03-29 09:36:00 到 2026-05-16 22:58:00
+重採樣: 1 min
+dy 處理: diff 後負值裁 0
+極端值: dy <= Q3 + 3 * IQR
