@@ -117,6 +117,7 @@
 | `backtests/` | 各模型、各 horizon 的驗證 CSV |
 | `future/` | 各模型未來 1 至 30 天每日預測 CSV |
 | `plots/direct_horizon_mae.png` | 1 至 30 天 horizon 的 MAE 變化 |
+| `plots/backtest_actual_vs_predicted_<horizon>d.png` | 測試區間真實值與各模型預測值比較 |
 | `plots/<model>_direct_forecast.png` | 各模型 direct horizon 預測圖 |
 | `plots/all_models_direct_forecast.png` | 四模型 direct horizon 預測比較圖 |
 

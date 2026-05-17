@@ -348,6 +348,46 @@ def _write_direct_key_horizon_summary(metrics: dict, direct_dir: Path, plot_dir:
         plt.close(fig)
     return csv_path, plot_path
 
+def _plot_direct_backtest_actual_vs_predicted(backtest_dir: Path, plot_dir: Path, model_names: list[str]) -> dict[str, str]:
+    paths = {}
+    for day in KEY_DIRECT_HORIZON_DAYS:
+        fig, ax = plt.subplots(figsize=(15, 6))
+        actual_drawn = False
+        for name in model_names:
+            csv_path = backtest_dir / f"{name}_direct_backtest_{day}d.csv"
+            if not csv_path.exists():
+                continue
+            df = pd.read_csv(csv_path, parse_dates=["future_ds"])
+            if df.empty:
+                continue
+            hourly = (
+                df.set_index("future_ds")[["actual_y", "yhat"]]
+                .resample("1h")
+                .mean()
+                .dropna()
+                .reset_index()
+            )
+            if not actual_drawn:
+                ax.plot(hourly["future_ds"], hourly["actual_y"], color="black", lw=1.4, label="Actual", zorder=10)
+                actual_drawn = True
+            ax.plot(hourly["future_ds"], hourly["yhat"], lw=1.1, color=MODEL_COLORS.get(name), label=name)
+        if not actual_drawn:
+            plt.close(fig)
+            continue
+        ax.set_title(f"Backtest actual vs predicted - {day} day horizon")
+        ax.set_xlabel("Actual target time")
+        ax.set_ylabel("Electricity consumption")
+        ax.legend(loc="upper left", ncols=2)
+        ax.grid(True, alpha=0.25)
+        ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y-%m-%d"))
+        fig.autofmt_xdate()
+        fig.tight_layout()
+        plot_path = plot_dir / f"backtest_actual_vs_predicted_{day}d.png"
+        fig.savefig(plot_path, dpi=150)
+        plt.close(fig)
+        paths[f"{day}d"] = str(plot_path)
+    return paths
+
 def _plot_direct_future(history: pd.DataFrame, forecast: pd.DataFrame, title: str, path: Path, color: str = "tab:blue", actual_ratio: int = 3) -> None:
     horizon = forecast["ds"].max() - history["ds"].max()
     history_start = history["ds"].max() - horizon * actual_ratio
@@ -841,6 +881,7 @@ def train_direct_tree_forecast(
     mae_plot = plot_dir / "direct_horizon_mae.png"
     _plot_direct_horizon_mae(metrics, mae_plot, f"{target} direct horizon MAE")
     key_metrics_path, key_mae_plot = _write_direct_key_horizon_summary(metrics, direct_dir, plot_dir)
+    backtest_plots = _plot_direct_backtest_actual_vs_predicted(backtest_dir, plot_dir, model_names)
     all_plot = plot_dir / "all_models_direct_forecast.png"
     _plot_direct_future_all(df, future_forecasts, all_plot)
     run_summary = write_run_summary(out_dir, f"forecast_direct_trees_{target}", {"metrics": metrics, "profile": profile})
@@ -854,6 +895,7 @@ def train_direct_tree_forecast(
             "direct_horizon_mae": str(mae_plot),
             "direct_horizon_key_metrics": str(key_metrics_path),
             "direct_horizon_key_mae": str(key_mae_plot),
+            "backtest_actual_vs_predicted": backtest_plots,
             "all_models_direct_forecast": str(all_plot),
             "output_dir": str(direct_dir),
             "backtests_dir": str(backtest_dir),
