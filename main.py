@@ -68,10 +68,10 @@ def train_forecast(target: str = "dy", models: list[str] | None = None, months_b
     except Exception as exc:
         return err(str(exc))
 
-def forecast_future(days: list[int] | None = None, model_names: list[str] | None = None) -> dict:
+def forecast_future(days: list[int] | None = None, model_names: list[str] | None = None, target: str | None = None) -> dict:
     try:
         from src.forecast.pipeline import forecast_future as _forecast_future
-        result = _forecast_future(days=days, model_names=model_names)
+        result = _forecast_future(days=days, model_names=model_names, target=target)
         return ok(FORECAST_DIR, "future forecast finished", key_files=result["files"], metrics=result["summary"])
     except Exception as exc:
         return err(str(exc))

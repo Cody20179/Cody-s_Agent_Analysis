@@ -15,7 +15,8 @@ import pandas as pd
 
 LAG_STEPS = [1, 5, 10, 30, 60, 1440, 10080]
 ROLLING_WINS = [5, 30, 60]
-DEFAULT_MODELS = ["BaselineLastWeek", "Prophet", "XGBoost", "LightGBM"]
+DEFAULT_MODELS = ["BaselineLastWeek", "Prophet"]
+OPTIONAL_MODELS = ["XGBoost", "LightGBM"]
 
 def _periods(days: int) -> int:
     return int(days * 24 * 60)
@@ -150,6 +151,14 @@ def _model_file(name: str, target: str) -> Path:
     suffix = {"Prophet": ".json", "XGBoost": ".json", "LightGBM": ".txt"}[name]
     return FORECAST_MODELS_DIR / f"{name}_target_{target}{suffix}"
 
+def _config_file(target: str) -> Path:
+    return FORECAST_MODELS_DIR / f"training_config_{target}.json"
+
+def _target_definition(target: str) -> str:
+    if target == "dy":
+        return "dy: per-minute electricity consumption increment; model predicts future increments and accumulates them into yhat."
+    return "y: cumulative electricity consumption; model predicts the cumulative meter value directly."
+
 def _plot_forecast(actual: pd.DataFrame, forecasts: dict[str, pd.DataFrame], path: Path, title: str) -> None:
     fig, ax = plt.subplots(figsize=(14, 6))
     if not actual.empty:
@@ -167,7 +176,8 @@ def _plot_forecast(actual: pd.DataFrame, forecasts: dict[str, pd.DataFrame], pat
 def train_forecast(target: str = "dy", models: list[str] | None = None, months_back: int | None = None, raw_dir: Path = DATA_RAW, out_dir: Path = FORECAST_DIR) -> dict:
     if target not in ("dy", "y"):
         raise ValueError("target must be 'dy' or 'y'")
-    out_dir.mkdir(parents=True, exist_ok=True)
+    train_dir = out_dir / "training" / target
+    train_dir.mkdir(parents=True, exist_ok=True)
     FORECAST_MODELS_DIR.mkdir(parents=True, exist_ok=True)
     df = load_consumption(raw_dir)
     if months_back:
@@ -180,13 +190,21 @@ def train_forecast(target: str = "dy", models: list[str] | None = None, months_b
 
     config = {
         "target": target,
+        "target_definition": _target_definition(target),
         "models": model_names,
+        "default_models": DEFAULT_MODELS,
+        "optional_models": OPTIONAL_MODELS,
         "months_back": months_back,
         "data_start": str(df["ds"].min()),
         "data_end": str(df["ds"].max()),
+        "train_start": str(train_df["ds"].min()),
+        "train_end": str(train_df["ds"].max()),
+        "test_start": str(test_df["ds"].min()) if len(test_df) else None,
+        "test_end": str(test_df["ds"].max()) if len(test_df) else None,
         "lag_steps": LAG_STEPS,
         "rolling_wins": ROLLING_WINS,
     }
+    write_json(_config_file(target), config)
     write_json(FORECAST_MODELS_DIR / "training_config.json", config)
 
     for name in model_names:
@@ -204,45 +222,56 @@ def train_forecast(target: str = "dy", models: list[str] | None = None, months_b
             metrics = evaluate(merged["y"], merged["yhat"])
             metrics["mae_percent"] = float(metrics["mae"] / merged["y"].mean() * 100) if len(merged) else np.nan
             metrics["deploy_recommendation"] = "review" if metrics["r2"] < 0 else "ok"
-            results[name] = {"status": "ok", **metrics}
+            results[name] = {"status": "ok", "target": target, **metrics}
             forecasts[name] = fc
+            fc.to_csv(train_dir / f"test_forecast_{name}.csv", index=False)
         except Exception as exc:
-            results[name] = {"status": "error", "reason": str(exc)}
+            results[name] = {"status": "error", "target": target, "reason": str(exc)}
 
-    metrics_path = write_json(out_dir / "forecast_metrics.json", results)
-    plot_path = out_dir / "forecast_test_overlay.png"
+    actual.to_csv(train_dir / "test_actual.csv", index=False)
+    metrics_path = write_json(train_dir / "forecast_metrics.json", results)
+    plot_path = train_dir / "forecast_test_overlay.png"
     if forecasts:
         _plot_forecast(actual, forecasts, plot_path, "Forecast recursive test")
-    run_summary = write_run_summary(out_dir, "forecast_train", {"config": config, "metrics": results})
+    run_summary = write_run_summary(out_dir, f"forecast_train_{target}", {"config": config, "metrics": results})
     return {
         "rows": len(df),
         "train_rows": len(train_df),
         "test_rows": len(test_df),
+        "target": target,
         "metrics": results,
         "files": {
             "metrics": str(metrics_path),
             "forecast_test_overlay": str(plot_path),
-            "config": str(FORECAST_MODELS_DIR / "training_config.json"),
+            "test_actual": str(train_dir / "test_actual.csv"),
+            "config": str(_config_file(target)),
+            "latest_config": str(FORECAST_MODELS_DIR / "training_config.json"),
             "models_dir": str(FORECAST_MODELS_DIR),
             "run_summary": str(run_summary),
         },
     }
 
-def forecast_future(days: list[int] | None = None, model_names: list[str] | None = None, raw_dir: Path = DATA_RAW, out_dir: Path = FORECAST_DIR) -> dict:
-    out_dir.mkdir(parents=True, exist_ok=True)
+def forecast_future(days: list[int] | None = None, model_names: list[str] | None = None, target: str | None = None, raw_dir: Path = DATA_RAW, out_dir: Path = FORECAST_DIR) -> dict:
     days = days or [3, 7, 14, 30]
     max_periods = _periods(max(days))
-    config_path = FORECAST_MODELS_DIR / "training_config.json"
+    if target and target not in ("dy", "y"):
+        raise ValueError("target must be 'dy', 'y', or None")
+    config_path = _config_file(target) if target else FORECAST_MODELS_DIR / "training_config.json"
     if not config_path.exists():
-        raise FileNotFoundError("training_config.json not found; run train_forecast first")
+        raise FileNotFoundError(f"{config_path.name} not found; run train_forecast first")
     config = json.load(config_path.open(encoding="utf-8"))
     target = config["target"]
+    app_dir = out_dir / "application" / target
+    app_dir.mkdir(parents=True, exist_ok=True)
     df = load_consumption(raw_dir)
-    names = model_names or [name for name in config["models"] if name != "BaselineLastWeek"]
+    names = model_names or config["models"]
     forecasts, summary = {}, {}
     for name in names:
         try:
-            fc = _load_forecaster(name, _model_file(name, target), target)(df, max_periods)
+            if name == "BaselineLastWeek":
+                fc = _baseline_last_week(df, max_periods)
+            else:
+                fc = _load_forecaster(name, _model_file(name, target), target)(df, max_periods)
             forecasts[name] = fc
             summary[name] = {}
             for day in days:
@@ -251,17 +280,19 @@ def forecast_future(days: list[int] | None = None, model_names: list[str] | None
                     "yhat": float(fc["yhat"].iloc[idx]),
                     "increment": float(fc["yhat"].iloc[idx] - df["y"].iloc[-1]),
                 }
-            fc.to_csv(out_dir / f"future_{name}.csv", index=False)
+            fc.to_csv(app_dir / f"future_{name}.csv", index=False)
         except Exception as exc:
-            summary[name] = {"status": "error", "reason": str(exc)}
-    plot_path = out_dir / "future_forecast.png"
+            summary[name] = {"status": "error", "target": target, "reason": str(exc)}
+    plot_path = app_dir / "future_forecast.png"
     if forecasts:
         _plot_forecast(df.tail(7 * 24 * 60), forecasts, plot_path, "Future forecast")
-    report_path = write_json(out_dir / "future_forecast_report.json", {
+    report_path = write_json(app_dir / "future_forecast_report.json", {
+        "target": target,
+        "target_definition": _target_definition(target),
         "data_latest": str(df["ds"].iloc[-1]),
         "last_y": float(df["y"].iloc[-1]),
         "days": days,
         "models": summary,
     })
-    run_summary = write_run_summary(out_dir, "forecast_future", {"summary": summary})
-    return {"summary": summary, "files": {"report": str(report_path), "future_forecast": str(plot_path), "run_summary": str(run_summary)}}
+    run_summary = write_run_summary(out_dir, f"forecast_future_{target}", {"summary": summary})
+    return {"target": target, "summary": summary, "files": {"report": str(report_path), "future_forecast": str(plot_path), "run_summary": str(run_summary), "application_dir": str(app_dir)}}

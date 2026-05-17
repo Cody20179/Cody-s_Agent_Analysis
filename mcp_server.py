@@ -73,10 +73,10 @@ async def tool_train_forecast(target: str = "dy", models: str = "", months_back:
     return await _run(train_forecast, target=target, models=model_arg, months_back=months_back or None)
 
 @mcp.tool()
-async def tool_forecast_future(days: str = "3,7,14,30", model_names: str = "") -> str:
+async def tool_forecast_future(days: str = "3,7,14,30", model_names: str = "", target: str = "") -> str:
     day_arg = [int(x.strip()) for x in days.split(",") if x.strip()]
     model_arg = [x.strip() for x in model_names.split(",") if x.strip()] if model_names else None
-    return await _run(forecast_future, days=day_arg, model_names=model_arg)
+    return await _run(forecast_future, days=day_arg, model_names=model_arg, target=target or None)
 
 @mcp.tool()
 async def tool_train_anomaly_detection() -> str:
