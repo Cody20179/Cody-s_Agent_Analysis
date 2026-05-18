@@ -281,14 +281,19 @@ def _plot_confusion_matrices(eval_df: pd.DataFrame, model_names: list[str], path
     fig.savefig(path, dpi=150)
     plt.close(fig)
 
-def _plot_roc_curves(eval_df: pd.DataFrame, model_names: list[str], path: Path) -> None:
+def _plot_roc_curves(eval_df: pd.DataFrame, model_names: list[str], path: Path, log_x: bool = False) -> None:
     fig, ax = plt.subplots(figsize=(7, 6))
     for name in model_names:
         fpr, tpr, _ = roc_curve(eval_df["label"], -eval_df[f"score_{name}"])
         auc_value = roc_auc_score(eval_df["label"], -eval_df[f"score_{name}"])
         ax.plot(fpr, tpr, lw=1.8, label=f"{name} AUC={auc_value:.3f}")
     ax.plot([0, 1], [0, 1], color="gray", linestyle="--", lw=1)
-    ax.set_title("ROC curves on synthetic validation")
+    if log_x:
+        ax.set_xscale("symlog", linthresh=1e-4)
+        ax.set_xlim(0, 1)
+        ax.set_title("ROC curves on synthetic validation (log FPR)")
+    else:
+        ax.set_title("ROC curves on synthetic validation")
     ax.set_xlabel("False positive rate")
     ax.set_ylabel("True positive rate")
     ax.legend(loc="lower right")
@@ -339,6 +344,41 @@ def _plot_check_timeline(result: pd.DataFrame, anomaly_mask: pd.Series, path: Pa
     axes[-1].set_xlabel("Time")
     fig.suptitle("Anomaly check timeline")
     fig.autofmt_xdate()
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+    return path
+
+def _plot_check_scores(result: pd.DataFrame, thresholds: dict, path: Path) -> Path:
+    score_cols = [c for c in result.columns if c.startswith("score_")]
+    fig, axes = plt.subplots(len(score_cols), 1, figsize=(14, 3.2 * len(score_cols)), sharex=True)
+    if len(score_cols) == 1:
+        axes = [axes]
+    for ax, col in zip(axes, score_cols):
+        name = col.replace("score_", "")
+        ax.plot(result["time"], result[col], color="steelblue", lw=1.1, label=name)
+        ax.axhline(thresholds[name], color="crimson", linestyle="--", lw=1.0, label="Threshold")
+        ax.set_ylabel("Score")
+        ax.grid(True, alpha=0.25)
+        ax.legend(loc="upper left")
+    axes[-1].set_xlabel("Time")
+    fig.suptitle("Anomaly check model scores")
+    fig.autofmt_xdate()
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+    return path
+
+def _plot_check_votes(votes: dict[str, int], rows: int, path: Path) -> Path:
+    names = list(votes)
+    counts = [votes[name] for name in names]
+    fig, ax = plt.subplots(figsize=(8, 4.5))
+    bars = ax.bar(names, counts, color=["tab:blue", "tab:orange", "tab:green"][:len(names)])
+    ax.set_title("Anomaly check votes by model")
+    ax.set_ylabel("Flagged rows")
+    ax.set_ylim(0, max([rows, 1]))
+    ax.grid(True, axis="y", alpha=0.25)
+    ax.bar_label(bars, labels=[f"{count}/{rows}" for count in counts], padding=3)
     fig.tight_layout()
     fig.savefig(path, dpi=150)
     plt.close(fig)
@@ -417,11 +457,13 @@ def train_anomaly_detection(out_dir: Path = ANOMALY_DIR) -> dict:
     score_label_plot_path = plot_dir / "score_distribution_by_label.png"
     confusion_plot_path = plot_dir / "confusion_matrix.png"
     roc_plot_path = plot_dir / "roc_curve.png"
+    roc_log_plot_path = plot_dir / "roc_curve_log_fpr.png"
     _plot_metric_bars(metrics, metric_bar_path)
     _plot_feature_distributions(combined, feature_plot_path)
     _plot_score_by_label(eval_df, thresholds, score_label_plot_path)
     _plot_confusion_matrices(eval_df, list(models), confusion_plot_path)
     _plot_roc_curves(eval_df, list(models), roc_plot_path)
+    _plot_roc_curves(eval_df, list(models), roc_log_plot_path, log_x=True)
     run_summary = write_run_summary(out_dir, "anomaly_train", {
         "rows": len(df),
         "train_rows": len(train_df),
@@ -446,6 +488,7 @@ def train_anomaly_detection(out_dir: Path = ANOMALY_DIR) -> dict:
             "score_distribution_by_label_plot": str(score_label_plot_path),
             "confusion_matrix_plot": str(confusion_plot_path),
             "roc_curve_plot": str(roc_plot_path),
+            "roc_curve_log_fpr_plot": str(roc_log_plot_path),
             "anomaly_type_detection_rate_plot": str(type_rates_plot_path),
             "plots_dir": str(plot_dir),
             "tables_dir": str(table_dir),
@@ -480,6 +523,8 @@ def check_anomaly(start: str, end: str, min_models: int = 2, out_dir: Path = ANO
     result.to_csv(detail_path, index=False)
     timeline_path = _plot_check_timeline(result, anomaly_mask, plot_dir / "last_anomaly_check_timeline.png")
     votes = {col.replace("is_anomaly_", ""): int(result[col].sum()) for col in flag_cols}
+    score_plot_path = _plot_check_scores(result, thresholds, plot_dir / "last_anomaly_check_scores.png")
+    vote_plot_path = _plot_check_votes(votes, len(result), plot_dir / "last_anomaly_check_votes.png")
     return {
         "verdict": "ANOMALY" if bool(anomaly_mask.any()) else "NORMAL",
         "rows": int(len(result)),
@@ -488,4 +533,6 @@ def check_anomaly(start: str, end: str, min_models: int = 2, out_dir: Path = ANO
         "model_votes": votes,
         "detail_csv": str(detail_path),
         "timeline_plot": str(timeline_path),
+        "score_plot": str(score_plot_path),
+        "vote_plot": str(vote_plot_path),
     }

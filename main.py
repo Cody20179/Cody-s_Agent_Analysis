@@ -99,6 +99,8 @@ def check_anomaly(start: str, end: str, min_models: int = 2) -> dict:
         return ok(ANOMALY_DIR, "anomaly check finished", key_files={
             "detail_csv": result.get("detail_csv"),
             "timeline_plot": result.get("timeline_plot"),
+            "score_plot": result.get("score_plot"),
+            "vote_plot": result.get("vote_plot"),
         }, metrics=result)
     except Exception as exc:
         return err(str(exc))
