@@ -31,6 +31,110 @@ FEATURE_COLS = [
 ]
 TRAIN_STATES = ["Running_Low", "Running_High"]
 CONTAMINATION = 0.01
+FEATURE_DEFINITIONS = [
+    {
+        "feature": "I_mean",
+        "formula": "(Current_A + Current_B + Current_C) / 3",
+        "source": "state_labeled.csv from Current_A/B/C",
+        "reason": "Represents overall machine load during running states.",
+        "keep_note": "Core feature. Keep unless current sensors are unreliable.",
+    },
+    {
+        "feature": "I_imbalance",
+        "formula": "std(Current_A, Current_B, Current_C) / I_mean * 100",
+        "source": "state_labeled.csv from Current_A/B/C",
+        "reason": "Captures three-phase current imbalance.",
+        "keep_note": "Core electrical anomaly feature.",
+    },
+    {
+        "feature": "dI_dt",
+        "formula": "I_mean(t) - I_mean(t-1)",
+        "source": "derived from I_mean after 5min resampling",
+        "reason": "Captures sudden current change during operation.",
+        "keep_note": "Useful for transients, but noisy if current sampling is unstable.",
+    },
+    {
+        "feature": "Power",
+        "formula": "Instantaneous_Total_Power, 5min resampled",
+        "source": "state_labeled.csv from Instantaneous_Total_Power",
+        "reason": "Represents real power/load intensity.",
+        "keep_note": "Currently keeps sign. P_error uses abs(Power) for physical magnitude.",
+    },
+    {
+        "feature": "PF_abs",
+        "formula": "abs(PF)",
+        "source": "state_labeled.csv from PF",
+        "reason": "Uses power-factor magnitude because raw PF has rare negative values caused by direction/sign convention.",
+        "keep_note": "Keep as magnitude; raw signed PF is not used in anomaly model.",
+    },
+    {
+        "feature": "kVAh_rate",
+        "formula": "max(kVAh(t) - kVAh(t-1), 0)",
+        "source": "state_labeled.csv from kVAh",
+        "reason": "Approximates apparent energy increment and removes counter reset/negative diff artifacts.",
+        "keep_note": "Useful load/energy change feature.",
+    },
+    {
+        "feature": "V_mean",
+        "formula": "(Votage_ab + Votage_bc + Votage_ca) / 3",
+        "source": "raw voltage CSV merged into running-state rows",
+        "reason": "Captures supply voltage level.",
+        "keep_note": "Core voltage quality feature.",
+    },
+    {
+        "feature": "V_imbalance",
+        "formula": "std(Vab, Vbc, Vca) / V_mean * 100",
+        "source": "raw voltage CSV merged into running-state rows",
+        "reason": "Captures three-phase voltage imbalance.",
+        "keep_note": "Core voltage quality feature.",
+    },
+    {
+        "feature": "V_deviation",
+        "formula": "abs(V_mean - 220) / 220 * 100",
+        "source": "derived from V_mean",
+        "reason": "Measures voltage deviation from nominal 220V.",
+        "keep_note": "Keep if 220V is the correct nominal reference for this site.",
+    },
+    {
+        "feature": "P_error",
+        "formula": "abs((V_mean * I_mean * sqrt(3) * PF_abs / 1000) - abs(Power)) / abs(Power) * 100, clipped <= 200",
+        "source": "derived from voltage/current/PF/Power",
+        "reason": "Compares estimated three-phase power magnitude with measured power magnitude.",
+        "keep_note": "Useful consistency feature; depends on sensor calibration and nominal formula assumptions.",
+    },
+]
+SYNTHETIC_ANOMALY_DEFINITIONS = [
+    {
+        "anomaly_type": "over_current",
+        "modified_feature": "I_mean",
+        "synthetic_rule": "replace I_mean with uniform random values from 50 to 65",
+        "physical_meaning": "abnormally high current/load",
+    },
+    {
+        "anomaly_type": "current_imbalance",
+        "modified_feature": "I_imbalance",
+        "synthetic_rule": "replace I_imbalance with uniform random values from 40 to 60",
+        "physical_meaning": "large phase-current imbalance",
+    },
+    {
+        "anomaly_type": "voltage_sag",
+        "modified_feature": "V_mean",
+        "synthetic_rule": "replace V_mean with uniform random values from 185 to 200",
+        "physical_meaning": "supply voltage sag below nominal level",
+    },
+    {
+        "anomaly_type": "low_pf",
+        "modified_feature": "PF_abs",
+        "synthetic_rule": "replace PF_abs with uniform random values from 0.2 to 0.5",
+        "physical_meaning": "low power factor / inefficient electrical behavior",
+    },
+    {
+        "anomaly_type": "power_error",
+        "modified_feature": "P_error",
+        "synthetic_rule": "replace P_error with uniform random values from 150 to 200",
+        "physical_meaning": "large mismatch between measured and estimated power",
+    },
+]
 
 def _load_voltage(raw_dir: Path = DATA_RAW, freq: str = "5min") -> pd.DataFrame:
     parts = {
@@ -265,6 +369,16 @@ def _plot_feature_distributions_by_type(combined: pd.DataFrame, out_dir: Path) -
     return paths
 
 def _write_training_data_profile(df: pd.DataFrame, train_df: pd.DataFrame, test_df: pd.DataFrame, syn: pd.DataFrame, out_dir: Path) -> dict:
+    raw_quality = {}
+    for name, col in [("PF", "PF"), ("Instantaneous_Total_Power", "Power")]:
+        values = pd.to_numeric(df[col], errors="coerce") if col in df else pd.Series(dtype=float)
+        raw_quality[name] = {
+            "processed_min": float(values.min()) if len(values) else None,
+            "processed_max": float(values.max()) if len(values) else None,
+            "processed_negative_count": int((values < 0).sum()) if len(values) else 0,
+            "processed_zero_count": int((values == 0).sum()) if len(values) else 0,
+            "handling": "PF is converted to PF_abs for modeling; P_error uses abs(Power), while Power itself is kept signed.",
+        }
     profile = {
         "rows_total": int(len(df)),
         "rows_train": int(len(train_df)),
@@ -287,9 +401,12 @@ def _write_training_data_profile(df: pd.DataFrame, train_df: pd.DataFrame, test_
             "types": sorted(syn["anomaly_type"].unique().tolist()),
         },
         "normal_data_assumption": "Running_Low and Running_High records are treated as normal operating data because real fault labels are unavailable.",
+        "raw_sign_handling": raw_quality,
     }
     write_json(out_dir / "training_data_profile.json", profile)
     df[FEATURE_COLS].describe().T.to_csv(out_dir / "feature_summary.csv")
+    pd.DataFrame(FEATURE_DEFINITIONS).to_csv(out_dir / "feature_definitions.csv", index=False)
+    pd.DataFrame(SYNTHETIC_ANOMALY_DEFINITIONS).to_csv(out_dir / "synthetic_anomaly_definitions.csv", index=False)
     return profile
 
 def _plot_score_by_label(eval_df: pd.DataFrame, thresholds: dict, path: Path, log_y: bool = False) -> None:
