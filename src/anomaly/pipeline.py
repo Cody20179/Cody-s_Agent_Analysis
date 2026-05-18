@@ -243,7 +243,7 @@ def _plot_feature_distributions(combined: pd.DataFrame, path: Path) -> None:
     fig.savefig(path, dpi=150)
     plt.close(fig)
 
-def _plot_score_by_label(eval_df: pd.DataFrame, thresholds: dict, path: Path) -> None:
+def _plot_score_by_label(eval_df: pd.DataFrame, thresholds: dict, path: Path, log_y: bool = False) -> None:
     fig, axes = plt.subplots(1, len(thresholds), figsize=(5.5 * len(thresholds), 4.5))
     if len(thresholds) == 1:
         axes = [axes]
@@ -255,9 +255,12 @@ def _plot_score_by_label(eval_df: pd.DataFrame, thresholds: dict, path: Path) ->
         ax.axvline(thresholds[name], color="black", linestyle="--", lw=1.2, label="Threshold")
         ax.set_title(name)
         ax.set_xlabel("Anomaly score")
+        if log_y:
+            ax.set_yscale("log")
         ax.grid(True, axis="y", alpha=0.2)
     axes[0].legend(loc="upper left")
-    fig.suptitle("Detector score distributions by label")
+    suffix = " (log Y)" if log_y else ""
+    fig.suptitle(f"Detector score distributions by label{suffix}")
     fig.tight_layout()
     fig.savefig(path, dpi=150)
     plt.close(fig)
@@ -376,7 +379,12 @@ def _plot_check_votes(votes: dict[str, int], rows: int, path: Path) -> Path:
     bars = ax.bar(names, counts, color=["tab:blue", "tab:orange", "tab:green"][:len(names)])
     ax.set_title("Anomaly check votes by model")
     ax.set_ylabel("Flagged rows")
-    ax.set_ylim(0, max([rows, 1]))
+    max_count = max(counts) if counts else 0
+    if max_count == 0:
+        ax.set_ylim(0, 1)
+        ax.text(0.5, 0.55, "No model flagged anomalies in this interval", transform=ax.transAxes, ha="center", va="center", fontsize=12)
+    else:
+        ax.set_ylim(0, max_count * 1.25)
     ax.grid(True, axis="y", alpha=0.25)
     ax.bar_label(bars, labels=[f"{count}/{rows}" for count in counts], padding=3)
     fig.tight_layout()
@@ -455,12 +463,14 @@ def train_anomaly_detection(out_dir: Path = ANOMALY_DIR) -> dict:
     metric_bar_path = plot_dir / "model_metrics.png"
     feature_plot_path = plot_dir / "feature_distribution.png"
     score_label_plot_path = plot_dir / "score_distribution_by_label.png"
+    score_label_log_plot_path = plot_dir / "score_distribution_by_label_log_y.png"
     confusion_plot_path = plot_dir / "confusion_matrix.png"
     roc_plot_path = plot_dir / "roc_curve.png"
     roc_log_plot_path = plot_dir / "roc_curve_log_fpr.png"
     _plot_metric_bars(metrics, metric_bar_path)
     _plot_feature_distributions(combined, feature_plot_path)
     _plot_score_by_label(eval_df, thresholds, score_label_plot_path)
+    _plot_score_by_label(eval_df, thresholds, score_label_log_plot_path, log_y=True)
     _plot_confusion_matrices(eval_df, list(models), confusion_plot_path)
     _plot_roc_curves(eval_df, list(models), roc_plot_path)
     _plot_roc_curves(eval_df, list(models), roc_log_plot_path, log_x=True)
@@ -486,6 +496,7 @@ def train_anomaly_detection(out_dir: Path = ANOMALY_DIR) -> dict:
             "metric_bar_plot": str(metric_bar_path),
             "feature_distribution_plot": str(feature_plot_path),
             "score_distribution_by_label_plot": str(score_label_plot_path),
+            "score_distribution_by_label_log_y_plot": str(score_label_log_plot_path),
             "confusion_matrix_plot": str(confusion_plot_path),
             "roc_curve_plot": str(roc_plot_path),
             "roc_curve_log_fpr_plot": str(roc_log_plot_path),
