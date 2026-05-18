@@ -243,6 +243,55 @@ def _plot_feature_distributions(combined: pd.DataFrame, path: Path) -> None:
     fig.savefig(path, dpi=150)
     plt.close(fig)
 
+def _plot_feature_distributions_by_type(combined: pd.DataFrame, out_dir: Path) -> list[str]:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    normal = combined[combined["label"] == 0]
+    paths = []
+    for anomaly_type, anomaly in combined[combined["label"] == 1].groupby("anomaly_type"):
+        fig, axes = plt.subplots(2, 5, figsize=(18, 7))
+        axes = axes.ravel()
+        for ax, col in zip(axes, FEATURE_COLS):
+            ax.hist(normal[col], bins=40, alpha=0.55, label="Normal", color="steelblue", density=True)
+            ax.hist(anomaly[col], bins=40, alpha=0.60, label=anomaly_type, color="crimson", density=True)
+            ax.set_title(col)
+            ax.grid(True, axis="y", alpha=0.2)
+        axes[0].legend(loc="upper right")
+        fig.suptitle(f"Feature distributions: normal vs {anomaly_type}")
+        fig.tight_layout()
+        path = out_dir / f"{anomaly_type}_feature_distribution.png"
+        fig.savefig(path, dpi=150)
+        plt.close(fig)
+        paths.append(str(path))
+    return paths
+
+def _write_training_data_profile(df: pd.DataFrame, train_df: pd.DataFrame, test_df: pd.DataFrame, syn: pd.DataFrame, out_dir: Path) -> dict:
+    profile = {
+        "rows_total": int(len(df)),
+        "rows_train": int(len(train_df)),
+        "rows_test": int(len(test_df)),
+        "train_ratio": float(len(train_df) / max(len(df), 1)),
+        "test_ratio": float(len(test_df) / max(len(df), 1)),
+        "time_start": str(df["time"].min()),
+        "time_end": str(df["time"].max()),
+        "train_start": str(train_df["time"].min()),
+        "train_end": str(train_df["time"].max()),
+        "test_start": str(test_df["time"].min()),
+        "test_end": str(test_df["time"].max()),
+        "resample_frequency": "5min",
+        "training_states": TRAIN_STATES,
+        "state_counts": {k: int(v) for k, v in df["state"].value_counts().to_dict().items()},
+        "feature_columns": FEATURE_COLS,
+        "synthetic_validation": {
+            "rows_total": int(len(syn)),
+            "rows_per_type": {k: int(v) for k, v in syn["anomaly_type"].value_counts().to_dict().items()},
+            "types": sorted(syn["anomaly_type"].unique().tolist()),
+        },
+        "normal_data_assumption": "Running_Low and Running_High records are treated as normal operating data because real fault labels are unavailable.",
+    }
+    write_json(out_dir / "training_data_profile.json", profile)
+    df[FEATURE_COLS].describe().T.to_csv(out_dir / "feature_summary.csv")
+    return profile
+
 def _plot_score_by_label(eval_df: pd.DataFrame, thresholds: dict, path: Path, log_y: bool = False) -> None:
     fig, axes = plt.subplots(1, len(thresholds), figsize=(5.5 * len(thresholds), 4.5))
     if len(thresholds) == 1:
@@ -261,6 +310,27 @@ def _plot_score_by_label(eval_df: pd.DataFrame, thresholds: dict, path: Path, lo
     axes[0].legend(loc="upper left")
     suffix = " (log Y)" if log_y else ""
     fig.suptitle(f"Detector score distributions by label{suffix}")
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
+
+def _plot_score_by_label_log_xy(eval_df: pd.DataFrame, thresholds: dict, path: Path) -> None:
+    fig, axes = plt.subplots(1, len(thresholds), figsize=(5.5 * len(thresholds), 4.5))
+    if len(thresholds) == 1:
+        axes = [axes]
+    for ax, name in zip(axes, thresholds):
+        normal = eval_df.loc[eval_df["label"] == 0, f"score_{name}"]
+        anomaly = eval_df.loc[eval_df["label"] == 1, f"score_{name}"]
+        ax.hist(normal, bins=50, alpha=0.65, label="Normal", color="steelblue", density=True)
+        ax.hist(anomaly, bins=50, alpha=0.65, label="Synthetic anomaly", color="crimson", density=True)
+        ax.axvline(thresholds[name], color="black", linestyle="--", lw=1.2, label="Threshold")
+        ax.set_xscale("symlog", linthresh=1e-3)
+        ax.set_yscale("log")
+        ax.set_title(name)
+        ax.set_xlabel("Anomaly score (symlog)")
+        ax.grid(True, axis="both", alpha=0.2)
+    axes[0].legend(loc="upper left")
+    fig.suptitle("Detector score distributions by label (symlog X, log Y)")
     fig.tight_layout()
     fig.savefig(path, dpi=150)
     plt.close(fig)
@@ -396,6 +466,7 @@ def train_anomaly_detection(out_dir: Path = ANOMALY_DIR) -> dict:
     out_dir.mkdir(parents=True, exist_ok=True)
     plot_dir = out_dir / "plots"
     table_dir = out_dir / "tables"
+    feature_type_plot_dir = plot_dir / "feature_by_anomaly_type"
     plot_dir.mkdir(parents=True, exist_ok=True)
     table_dir.mkdir(parents=True, exist_ok=True)
     df = load_detection_features()
@@ -417,6 +488,7 @@ def train_anomaly_detection(out_dir: Path = ANOMALY_DIR) -> dict:
     thresholds = {name: float(np.percentile(scores, CONTAMINATION * 100)) for name, scores in train_scores.items()}
 
     syn = _synthetic(test_df, n_each=50)
+    data_profile = _write_training_data_profile(df, train_df, test_df, syn, table_dir)
     combined = pd.concat([
         test_df[FEATURE_COLS].assign(label=0, anomaly_type="normal"),
         syn[FEATURE_COLS + ["anomaly_type"]].assign(label=1),
@@ -462,8 +534,10 @@ def train_anomaly_detection(out_dir: Path = ANOMALY_DIR) -> dict:
     _plot_losses(ae_losses, loss_plot_path)
     metric_bar_path = plot_dir / "model_metrics.png"
     feature_plot_path = plot_dir / "feature_distribution.png"
+    feature_type_plots = _plot_feature_distributions_by_type(combined, feature_type_plot_dir)
     score_label_plot_path = plot_dir / "score_distribution_by_label.png"
     score_label_log_plot_path = plot_dir / "score_distribution_by_label_log_y.png"
+    score_label_log_xy_plot_path = plot_dir / "score_distribution_by_label_log_xy.png"
     confusion_plot_path = plot_dir / "confusion_matrix.png"
     roc_plot_path = plot_dir / "roc_curve.png"
     roc_log_plot_path = plot_dir / "roc_curve_log_fpr.png"
@@ -471,6 +545,7 @@ def train_anomaly_detection(out_dir: Path = ANOMALY_DIR) -> dict:
     _plot_feature_distributions(combined, feature_plot_path)
     _plot_score_by_label(eval_df, thresholds, score_label_plot_path)
     _plot_score_by_label(eval_df, thresholds, score_label_log_plot_path, log_y=True)
+    _plot_score_by_label_log_xy(eval_df, thresholds, score_label_log_xy_plot_path)
     _plot_confusion_matrices(eval_df, list(models), confusion_plot_path)
     _plot_roc_curves(eval_df, list(models), roc_plot_path)
     _plot_roc_curves(eval_df, list(models), roc_log_plot_path, log_x=True)
@@ -481,6 +556,7 @@ def train_anomaly_detection(out_dir: Path = ANOMALY_DIR) -> dict:
         "metrics": metrics,
         "synthetic_validation": True,
         "synthetic_rows": int((eval_df["label"] == 1).sum()),
+        "data_profile": data_profile,
     })
     return {
         "rows": len(df),
@@ -495,14 +571,18 @@ def train_anomaly_detection(out_dir: Path = ANOMALY_DIR) -> dict:
             "autoencoder_loss_plot": str(loss_plot_path),
             "metric_bar_plot": str(metric_bar_path),
             "feature_distribution_plot": str(feature_plot_path),
+            "feature_distribution_by_type_plots": feature_type_plots,
             "score_distribution_by_label_plot": str(score_label_plot_path),
             "score_distribution_by_label_log_y_plot": str(score_label_log_plot_path),
+            "score_distribution_by_label_log_xy_plot": str(score_label_log_xy_plot_path),
             "confusion_matrix_plot": str(confusion_plot_path),
             "roc_curve_plot": str(roc_plot_path),
             "roc_curve_log_fpr_plot": str(roc_log_plot_path),
             "anomaly_type_detection_rate_plot": str(type_rates_plot_path),
             "plots_dir": str(plot_dir),
             "tables_dir": str(table_dir),
+            "training_data_profile": str(table_dir / "training_data_profile.json"),
+            "feature_summary": str(table_dir / "feature_summary.csv"),
             "run_summary": str(run_summary),
             **model_files,
         },
