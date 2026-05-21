@@ -1,0 +1,31 @@
+# secrets / local runtime
+.env
+.env.*
+!.env.example
+
+# Python environments / cache
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# plotting / package caches
+.cache/
+.matplotlib/
+
+# editor / system
+.DS_Store
+.vscode/
+.idea/
+
+# temporary update workspace
+data/_tmp_update/
+
+# generated analysis artifacts
+data/raw/
+data/processed/
+models/
+outputs/

@@ -1,0 +1,10 @@
+services:
+  analysis:
+    build:
+      context: .
+    image: cody-agent-analysis:local
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./outputs:/app/outputs
+    command: ["uv", "run", "python", "mcp_server.py"]
