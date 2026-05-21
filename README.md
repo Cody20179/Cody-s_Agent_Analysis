@@ -103,6 +103,36 @@ Quick health check:
 uv run python main.py
 ```
 
+## Docker Compose
+
+Build and run the MCP stdio service container:
+
+```bash
+docker compose up --build
+```
+
+The compose service uses:
+
+| File | Purpose |
+| --- | --- |
+| `Dockerfile` | Builds a Python 3.12 runtime with `uv sync --frozen --no-dev` |
+| `compose.yaml` | Runs `uv run python mcp_server.py` |
+| `.dockerignore` | Excludes local secrets, git metadata, caches, and virtualenvs |
+
+Runtime volumes:
+
+| Host path | Container path |
+| --- | --- |
+| `./data` | `/app/data` |
+| `./models` | `/app/models` |
+| `./outputs` | `/app/outputs` |
+
+`compose.yaml` does not reference `.env` directly, so `docker compose config`
+will not print local secrets. If Tangram update credentials are needed in a
+deployment environment, inject them through that environment's secret manager or
+compose override file. `.env` is ignored and must not be committed to the public
+repository.
+
 Run selected functions:
 
 ```bash
