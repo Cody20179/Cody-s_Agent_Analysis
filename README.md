@@ -30,16 +30,6 @@ Cody-s_Agent_Analysis/
 ├── mcp_server.py           # MCP stdio server
 ├── pyproject.toml          # uv dependency contract
 ├── .env.example            # Tangram update config template
-├── data/
-│   ├── raw/                # source sensor CSVs
-│   └── processed/          # derived features and labels
-├── models/
-│   ├── anomaly/            # trained anomaly models
-│   └── forecast/           # trained forecast models
-├── outputs/
-│   ├── anomaly/
-│   ├── forecast/
-│   └── state/
 └── src/
     ├── data/
     ├── state/
@@ -66,9 +56,12 @@ Main callable API:
 | --- | --- |
 | `data_status()` | inspect raw sensor CSV coverage |
 | `update_data(sensors="all")` | fetch new Tangram telemetry into `data/raw/` |
-| `run_state_analysis(start=None, end=None)` | run GMM state clustering |
+| `run_state_analysis(start=None, end=None)` | train and apply GMM state clustering |
+| `train_state_model(start=None, end=None)` | train the GMM state model only |
+| `apply_state_model(start=None, end=None)` | apply an existing GMM state model |
 | `train_forecast(target="dy", models=None, months_back=None)` | train forecast models |
 | `forecast_future(days=None, model_names=None)` | use trained models for future prediction |
+| `train_direct_tree_forecast(target="dy", days=None, models=None, months_back=None)` | train direct tree forecast models for selected horizons |
 | `train_anomaly_detection()` | train anomaly models |
 | `check_anomaly(start, end, min_models=2)` | check a time interval for anomalies |
 | `run_all()` | run the main pipeline sequence |
@@ -127,6 +120,8 @@ Runtime volumes:
 | `./models` | `/app/models` |
 | `./outputs` | `/app/outputs` |
 
+These runtime directories are local deployment state and are ignored by git.
+
 `compose.yaml` does not reference `.env` directly, so `docker compose config`
 will not print local secrets. If Tangram update credentials are needed in a
 deployment environment, inject them through that environment's secret manager or
@@ -154,8 +149,11 @@ Tool names exposed by `mcp_server.py`:
 - `tool_update_data`
 - `tool_data_status`
 - `tool_run_state_analysis`
+- `tool_train_state_model`
+- `tool_apply_state_model`
 - `tool_train_forecast`
 - `tool_forecast_future`
+- `tool_train_direct_tree_forecast`
 - `tool_train_anomaly_detection`
 - `tool_check_anomaly`
 - `tool_run_all`
@@ -174,25 +172,21 @@ Fill:
 - `TANGRAM_ID`
 - sensor key mappings such as `Current_A`, `Electricity_consumption`, `PF`
 
-The current repository already contains `data/raw/`, so read-only analysis,
-forecasting, and anomaly checks can run without `.env`.
-
-## Tracked Artifacts
-
-The following deployable artifacts are intentionally tracked:
-
-- `data/raw/*.csv`
-- `data/processed/*.csv`
-- `models/anomaly/*`
-- `models/forecast/*`
-- `outputs/**/*`
+## Local Artifacts
 
 Ignored local-only artifacts:
 
 - `.env`
 - `.cache/`
 - `__pycache__/`
+- `data/raw/`
+- `data/processed/`
 - `data/_tmp_update/`
+- `models/`
+- `outputs/`
+
+The public repository does not include local datasets, trained model weights,
+generated outputs, or thesis chart notes.
 
 ## Acceptance
 
