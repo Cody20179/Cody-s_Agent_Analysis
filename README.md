@@ -65,6 +65,42 @@ Main callable API:
 | `train_anomaly_detection()` | train anomaly models |
 | `check_anomaly(start, end, min_models=2)` | check a time interval for anomalies |
 | `run_all()` | run the main pipeline sequence |
+| `list_scenarios()` | list user-facing scenarios |
+| `route_scenario(text)` | map plain-language text to a scenario |
+| `run_scenario(scenario_id, **kwargs)` | execute one stable scenario workflow |
+| `validate_scenarios(scenario_ids=None, repeat=1, model_name="workflow-baseline")` | run repeatable scenario validation |
+
+## Scenario Flows
+
+User-facing flows are separated from low-level model tools. Daily flows are for
+operators. Maintenance flows are for setup or retraining.
+
+| Scenario | User intent | Workflow |
+| --- | --- | --- |
+| `today_status` | 查詢今日機台狀態 | apply state model over today's period |
+| `period_status` | 查詢指定期間機台狀態 | apply state model over `start` / `end` |
+| `last_week_runtime` | 查詢上週開機 / 關機時間 | apply state model over last calendar week |
+| `utilization` | 查詢機台稼動率 | apply state model and summarize running ratio |
+| `next_week_power_forecast` | 預測下週耗電 | run future forecast for 7 days |
+| `next_month_cost_forecast` | 預測下個月電費 | run 30-day forecast and cost calculation |
+| `period_anomaly_check` | 檢查指定期間異常 | run anomaly check over `start` / `end` |
+| `initialize_project` | 初始化專案模型 | optional data update, state training, forecast training, anomaly training |
+| `retrain_all_models` | 重新訓練全部模型 | state, forecast, and anomaly retraining |
+
+Each scenario returns a fixed contract in `metrics`:
+
+| Field | Meaning |
+| --- | --- |
+| `scenario_id` | stable scenario key |
+| `expected_tools` | expected tool flow for the scenario |
+| `tool_trace` | called tool names, order, duration, and success |
+| `tool_flow_signature` | compact tool sequence |
+| `required_outputs` | scenario-specific required fields |
+| `output_schema_passed` | whether required fields were produced |
+
+Scenario validation records `model_name`, repeat index, success, duration,
+tool counts, tool flow signature, artifact count, and placeholder token /
+thinking fields for later System-level LLM metrics.
 
 Image outputs are returned structurally. The model does not need to write image
 paths in natural language. For example:
@@ -132,6 +168,10 @@ Run selected functions:
 
 ```bash
 uv run python -c "import json; from main import data_status; print(json.dumps(data_status(), ensure_ascii=False, indent=2))"
+uv run python -c "import json; from main import list_scenarios; print(json.dumps(list_scenarios(), ensure_ascii=False, indent=2))"
+uv run python -c "import json; from main import route_scenario; print(json.dumps(route_scenario('幫我預測下週耗電多少'), ensure_ascii=False, indent=2))"
+uv run python -c "import json; from main import run_scenario; print(json.dumps(run_scenario('next_week_power_forecast'), ensure_ascii=False, indent=2))"
+uv run python -m src.validation.runner --scenario next_week_power_forecast --repeat 3 --model-name workflow-baseline
 uv run python -c "import json; from main import forecast_future; print(json.dumps(forecast_future(days=[3,7], model_names=['Prophet']), ensure_ascii=False, indent=2))"
 uv run python -c "import json; from main import check_anomaly; print(json.dumps(check_anomaly('2026-05-01 00:00:00','2026-05-02 00:00:00'), ensure_ascii=False, indent=2))"
 ```
@@ -157,6 +197,10 @@ Tool names exposed by `mcp_server.py`:
 - `tool_train_anomaly_detection`
 - `tool_check_anomaly`
 - `tool_run_all`
+- `tool_list_scenarios`
+- `tool_route_scenario`
+- `tool_run_scenario`
+- `tool_validate_scenarios`
 
 ## Tangram Update Config
 

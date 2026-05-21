@@ -13,13 +13,17 @@ from main import (  # noqa: E402
     data_status,
     forecast_future,
     apply_state_model,
+    list_scenarios,
+    route_scenario,
     run_all,
+    run_scenario,
     run_state_analysis,
     train_direct_tree_forecast,
     train_state_model,
     train_anomaly_detection,
     train_forecast,
     update_data,
+    validate_scenarios,
 )
 
 sys.stdout = _real_stdout
@@ -96,6 +100,36 @@ async def tool_check_anomaly(start: str, end: str, min_models: int = 2) -> str:
 @mcp.tool()
 async def tool_run_all() -> str:
     return await _run(run_all)
+
+@mcp.tool()
+async def tool_list_scenarios() -> str:
+    return await _run(list_scenarios)
+
+@mcp.tool()
+async def tool_route_scenario(text: str) -> str:
+    return await _run(route_scenario, text=text)
+
+@mcp.tool()
+async def tool_run_scenario(scenario_id: str, start: str = "", end: str = "", rate: float = 4.0, repeat: int = 1, model_name: str = "workflow-baseline") -> str:
+    kwargs = {}
+    if start:
+        kwargs["start"] = start
+    if end:
+        kwargs["end"] = end
+    if scenario_id == "next_month_cost_forecast":
+        kwargs["rate"] = rate
+    if scenario_id == "period_anomaly_check":
+        kwargs.setdefault("min_models", 2)
+    if scenario_id == "initialize_project":
+        kwargs.setdefault("fetch_data", False)
+    if scenario_id == "validate_scenarios":
+        return await _run(validate_scenarios, repeat=repeat, model_name=model_name)
+    return await _run(run_scenario, scenario_id, **kwargs)
+
+@mcp.tool()
+async def tool_validate_scenarios(scenario_ids: str = "", repeat: int = 1, model_name: str = "workflow-baseline") -> str:
+    ids = [x.strip() for x in scenario_ids.split(",") if x.strip()] if scenario_ids else None
+    return await _run(validate_scenarios, scenario_ids=ids, repeat=repeat, model_name=model_name)
 
 if __name__ == "__main__":
     mcp.run(transport="stdio")

@@ -4,6 +4,10 @@ from src.common import err, ok
 from src.config import ANOMALY_DIR, DATA_RAW, FORECAST_DIR, STATE_DIR, ensure_dirs
 from src.data.update import status as _data_status
 from src.data.update import update as _update_data
+from src.scenarios.registry import list_scenarios as _list_scenarios
+from src.scenarios.registry import route_scenario as _route_scenario
+from src.scenarios.workflows import run_scenario as _run_scenario
+from src.validation.runner import run_validation as _run_validation
 
 ensure_dirs()
 
@@ -102,6 +106,32 @@ def check_anomaly(start: str, end: str, min_models: int = 2) -> dict:
             "score_plot": result.get("score_plot"),
             "vote_plot": result.get("vote_plot"),
         }, metrics=result)
+    except Exception as exc:
+        return err(str(exc))
+
+def list_scenarios() -> dict:
+    try:
+        return ok(".", "scenario list loaded", metrics={"scenarios": _list_scenarios()})
+    except Exception as exc:
+        return err(str(exc))
+
+def route_scenario(text: str) -> dict:
+    try:
+        return ok(".", "scenario routed", metrics=_route_scenario(text))
+    except Exception as exc:
+        return err(str(exc))
+
+def run_scenario(scenario_id: str, **kwargs) -> dict:
+    return _run_scenario(scenario_id, **kwargs)
+
+def validate_scenarios(scenario_ids: list[str] | None = None, repeat: int = 1, model_name: str = "workflow-baseline") -> dict:
+    try:
+        from src.scenarios.registry import SCENARIOS
+        result = _run_validation(scenario_ids or list(SCENARIOS), repeat=repeat, model_name=model_name)
+        return ok(result["json"], "scenario validation finished", key_files={"json": result["json"], "csv": result["csv"]}, metrics={
+            "validation_run_id": result["records"][0]["validation_run_id"] if result["records"] else None,
+            "records": result["records"],
+        })
     except Exception as exc:
         return err(str(exc))
 
