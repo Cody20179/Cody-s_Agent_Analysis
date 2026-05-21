@@ -14,9 +14,12 @@ import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from src.plotting import configure_matplotlib
 from sklearn.metrics import calinski_harabasz_score, davies_bouldin_score, silhouette_score
 from sklearn.mixture import GaussianMixture
 from sklearn.preprocessing import StandardScaler
+
+configure_matplotlib(plt)
 
 FEATURE_COLS = ["I_mean", "I_imbalance", "Power", "PF_abs", "kVAh_rate"]
 STATE_NAMES = {
@@ -269,7 +272,7 @@ def _plot_timeline(df: pd.DataFrame, out_dir: Path, prefix: str) -> Path:
     fig, axes = plt.subplots(2, 1, figsize=(16, 8.5), sharex=True, gridspec_kw={"height_ratios": [3, 1.15]})
     axes[0].plot(df["time"], df["I_mean"], color="black", lw=0.6, label="I_mean")
     axes[0].plot(df["time"], df["Power"], color="tab:red", lw=0.6, alpha=0.5, label="Power")
-    axes[0].legend(fontsize=10, loc="upper right")
+    axes[0].legend(fontsize=14, loc="upper center", bbox_to_anchor=(0.5, 1.20), ncol=2)
     axes[0].grid(True, alpha=0.3)
     for state in [s for s in df["state"].dropna().unique() if s != "Unknown"]:
         axes[1].fill_between(
@@ -284,11 +287,11 @@ def _plot_timeline(df: pd.DataFrame, out_dir: Path, prefix: str) -> Path:
         )
     axes[1].set_yticks([])
     axes[1].set_ylim(0, 1)
-    axes[1].legend(ncol=4, fontsize=11, loc="center left", bbox_to_anchor=(0.01, 0.5), frameon=True)
+    axes[1].legend(ncol=4, fontsize=14, loc="upper center", bbox_to_anchor=(0.5, -0.28), frameon=True)
     axes[1].xaxis.set_major_locator(mdates.AutoDateLocator(minticks=4, maxticks=10))
     axes[1].xaxis.set_major_formatter(mdates.ConciseDateFormatter(axes[1].xaxis.get_major_locator()))
-    axes[1].tick_params(axis="x", labelsize=11)
-    fig.subplots_adjust(bottom=0.12, hspace=0.10)
+    axes[1].tick_params(axis="x", labelsize=15)
+    fig.subplots_adjust(bottom=0.24, top=0.86, hspace=0.12)
     path = out_dir / f"{prefix}_state_timeline.png"
     fig.savefig(path, dpi=150)
     plt.close(fig)
@@ -302,9 +305,9 @@ def _plot_state_hours(hours_df: pd.DataFrame, out_dir: Path, prefix: str, title:
     ax.set_ylabel("Hours")
     ax.set_xlabel("")
     ax.set_title(title)
-    ax.legend(ncol=min(4, max(1, len(hours_df.columns))), fontsize=8, loc="upper center", bbox_to_anchor=(0.5, -0.18))
-    ax.tick_params(axis="x", labelrotation=45, labelsize=8)
-    fig.tight_layout()
+    ax.legend(ncol=min(4, max(1, len(hours_df.columns))), fontsize=14, loc="upper center", bbox_to_anchor=(0.5, -0.25))
+    ax.tick_params(axis="x", labelrotation=45, labelsize=14)
+    fig.subplots_adjust(bottom=0.30)
     path = out_dir / f"{prefix}_state_hours.png"
     fig.savefig(path, dpi=150)
     plt.close(fig)

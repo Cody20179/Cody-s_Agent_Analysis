@@ -13,6 +13,9 @@ import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from src.plotting import configure_matplotlib
+
+configure_matplotlib(plt)
 
 LAG_STEPS = [1, 5, 10, 30, 60, 1440, 10080]
 ROLLING_WINS = [5, 30, 60]
@@ -342,7 +345,7 @@ def _write_direct_key_horizon_summary(metrics: dict, direct_dir: Path, plot_dir:
         ax.tick_params(axis="x", labelrotation=0)
         ax.legend(loc="upper left", ncols=2)
         for container in ax.containers:
-            ax.bar_label(container, fmt="%.0f", fontsize=8, padding=2)
+            ax.bar_label(container, fmt="%.0f", fontsize=13, padding=3)
         fig.tight_layout()
         fig.savefig(plot_path, dpi=150)
         plt.close(fig)

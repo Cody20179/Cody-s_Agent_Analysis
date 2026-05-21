@@ -12,10 +12,13 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from src.plotting import configure_matplotlib
 from sklearn.ensemble import IsolationForest
 from sklearn.metrics import accuracy_score, confusion_matrix, f1_score, precision_score, recall_score, roc_auc_score, roc_curve
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import OneClassSVM
+
+configure_matplotlib(plt)
 
 FEATURE_COLS = [
     "I_mean",
@@ -569,11 +572,11 @@ def _plot_check_votes(votes: dict[str, int], rows: int, path: Path) -> Path:
     max_count = max(counts) if counts else 0
     if max_count == 0:
         ax.set_ylim(0, 1)
-        ax.text(0.5, 0.55, "No model flagged anomalies in this interval", transform=ax.transAxes, ha="center", va="center", fontsize=12)
+        ax.text(0.5, 0.55, "No model flagged anomalies in this interval", transform=ax.transAxes, ha="center", va="center", fontsize=18)
     else:
         ax.set_ylim(0, max_count * 1.25)
     ax.grid(True, axis="y", alpha=0.25)
-    ax.bar_label(bars, labels=[f"{count}/{rows}" for count in counts], padding=3)
+    ax.bar_label(bars, labels=[f"{count}/{rows}" for count in counts], padding=4, fontsize=14)
     fig.tight_layout()
     fig.savefig(path, dpi=150)
     plt.close(fig)
