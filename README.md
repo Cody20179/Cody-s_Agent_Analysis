@@ -172,6 +172,7 @@ uv run python -c "import json; from main import list_scenarios; print(json.dumps
 uv run python -c "import json; from main import route_scenario; print(json.dumps(route_scenario('幫我預測下週耗電多少'), ensure_ascii=False, indent=2))"
 uv run python -c "import json; from main import run_scenario; print(json.dumps(run_scenario('next_week_power_forecast'), ensure_ascii=False, indent=2))"
 uv run python -m src.validation.runner --scenario next_week_power_forecast --repeat 3 --model-name workflow-baseline
+uv run python -m src.validation.report outputs/validation/manual/tool_workflow_pilot_20260522_184205.csv --output-dir outputs/validation/manual/report_20260522_184205
 uv run python -c "import json; from main import forecast_future; print(json.dumps(forecast_future(days=[3,7], model_names=['Prophet']), ensure_ascii=False, indent=2))"
 uv run python -c "import json; from main import check_anomaly; print(json.dumps(check_anomaly('2026-05-01 00:00:00','2026-05-02 00:00:00'), ensure_ascii=False, indent=2))"
 ```
