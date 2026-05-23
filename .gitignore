@@ -2,6 +2,7 @@
 .env
 .env.*
 !.env.example
+模型列表.md
 
 # Python environments / cache
 .venv/
