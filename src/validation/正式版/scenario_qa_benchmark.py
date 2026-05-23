@@ -219,7 +219,6 @@ def _create_session(base_url: str, user_id: str, group_id: str, model: ModelSpec
         "api_key": model.api_key,
         "model_name": model.model_name,
         "system_name": f"scenario-qa-{case.scenario_id}",
-        "prompt_main": SYSTEM_PROMPT,
         "tool_names": ["run_python"],
         "mcp_names": [],
     }
@@ -431,7 +430,8 @@ def score_answer(case: ScenarioCase, ground_truth: dict[str, Any], answer: str, 
     expected = set(case.expected_functions)
     tool_score = 25 if expected.issubset(called) else 0
 
-    text = answer + "\n" + _event_text(events, "tool_output")
+    answer_text = answer
+    event_text = _event_text(events, "tool_input") + "\n" + _event_text(events, "tool_output")
     numeric_total = len(case.numeric_expectations)
     numeric_hits = 0
     misses = []
@@ -440,7 +440,7 @@ def score_answer(case: ScenarioCase, ground_truth: dict[str, Any], answer: str, 
         if value is None:
             misses.append(key)
             continue
-        ok = _number_present(text, float(value), _numeric_tolerance(key, float(value)))
+        ok = _number_present(answer_text, float(value), _numeric_tolerance(key, float(value)))
         numeric_hits += int(ok)
         if not ok:
             misses.append(key)
@@ -450,7 +450,7 @@ def score_answer(case: ScenarioCase, ground_truth: dict[str, Any], answer: str, 
     exact_hits = 0
     for key in case.exact_expectations:
         value = str(ground_truth.get(key, ""))
-        ok = bool(value) and value.lower() in text.lower()
+        ok = bool(value) and value.lower() in answer_text.lower()
         exact_hits += int(ok)
         if not ok:
             misses.append(key)
@@ -468,15 +468,15 @@ def score_answer(case: ScenarioCase, ground_truth: dict[str, Any], answer: str, 
 
     parameter_score = 15
     if case.scenario_id in {"S02_period_state_distribution", "S03_period_utilization", "S08_period_anomaly"}:
-        parameter_score = 15 if ("2026-05-01" in text and "2026-05-02" in text) else 5
+        parameter_score = 15 if ("2026-05-01" in event_text and "2026-05-02" in event_text) else 5
     elif case.scenario_id == "S04_last_week_runtime":
-        parameter_score = 15 if ("2026-05-11" in text and "2026-05-18" in text) else 5
+        parameter_score = 15 if ("2026-05-11" in event_text and "2026-05-18" in event_text) else 5
     elif case.scenario_id == "S05_this_week_status":
-        parameter_score = 15 if ("2026-05-18" in text and "2026-05-23" in text) else 5
+        parameter_score = 15 if ("2026-05-18" in event_text and "2026-05-23" in event_text) else 5
     elif case.scenario_id == "S06_next_week_power":
-        parameter_score = 15 if ("7" in text) else 5
+        parameter_score = 15 if ("7" in event_text) else 5
     elif case.scenario_id == "S07_next_month_cost":
-        parameter_score = 15 if ("30" in text and "4" in text) else 5
+        parameter_score = 15 if ("30" in event_text and "4" in answer_text) else 5
 
     total = max(0, round(tool_score + parameter_score + fact_score + exact_score + format_score - hallucination_penalty, 2))
     return {
@@ -638,7 +638,8 @@ def run(base_url: str, user_id: str, output_dir: Path | None, repeat: int, timeo
             for repeat_index in range(1, repeat + 1):
                 try:
                     session_id = _create_session(base_url, user_id, group["group_id"], model, case)
-                    chat = _chat(base_url, session_id, case.question, user_id, timeout)
+                    prompt = f"{SYSTEM_PROMPT}\n\n使用者問題：{case.question}"
+                    chat = _chat(base_url, session_id, prompt, user_id, timeout)
                     row = _case_result(run_id, model, group, case, repeat_index, session_id, chat, ground_truth[case.scenario_id])
                 except Exception as exc:
                     row = {
