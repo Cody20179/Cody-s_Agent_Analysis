@@ -29,6 +29,9 @@ MODEL_LIST = Path("模型列表.md")
 DEFAULT_USER_ID = "Cody"
 ANALYSIS_ROOT = "/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis"
 CLOUD_MODELS = {"glm-5.1", "kimi-k2.6", "deepseek-v4-flash"}
+EMBEDDING_MODELS = {"qwen3-embedding:4b", "qwen3-embedding:8b"}
+VISION_MODELS = {"qwen3-vl:32b", "qwen3-vl:8b"}
+MODEL_SCOPES = {"cloud", "local-language", "all-language"}
 MODEL_ALIASES = {"gml-5.1": "glm-5.1"}
 SYSTEM_PROMPT = f"""
 你是 Cody Agent 的 CNC 分析助手。回答工廠使用者的自然語言問題時，必須優先用 run_python 調用
@@ -161,6 +164,27 @@ def _parse_model_list(path: Path) -> list[ModelSpec]:
     return models
 
 
+def _is_local_language_model(model: ModelSpec) -> bool:
+    return (
+        model.model_name not in CLOUD_MODELS
+        and model.model_name not in EMBEDDING_MODELS
+        and model.model_name not in VISION_MODELS
+    )
+
+
+def _select_models(models: list[ModelSpec], model_scope: str) -> list[ModelSpec]:
+    if model_scope not in MODEL_SCOPES:
+        raise ValueError(f"unknown model scope: {model_scope}")
+    if model_scope == "cloud":
+        return [model for model in models if model.model_name in CLOUD_MODELS]
+    if model_scope == "local-language":
+        return [model for model in models if _is_local_language_model(model)]
+    return [
+        model for model in models
+        if model.model_name not in EMBEDDING_MODELS and model.model_name not in VISION_MODELS
+    ]
+
+
 def _token_proxy(text: object) -> int:
     if text is None:
         return 0
@@ -244,6 +268,9 @@ def _chat(base_url: str, session_id: str, prompt: str, user_id: str, timeout: in
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             for raw_line in resp:
+                if time.perf_counter() - started > timeout:
+                    error = f"hard timeout after {timeout}s"
+                    break
                 line = raw_line.decode("utf-8", errors="replace").strip()
                 if not line.startswith("data:"):
                     continue
@@ -623,14 +650,24 @@ def _plot_outputs(out: Path, summary: pd.DataFrame, model_summary: pd.DataFrame,
     plt.close(fig)
 
 
-def run(base_url: str, user_id: str, output_dir: Path | None, repeat: int, timeout: int) -> dict[str, Any]:
+def run(
+    base_url: str,
+    user_id: str,
+    output_dir: Path | None,
+    repeat: int,
+    timeout: int,
+    model_scope: str,
+    model_limit: int | None,
+) -> dict[str, Any]:
     run_id = datetime.now().strftime("%Y%m%d_%H%M%S") + "_" + uuid.uuid4().hex[:8]
     out = output_dir or OUTPUTS_DIR / "validation" / "scenario_qa_agent" / run_id
     out.mkdir(parents=True, exist_ok=True)
     ground_truth = build_ground_truth()
     (out / "ground_truth.json").write_text(json.dumps(ground_truth, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
 
-    models = [model for model in _parse_model_list(MODEL_LIST) if model.model_name in CLOUD_MODELS]
+    models = _select_models(_parse_model_list(MODEL_LIST), model_scope)
+    if model_limit is not None:
+        models = models[:model_limit]
     group = _create_group(base_url, user_id, f"scenario-qa-{run_id}", "Scenario QA benchmark with direct-tool ground truth")
     rows: list[dict[str, Any]] = []
     for model in models:
@@ -690,6 +727,7 @@ def run(base_url: str, user_id: str, output_dir: Path | None, repeat: int, timeo
         "base_url": base_url,
         "user_id": user_id,
         "models": [model.model_name for model in models],
+        "model_scope": model_scope,
         "scenario_count": len(SCENARIO_CASES),
         "repeat": repeat,
         "rows": len(rows),
@@ -703,12 +741,14 @@ def run(base_url: str, user_id: str, output_dir: Path | None, repeat: int, timeo
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Run cloud-model scenario QA benchmark with direct-tool ground truth.")
+    parser = argparse.ArgumentParser(description="Run scenario QA benchmark with direct-tool ground truth.")
     parser.add_argument("--base-url", default="http://127.0.0.1:8000")
     parser.add_argument("--user-id", default=DEFAULT_USER_ID)
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--repeat", type=int, default=3)
     parser.add_argument("--timeout", type=int, default=900)
+    parser.add_argument("--model-scope", choices=sorted(MODEL_SCOPES), default="cloud")
+    parser.add_argument("--model-limit", type=int)
     args = parser.parse_args()
     print(json.dumps(
         run(
@@ -717,6 +757,8 @@ def main() -> None:
             output_dir=args.output_dir,
             repeat=args.repeat,
             timeout=args.timeout,
+            model_scope=args.model_scope,
+            model_limit=args.model_limit,
         ),
         ensure_ascii=False,
         indent=2,

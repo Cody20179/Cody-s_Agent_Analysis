@@ -24,9 +24,11 @@ from src.validation.正式版.scenario_qa_benchmark import (
     CLOUD_MODELS,
     DEFAULT_USER_ID,
     MODEL_LIST,
+    MODEL_SCOPES,
     ModelSpec,
     _parse_model_list,
     _request_json,
+    _select_models,
     _token_proxy,
 )
 
@@ -465,11 +467,21 @@ def _benchmark(base_url: str, user_id: str, group_id: str) -> dict[str, Any]:
     return payload if status == 200 else {"error": payload, "status": status}
 
 
-def run(base_url: str, user_id: str, output_dir: Path | None, timeout: int, limit: int | None) -> dict[str, Any]:
+def run(
+    base_url: str,
+    user_id: str,
+    output_dir: Path | None,
+    timeout: int,
+    limit: int | None,
+    model_scope: str,
+    model_limit: int | None,
+) -> dict[str, Any]:
     run_id = datetime.now().strftime("%Y%m%d_%H%M%S") + "_" + uuid.uuid4().hex[:8]
     out = output_dir or OUTPUTS_DIR / "validation" / "edge_case_agent" / run_id
     out.mkdir(parents=True, exist_ok=True)
-    models = [model for model in _parse_model_list(MODEL_LIST) if model.model_name in CLOUD_MODELS]
+    models = _select_models(_parse_model_list(MODEL_LIST), model_scope)
+    if model_limit is not None:
+        models = models[:model_limit]
     cases = EDGE_CASES[:limit] if limit else EDGE_CASES
     group = _create_group(base_url, user_id, f"edge-case-{run_id}", "Boundary and error-correction benchmark")
     rows: list[dict[str, Any]] = []
@@ -532,6 +544,7 @@ def run(base_url: str, user_id: str, output_dir: Path | None, timeout: int, limi
         "base_url": base_url,
         "user_id": user_id,
         "models": [model.model_name for model in models],
+        "model_scope": model_scope,
         "case_count": len(cases),
         "rows": len(rows),
         "group_id": group["group_id"],
@@ -551,12 +564,14 @@ def run(base_url: str, user_id: str, output_dir: Path | None, timeout: int, limi
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Run cloud-model edge-case resilience benchmark.")
+    parser = argparse.ArgumentParser(description="Run edge-case resilience benchmark.")
     parser.add_argument("--base-url", default="http://127.0.0.1:8000")
     parser.add_argument("--user-id", default=DEFAULT_USER_ID)
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--timeout", type=int, default=900)
     parser.add_argument("--limit", type=int)
+    parser.add_argument("--model-scope", choices=sorted(MODEL_SCOPES), default="cloud")
+    parser.add_argument("--model-limit", type=int)
     args = parser.parse_args()
     print(json.dumps(
         run(
@@ -565,6 +580,8 @@ def main() -> None:
             output_dir=args.output_dir,
             timeout=args.timeout,
             limit=args.limit,
+            model_scope=args.model_scope,
+            model_limit=args.model_limit,
         ),
         ensure_ascii=False,
         indent=2,
