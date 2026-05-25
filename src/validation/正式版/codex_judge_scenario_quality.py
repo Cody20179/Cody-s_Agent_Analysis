@@ -155,7 +155,7 @@ def _codex_batch(items: list[dict[str, Any]], model: str, timeout: int) -> tuple
             model,
             "--ephemeral",
             "--sandbox",
-            "read-only",
+            "workspace-write",
             "-c",
             'approval_policy="never"',
             "--output-schema",
