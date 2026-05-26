@@ -1,0 +1,11 @@
+﻿model_name,model_source,group_id,user_id,name,description,created_at,session_count
+qwen3.5:9b,B,1bf8f876b602b187,Cody,cnc-tool-20260524_050245_ebebc715-qwen3.5_9b,CNC tool validation for qwen3.5:9b; repeat=1,2026-05-24T05:02:45.769872,0
+qwen3.6:27b,B,3481814766fc67fb,Cody,cnc-tool-20260524_050245_ebebc715-qwen3.6_27b,CNC tool validation for qwen3.6:27b; repeat=1,2026-05-24T05:06:56.037455,0
+nemotron-cascade-2:latest,B,f8396a70634042ef,Cody,cnc-tool-20260524_050245_ebebc715-nemotron-cascade-2_latest,CNC tool validation for nemotron-cascade-2:latest; repeat=1,2026-05-24T05:32:32.665569,0
+gemma4:31b,B,f4417eb2c8d3519e,Cody,cnc-tool-20260524_050245_ebebc715-gemma4_31b,CNC tool validation for gemma4:31b; repeat=1,2026-05-24T05:36:08.099464,0
+gemma4:26b,B,042ea1f78c8ca6df,Cody,cnc-tool-20260524_050245_ebebc715-gemma4_26b,CNC tool validation for gemma4:26b; repeat=1,2026-05-24T05:44:08.890774,0
+gemma4:latest,B,ccc3ac8df07498a3,Cody,cnc-tool-20260524_050245_ebebc715-gemma4_latest,CNC tool validation for gemma4:latest; repeat=1,2026-05-24T05:47:25.288551,0
+nemotron-3-nano:latest,B,24ed6fc76104186e,Cody,cnc-tool-20260524_050245_ebebc715-nemotron-3-nano_latest,CNC tool validation for nemotron-3-nano:latest; repeat=1,2026-05-24T05:50:44.735655,0
+gpt-oss:120b,B,f8d3e49a47328bb9,Cody,cnc-tool-20260524_050245_ebebc715-gpt-oss_120b,CNC tool validation for gpt-oss:120b; repeat=1,2026-05-24T05:55:00.460080,0
+gpt-oss:20b,B,f8d41fd90373da40,Cody,cnc-tool-20260524_050245_ebebc715-gpt-oss_20b,CNC tool validation for gpt-oss:20b; repeat=1,2026-05-24T05:58:36.150743,0
+qwen3:8b,B,334c5852ae4bbbc1,Cody,cnc-tool-20260524_050245_ebebc715-qwen3_8b,CNC tool validation for qwen3:8b; repeat=1,2026-05-24T05:59:00.646969,0

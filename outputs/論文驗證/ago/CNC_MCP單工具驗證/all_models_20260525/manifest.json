@@ -1,0 +1,105 @@
+{
+  "run_id": "20260525_165836",
+  "scope": "all-language",
+  "api": "http://127.0.0.1:8000",
+  "user_id": "Cody",
+  "group_id": "172f7af6d4d9c211",
+  "mcp_names": [
+    "CNC_Analysis"
+  ],
+  "tool_names": [],
+  "models": [
+    {
+      "source": "A",
+      "deployment": "Cloud",
+      "provider": "ollama",
+      "model_name": "glm-5.1"
+    },
+    {
+      "source": "A",
+      "deployment": "Cloud",
+      "provider": "ollama",
+      "model_name": "kimi-k2.6"
+    },
+    {
+      "source": "A",
+      "deployment": "Cloud",
+      "provider": "ollama",
+      "model_name": "deepseek-v4-flash"
+    },
+    {
+      "source": "B",
+      "deployment": "Local",
+      "provider": "ollama",
+      "model_name": "qwen3.5:9b"
+    },
+    {
+      "source": "B",
+      "deployment": "Local",
+      "provider": "ollama",
+      "model_name": "qwen3.6:27b"
+    },
+    {
+      "source": "B",
+      "deployment": "Local",
+      "provider": "ollama",
+      "model_name": "nemotron-cascade-2:latest"
+    },
+    {
+      "source": "B",
+      "deployment": "Local",
+      "provider": "ollama",
+      "model_name": "gemma4:31b"
+    },
+    {
+      "source": "B",
+      "deployment": "Local",
+      "provider": "ollama",
+      "model_name": "gemma4:26b"
+    },
+    {
+      "source": "B",
+      "deployment": "Local",
+      "provider": "ollama",
+      "model_name": "gemma4:latest"
+    },
+    {
+      "source": "B",
+      "deployment": "Local",
+      "provider": "ollama",
+      "model_name": "nemotron-3-nano:latest"
+    },
+    {
+      "source": "B",
+      "deployment": "Local",
+      "provider": "ollama",
+      "model_name": "gpt-oss:120b"
+    },
+    {
+      "source": "B",
+      "deployment": "Local",
+      "provider": "ollama",
+      "model_name": "gpt-oss:20b"
+    },
+    {
+      "source": "B",
+      "deployment": "Local",
+      "provider": "ollama",
+      "model_name": "qwen3:8b"
+    }
+  ],
+  "cases": [
+    "tool_data_status",
+    "tool_update_data",
+    "tool_run_state_analysis",
+    "tool_train_forecast",
+    "tool_forecast_future",
+    "tool_train_anomaly_detection",
+    "tool_check_anomaly",
+    "tool_run_all"
+  ],
+  "started_at": "2026-05-25T16:58:36",
+  "ended_at": "2026-05-25T17:40:13",
+  "rows": 104,
+  "success_rate": 0.49038461538461536
+}

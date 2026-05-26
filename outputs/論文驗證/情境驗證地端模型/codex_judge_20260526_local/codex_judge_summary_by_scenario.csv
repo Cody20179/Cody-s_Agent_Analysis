@@ -1,0 +1,9 @@
+﻿scenario_id,category,runs,avg_overall,avg_correctness,avg_completeness,avg_readability,avg_practicality,avg_hallucination_risk
+S01_data_coverage,data_query,10,0.0,0.0,0.0,0.0,0.0,0.0
+S02_period_state_distribution,state_query,10,0.0,0.0,0.0,0.0,0.0,0.0
+S03_period_utilization,state_query,10,0.0,0.0,0.0,0.0,0.0,0.0
+S04_last_week_runtime,state_query,10,0.0,0.0,0.0,0.0,0.0,0.0
+S05_this_week_status,state_query,10,0.0,0.0,0.0,0.0,0.0,0.0
+S06_next_week_power,forecast,10,0.0,0.0,0.0,0.0,0.0,0.0
+S07_next_month_cost,forecast,10,0.0,0.0,0.0,0.0,0.0,0.0
+S08_period_anomaly,anomaly,10,0.0,0.0,0.0,0.0,0.0,0.0

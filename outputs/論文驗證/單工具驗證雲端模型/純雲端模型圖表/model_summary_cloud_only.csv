@@ -1,0 +1,4 @@
+﻿model_name,model_label_cloud,runs,success_rate,avg_runtime_s,median_runtime_s,avg_loop_count,avg_tool_call_count,avg_thinking_chars,avg_estimated_total_text_tokens,success_rate_pct
+deepseek-v4-flash,DeepSeek-V4-Flash (Cloud),24,1.0,29.503,17.6875,2.0,1.0,251.16666666666666,373.7916666666667,100.0
+glm-5.1,GLM-5.1 (Cloud),24,1.0,18.945625,7.3925,2.0,1.0,140.79166666666666,307.6666666666667,100.0
+kimi-k2.6,Kimi-K2.6 (Cloud),24,1.0,22.016625,11.7525,2.0,1.0,443.6666666666667,356.5,100.0

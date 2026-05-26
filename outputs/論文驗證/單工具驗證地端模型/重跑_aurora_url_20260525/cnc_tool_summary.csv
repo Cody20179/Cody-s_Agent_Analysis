@@ -1,0 +1,9 @@
+﻿cnc_tool_name,cnc_tool_layer,runs,models,functional_success_rate,expected_system_tool_call_rate,avg_duration_s,avg_benchmark_duration_s,avg_first_response_s,avg_loop_count,avg_tool_call_count,avg_tool_output_count,avg_system_tool_call_count,avg_system_tool_duration_s,avg_thinking_event_count,avg_thinking_duration_s,avg_thinking_chars,avg_answer_chars,avg_estimated_prompt_tokens,avg_estimated_answer_tokens,avg_estimated_thinking_tokens,avg_estimated_total_text_tokens
+check_anomaly,application,6,6,0.333,0.333,24.04,24.037,5.353,1.333,0.333,0.333,0.333,0.809,267.833,15.744,763.5,60.667,180.0,15.167,191.167,386.333
+data_status,data,6,6,0.167,0.333,35.809,35.806,3.951,1.5,0.5,0.5,0.5,0.819,183.333,11.714,484.167,11.667,151.0,3.0,121.167,275.167
+forecast_future,application,6,6,0.333,0.333,19.283,19.28,5.092,1.333,0.333,0.333,0.333,0.95,228.167,12.38,851.0,52.0,175.0,13.0,212.833,400.833
+run_all,workflow,6,6,0.333,0.5,73.791,73.788,58.734,1.667,0.667,0.667,0.667,48.741,194.0,63.362,780.667,245.5,156.0,61.5,195.333,412.833
+run_state_analysis,training_application,6,6,0.333,0.333,23.622,23.62,5.113,1.333,0.333,0.333,0.333,1.757,225.0,14.623,590.5,34.167,189.0,8.667,147.833,345.5
+train_anomaly_detection,training,6,6,0.333,0.333,20.149,20.146,4.892,1.333,0.333,0.333,0.333,2.831,188.0,13.864,498.833,29.0,166.0,7.333,125.0,298.333
+train_forecast,training,6,6,0.333,0.333,21.724,21.721,4.255,1.333,0.333,0.333,0.333,0.789,256.0,14.385,1076.167,44.667,183.0,11.167,269.5,463.667
+update_data,data,6,6,0.333,0.333,17.78,17.777,3.621,1.333,0.333,0.333,0.333,1.0,180.667,10.928,665.333,29.333,174.0,7.333,166.667,348.0

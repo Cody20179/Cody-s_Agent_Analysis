@@ -1,0 +1,90 @@
+﻿run_id,model_source,model_deployment,model_name,model_label,case_id,cnc_mcp_tool_name,cnc_tool_layer,session_id,status,functional_success,expected_tool_called,tool_output_status_ok,tool_output_error_detected,tool_input_events,tool_output_events,event_count,duration_ms_client,answer_chars,tool_output_chars,estimated_answer_tokens,estimated_tool_output_tokens,error,answer_preview,tool_input_preview,tool_output_preview,source_dataset,validation_origin,manual_judgement_note,loop_count,first_response_ms,thinking_event_count,thinking_char_count,thinking_duration_ms,answer_char_count,tool_duration_ms_total,tool_duration_ms_avg
+user_singletool_20260525,User,Local,gpt-oss:20b,gpt-oss:20b (Local),tool_data_status,tool_data_status,data,d43c8241-e101-4cc3-9da0-a86b28e296c7,success,True,True,True,False,1,1,3,27481,1382,2632,346,658,,"**CNC 感測器資料狀態（截至 2026‑05‑25）**
+
+| 感測器 | 觀測筆數 | 資料起始時間 | 資料結束時間 | 可用性 |
+|--------|----------|--------------|--------------|--------|
+| Current_A | 59 709 | 2025‑09‑15 15:21:00 | 2026‑05‑25 19:53:28 | ✅ |
+| Current_B | 59 259 | 2025‑09‑15 15:21:00 | 2026‑05‑24 06:23:27 | ✅ |
+| Current_C | 59 260 | 2025‑09‑15 15:21:00 | 2026‑05‑24 06:23:27 | ✅ |
+| Votage_ab | 236 733 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 | ✅ |
+| Votage_bc | 236 732 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 | ✅ |
+| Votage_ca","Tool: tool_data_status
+Input: {}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""data status loaded"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/raw"",\n  ""key_files"": {},\n  ""metrics"": {\n    ""sensors"": [\n      {\n        ""sensor"": ""Current_A"",\n        ""exists"": true,\n        ""rows"": 59709,\n        ""start"": ""2025-09-15 15:21:00"",\n        ""end"": ""2026-05-25 19:53:28""\n      },\n      {\n        ""sensor"": ""Current_B"",\n        ""exists"": true,\n        ""ro",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,13046,122,513,4665,1382,1019,1019
+user_singletool_20260525,User,Local,gpt-oss:20b,gpt-oss:20b (Local),tool_update_data,tool_update_data,data,1a2c04ac-207d-46b4-9285-bef4ed914376,success,True,True,True,False,1,1,3,7788,145,342,37,86,,"✅ 更新完成  
+- **感測器**: `Current_A`  
+- **輸出資料夾**: `/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/raw`  
+
+更新成功，已將 6 筆新資料加入。","Tool: tool_update_data
+Input: {""sensors"":""Current_A""}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""data update finished"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/raw"",\n  ""key_files"": {},\n  ""metrics"": {\n    ""Current_A"": {\n      ""added"": 6,\n      ""latest"": ""2026-05-25 20:23:28""\n    }\n  },\n  ""artifacts"": []\n}'}]",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,6522,107,389,4626,145,1767,1767
+user_singletool_20260525,User,Local,gpt-oss:20b,gpt-oss:20b (Local),tool_run_state_analysis,tool_run_state_analysis,state,20192a6b-ebf6-4d3d-9ef0-ccf074c7e1aa,success,True,True,True,False,1,1,3,22558,643,17952,161,4488,,"以下為 2026‑05‑01 00:00:00 至 2026‑05‑02 00:00:00 之機台狀態分布（已完成分析）：
+
+| 狀態 | 次數 | 小時 | 百分比 | 平均 I_mean | 平均 Power | 平均 kVAh_rate |
+|------|------|------|--------|------------|------------|----------------|
+| Off | 102 | 8.5 | 35.42 % | 0.00 | 0.008 | 0.0023 |
+| Idle | 1 | 0.08 | 0.35 % | 0.572 | 0.124 | 0.0053 |
+| Running_Low | 113 | 9.42 | 39.24 % | 8.019 | 2.282 | 0.2663 |
+| Running_High | 72 | 6.0 | 25.00 % | 12.566 | 3.591 | 0.3958 |
+
+- **總資料點**：288（24 小時 × 5 分鐘）
+- **最佳 GMM K**：4（符合四種狀態）
+- **平均分配信心","Tool: tool_run_state_analysis
+Input: {""start"":""2026-05-01 00:00:00"",""end"":""2026-05-02 00:00:00""}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""GMM state analysis finished"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state"",\n  ""key_files"": {\n    ""state_labeled_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/state_labeled.csv"",\n    ""processed_state_labeled_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/processed/state_labeled.csv"",\n    ""state_",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,15745,424,1815,13937,643,3642,3642
+user_singletool_20260525,User,Local,gpt-oss:20b,gpt-oss:20b (Local),tool_train_forecast,tool_train_forecast,training,15176e64-2882-4403-a085-e078acf6fe92,success,True,True,True,False,1,1,3,16100,891,3360,223,840,,"已完成 **BaselineLastWeek** 模型在 **dy** 目標欄位、最近 1 個月資料範圍內的訓練。  
+以下為主要結果與可供查看的檔案：
+
+| 內容 | 位置 |
+|------|------|
+| **評估指標** | `outputs/forecast/training/dy/forecast_metrics.json` |
+| **訓練資料概況** | `outputs/forecast/training/dy/training_data_profile.json` |
+| **訓練輸入圖（y）** | `outputs/forecast/training/dy/training_input_y.png` |
+| **訓練輸入圖（dy）** | `outputs/forecast/training/dy/training_input_dy.png` |
+| **測試覆蓋圖** | `outputs/forecast/training/dy/forecast_test_overlay.png` |
+| **MAE/MAE%** | 5.48 / 6.85% |
+| ","Tool: tool_train_forecast
+Input: {""models"":""BaselineLastWeek"",""months_back"":1,""target"":""dy""}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""forecast training finished"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast"",\n  ""key_files"": {\n    ""metrics"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/forecast_metrics.json"",\n    ""training_data_profile"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/training_data",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,8465,189,868,5725,891,1164,1164
+user_singletool_20260525,User,Local,gpt-oss:20b,gpt-oss:20b (Local),tool_forecast_future,tool_forecast_future,forecast,7f8dbb5c-5d4e-4496-820e-08b13d14b77c,success,True,True,True,False,1,1,3,19962,901,1170,226,293,,"以下為使用 **Prophet** 模型預測未來 7 天耗電量（單位：kWh）的摘要與相關輸出檔案資訊：
+
+| 項目 | 內容 |
+|------|------|
+| **預測目標** | `dy`（每分鐘耗電量增量） |
+| **模型** | Prophet |
+| **預測期** | 2026‑05‑08 00:00:00 ~ 2026‑05‑15 00:00:00（共 7 天） |
+| **總預測耗電量** | 8 374.01 kWh |
+| **平均每日預測耗電量** | 1 193.86 kWh |
+| **主要輸出檔案** |  |
+| 1. 預測報告 | `/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/application/dy/future_forecast_report.json` |
+| 2. 預測圖像 | `/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/","Tool: tool_forecast_future
+Input: {""days"":""7"",""model_names"":""Prophet"",""target"":""dy""}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""future forecast finished"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast"",\n  ""key_files"": {\n    ""report"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/application/dy/future_forecast_report.json"",\n    ""future_forecast"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/application/dy/future_for",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,12346,416,1866,10088,901,1820,1820
+user_singletool_20260525,User,Local,gpt-oss:20b,gpt-oss:20b (Local),tool_train_anomaly_detection,tool_train_anomaly_detection,training,8c3a139f-11de-4ab3-bbd1-ef40ddbc2ca7,success,True,True,True,False,1,1,3,17297,786,7877,197,1970,,"異常偵測模型訓練已完成，全部成功。  
+**模型數量**：3 個（IsolationForest、OneClassSVM、Autoencoder）  
+**輸出檔案**（位於 `outputs/anomaly/` 與 `models/anomaly/`）：
+
+| 檔案 | 位置 |
+|------|------|
+| 特徵檔 `detection_features.csv` | `data/processed/` |
+| 評估指標 `anomaly_metrics.json` | `outputs/anomaly/` |
+| 評估表 `model_metrics.csv` | `outputs/anomaly/tables/` |
+| 失敗預測表 `synthetic_validation_predictions.csv` | `outputs/anomaly/tables/` |
+| 異常類型檢測率表 `anomaly_type_detection_rate.csv` | `outputs/anomaly/tables/` |
+| 分數分佈圖 `score_distribution.","Tool: tool_train_anomaly_detection
+Input: {}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""anomaly detection training finished"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly"",\n  ""key_files"": {\n    ""features"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/processed/detection_features.csv"",\n    ""metrics"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/anomaly_metrics.json"",\n    ""metrics_table"":",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,10792,64,312,1052,786,6346,6346
+user_singletool_20260525,User,Local,gpt-oss:20b,gpt-oss:20b (Local),tool_check_anomaly,tool_check_anomaly,anomaly,d02ecfec-5018-4e0e-b82c-bf4b27770d5a,success,True,True,True,False,1,1,3,12398,575,2219,144,555,,"**異常檢查結果（2026‑05‑01 00:00:00 至 2026‑05‑02 00:00:00，min_models = 2）**
+
+| 指標 | 值 |
+|------|----|
+| **最終判定** | **ANOMALY** |
+| **總資料列數** | 185 |
+| **異常列數** | 1 |
+| **異常率** | 0.54% |
+| **模型投票** | IsolationForest: 2 / OneClassSVM: 21 / Autoencoder: 2 |
+
+> 只有 **一筆資料** 在此時間區間被三個模型共同標記為異常（至少 2 個模型投票），故判定為異常。  
+
+**檢查細節**  
+- **last_anomaly_check.csv**：列出所有 185 筆資料及其投票結果，您可直接下載查看。  
+- **timeline_plot.png**：異常發生時間點的時間線圖。  
+- **score_plot.png**：各模型分數分佈圖。  
+- **vote_plot.png**：投票統計圖，顯示各模型對該筆資料的投票情形。  
+
+> 這些檔","Tool: tool_check_anomaly
+Input: {""start"":""2026-05-01 00:00:00"",""end"":""2026-05-02 00:00:00"",""min_models"":2}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""anomaly check finished"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly"",\n  ""key_files"": {\n    ""detail_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/last_anomaly_check.csv"",\n    ""timeline_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/last_anomaly_check_timeline.png"",\n    ""sc",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,6203,92,392,4088,575,889,889

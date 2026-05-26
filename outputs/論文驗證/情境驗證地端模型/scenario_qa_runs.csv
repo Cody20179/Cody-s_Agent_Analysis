@@ -1,0 +1,786 @@
+﻿run_id,model_source,model_name,group_id,group_name,scenario_id,category,repeat_index,session_id,turn,status,question,expected_functions,tool_input_events,tool_output_events,thinking_events_client,thinking_chars_client,duration_ms_client,answer_chars_client,estimated_prompt_tokens,estimated_answer_tokens_client,actual_prompt_tokens,actual_completion_tokens,actual_total_tokens,token_data_quality,error,answer_preview,tool_score,parameter_score,fact_score,exact_score,format_score,hallucination_penalty,total_score,called_functions,missing_expectations
+20260524_102105_058bcf9e,B,qwen3.5:9b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S01_data_coverage,data_query,1,0a6c22f6-d6f8-475d-9bf5-7f4723dd1c3f,1,success,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,data_status,3,3,381,697,44819,338,23,197,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"目前 CNC 感測器資料共包含 **13 項感測器**，涵蓋電流（A/B/C 相）、電壓（ab/bc/ca）、即時總功率、累積電能（kVAh）、功率因數（PF）及通訊狀態（Modbus_404/Timeout）。
+
+**資料時間範圍：**
+- **起始時間：** 2025-09-15 15:11:36
+- **結束時間：** 2026-05-24 06:26:28（部分感測器如 CT_Ratio 至 2026-05-23 17:57:27）
+
+**資料量統計：**
+- 電流/電壓類感測器：約 5.9 萬筆（每筆約 10 分鐘間隔）
+- 電能/功率類感測器：約 23.7 萬筆（每筆約 5 分鐘間隔）
+
+資料已覆蓋約 **8 個月**，可支援狀態分析、負載預測與異常檢測。",25,15,30.0,20,10,0,100.0,data_status,
+20260524_102105_058bcf9e,B,qwen3.5:9b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S02_period_state_distribution,state_query,1,09031f94-0946-40ce-a376-3ca68f66a3d4,1,success,幫我查 2026-05-01 的機台狀態分布。,apply_state_model,2,2,332,571,47929,632,15,241,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"## 2026-05-01 機台狀態分布
+
+**工具：** `apply_state_model(start=""2026-05-01 00:00:00"", end=""2026-05-02 00:00:00"")`
+
+### 關鍵數值：
+
+| 狀態 | 次數 | 小時數 | 佔比 | 平均電流 (A) | 平均功率 (kW) |
+|------|------|--------|------|--------------|---------------|
+| **Off** | 101 | 8.42 | 35.07% | 0.00 | 0.00 |
+| **Idle** | 59 | 4.92 | 20.49% | 7.86 | 2.17 |
+| **Running_High** | 122 | 10.17 | 42.36% | 10.78 | 3.11 |
+| **Running_Low** | 6 | 0.50 | 2.08% | 5.40 | 1.77 |
+
+- **總計區間：** 288 個（5 分鐘）
+- **總運行時間：** 24.0 小時
+- **平均置信度：** 98.43%
+- **最佳模型 K 值：** 4
+
+### 結論：
+2026-05-01 機台主要在 **Running_High** 狀態運行（42.36%），其次是 **Off** 狀態（35.07%），顯示該日有約 10 小時在高負載運行，約 8.5 小時處於關閉狀態。",25,15,30.0,20,10,0,100.0,apply_state_model|data_status,
+20260524_102105_058bcf9e,B,qwen3.5:9b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S03_period_utilization,state_query,1,6d9522db-de65-4307-962b-3febc3cb14d2,1,success,幫我看 2026-05-01 的機台稼動率。,apply_state_model,7,7,587,1332,99993,388,14,178,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"根據 CNC 分析系統，2026-05-01 屬於 2026-05 月份數據範圍。
+
+## 2026-05-01 機台稼動率
+
+| 項目 | 數值 |
+|------|------|
+| 稼動總時數 | 239.25 小時 |
+| 總時數 | 558.42 小時 |
+| **稼動率** | **42.84%** |
+
+### 狀態分佈
+- **Running_High**: 107.92 小時
+- **Running_Low**: 131.33 小時  
+- **Idle**: 13.92 小時
+- **Off**: 305.25 小時
+
+### 結論
+2026-05-01 所在月份的機台稼動率為 **42.84%**，表示機台約四成時間處於稼動狀態（Running_High + Running_Low）。相關圖表已產生於 `outputs/state/` 資料夾。",0,5,0.0,20,10,0,35.0,data_status,running_hours|total_hours|utilization_percent
+20260524_102105_058bcf9e,B,qwen3.5:9b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S04_last_week_runtime,state_query,1,cd6ce02b-e0c7-4b7d-9662-f6fd084b75ce,0,error,幫我看上週機台運轉與停機時數。,apply_state_model,10,10,608,1162,300163,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,hard timeout after 300s,,0,15,0.0,20,0,0,35.0,data_status|forecast_future,running_hours|off_hours|total_hours|utilization_percent
+20260524_102105_058bcf9e,B,qwen3.5:9b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S05_this_week_status,state_query,1,ee0a429b-73bd-4525-98d4-b46fcf647a8f,1,success,幫我看本週機台狀態。,apply_state_model,2,2,398,793,37206,0,11,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,15,0.0,20,0,0,35.0,,running_hours|off_hours|total_hours|utilization_percent
+20260524_102105_058bcf9e,B,qwen3.5:9b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S06_next_week_power,forecast,1,cf0928a9-4242-4987-8727-f7d119c3c166,1,success,幫我預測下週耗電量。,forecast_future,2,2,328,574,50292,526,11,203,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"## CNC 下週耗電量預測結果
+
+### 📊 預測數據（2026-05-23 至 2026-05-30，共 7 天）
+
+| 模型 | 預測總耗電量 (kWh) | 日均增量 (kWh) |
+|------|-------------------|---------------|
+| **BaselineLastWeek** | **8,268.80** | **188.18** |
+| Prophet | 8,162.00 | 81.39 |
+
+### 📈 模型效能比較
+
+| 模型 | MAE (kWh) | RMSE (kWh) | R² |
+|------|----------|-----------|-----|
+| BaselineLastWeek | 5.48 | 6.75 | **0.987** |
+| Prophet | 34.11 | 38.58 | 0.561 |
+
+### ✅ 結論
+**BaselineLastWeek 模型表現最佳**，R²高達 0.987，預測誤差僅 5.48 kWh。下週預計總耗電量約 **8,269 kWh**，平均每日約 **188 kWh**。
+
+相關預測圖表已生成，可在 UI 中查看。",25,15,30.0,20,10,0,100.0,data_status|forecast_future,
+20260524_102105_058bcf9e,B,qwen3.5:9b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S07_next_month_cost,forecast,1,c4e19f5c-8297-4777-a03b-d7653a7067ab,1,success,幫我預測下個月電費，電價用每度 4 元。,forecast_future,3,3,460,844,118218,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,25,5,0.0,20,0,0,50.0,data_status|forecast_future,forecast_30d_increment|estimated_30d_cost
+20260524_102105_058bcf9e,B,qwen3.5:9b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S08_period_anomaly,anomaly,1,20dc8ef8-0ecd-44bd-9287-afa9f0fe6328,1,success,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,check_anomaly,2,2,335,645,32059,286,17,133,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"### 異常檢查結果（2026-05-01 至 2026-05-02）
+
+| 項目 | 數值 |
+|------|------|
+| **異常判定** | NORMAL（無異常） |
+| **檢查行數** | 184 筆 |
+| **異常數量** | 0 |
+| **異常率** | 0.0% |
+| **模型投票** | IsolationForest: 0, OneClassSVM: 0, Autoencoder: 1（未達閾值） |
+
+**結論**：該期間內機器運作正常，未偵測到異常。相關圖表已生成於 `outputs/anomaly/plots/` 資料夾中。",25,15,30.0,20.0,10,0,100.0,check_anomaly,
+20260524_102105_058bcf9e,B,qwen3.6:27b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S01_data_coverage,data_query,1,6f95d89f-1eb0-470c-950d-5c5dab9947c3,1,success,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,data_status,1,1,620,1719,153738,899,23,404,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"### 工具使用
+已呼叫 `main.py` 中的 `data_status()` 函式，取得目前 CNC 系統所有感測器的即時資料狀態。
+
+### 關鍵數值與資料清單
+目前系統共收集 **13 種感測器** 資料，涵蓋電流、電壓、功率、用電量及通訊狀態：
+
+| 感測器名稱 (Sensor) | 資料筆數 (Rows) | 最新紀錄時間 |
+| :--- | :--- | :--- |
+| **Current_A / B / C** (三相電流) | ~59,259 | 2026-05-24 06:23:27 |
+| **Votage_ab / bc / ca** (三相電壓) | ~236,730 | 2026-05-24 06:26:28 |
+| **Instantaneous_Total_Power** (瞬時總功率) | 236,735 | 2026-05-24 06:26:28 |
+| **Electricity_consumption** (累積用電量) | 236,737 | 2026-05-24 06:26:28 |
+| **PF** (功率因數) | 236,737 | 2026-05-24 06:26:28 |
+| **kVAh** (視在電能) | 236,737 | 2026-05-24 06:26:28 |
+| **Modbus_404 / Timeout** (通訊異常紀錄) | ~5,000 | 2026-05-24 05:58:27 |
+| **CT_Ratio** (CT變比設定) | 153 | 2026-05-23 17:57:27 |
+
+### 資料時間範圍
+- **起始時間：** `2025-09-15 15:11:36`
+- **最新時間：** `2026-05-24 06:26:28`
+- **總涵蓋期間：** 約 8 個月
+
+### 結論
+目前 CNC 感測器資料更新狀況良好，主要電力參數（電壓、功率、用電量）已更新至 **2026-05-24 早上 06:26**，資料完整度足夠進行後續的狀態分析、異常偵測或耗電預測。",25,15,30.0,20,10,0,100.0,data_status,
+20260524_102105_058bcf9e,B,qwen3.6:27b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S02_period_state_distribution,state_query,1,2a5ec28d-9109-4779-88bf-9ec039ebdd1b,1,success,幫我查 2026-05-01 的機台狀態分布。,apply_state_model,1,1,954,2679,187715,880,15,460,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"以下是 2026-05-01 全天（24 小時）的機台狀態分布分析結果：
+
+### 🔑 關鍵數值與狀態分布
+| 機台狀態 | 佔比 (%) | 持續時間 (小時) | 平均電流 (A) | 平均功率 (kW) |
+|:---|:---:|:---:|:---:|:---:|
+| **Running_Low** (低負載運行) | 39.24% | 9.42 | 8.02 | 2.28 |
+| **Off** (關機) | 35.42% | 8.50 | 0.00 | 0.01 |
+| **Running_High** (高負載運行) | 25.00% | 6.00 | 12.57 | 3.59 |
+| **Idle** (閒置) | 0.35% | 0.08 | 0.57 | 0.12 |
+
+- **分析模型**：GMM 高斯混合模型（最佳群數 K=4）
+- **分類品質**：Silhouette Score = 0.846，平均分類信心度 = 99.86%
+- **資料覆蓋**：288 筆 5 分鐘區間資料，完整涵蓋 00:00 ~ 23:55
+
+### 🛠️ 使用工具
+- 呼叫 `main.run_state_analysis(start='2026-05-01 00:00:00', end='2026-05-02 00:00:00')`
+- 產出之狀態時間軸、狀態小時分布圖、轉換矩陣等圖表已自動生成，相關圖片 artifacts 可在 UI 介面中直接查看。
+
+### 💡 結論
+該日機台以 **低負載運行為主**（約 9.4 小時），其次為關機狀態（8.5 小時）與高負載加工（6 小時），閒置時間極短，顯示生產排程緊湊且機台切換狀態明確；GMM 分類信心度接近 100%，狀態標籤可信度高。
+
+**建議下一步**：若需進一步確認高負載時段是否有異常震動或能耗波動，可接著執行 `check_anomaly('2026-05-01 00:00:00', '2026-05-02 00:00:00')` 進行異常偵測。需要我幫您跑嗎？",0,15,24.0,20,10,0,69.0,,running_high_hours
+20260524_102105_058bcf9e,B,qwen3.6:27b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S03_period_utilization,state_query,1,a0f1931d-b561-432d-b098-0cd7f3371fc9,0,error,幫我看 2026-05-01 的機台稼動率。,apply_state_model,5,5,1271,3896,300038,94,14,56,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,hard timeout after 300s,"根據 CNC 分析系統的狀態分析結果，以下是 2026-05-01 的機台稼動率報告：
+
+## 📊 2026-05-01 機台稼動率
+
+**關鍵數值：**
+- **稼動率：63.89%**",0,5,0.0,20,5,0,30.0,,running_hours|total_hours|utilization_percent
+20260524_102105_058bcf9e,B,qwen3.6:27b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S04_last_week_runtime,state_query,1,fb030594-a2ee-469a-9298-6ba983bca7b0,1,success,幫我看上週機台運轉與停機時數。,apply_state_model,1,1,776,1649,151063,608,17,300,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"根據上週（2026-05-11 至 2026-05-17）的機台狀態分析結果，各狀態時數統計如下：
+
+### 🔑 關鍵數值與單位（總計 168 小時）
+| 機台狀態 | 時數 (小時) | 佔比 (%) | 平均功率 (kW) |
+| :--- | :--- | :--- | :--- |
+| **停機 (Off)** | 94.83 | 56.45% | 0.0 |
+| **待機 (Idle)** | 34.08 | 20.29% | 2.09 |
+| **運轉-高負載 (Running_High)** | 33.83 | 20.14% | 4.11 |
+| **運轉-低負載 (Running_Low)** | 5.25 | 3.12% | 2.54 |
+| **實際總運轉時數** | **39.08** | **23.26%** | - |
+
+### 🛠️ 使用工具
+- 呼叫 `main.py` 中的 `run_state_analysis(start='2026-05-11 00:00:00', end='2026-05-18 00:00:00')` 進行 GMM 狀態分類與時數統計。
+
+### 💡 結論
+上週機台有超過一半的時間（約 95 小時）處於停機狀態，實際運轉時數僅約 39 小時，且高負載運轉佔絕大多數；待機時間約 34 小時，顯示機台在週期性停機與短暫待機間切換，整體稼動率偏低。",0,15,30.0,20,10,0,75.0,,
+20260524_102105_058bcf9e,B,qwen3.6:27b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S05_this_week_status,state_query,1,ac9e7d04-689a-4ae4-865d-404ce33b94fb,1,success,幫我看本週機台狀態。,apply_state_model,1,1,2205,5516,298789,624,11,376,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"### 本週機台狀態分析 (2026-05-18 ~ 2026-05-23)
+
+**使用工具**
+- 呼叫 `main.py` 內的 `apply_state_model()` 函式，以 GMM 模型對本週 5 分鐘級距電氣數據進行狀態分類與時間標記。
+
+**關鍵數值**
+- **分析總時長**：120 小時（共 1,440 筆 5 分鐘區間資料）
+- **模型信心度**：平均 **98.69%**（後驗機率 < 0.8 的模糊區間僅 35 筆，分類結果極度可靠）
+- **各狀態佔比與特徵**：
+  - 🔴 **Off (關閉)**：48.67 小時 (40.56%)｜平均功率 0.0 kW
+  - 🟢 **Running_High (高負載運行)**：30.08 小時 (25.07%)｜平均功率 3.044 kW
+  - 🟡 **Idle (閒置待機)**：29.25 小時 (24.38%)｜平均功率 2.104 kW
+  - 🔵 **Running_Low (低負載運行)**：12.00 小時 (10.00%)｜平均功率 2.650 kW
+
+**結論**
+本週機台關閉時間佔比最高（約 40%），實際運行時間（高/低負載合計）約佔 35%，閒置時間佔 24%；設備整體利用率有提升空間，建議檢視閒置與關閉時段是否可補排生產工單。
+
+*(系統已自動產出狀態時間軸、狀態轉換矩陣與每日小時分佈圖，相關圖表可於介面圖表區域直接檢視。)*",25,15,22.5,20,10,0,92.5,apply_state_model,running_hours
+20260524_102105_058bcf9e,B,qwen3.6:27b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S06_next_week_power,forecast,1,653ca109-5ec3-41fb-bb74-2efbe6bc1fde,0,error,幫我預測下週耗電量。,forecast_future,3,3,2412,7282,300061,0,11,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,hard timeout after 300s,,25,15,0.0,20,0,0,60.0,data_status|forecast_future,forecast_7d_increment
+20260524_102105_058bcf9e,B,qwen3.6:27b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S07_next_month_cost,forecast,1,d6fda678-1e1a-4b1d-85d5-f7cbe2e6fa3d,0,error,幫我預測下個月電費，電價用每度 4 元。,forecast_future,3,3,1728,5802,312434,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,hard timeout after 300s,,25,5,0.0,20,0,0,50.0,data_status|forecast_future,forecast_30d_increment|estimated_30d_cost
+20260524_102105_058bcf9e,B,qwen3.6:27b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S08_period_anomaly,anomaly,1,ef0b5cfa-7279-4020-98c3-83dcdfcdbc9f,1,success,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,check_anomaly,1,1,1185,3340,162216,379,17,211,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"### 異常檢測結果
+
+**使用工具**：`check_anomaly` (CNC Analysis v2 Pipeline)
+
+**關鍵數值與單位**：
+- **檢查時段**：2026-05-01 00:00:00 至 2026-05-02 00:00:00
+- **分析筆數**：184 筆（5 分鐘間隔）
+- **異常判定**：正常 (`NORMAL`)
+- **異常筆數**：0 筆
+- **異常率**：0.0 %
+- **模型投票數**：IsolationForest (0)、OneClassSVM (0)、Autoencoder (1)
+
+**結論**：
+該時段內機器的電力與電流特徵皆落在正常運作區間，未達多數模型共識門檻（需至少 2 票），判定為無異常。
+
+> 📊 相關的時間軸趨勢圖、異常分數分佈圖與模型投票圖已自動生成，請於介面中查看。",25,15,30.0,20.0,10,0,100.0,check_anomaly,
+20260524_102105_058bcf9e,B,nemotron-cascade-2:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S01_data_coverage,data_query,1,cc3461fc-08b4-4274-94b1-301eb1135e47,1,success,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,data_status,2,2,866,2693,67875,1607,23,570,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**使用的工具**  
+- 於 Python 環境執行 `from main import data_status` 並取得回傳結果。  
+
+**關鍵數值與時間範圍**  
+
+| 感測器 | 是否存在 | 觀測筆數 | 起始時間 | 結束時間 |
+|--------|----------|----------|----------|----------|
+| Current_A | ✅ | 59,259 | 2025‑09‑15 15:21:00 | 2026‑05‑24 06:23:27 |
+| Current_B | ✅ | 59,259 | 2025‑09‑15 15:21:00 | 2026‑05‑24 06:23:27 |
+| Current_C | ✅ | 59,260 | 2025‑09‑15 15:21:00 | 2026‑05‑24 06:23:27 |
+| Votage_ab | ✅ | 236,733 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| Votage_bc | ✅ | 236,732 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| Votage_ca | ✅ | 236,728 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| Instantaneous_Total_Power | ✅ | 236,735 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| Electricity_consumption | ✅ | 236,737 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| PF (Power Factor) | ✅ | 236,737 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| CT_Ratio | ✅ | 153 | 2025‑09‑16 15:17:00 | 2026‑05‑23 17:57:27 |
+| kVAh | ✅ | 236,737 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| Mo",25,15,0.0,20,10,0,70.0,data_status,sensor_count
+20260524_102105_058bcf9e,B,nemotron-cascade-2:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S02_period_state_distribution,state_query,1,42155b9b-7624-461b-8a3f-af44a08f776a,1,success,幫我查 2026-05-01 的機台狀態分布。,apply_state_model,2,2,711,2494,31688,952,15,378,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**CNC 2026‑05‑01 機台狀態分布（5 分鐘抽樣）**
+
+| 狀態 | 次數 (cnt) | 時間 (h) | 佔比 (%) | I_mean_avg (A) | Power_avg (kW) | kVAh_rate_avg | 置信度 avg |
+|------|-----------|----------|----------|----------------|----------------|---------------|-------------|
+| **Off** | 101 | 8.42 | 35.07 | 0.00 | 0.00 | 0.0001 | 1.00 |
+| **Idle** | 59 | 4.92 | 20.49 | 7.86 | 2.17 | 0.257 | 0.98 |
+| **Running_Low** | 6 | 0.50 | 2.08 | 5.40 | 1.77 | 0.232 | 1.00 |
+| **Running_High** | 122 | 10.17 | 42.36 | 10.78 | 3.11 | 0.347 | 0.97 |
+
+- **主要觀察**：當天機台大部分時間（≈ 42 %）處於 **Running_High** 狀態，佔比最高；次要較長時間為 **Off**（≈ 35 %），其餘均在 **Idle** 或短暫的 **Running_Low**。  
+- **關鍵檔案**（已產生，前端可直接點擊檢視）  
+  - `data/processed/state_labeled.csv` – 完整標籤資料  
+  - `outputs/state/state_report.txt` – 文字報告  
+  - `outputs/state/application/all/all_state_timeline.png` – 時間線圖（機台狀態變化視圖）  
+
+**結論**  
+2026‑05‑01 當天機台主要處於高負載的 **Running_High** 狀態，顯示電力需求較大，建議在這段時段加強能耗監測與負載平衡措施。  
+
+（圖像資訊已於 UI 中呈現，請參閱「state_timeline」相關圖檔。）",25,5,24.0,20,10,0,84.0,apply_state_model,rows
+20260524_102105_058bcf9e,B,nemotron-cascade-2:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S03_period_utilization,state_query,1,d37053a8-33d7-4ba7-8148-49d3d5d7e130,1,success,幫我看 2026-05-01 的機台稼動率。,apply_state_model,7,7,1720,6543,69666,1376,14,563,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**1. 使用的工具**  
+- 呼叫 `apply_state_model(start='2026-05-01 00:00:00', end='2026-05-02 00:00:00')`（在 `main.py` 中的 GMM 狀態模型）。  
+- 取得的主要輸出為 `outputs/state/state_labeled.csv`，其中包含每 5 分鐘一筆的狀態標籤。
+
+**2. 關鍵數值（2026‑05‑01 完整 24 h）**  
+
+| 狀態 | 次數 (5 min 間隔) | 累計時數 (h) | 佔比 (%) | I_mean_avg | Power_avg (kW) | kVAh_rate_avg |
+|------|-------------------|---------------|----------|------------|----------------|---------------|
+| Off  | 101 | 8.42 | 35.07 | 0.00 | 0.00 | 0.0001 |
+| Idle | 59  | 4.92 | 20.49 | 7.86 | 2.17 | 0.2568 |
+| **Running_High** | 122 | **10.17** | **42.36** | 10.78 | 3.11 | 0.3465 |
+| Running_Low | 6 | 0.50 | 2.08 | 5.40 | 1.77 | 0.2320 |
+
+- **總運行時長** = Running_High + Running_Low = **10.67 h**  
+- **機台稼動率** = 10.67 h ÷ 24 h × 100% ≈ **44.4 %**（主要在 Running_High 狀態，次要在 Running_Low）。
+
+**3. 重要檔案**  
+- `data/processed/state_labeled.csv` – 原始標籤資料  
+- `outputs/state/state_report.txt` – 文字摘要  
+- 多張圖表（`*_state_timeline.png`, `*_transition_matrix.png` 等）已自動產生，前端 UI 會顯示。
+
+**4. 結論**  
+2026‑0",25,15,30.0,20,10,0,100.0,apply_state_model|check_anomaly|data_status|forecast_future,
+20260524_102105_058bcf9e,B,nemotron-cascade-2:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S04_last_week_runtime,state_query,1,ecdec49a-2865-464f-be09-6d569de0b7c9,1,success,幫我看上週機台運轉與停機時數。,apply_state_model,2,2,838,3071,33822,753,17,341,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**使用的工具**  
+- `apply_state_model(start='2026-05-11 00:00:00', end='2026-05-18 00:00:00')`  
+  取得 2026‑05‑11 至 2026‑05‑17（上週）每 5 分鐘的機台狀態，並以 GMM 產生的四個狀態（Off、Idle、Running_Low、Running_High）計算時數。
+
+**關鍵數值（單位：小時）**  
+
+| 狀態 | 次數 (次) | 總時數 | 佔比 % |
+|------|-----------|--------|--------|
+| **Running_High** (運轉‑高負荷) | 406 | **33.83** | 20.14% |
+| **Running_Low** (運轉‑低負荷) | 63 | **5.25** | 3.12% |
+| **Idle** (空閒) | 409 | **34.08** | 20.29% |
+| **Off** (停機) | 1,138 | **94.83** | 56.45% |
+
+- **總運轉時數**（Running_High + Running_Low）≈ **39.08 h**  
+- **總停機/空閒時數**（Off + Idle）≈ **128.91 h**  
+
+**結論**  
+上週機台的實際運轉時間約 **39 小時**（佔全週 23.3%），而以停機與空閒為主的時間約 **129 小時**（佔全週 76.7%），顯示本週的產能利用率仍有較大提升空間。  
+
+> 圖像資產（如狀態時間線、轉換矩陣圖、信賴分布等）已自動在 UI 中呈現，如需查看可於「outputs/state」目錄下的 PNG 檔案。",25,15,22.5,20,10,0,92.5,apply_state_model,total_hours
+20260524_102105_058bcf9e,B,nemotron-cascade-2:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S05_this_week_status,state_query,1,49a8aef5-aed4-4c9c-b63c-7d581df8f4f7,1,success,幫我看本週機台狀態。,apply_state_model,2,2,883,3212,36245,1225,11,464,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**工具與呼叫**  
+- 使用的函式：`apply_state_model(start=""2026-05-18 00:00:00"", end=""2026-05-23 00:00:00"")`（透過 `run_python` 呼叫 `main.py`）  
+
+**關鍵數值（本週 2026‑05‑18 00:00 → 2026‑05‑23 00:00）**  
+
+| 機台狀態 | 次數 (5 min 間隔) | 小時 | 佔比 | I_mean (A) | Power (kW) | kVAh_rate (kVAh/min) | 平均置信度 |
+|----------|-------------------|------|------|------------|------------|----------------------|------------|
+| Off      | 584 | 48.67 | 40.56 % | 0.00 | 0.00 | 0.0005 | 1.000 |
+| Idle     | 351 | 29.25 | 24.38 % | 7.71 | 2.10 | 0.2454 | 0.995 |
+| Running_Low | 144 | 12.00 | 10.0 % | 9.98 | 2.65 | 0.291 | 0.959 |
+| Running_High | 361 | 30.08 | 25.07 % | 10.77 | 3.04 | 0.344 | 0.969 |
+
+- **總樣本數**：1440（對應 120 h × 12 次/小時）  
+- **最佳 GMM K**：4（根據 BIC 選擇）  
+- **平均分配置信度**：0.987（全週）  
+
+**主要輸出檔案（已產生）**  
+- `outputs/state/state_labeled.csv` – 每 5 min 標記的狀態  
+- `outputs/state/state_report.txt` – 文字摘要  
+- 多張圖表（state_timeline.png、transition_matrix.png、confidence_distribution.png 等）已於 `outputs/state/application/...` 目錄中，前端 UI 會自動顯示。",25,15,15.0,20,10,0,85.0,apply_state_model,running_hours|utilization_percent
+20260524_102105_058bcf9e,B,nemotron-cascade-2:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S06_next_week_power,forecast,1,19c2a53e-ed56-4993-9a29-c1e949d94aba,1,success,幫我預測下週耗電量。,forecast_future,2,2,2608,8264,59987,944,11,463,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**工具使用**  
+- 呼叫 `forecast_future(days=[5], model_names=[""BaselineLastWeek"",""Prophet""], target=""y"")`（在專案根目錄 `cd /Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis` 後執行）。  
+- 取得的結果已寫入 `outputs/forecast/`，其中圖表會在 UI 中自動呈現。
+
+**關鍵數值**  
+
+| 模型 | 預測期間 | 預測總耗電量 (y) | 日均增量 (increment) | 單位 |
+|------|----------|-------------------|-----------------------|------|
+| BaselineLastWeek | 5 天（2026‑05‑18 00:00:00 至 2026‑05‑23 00:00:00） | **8,212.26** | **131.65** | kWh |
+| Prophet | 同上 | **8,125.80** | **45.19** | kWh |
+
+- `y` 為累積耗電量（即整個預測週期的總用電）。  
+- `increment` 為模型在 5 天內的日均用電增量，可用於快速估算每日需求。
+
+**結論**  
+兩個預測模型給出的下週（5 天）總耗電量相近，約 **8.1–8.2 MWh**（8,125–8,212 kWh），說明工廠在本週末的用電模式較為穩定，未見顯著波動。建議以 **8.15 MWh** 為預估值，並在實際運轉時留意若有突發停機或加班情況的偏差。
+
+**後續建議**  
+1. 若需更精細的日照預測，可改用 `target=""dy""`（每分鐘增量）再行訓練。  
+2. 觀察 `outputs/forecast/forecast_future_y_run_summary.json` 中的模型誤差，若超過 5% 再考慮調整特徵或延長訓練資料。  
+
+*圖表「future_forecast.png」已自動在 UI 中呈現，點擊可查看預測曲線與實際觀測的對照。*",25,15,0.0,20,10,0,70.0,forecast_future,forecast_7d_increment
+20260524_102105_058bcf9e,B,nemotron-cascade-2:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S07_next_month_cost,forecast,1,0859d4a3-edb7-4b77-822d-efbcaba721d7,1,success,幫我預測下個月電費，電價用每度 4 元。,forecast_future,4,4,1498,6163,49228,786,19,372,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**工具使用**  
+- 呼叫 `forecast_future(days=[30], model_names=['Prophet'], target='y')`（在 `main.py` 中的公共函式）  
+
+**關鍵數值與單位**  
+
+| 項目 | 數值 | 單位 | 說明 |
+|------|------|------|------|
+| 預測的 30 天累積用電量（y） | 8 745.21 | kWh | `Prophet` 模型在 30 天時的預測值 `yhat` |
+| 電價 | 4 | TWD/kWh | 使用者提供的電價 |
+| 預估的下月電費 | 34 980.84 | TWD | 8 745.21 kWh × 4 TWD/kWh |
+
+**說明**  
+- 以 `Prophet` 為主要模型（依使用者需求），在未指定其他模型時預設使用 `[""Prophet""]`。  
+- `forecast_future` 回傳的 `metrics` 中顯示 `Prophet → 30d → yhat = 8745.205407053158`，這即為預測的總用電量。  
+- 計算電費時直接乘上使用者給定的每度 4 元（即 4 TWD/kWh）。  
+
+**結論**  
+預測下個月（30 天）的用電量約為 **8,745 kWh**，以每度 4 元的電價計算，預估電費約 **34,981 TWD**。  
+
+> 前端 UI 中已顯示 `future_forecast.png` 圖表（路徑：`/outputs/forecast/application/y/future_forecast.png`），可供視覺確認。  
+
+如需進一步細分每日用電或比較其他模型（BaselineLastWeek、XGBoost、LightGBM），請再提供具體需求。",25,15,0.0,20,10,0,70.0,forecast_future,forecast_30d_increment|estimated_30d_cost
+20260524_102105_058bcf9e,B,nemotron-cascade-2:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S08_period_anomaly,anomaly,1,f15e9a36-8c97-473e-95b5-f659a3e6ee01,1,success,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,check_anomaly,2,2,535,1756,22892,617,17,252,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**關鍵數值與單位**  
+- **狀態**：`status` = **ok**  
+- **檢查區間**：2026‑05‑01 00:00:00 ~ 2026‑05‑02 00:00:00（共 184 筆資料）  
+- **異常計數**：`anomaly_count` = **0** 筆  
+- **異常率**：`anomaly_rate` = **0.0 %**（0 / 184）  
+- **模型投票**：  
+  - IsolationForest：0 票  
+  - OneClassSVM：0 票  
+  - Autoencoder：1 票  
+- **最終結論**：`verdict` = **NORMAL**（無異常）  
+
+**使用工具**  
+- 呼叫 `check_anomaly('2026-05-01 00:00:00','2026-05-02 00:00:00')` 於 `main.py`，取得上述結果。
+
+**結論**  
+在 2026‑05‑01 至 2026‑05‑02 的兩天內，所有模型（IsolationForest、OneClassSVM、Autoencoder）均未標記任何異常，異常率為 0%，因此本期工廠運作屬於 **正常**。
+
+> 圖形化圖表（timeline、score、vote）已於 `outputs/anomaly/plots/` 產生，前端 UI 會自動顯示相關圖片。",25,15,30.0,20.0,10,0,100.0,check_anomaly,
+20260524_102105_058bcf9e,B,gemma4:31b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S01_data_coverage,data_query,1,dcffda9d-6e37-4a48-a07f-73523d2665be,1,success,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,data_status,0,0,232,831,121093,0,23,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,15,0.0,20,0,0,35.0,,sensor_count
+20260524_102105_058bcf9e,B,gemma4:31b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S02_period_state_distribution,state_query,1,18daad2f-fcd5-4636-b5a0-7e5fd9f7600c,1,success,幫我查 2026-05-01 的機台狀態分布。,apply_state_model,0,0,414,1246,105241,0,15,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,5,0.0,20,0,0,25.0,,rows|off_hours|running_high_hours|running_low_hours|idle_hours
+20260524_102105_058bcf9e,B,gemma4:31b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S03_period_utilization,state_query,1,6cb96083-369f-4157-8d72-4b40b8b2075c,1,success,幫我看 2026-05-01 的機台稼動率。,apply_state_model,1,1,637,2189,189223,0,14,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,25,15,0.0,20,0,0,60.0,apply_state_model,running_hours|total_hours|utilization_percent
+20260524_102105_058bcf9e,B,gemma4:31b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S04_last_week_runtime,state_query,1,5697e9ce-e90d-4d9c-8a9e-96665b50f56d,1,success,幫我看上週機台運轉與停機時數。,apply_state_model,0,0,352,1116,110035,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,5,0.0,20,0,0,25.0,,running_hours|off_hours|total_hours|utilization_percent
+20260524_102105_058bcf9e,B,gemma4:31b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S05_this_week_status,state_query,1,59245a4d-8143-4635-ace7-046ef20d9bdc,1,success,幫我看本週機台狀態。,apply_state_model,1,1,498,1635,172012,0,11,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,25,15,0.0,20,0,0,60.0,apply_state_model,running_hours|off_hours|total_hours|utilization_percent
+20260524_102105_058bcf9e,B,gemma4:31b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S06_next_week_power,forecast,1,38a2ffaf-afd4-4280-83a2-73700f449304,1,success,幫我預測下週耗電量。,forecast_future,1,1,565,1942,162789,0,11,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,25,15,0.0,20,0,0,60.0,forecast_future,forecast_7d_increment
+20260524_102105_058bcf9e,B,gemma4:31b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S07_next_month_cost,forecast,1,47e2bac0-f2bb-4a58-ac05-f3bcc15e1d25,1,success,幫我預測下個月電費，電價用每度 4 元。,forecast_future,2,2,1002,3829,273916,171,19,96,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"根據分析結果，下個月的電費預測如下：
+
+*   **預測用電量**：664.59 kWh
+*   **電價單價**：4 元/kWh
+*   **預估電費**：2,658.36 元
+*   **使用工具**：`forecast_future` (Prophet 模型)
+
+**結論**：根據目前的用電趨勢，預計下個月的電費約為 2,658 元。",25,15,0.0,20,10,0,70.0,forecast_future,forecast_30d_increment|estimated_30d_cost
+20260524_102105_058bcf9e,B,gemma4:31b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S08_period_anomaly,anomaly,1,37608560-e0c9-4911-b18e-a94b90cc8a86,1,success,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,check_anomaly,0,0,135,378,53608,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,5,0.0,0.0,0,0,5.0,,rows|anomaly_count|anomaly_rate|verdict
+20260524_102105_058bcf9e,B,gemma4:26b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S01_data_coverage,data_query,1,267ad524-edbb-4140-b005-9e37054ecc97,1,success,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,data_status,0,0,391,1507,45885,0,23,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,15,0.0,20,0,0,35.0,,sensor_count
+20260524_102105_058bcf9e,B,gemma4:26b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S02_period_state_distribution,state_query,1,9b04a4b6-b381-450d-81e5-381b5d2b787a,1,success,幫我查 2026-05-01 的機台狀態分布。,apply_state_model,0,0,841,3017,49091,0,15,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,5,0.0,20,0,0,25.0,,rows|off_hours|running_high_hours|running_low_hours|idle_hours
+20260524_102105_058bcf9e,B,gemma4:26b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S03_period_utilization,state_query,1,3f15ea30-b734-4a3a-a6a0-eed66adf0226,1,success,幫我看 2026-05-01 的機台稼動率。,apply_state_model,0,0,956,3134,61474,0,14,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,5,0.0,20,0,0,25.0,,running_hours|total_hours|utilization_percent
+20260524_102105_058bcf9e,B,gemma4:26b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S04_last_week_runtime,state_query,1,683e5cfd-7b8f-4212-b2ad-e4d156d04615,1,success,幫我看上週機台運轉與停機時數。,apply_state_model,0,0,1441,5033,87677,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,5,0.0,20,0,0,25.0,,running_hours|off_hours|total_hours|utilization_percent
+20260524_102105_058bcf9e,B,gemma4:26b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S05_this_week_status,state_query,1,00a5794a-c424-408b-9db9-073cf52a0df5,1,success,幫我看本週機台狀態。,apply_state_model,0,0,802,2793,59361,0,11,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,5,0.0,20,0,0,25.0,,running_hours|off_hours|total_hours|utilization_percent
+20260524_102105_058bcf9e,B,gemma4:26b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S06_next_week_power,forecast,1,d6f58336-2c0a-446a-9a84-9a882a902a4a,1,success,幫我預測下週耗電量。,forecast_future,0,0,587,2089,49249,0,11,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,5,0.0,20,0,0,25.0,,forecast_7d_increment
+20260524_102105_058bcf9e,B,gemma4:26b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S07_next_month_cost,forecast,1,0b76754c-7a0d-4814-80df-b0232cd1bbf7,1,success,幫我預測下個月電費，電價用每度 4 元。,forecast_future,0,0,892,3444,60327,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,5,0.0,20,0,0,25.0,,forecast_30d_increment|estimated_30d_cost
+20260524_102105_058bcf9e,B,gemma4:26b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S08_period_anomaly,anomaly,1,c09bfafd-990b-4c69-8a01-656411a76fe3,1,success,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,check_anomaly,0,0,530,1524,33699,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,5,0.0,0.0,0,0,5.0,,rows|anomaly_count|anomaly_rate|verdict
+20260524_102105_058bcf9e,B,gemma4:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S01_data_coverage,data_query,1,0d5cb3da-43a3-4e3f-8027-73bcf425d766,1,success,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,data_status,3,3,1899,7990,134016,586,23,338,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"由於系統在執行 `data_status()` 工具時持續遇到模組找不到的錯誤（`ModuleNotFoundError`），因此無法即時獲取最新的資料時間範圍。
+
+不過，根據系統的分析文件，我可以提供目前已知的感測器清單。
+
+**使用工具：** `cnc_analysis_v2_workflow` 內建的系統知識庫（因工具呼叫失敗）。
+
+**關鍵數值/資訊：**
+
+*   **可用感測器清單 (Known Sensors):**
+    *   電流相關：`Current_A`, `Current_B`, `Current_C`
+    *   電壓相關：`Votage_ab`, `Votage_bc`, `Votage_ca`
+    *   功率相關：`Instantaneous_Total_Power`, `Electricity_consumption`, `PF` (功率因數)
+    *   其他：`CT_Ratio`, `kVAh`, `Modbus_404`, `Modbus_Timeout`
+*   **資料時間範圍：** 由於工具執行失敗，無法提供當前最新的資料時間範圍。
+
+**結論：** 系統目前支援多種電流、電壓及功率相關的感測器數據，但因工具執行環境問題，無法查詢到資料的即時時間範圍。請您稍後再試，或確認系統環境是否正常運作。",25,15,0.0,20,10,0,70.0,data_status,sensor_count
+20260524_102105_058bcf9e,B,gemma4:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S02_period_state_distribution,state_query,1,314db2c8-4477-4882-bb89-63aadd792bb3,1,success,幫我查 2026-05-01 的機台狀態分布。,apply_state_model,1,1,883,3057,54127,0,15,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,5,0.0,20,0,0,25.0,,rows|off_hours|running_high_hours|running_low_hours|idle_hours
+20260524_102105_058bcf9e,B,gemma4:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S03_period_utilization,state_query,1,39e50b86-0244-4b6c-9607-71d808166d82,0,error,幫我看 2026-05-01 的機台稼動率。,apply_state_model,7,7,4278,16327,300051,536,14,321,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,hard timeout after 300s,"根據您提供的指令，我必須使用 `run_python` 工具呼叫 `main.py` 中的分析函式來查詢機台稼動率。
+
+先前嘗試呼叫的函式名稱可能不正確，我將改用 CNC 分析流程中專門用於狀態分析的函式 `run_state_analysis` 來查詢 2026-05-01 當天的機台狀態。
+
+由於系統在執行實際的 Python 函式呼叫時，持續遇到 `ModuleNotFoundError: No module named 'main'` 的錯誤，這表示無法成功執行任何分析函式。
+
+然而，根據您的要求和 CNC 分析的流程，查詢「機台稼動率」最適合的步驟是執行**狀態分析 (State Analysis)**。我會再次嘗試呼叫 `run_state_analysis` 函式來獲取 2026-05-01 的機台狀態資料。
+
+**使用的工具：** `run_python`
+**呼叫函式：** `main.run_state_analysis(start='2026-05-01 00:00:00', end='2026-05-01 23:59:59')`
+
+我理解您要求查詢 2026-05-01 當天的機台稼動率。
+
+根據 CNC 分析的流程，查詢機台的運行",25,5,0.0,20,5,0,55.0,apply_state_model,running_hours|total_hours|utilization_percent
+20260524_102105_058bcf9e,B,gemma4:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S04_last_week_runtime,state_query,1,062c71ff-50aa-466c-9164-dc8ce988a08a,1,success,幫我看上週機台運轉與停機時數。,apply_state_model,5,5,3183,11257,210029,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,25,15,0.0,20,0,0,60.0,apply_state_model,running_hours|off_hours|total_hours|utilization_percent
+20260524_102105_058bcf9e,B,gemma4:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S05_this_week_status,state_query,1,cfe6d272-de0c-4bc8-bddf-b1f9c65106d6,1,success,幫我看本週機台狀態。,apply_state_model,0,0,408,1344,31241,0,11,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,5,0.0,20,0,0,25.0,,running_hours|off_hours|total_hours|utilization_percent
+20260524_102105_058bcf9e,B,gemma4:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S06_next_week_power,forecast,1,a0cbb1b4-fdf9-4fb5-9fad-69476d5ae1be,0,error,幫我預測下週耗電量。,forecast_future,9,9,4764,18381,300003,112,11,65,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,hard timeout after 300s,"根據您提供的測試基準日期（2026-05-23），「下週」預測應涵蓋未來 7 天的耗電量。
+
+我會使用 `cnc_analysis_v2_workflow` 技能中的 `forecast_future` 函式來執行預測。
+
+",25,15,0.0,20,10,0,70.0,forecast_future,forecast_7d_increment
+20260524_102105_058bcf9e,B,gemma4:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S07_next_month_cost,forecast,1,ce6c4eb5-4efa-4ae5-b7a6-9a8483916ed4,1,success,幫我預測下個月電費，電價用每度 4 元。,forecast_future,1,1,1539,6334,94005,245,19,190,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"您好，我是 Cody Agent 的 CNC 分析助手。
+
+要預測下個月的電費，我們需要先預測未來一個月的總用電量（kWh），然後再乘以您提供的電價。我會使用 `forecast_future` 函式來取得未來 30 天的預測數據。
+
+請執行以下指令來獲取預測的用電量：
+
+由於第一次的函式呼叫遇到了模組載入錯誤，我會再次嘗試執行預測用電量的步驟。
+
+預測下個月（約 30 天）的用電量，我會呼叫 `forecast_future(days=30)` 函式。
+
+請稍候，我正在執行預測步驟。",25,5,0.0,20,10,0,60.0,forecast_future,forecast_30d_increment|estimated_30d_cost
+20260524_102105_058bcf9e,B,gemma4:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S08_period_anomaly,anomaly,1,4aaeda19-09f8-4be1-bd34-d7c7dfdc3bdc,0,error,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,check_anomaly,6,6,3899,14593,300018,1542,17,862,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,hard timeout after 300s,"您好，我是您的 CNC 分析助手。根據您的要求，我會使用工具呼叫 `main.py` 中的 `check_anomaly` 函式來檢查 2026-05-01 到 2026-05-02 這段時間的異常情況。
+
+**使用的工具：** `run_python`
+**分析函式：** `main.check_anomaly(start, end, min_models=2)`
+**分析範圍：** 2026-05-01 00:00:00 到 2026-05-02 00:00:00
+
+由於前幾次嘗試在模擬的 Python 環境中執行 `from main import check_anomaly` 遇到了模組找不到的錯誤 (`ModuleNotFoundError: No module named 'main'`)，我將按照您提供的「快速指令」範例的執行結構，使用完整的 Python 路徑和 `-c` 參數來確保程式碼能正確執行，從而呼叫 `main.py` 中的 `check_anomaly` 函式。
+
+**使用的工具：** `run_python`
+**分析函式：** `main.check_anomaly(start, end, min_models=2)`
+**分析範圍：** 2026-05-01 00:00:00 到 2026-05-02 00:00:00
+
+雖然我已經嘗試了幾次呼叫，但系統環境似乎在執行 Python 腳本時，無法成功匯入 `main` 模組，導致持續出現 `ModuleNotFoundError` 的錯誤。
+
+為了確保流程的正確性，我會再次使用最接近技能說明中「快速指令」的格式來執行，這代表我正在模擬在專案根目錄下執行指令的步驟。
+
+**請注意：** 由於環境限制，如果後續的工具呼叫仍失敗，我會向您報告此技術限制，但會提供完整的分析流程步驟和預期結果結構。
+
+**使用的工具：** `run_python`
+**分析函式：** `main.check_anomaly(start, end, min_models=2)`
+**分析範圍：** 2026-05-01 00:00:00 到 2026-05-02 00:00:00
+
+很抱歉，儘管我已嘗試了多種格式呼叫，但系統環境在執行 Python 腳本時持續遇到 `ModuleNotFoundError: N",25,15,20.0,0.0,5,5,60.0,check_anomaly,rows|verdict
+20260524_102105_058bcf9e,B,nemotron-3-nano:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S01_data_coverage,data_query,1,c67d84d8-f972-4eee-aa52-59f415387df6,1,success,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,data_status,2,2,1484,5165,53830,1729,23,554,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**使用的工具**  
+- `run_python` 呼叫 `/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/main.py` 內的 `data_status()` 函式。
+
+**感測器與資料量**  
+| 感測器 | 是否存在 | 行數 | 起始時間 | 結束時間 |
+|--------|----------|------|----------|----------|
+| Current_A | ✅ | 59,259 | 2025‑09‑15 15:21:00 | 2026‑05‑24 06:23:27 |
+| Current_B | ✅ | 59,259 | 2025‑09‑15 15:21:00 | 2026‑05‑24 06:23:27 |
+| Current_C | ✅ | 59,260 | 2025‑09‑15 15:21:00 | 2026‑05‑24 06:23:27 |
+| Votage_ab | ✅ | 236,733 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| Votage_bc | ✅ | 236,732 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| Votage_ca | ✅ | 236,728 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| Instantaneous_Total_Power | ✅ | 236,735 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| Electricity_consumption | ✅ | 236,737 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| PF | ✅ | 236,737 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| CT_Ratio | ✅ | 153 | 2025‑09‑16 15:17:00 | 2026‑05‑23 17:57:27 |
+| kVAh | ✅ | 236,737 | 2025‑09‑15 1",25,15,30.0,20,10,0,100.0,data_status,
+20260524_102105_058bcf9e,B,nemotron-3-nano:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S02_period_state_distribution,state_query,1,a330713b-c1a7-4715-b22c-cf2cc3e4364e,1,success,幫我查 2026-05-01 的機台狀態分布。,apply_state_model,6,6,2143,8468,61749,982,15,373,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**使用的工具**  
+- 執行 `apply_state_model(start='2026-05-01 00:00:00', end='2026-05-01 23:59:59')`（來自 `main.py` 的 CNC 狀態分析函式）。
+
+**關鍵數值與分布（以「day」窗口為主）**  
+
+| 狀態        | 觀測次數 | 時間 (小時) | 佔比 % | 主要指標 (平均) |
+|------------|----------|------------|-------|----------------|
+| Off        | 101      | 8.42       | 35.07 | I_mean=0.0, Power=0.0, kVAh_rate=0.0001 |
+| Idle       | 59       | 4.92       | 20.49 | I_mean=7.86, Power=2.17, kVAh_rate=0.257 |
+| Running_High | 122    | 10.17      | 42.36 | I_mean=10.78, Power=3.11, kVAh_rate=0.347 |
+| Running_Low | 6      | 0.50       | 2.08  | I_mean=5.40, Power=1.77, kVAh_rate=0.232 |
+
+- `best_k` = 4（GMM 選擇的最佳-cluster 數量）  
+- 處理的資料列數 = 288（5 分鐘分辨率的 24 小時）  
+- 最高信心度的平均分配置信度 = 0.984  
+
+**結論**  
+2026‑05‑01 整日機台主要處於 **Running_High (42.36%)** 與 **Off (35.07%)**，其餘時間分別為 Idle (20.49%) 與少量 Running_Low (2.08%)，顯示當天機台大部分時間處於高負載運作或關機狀態。  
+
+（圖像 artefacts 已自動在 UI 中呈示，包含 `state_timeline.png`、`state_report.txt` 等，可於 `outputs/state/application/day/` 取得。）",25,5,30.0,20,10,0,90.0,apply_state_model,
+20260524_102105_058bcf9e,B,nemotron-3-nano:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S03_period_utilization,state_query,1,5b5f3a8a-2408-4314-94fe-4909e533a094,1,success,幫我看 2026-05-01 的機台稼動率。,apply_state_model,3,3,2737,10028,61254,395,14,152,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**工具使用**  
+- 呼叫 `apply_state_model(start='2026-05-01 00:00:00', end='2026-05-01 23:59:59')` 取得當日 GMM 狀態標記結果。
+
+**關鍵數值與單位**  
+- 當日總小時數：24 h  
+- **Off**：8.42 h（35.07%）  
+- **Idle**：4.92 h（20.49%）  
+- **Running_High**：10.17 h（42.36%）  
+- **Running_Low**：0.50 h（2.08%）  
+- 因此 **機台稼動**（Running_High + Running_Low）= 10.67 h ≈ **44.4%**** 的時間在運作。
+
+**結論**  
+2026‑05‑01 的機台稼動率約為 **44.4%**（約 10.7 小時的運行時間）。",25,5,30.0,20,10,0,90.0,apply_state_model,
+20260524_102105_058bcf9e,B,nemotron-3-nano:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S04_last_week_runtime,state_query,1,6b464ecb-d274-49f6-8df7-108bfa61f4e6,1,success,幫我看上週機台運轉與停機時數。,apply_state_model,2,2,2740,9525,56415,418,17,190,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**使用工具**：`apply_state_model`（位於 `main.py`），分析時間區間 **2026‑05‑11 00:00:00 至 2026‑05‑18 00:00:00**（上週）。
+
+**關鍵數值與單位**  
+- **Off（停機）**：94.83 小時（佔 56.45%）  
+- **Idle（待機）**：34.08 小時（佔 20.29%）  
+- **Running_High（高負載運轉）**：33.83 小時（佔 20.14%）  
+- **Running_Low（低負載運轉）**：5.25 小時（佔 3.12%）  
+
+**合計**：本週共有 168 小時，其中 **運轉總時數** = 33.83 + 5.25 ≈ **39.08 小時**，**停機總時數** = 94.83 + 34.08 ≈ **128.91 小時**。
+
+**結論**：上週機台主要處於停機狀態，總運轉時間約 39 小時。",25,15,22.5,20,10,0,92.5,apply_state_model,utilization_percent
+20260524_102105_058bcf9e,B,nemotron-3-nano:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S05_this_week_status,state_query,1,b1ef06e0-3194-4d37-958b-ff183f19c7ae,1,success,幫我看本週機台狀態。,apply_state_model,7,7,4120,15888,99020,1874,11,759,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**使用的工具**  
+- 透過 `run_python` 呼叫 `main.py` 內的 `apply_state_model()`，參數為  
+  `start='2026-05-18 00:00:00'`、`end='2026-05-23 00:00:00'`（對應「本週」的時間區間）。
+
+**關鍵數值與指標**（單位已標註）  
+
+| 指標 | 數值 | 單位 | 說明 |
+|------|------|------|------|
+| **總樣本數** | 1,440 | 筆 | 5 分鐘分辨率的觀測點總數（120 小時 × 12） |
+| **最佳 GMM 群數 (best_k)** | 4 | 群 | 以 BIC 判選的最佳聚類數 |
+| **狀態分布（Hours）** | -  Off: 48.67 h <br> -  Idle: 29.25 h <br> -  Running_High: 30.08 h <br> -  Running_Low: 12.00 h | 小時 | 本週機台在各狀態所佔的總耗時 |
+| **狀態分布（占比）** | -  Off: 40.56% <br> -  Idle: 24.38% <br> -  Running_High: 25.07% <br> -  Running_Low: 10.00% | % | 各狀態佔整週運作時間的比例 |
+| **每狀態平均電流 (I_mean)** | -  Off: 0.00 A <br> -  Idle: 7.71 A <br> -  Running_High: 10.77 A <br> -  Running_Low: 9.98 A | A | 代表該狀態下的平均電流 |
+| **每狀態平均有功功率 (Power_avg)** | -  Off: 0.00 kW <br> -  Idle: 2.10 kW <br> -  Running_High: 3.04 kW <br> -  Running_Low: 2.65 kW | kW | 平均功率消耗 |
+| **每狀態平均 kVAh_rate** | -  Off: 0.0005 kVAh/h <br> -  Idle: 0.2454 kVAh/h <br> -  Running_High: 0.344 kVAh/h <br> - ",25,15,22.5,20,10,0,92.5,apply_state_model,running_hours
+20260524_102105_058bcf9e,B,nemotron-3-nano:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S06_next_week_power,forecast,1,e3acc3c8-aab9-47f0-aaca-69c37842f1bc,1,success,幫我預測下週耗電量。,forecast_future,3,3,6113,21737,105005,472,11,190,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**工具**：使用 `main.py` 內的 `forecast_future()` 函式（透過 `run_python` 呼叫）。
+
+**預測參數**  
+- 時間跨度：`days=[7]` → 7 天（下週）  
+- 使用模型：`[""BaselineLastWeek"",""Prophet""]`  
+
+**關鍵數值**（單位：度，即千瓦時 kWh）  
+
+| 模型               | 預測總耗電量 (ŷ) | 本週增量 (increment) |
+|--------------------|----------------|-------------------|
+| BaselineLastWeek   | 8,268.80       | 188.18            |
+| Prophet            | 8,176.10       | 95.49             |
+
+**結論**：  
+依照模型預測，下週的耗電量約在 **8,176–8,269 度** 之間，預計會比上週略有增加。",25,15,0.0,20,10,0,70.0,forecast_future,forecast_7d_increment
+20260524_102105_058bcf9e,B,nemotron-3-nano:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S07_next_month_cost,forecast,1,98076424-ce62-4423-b49e-d8fef306e913,1,success,幫我預測下個月電費，電價用每度 4 元。,forecast_future,5,5,3540,14478,76303,431,19,197,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**工具與函式**  
+- 使用 `run_python` 呼叫 `/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/main.py` 的 `forecast_future()`，預設以 **Prophet** 模型預測 30 天（約一個月）的用電量。
+
+**重要數值與單位**  
+| 項目 | 數值 | 單位 |
+|------|------|------|
+| 預測用電量 (30 天) | **8,745.21** | kWh (千瓦時) |
+| 電價 | **4** | TWD / kWh |
+| 預估電費 | **34,980.8** | TWD |
+
+**結論**  
+以目前每度 4 元的電價，預測下個月（30 天）的用電量約 8,745 kWh，對應的電費約 **34,981 元**。  
+
+> **簡句結論**：預估下個月電費約新台幣 34,981 元。",25,15,0.0,20,10,0,70.0,forecast_future,forecast_30d_increment|estimated_30d_cost
+20260524_102105_058bcf9e,B,nemotron-3-nano:latest,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S08_period_anomaly,anomaly,1,31ebb8d6-78dc-499d-8ca6-4922ed33876a,1,success,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,check_anomaly,3,3,1032,3743,34398,629,17,229,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**工具**: `check_anomaly`（呼叫 `main.py` 內的 `check_anomaly` 函式）  
+**檢查期間**: 2026‑05‑01 00:00:00 至 2026‑05‑02 00:00:00  
+
+**關鍵數值與指標**  
+- 行數 (rows)：184  
+- 異常筆數 (anomaly_count)：0  
+- 異常率 (anomaly_rate)：0.0%  
+- 判斷 (verdict)：NORMAL  
+- 各模型票數 (model_votes)：  
+  - IsolationForest：0  
+  - OneClassSVM：0  
+  - Autoencoder：1  
+
+**重要輸出檔案**（前端會自動渲染圖像）  
+- 詳細 CSV：`outputs/anomaly/last_anomaly_check.csv`  
+- 時間軸圖：`outputs/anomaly/plots/last_anomaly_check_timeline.png`  
+- 評分分布圖：`outputs/anomaly/plots/last_anomaly_check_scores.png`  
+- 投票圖：`outputs/anomaly/plots/last_anomaly_check_votes.png`  
+
+**結論**：在 2026‑05‑01 到 2026‑05‑02 期間未偵測到任何異常。",25,15,30.0,20.0,10,0,100.0,check_anomaly,
+20260524_102105_058bcf9e,B,gpt-oss:120b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S01_data_coverage,data_query,1,e1e97132-39f8-4b81-b1e6-b1317dca2957,1,success,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,data_status,2,2,88,357,51290,1114,23,346,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**使用工具**：`data_status()`  
+
+**感測器清單與資料時間範圍**：
+
+| 感測器 | 資料起始時間 | 資料結束時間 | 資料筆數 |
+|--------|--------------|--------------|----------|
+| Current_A | 2025‑09‑15 15:21:00 | 2026‑05‑24 06:23:27 | 59,259 |
+| Current_B | 2025‑09‑15 15:21:00 | 2026‑05‑24 06:23:27 | 59,259 |
+| Current_C | 2025‑09‑15 15:21:00 | 2026‑05‑24 06:23:27 | 59,260 |
+| Votage_ab | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 | 236,733 |
+| Votage_bc | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 | 236,732 |
+| Votage_ca | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 | 236,728 |
+| Instantaneous_Total_Power | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 | 236,735 |
+| Electricity_consumption | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 | 236,737 |
+| PF | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 | 236,737 |
+| CT_Ratio | 2025‑09‑16 15:17:00 | 2026‑05‑23 17:57:27 | 153 |
+| kVAh | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 | 236,737 |
+| Modbus_404 | 2025‑09‑15 16:16:01 | 2026‑05‑24 05:58:27 | 4,917 |
+| Modbus_Timeout | 2025‑09‑15 16:16:01 | 20",25,15,30.0,20,10,0,100.0,data_status,
+20260524_102105_058bcf9e,B,gpt-oss:120b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S02_period_state_distribution,state_query,1,1cde4ee2-3582-4ed2-924a-a4288471c141,1,success,幫我查 2026-05-01 的機台狀態分布。,apply_state_model,2,2,178,728,28411,726,15,261,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**2026‑05‑01 機台狀態分布（5 分鐘取樣）**
+
+| 狀態 | 次數 (count) | 時間 (hours) | 佔比 (%) | 平均 I_mean (A) | 平均 Power (kW) | 平均 kVAh_rate | 平均信心水準 |
+|------|--------------|--------------|----------|------------------|-----------------|----------------|--------------|
+| Idle | 59 | 4.92 | 20.49 | 7.857 | 2.166 | 0.2568 | 0.9827 |
+| Off  | 101 | 8.42 | 35.07 | 0.0   | 0.0   | 0.0001 | 1.0000 |
+| Running_High | 122 | 10.17 | 42.36 | 10.782 | 3.107 | 0.3465 | 0.9715 |
+| Running_Low  | 6  | 0.50 | 2.08  | 5.396 | 1.765 | 0.2320 | 1.0000 |
+
+**使用工具**：`apply_state_model(start='2026-05-01 00:00:00', end='2026-05-02 00:00:00')`  
+**結論**：2026‑05‑01 機台大部分時間（約 42%）處於高負載運轉，約 35% 為關機狀態，僅約 2% 為低負載運轉。相關圖表（狀態時間線、轉移矩陣等）已於 `outputs/state/...` 產出，可於 UI 中檢視。",25,15,24.0,20,10,0,94.0,apply_state_model,rows
+20260524_102105_058bcf9e,B,gpt-oss:120b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S03_period_utilization,state_query,1,f2f47e2d-2a81-4a74-9d99-657a1d86e7cb,1,success,幫我看 2026-05-01 的機台稼動率。,apply_state_model,1,1,151,663,23240,490,14,184,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**機台稼動率（2026‑05‑01）**  
+
+| 狀態 | 時間 (小時) | 百分比 (%) |
+|------|------------|-----------|
+| Running_High | 10.17 h | 42.36 % |
+| Running_Low  | 0.50 h  | 2.08 % |
+| Idle         | 4.92 h  | 20.49 % |
+| Off          | 8.42 h  | 35.07 % |
+| **合計稼動 (Running_High + Running_Low)** | **10.67 h** | **44.44 %** |
+
+- **使用工具**：`apply_state_model(start='2026-05-01 00:00:00', end='2026-05-02 00:00:00')`  
+- **結論**：2026‑05‑01 當天機台稼動率為 **44.44 %**（約 10.7 小時處於運轉狀態）。  
+
+相關圖表（狀態時間線、狀態分布等）已產生於 UI，可於輸出資料夾查看。",25,15,20.0,20,10,0,90.0,apply_state_model,total_hours
+20260524_102105_058bcf9e,B,gpt-oss:120b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S04_last_week_runtime,state_query,1,c7e60e4f-df83-4eab-a5b6-d5bd0a4dc76f,1,success,幫我看上週機台運轉與停機時數。,apply_state_model,1,1,199,767,22183,439,17,179,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**上週（2026‑05‑11 00:00:00 ~ 2026‑05‑18 00:00:00）機台運轉與停機時數**
+
+| 狀態 | 時數 (h) | 佔比 (%) |
+|------|----------|----------|
+| **Off（停機）** | **94.83 h** | **56.45 %** |
+| **Idle（待機）** | 34.08 h | 20.29 % |
+| **Running_High（高速運轉）** | 33.83 h | 20.14 % |
+| **Running_Low（低速運轉）** | 5.25 h | 3.12 % |
+
+**使用工具**：`apply_state_model(start='2026-05-11 00:00:00', end='2026-05-18 00:00:00')`  
+**結論**：上週機台大部分時間（約 56 %）處於停機狀態，僅有約 9 % 時間在低速運轉，其餘時間分布在待機與高負載運轉。",25,15,7.5,20,10,0,77.5,apply_state_model,running_hours|total_hours|utilization_percent
+20260524_102105_058bcf9e,B,gpt-oss:120b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S05_this_week_status,state_query,1,4017a841-1b59-44ba-9310-c1e5ebef81a2,1,success,幫我看本週機台狀態。,apply_state_model,2,2,186,729,33143,935,11,366,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**本週機台狀態（2026‑05‑18 00:00:00 ~ 2026‑05‑23 00:00:00）**  
+
+| 狀態 | 次數 (5 min 觀測點) | 小時 | 百分比 | 平均電流 I_mean (A) | 平均功率 Power (kW) | 平均 kVAh 率 | 平均信心水平 |
+|------|-------------------|------|--------|----------------------|----------------------|--------------|--------------|
+| **Off** | 584 | 48.67 h | 40.56 % | 0.0 | 0.0 | 0.0005 | 1.000 |
+| **Idle** | 351 | 29.25 h | 24.38 % | 7.705 | 2.104 | 0.2454 | 0.995 |
+| **Running Low** | 144 | 12.00 h | 10.00 % | 9.976 | 2.65 | 0.291 | 0.959 |
+| **Running High** | 361 | 30.08 h | 25.07 % | 10.765 | 3.044 | 0.344 | 0.969 |
+
+- **總觀測點**：1440（5 分鐘間隔，合計 120 小時）  
+- **最佳 GMM 群數**：K = 4  
+- **平均指派信心**：0.987（低於 0.8 的低信心點 35 筆）  
+
+**使用工具**：`apply_state_model(start='2026-05-18 00:00:00', end='2026-05-23 00:00:00')`  
+
+**結論**：本週機台大部分時間處於 **Off**（約 40 %）與 **Idle**（約 24 %），運轉時以 **Running Low** 與 **Running High** 各佔 10 % 與 25 %。整體信心水平良好，模型分辨率足以支援後續分析。  
+
+> 相關圖表（狀態時間線、轉移矩陣、信心分布、各狀態工時圖）已生成於 UI，可直接檢視。",25,15,22.5,20,10,0,92.5,apply_state_model,running_hours
+20260524_102105_058bcf9e,B,gpt-oss:120b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S06_next_week_power,forecast,1,e9ff3514-3181-4d8b-995f-6626e8734387,1,success,幫我預測下週耗電量。,forecast_future,3,3,299,1192,27434,195,11,108,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**使用工具**：`forecast_future(days=[7])`
+
+**關鍵數值**  
+- 7 天後的預測總耗電量（kWh）≈ **8176.10 kWh**  
+- 預測每日平均增量 ≈ **95.49 kWh/天**
+
+**結論**：依照模型（Prophet）預測，下週工廠的總耗電量約為 8176 kWh，平均每天會增加約 95 kWh。相關圖表已產生，可在 UI 中檢視。",25,15,0.0,20,10,0,70.0,forecast_future,forecast_7d_increment
+20260524_102105_058bcf9e,B,gpt-oss:120b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S07_next_month_cost,forecast,1,a362fc35-8819-49d6-8512-5c1969cbe4d2,1,success,幫我預測下個月電費，電價用每度 4 元。,forecast_future,4,4,547,2342,51979,279,19,158,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**使用工具**  
+- `forecast_future(days=30)` – 取得未來 30 天的電力消費預測（預設使用 Prophet 模型）。
+
+**關鍵數值**  
+- 30 天累積預測電量（kWh）：**8,745.21 kWh**  
+- 每度電費單價：**4 元/度**  
+- 預估下個月電費：**8,745.21 kWh × 4 元/kWh ≈ 34,981 元**
+
+**結論**  
+根據 CNC 系統的 Prophet 預測模型，預計下個月的電費約為 **3.5 萬元**（新臺幣）。若實際用電情況與模型相符，請依此金額編列預算。",25,15,0.0,20,10,0,70.0,forecast_future,forecast_30d_increment|estimated_30d_cost
+20260524_102105_058bcf9e,B,gpt-oss:120b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S08_period_anomaly,anomaly,1,8ea90145-c5be-4a3a-964d-0e58f17dedaa,1,success,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,check_anomaly,2,2,153,579,20646,374,17,177,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**檢查期間**：2026‑05‑01 00:00:00 ~ 2026‑05‑02 00:00:00  
+
+**使用工具**：`check_anomaly(start='2026-05-01 00:00:00', end='2026-05-02 00:00:00')`
+
+**關鍵數值**  
+- 總檢查筆數：184 筆  
+- 異常筆數：0 筆  
+- 異常率：0.0 %  
+- 判定結果：**NORMAL**（正常）  
+- 各模型投票異常次數：IsolationForest 0、OneClassSVM 0、Autoencoder 1（未達最小投票門檻 2）
+
+**結論**：在 2026‑05‑01 至 2026‑05‑02 這段時間內，機台未偵測到異常，運作狀態正常。  
+
+（相關圖表可於 UI 中查看：時間線、分數分布、投票結果。）",25,15,30.0,20.0,10,0,100.0,check_anomaly,
+20260524_102105_058bcf9e,B,gpt-oss:20b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S01_data_coverage,data_query,1,925130cd-6a41-4785-a797-27d4d4f0dae4,1,success,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,data_status,2,2,305,1195,30142,1164,23,365,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**工具使用**  
+- `data_status()`（Python 執行）
+
+**關鍵數值（單位）**
+
+| 感測器 | 觀測筆數 | 起始時間 | 結束時間 |
+|--------|----------|----------|----------|
+| Current_A | 59 259 | 2025‑09‑15 15:21:00 | 2026‑05‑24 06:23:27 |
+| Current_B | 59 259 | 2025‑09‑15 15:21:00 | 2026‑05‑24 06:23:27 |
+| Current_C | 59 260 | 2025‑09‑15 15:21:00 | 2026‑05‑24 06:23:27 |
+| Votage_ab | 236 733 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| Votage_bc | 236 732 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| Votage_ca | 236 728 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| Instantaneous_Total_Power | 236 735 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| Electricity_consumption | 236 737 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| PF | 236 737 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| CT_Ratio | 153 | 2025‑09‑16 15:17:00 | 2026‑05‑23 17:57:27 |
+| kVAh | 236 737 | 2025‑09‑15 15:11:36 | 2026‑05‑24 06:26:28 |
+| Modbus_404 | 4 917 | 2025‑09‑15 16:16:01 | 2026‑05‑24 05:58:27 |
+| Modbus_Timeout | 5 016 | 2025‑09‑15 16:16:01 ",25,15,30.0,20,10,0,100.0,data_status,
+20260524_102105_058bcf9e,B,gpt-oss:20b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S02_period_state_distribution,state_query,1,33c8ad2e-4e70-4fc5-88cf-92523131b9f1,1,success,幫我查 2026-05-01 的機台狀態分布。,apply_state_model,2,2,408,1631,23617,711,15,279,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**2026‑05‑01 機台狀態分布（5 分鐘頻率）**
+
+| 狀態 | 次數 | 時間（小時） | 百分比 | 平均 I_mean | 平均 Power（kW） | 平均 kVAh_rate |
+|------|------|--------------|--------|-------------|------------------|----------------|
+| Off | 101 | 8.42 | 35.07 % | 0.0 | 0.0 | 0.0001 |
+| Idle | 59 | 4.92 | 20.49 % | 7.86 | 2.17 | 0.2568 |
+| Running High | 122 | 10.17 | 42.36 % | 10.78 | 3.11 | 0.3465 |
+| Running Low | 6 | 0.50 | 2.08 % | 5.40 | 1.77 | 0.2320 |
+
+**關鍵資訊**  
+- **最高佔比**：Running High（42.36 %），表示大部分時間機台處於高負荷運作。  
+- **最低佔比**：Running Low（2.08 %），表示低負荷運作極少。  
+- **停機時間**（Off）占 35.07 %，比 Idle 稍高。  
+
+**工具**：`apply_state_model(start='2026-05-01 00:00:00', end='2026-05-01 23:59:59')`  
+**結論**：2026‑05‑01 之日，機台主要以高負荷運作為主，停機與待機時間亦占相當比例，低負荷運作相對較少。",25,5,24.0,20,10,0,84.0,apply_state_model,rows
+20260524_102105_058bcf9e,B,gpt-oss:20b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S03_period_utilization,state_query,1,c2b7da76-1e05-4248-8538-6692f801fa4d,1,error,幫我看 2026-05-01 的機台稼動率。,apply_state_model,15,15,1404,6392,87008,413,14,104,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'error parsing tool call: raw=\'It seems data/processed folder not created. Maybe apply_state_model requires raw data? We have raw data. Let\'s run run_state_analysis function from main? The function name is run_state_analysis. Let\'s try that.{""code"":""import sys, os\\nos.chdir(\'/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis\')\\nsys.path.append(os.getcwd())\\nfrom main import run_state_analysis\\nres=run_state_analysis()\\nprint(res)\\n"",""timeout"":120}\', err=invalid character \'I\' looking for beginning of value', 'type': 'api_error', 'param': None, 'code': None}}","It seems the current working directory is not the project root. Need to cd to project root before running. Use python -c with cd? We can set working directory in run_python? Not directly. We can run a shell command via python? Maybe we can run a script that changes cwd. Use python to change cwd then import.
+
+Let's do:
+
+import os, sys; os.chdir('/Users/...'); from main import apply_state_model
+
+Let's try again.",25,5,0.0,20,5,0,55.0,apply_state_model|data_status,running_hours|total_hours|utilization_percent
+20260524_102105_058bcf9e,B,gpt-oss:20b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S04_last_week_runtime,state_query,1,601c388a-0562-4bfa-9176-0ef2b146c693,1,success,幫我看上週機台運轉與停機時數。,apply_state_model,2,2,323,1287,20379,499,17,215,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**上週機台運轉與停機時數（2026‑05‑11 00:00 – 2026‑05‑18 00:00）**
+
+| 狀態 | 時數 (h) | 百分比 |
+|------|----------|--------|
+| **停機 (Off)** | **94.83 h** | 56.45 % |
+| **待機 (Idle)** | 34.08 h | 20.29 % |
+| **運轉‑高負荷 (Running_High)** | 33.83 h | 20.14 % |
+| **運轉‑低負荷 (Running_Low)** | 5.25 h | 3.12 % |
+
+- **總計**：168 h（完整一週）。
+- **主要停機時間**：大部分時間（56.45 %）為停機。
+
+**使用工具**：`apply_state_model(start='2026-05-11 00:00:00', end='2026-05-18 00:00:00')`
+
+**結論**  
+上週機台主要處於停機狀態，總停機時間約 94.8 小時；運轉時間（高負荷與低負荷）總計約 39.1 小時，佔週總時間的 39.3 %。",25,15,22.5,20,10,0,92.5,apply_state_model,utilization_percent
+20260524_102105_058bcf9e,B,gpt-oss:20b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S05_this_week_status,state_query,1,edc9ae68-6428-462c-9b3a-ba297dbcd702,1,success,幫我看本週機台狀態。,apply_state_model,2,2,466,1763,27037,828,11,318,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**本週（2026‑05‑18 00:00:00 ~ 2026‑05‑23 00:00:00）機台狀態概覽**  
+
+| 狀態 | 時間 (小時) | 百分比 (%) | 平均電流 (A) | 平均功率 (kW) | 平均 kVAh 速率 (kVAh/h) | 平均信賴度 |
+|------|------------|------------|--------------|--------------|------------------------|-----------|
+| Off | 48.67 h | 40.56 % | 0.00 | 0.00 | 0.0005 | 1.00 |
+| Idle | 29.25 h | 24.38 % | 7.71 | 2.10 | 0.245 | 0.995 |
+| Running High | 30.08 h | 25.07 % | 10.77 | 3.04 | 0.344 | 0.969 |
+| Running Low | 12.00 h | 10.00 % | 9.98 | 2.65 | 0.291 | 0.959 |
+
+- **總時長**：120 h（5 天 × 24 h）  
+- **最佳 GMM 分群數**：4（`Off`、`Idle`、`Running_High`、`Running_Low`）  
+- **平均分配信賴度**：0.987（> 0.95，分配結果可信度高）
+
+**使用工具**：`apply_state_model(start='2026‑05‑18 00:00:00', end='2026‑05‑23 00:00:00')`
+
+**結論**：本週機台以「關機」佔比最高，隨後是「高負載運行」與「空閒」狀態，總體運行時間約 42 h（約 35 %）。機台運作穩定，分群結果可信度高。  
+（相關圖表已產生於 `outputs/state/`，可於 UI 中查看。）",25,15,30.0,20,10,0,100.0,apply_state_model,
+20260524_102105_058bcf9e,B,gpt-oss:20b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S06_next_week_power,forecast,1,85bb7963-a797-4afa-8258-4094c11259f5,1,success,幫我預測下週耗電量。,forecast_future,2,2,580,2443,16278,0,11,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,25,15,0.0,20,0,0,60.0,forecast_future,forecast_7d_increment
+20260524_102105_058bcf9e,B,gpt-oss:20b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S07_next_month_cost,forecast,1,baf412e2-b266-4ccf-b3c7-8f8819f14cde,1,success,幫我預測下個月電費，電價用每度 4 元。,forecast_future,3,3,760,3269,30697,495,19,212,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**使用工具**：`forecast_future(days=[30], model_names=['BaselineLastWeek','Prophet'], target='y')`  
+
+**關鍵數值**  
+| 指標 | BaselineLastWeek | Prophet | 單位 |
+|------|------------------|---------|------|
+| 30 天累計用電量 | 8,885.53 | 8,745.21 | kWh |
+| 30 天增量 | 804.91 | 664.59 | kWh |
+| 每度電價 | 4 | 4 | NT$ |
+| 預估電費 | 35,542.12 | 34,981.04 | NT$ |
+
+**結論**  
+根據「BaselineLastWeek」與「Prophet」兩個模型預測，未來 30 天（即下個月）總用電量約 8,800–8,900 kWh，按每度 4 NT$ 的電價計算，電費大約在 **35,000–36,000 NT$** 之間。這是一個粗略估算，實際費用可能因實際用電變化或電價調整而略有差異。",25,15,0.0,20,10,0,70.0,forecast_future,forecast_30d_increment|estimated_30d_cost
+20260524_102105_058bcf9e,B,gpt-oss:20b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S08_period_anomaly,anomaly,1,1d2f840b-fa14-493c-a608-8af540c7bebc,1,success,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,check_anomaly,2,2,216,857,14576,376,17,158,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**異常檢查結果（2026‑05‑01 00:00:00 至 2026‑05‑02 00:00:00）**  
+
+| 參數 | 值 | 單位 |
+|------|----|------|
+| **總檢查行數** | 184 | 行 |
+| **異常筆數** | 0 | 行 |
+| **異常率** | 0.0 % | % |
+| **模型投票分布** | IsolationForest: 0, OneClassSVM: 0, Autoencoder: 1 | 投票 |
+
+**使用工具**  
+- `check_anomaly(start='2026-05-01 00:00:00', end='2026-05-02 00:00:00')`
+
+**結論**  
+- **無任何異常**：在所檢查的時間段內，所有模型均未檢測到異常事件，異常率為 0%。",25,15,30.0,0.0,5,0,75.0,check_anomaly,verdict
+20260524_102105_058bcf9e,B,qwen3:8b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S01_data_coverage,data_query,1,56a0f7dc-195a-4e54-b1c8-b88822c6e761,1,success,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,data_status,0,0,277,551,10910,0,23,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,15,0.0,20,0,0,35.0,,sensor_count
+20260524_102105_058bcf9e,B,qwen3:8b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S02_period_state_distribution,state_query,1,bdba9b42-1fd0-449e-b84e-367b248ab1ce,1,success,幫我查 2026-05-01 的機台狀態分布。,apply_state_model,0,0,500,903,15334,0,15,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,5,0.0,20,0,0,25.0,,rows|off_hours|running_high_hours|running_low_hours|idle_hours
+20260524_102105_058bcf9e,B,qwen3:8b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S03_period_utilization,state_query,1,0e0d4709-545c-4c1c-8eea-057b406c1552,1,success,幫我看 2026-05-01 的機台稼動率。,apply_state_model,0,0,704,1269,20858,0,14,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,5,0.0,20,0,0,25.0,,running_hours|total_hours|utilization_percent
+20260524_102105_058bcf9e,B,qwen3:8b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S04_last_week_runtime,state_query,1,3f112c66-45e7-4a66-bb0e-1e5aa9115453,1,success,幫我看上週機台運轉與停機時數。,apply_state_model,0,0,408,675,12977,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,5,0.0,20,0,0,25.0,,running_hours|off_hours|total_hours|utilization_percent
+20260524_102105_058bcf9e,B,qwen3:8b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S05_this_week_status,state_query,1,ca28c910-1508-4f65-ade6-952702528bf4,1,success,幫我看本週機台狀態。,apply_state_model,0,0,384,640,12257,0,11,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,5,0.0,20,0,0,25.0,,running_hours|off_hours|total_hours|utilization_percent
+20260524_102105_058bcf9e,B,qwen3:8b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S06_next_week_power,forecast,1,7ca5d307-2ff8-4fde-9ff4-cd8417bfe96f,1,success,幫我預測下週耗電量。,forecast_future,0,0,754,1354,21468,0,11,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,5,0.0,20,0,0,25.0,,forecast_7d_increment
+20260524_102105_058bcf9e,B,qwen3:8b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S07_next_month_cost,forecast,1,2a146a4d-b792-4f81-b415-06bcb93debbc,1,success,幫我預測下個月電費，電價用每度 4 元。,forecast_future,0,0,943,1805,26834,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,5,0.0,20,0,0,25.0,,forecast_30d_increment|estimated_30d_cost
+20260524_102105_058bcf9e,B,qwen3:8b,2eea3080de245ecc,scenario-qa-20260524_102105_058bcf9e,S08_period_anomaly,anomaly,1,38adce70-433d-44ad-8b33-de636f0f57e6,1,success,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,check_anomaly,0,0,229,413,8418,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0,5,0.0,0.0,0,0,5.0,,rows|anomaly_count|anomaly_rate|verdict

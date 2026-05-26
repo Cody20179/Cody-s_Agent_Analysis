@@ -1,0 +1,2 @@
+﻿model_name,model_source,group_id,user_id,name,description,created_at,session_count
+qwen3.5:9b,B,d18348a6e5a7099e,Cody,cnc-tool-20260525_141605_e11de348-qwen3.5_9b,CNC tool validation for qwen3.5:9b; repeat=1,2026-05-25T14:16:05.561602,0

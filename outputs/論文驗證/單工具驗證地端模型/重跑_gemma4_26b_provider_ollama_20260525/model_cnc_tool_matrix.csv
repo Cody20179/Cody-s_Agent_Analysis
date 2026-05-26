@@ -1,0 +1,9 @@
+﻿model_label,cnc_tool_name,functional_success
+gemma4:26b,check_anomaly,0.0
+gemma4:26b,data_status,0.0
+gemma4:26b,forecast_future,0.0
+gemma4:26b,run_all,0.0
+gemma4:26b,run_state_analysis,0.0
+gemma4:26b,train_anomaly_detection,0.0
+gemma4:26b,train_forecast,0.0
+gemma4:26b,update_data,0.0

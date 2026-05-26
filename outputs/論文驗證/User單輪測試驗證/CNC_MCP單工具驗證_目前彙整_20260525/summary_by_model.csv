@@ -1,0 +1,12 @@
+﻿model_name,model_label,deployment,cases,successes,success_rate,avg_duration_ms,avg_loop_count,avg_thinking_duration_ms,avg_thinking_char_count,avg_answer_char_count,avg_first_response_ms,avg_tool_duration_ms_total,tool_input_events_total,tool_output_events_total,estimated_answer_tokens_total,estimated_tool_output_tokens_total,manual_fail_notes
+gemma4:26b,gemma4:26b (Local),Local,7,7,1.0,65413.1,2.0,45168.6,1551.9,522.9,48739.6,2685.0,7,7,917,8889,
+qwen3.6:27b,qwen3.6:27b (Local),Local,7,7,1.0,61730.6,2.0,38178.9,808.9,333.4,45464.3,2525.4,7,7,587,8888,
+qwen3:8b,qwen3:8b (Local),Local,7,7,1.0,35974.3,2.0,24278.4,1693.1,545.6,26773.1,2490.0,7,7,957,8890,
+glm-5.1,glm-5.1 (Cloud),Cloud,7,7,1.0,23136.0,2.0,5121.1,133.4,407.6,15761.3,2561.0,7,7,717,8887,
+deepseek-v4-flash,deepseek-v4-flash (Cloud),Cloud,7,7,1.0,19227.0,2.0,10097.3,257.0,466.6,10996.4,2459.9,7,7,819,8884,
+gpt-oss:20b,gpt-oss:20b (Local),Local,7,7,1.0,17654.9,2.0,6311.6,879.3,760.4,10445.6,2378.1,7,7,1334,8890,
+kimi-k2.6,kimi-k2.6 (Cloud),Cloud,7,7,1.0,17589.6,2.0,11429.9,652.9,312.0,15071.0,2623.0,7,7,549,8888,
+qwen3.5:9b,qwen3.5:9b (Local),Local,7,7,1.0,16532.6,2.0,12811.7,485.9,0,0,2439.3,7,7,0,8888,
+nemotron-cascade-2:latest,nemotron-cascade-2:latest (Local),Local,7,7,1.0,16318.3,2.0,7425.3,584.6,379.1,12818.7,2448.9,7,7,666,8883,
+gemma4:31b,gemma4:31b (Local),Local,7,6,0.8571,290412.6,1.857,150251.9,1036.6,435.6,202988.9,1928.3,7,7,765,8890,user_marked_question_3_fail
+nemotron-3-nano:latest,nemotron-3-nano:latest (Local),Local,7,6,0.8571,33635.1,1.857,23887.0,5603.0,766.4,22161.4,2183.9,6,6,1345,8597,user_marked_question_5_fail

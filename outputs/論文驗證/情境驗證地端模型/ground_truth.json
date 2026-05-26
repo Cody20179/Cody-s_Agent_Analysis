@@ -1,0 +1,256 @@
+{
+  "S01_data_coverage": {
+    "sensor_count": 13,
+    "sensors": [
+      {
+        "sensor": "Current_A",
+        "exists": true,
+        "rows": 59259,
+        "start": "2025-09-15 15:21:00",
+        "end": "2026-05-24 06:23:27"
+      },
+      {
+        "sensor": "Current_B",
+        "exists": true,
+        "rows": 59259,
+        "start": "2025-09-15 15:21:00",
+        "end": "2026-05-24 06:23:27"
+      },
+      {
+        "sensor": "Current_C",
+        "exists": true,
+        "rows": 59260,
+        "start": "2025-09-15 15:21:00",
+        "end": "2026-05-24 06:23:27"
+      },
+      {
+        "sensor": "Votage_ab",
+        "exists": true,
+        "rows": 236733,
+        "start": "2025-09-15 15:11:36",
+        "end": "2026-05-24 06:26:28"
+      },
+      {
+        "sensor": "Votage_bc",
+        "exists": true,
+        "rows": 236732,
+        "start": "2025-09-15 15:11:36",
+        "end": "2026-05-24 06:26:28"
+      },
+      {
+        "sensor": "Votage_ca",
+        "exists": true,
+        "rows": 236728,
+        "start": "2025-09-15 15:11:36",
+        "end": "2026-05-24 06:26:28"
+      },
+      {
+        "sensor": "Instantaneous_Total_Power",
+        "exists": true,
+        "rows": 236735,
+        "start": "2025-09-15 15:11:36",
+        "end": "2026-05-24 06:26:28"
+      },
+      {
+        "sensor": "Electricity_consumption",
+        "exists": true,
+        "rows": 236737,
+        "start": "2025-09-15 15:11:36",
+        "end": "2026-05-24 06:26:28"
+      },
+      {
+        "sensor": "PF",
+        "exists": true,
+        "rows": 236737,
+        "start": "2025-09-15 15:11:36",
+        "end": "2026-05-24 06:26:28"
+      },
+      {
+        "sensor": "CT_Ratio",
+        "exists": true,
+        "rows": 153,
+        "start": "2025-09-16 15:17:00",
+        "end": "2026-05-23 17:57:27"
+      },
+      {
+        "sensor": "kVAh",
+        "exists": true,
+        "rows": 236737,
+        "start": "2025-09-15 15:11:36",
+        "end": "2026-05-24 06:26:28"
+      },
+      {
+        "sensor": "Modbus_404",
+        "exists": true,
+        "rows": 4917,
+        "start": "2025-09-15 16:16:01",
+        "end": "2026-05-24 05:58:27"
+      },
+      {
+        "sensor": "Modbus_Timeout",
+        "exists": true,
+        "rows": 5016,
+        "start": "2025-09-15 16:16:01",
+        "end": "2026-05-24 05:58:27"
+      }
+    ],
+    "required_keywords": [
+      "感測器",
+      "資料",
+      "時間"
+    ]
+  },
+  "S02_period_state_distribution": {
+    "rows": 288,
+    "state_summary": {
+      "Idle": {
+        "count": 59,
+        "hours": 4.92,
+        "pct": 20.49,
+        "I_mean_avg": 7.857,
+        "Power_avg": 2.166,
+        "kVAh_rate_avg": 0.2568,
+        "confidence_avg": 0.9827
+      },
+      "Off": {
+        "count": 101,
+        "hours": 8.42,
+        "pct": 35.07,
+        "I_mean_avg": 0.0,
+        "Power_avg": 0.0,
+        "kVAh_rate_avg": 0.0001,
+        "confidence_avg": 1.0
+      },
+      "Running_High": {
+        "count": 122,
+        "hours": 10.17,
+        "pct": 42.36,
+        "I_mean_avg": 10.782,
+        "Power_avg": 3.107,
+        "kVAh_rate_avg": 0.3465,
+        "confidence_avg": 0.9715
+      },
+      "Running_Low": {
+        "count": 6,
+        "hours": 0.5,
+        "pct": 2.08,
+        "I_mean_avg": 5.396,
+        "Power_avg": 1.765,
+        "kVAh_rate_avg": 0.232,
+        "confidence_avg": 1.0
+      }
+    },
+    "off_hours": 8.42,
+    "running_high_hours": 10.17,
+    "running_low_hours": 0.5,
+    "idle_hours": 4.92,
+    "required_keywords": [
+      "Off",
+      "Running",
+      "Idle"
+    ]
+  },
+  "S03_period_utilization": {
+    "running_hours": 10.67,
+    "total_hours": 24.01,
+    "utilization_percent": 44.44,
+    "required_keywords": [
+      "稼動",
+      "Running"
+    ]
+  },
+  "S04_last_week_runtime": {
+    "running_hours": 39.08,
+    "off_hours": 94.83,
+    "total_hours": 167.99,
+    "utilization_percent": 23.26,
+    "required_keywords": [
+      "上週",
+      "運轉",
+      "停機"
+    ]
+  },
+  "S05_this_week_status": {
+    "running_hours": 42.08,
+    "off_hours": 48.67,
+    "total_hours": 120.0,
+    "utilization_percent": 35.07,
+    "state_summary": {
+      "Idle": {
+        "count": 351,
+        "hours": 29.25,
+        "pct": 24.38,
+        "I_mean_avg": 7.705,
+        "Power_avg": 2.104,
+        "kVAh_rate_avg": 0.2454,
+        "confidence_avg": 0.9948
+      },
+      "Off": {
+        "count": 584,
+        "hours": 48.67,
+        "pct": 40.56,
+        "I_mean_avg": 0.0,
+        "Power_avg": 0.0,
+        "kVAh_rate_avg": 0.0005,
+        "confidence_avg": 1.0
+      },
+      "Running_High": {
+        "count": 361,
+        "hours": 30.08,
+        "pct": 25.07,
+        "I_mean_avg": 10.765,
+        "Power_avg": 3.044,
+        "kVAh_rate_avg": 0.344,
+        "confidence_avg": 0.9691
+      },
+      "Running_Low": {
+        "count": 144,
+        "hours": 12.0,
+        "pct": 10.0,
+        "I_mean_avg": 9.976,
+        "Power_avg": 2.65,
+        "kVAh_rate_avg": 0.291,
+        "confidence_avg": 0.9589
+      }
+    },
+    "required_keywords": [
+      "本週",
+      "狀態"
+    ]
+  },
+  "S06_next_week_power": {
+    "forecast_7d_increment": 81.38587577566705,
+    "forecast_7d_yhat": 8161.999875775667,
+    "required_keywords": [
+      "下週",
+      "耗電",
+      "預測"
+    ]
+  },
+  "S07_next_month_cost": {
+    "forecast_30d_increment": 129.10015263392233,
+    "forecast_30d_yhat": 8209.714152633922,
+    "rate": 4.0,
+    "estimated_30d_cost": 516.4,
+    "required_keywords": [
+      "下個月",
+      "電費",
+      "4"
+    ]
+  },
+  "S08_period_anomaly": {
+    "verdict": "NORMAL",
+    "rows": 184,
+    "anomaly_count": 0,
+    "anomaly_rate": 0.0,
+    "model_votes": {
+      "IsolationForest": 0,
+      "OneClassSVM": 0,
+      "Autoencoder": 1
+    },
+    "required_keywords": [
+      "異常",
+      "NORMAL"
+    ]
+  }
+}

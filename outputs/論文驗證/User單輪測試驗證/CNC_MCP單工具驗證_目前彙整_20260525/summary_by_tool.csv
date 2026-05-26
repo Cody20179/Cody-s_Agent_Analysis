@@ -1,0 +1,8 @@
+﻿cnc_mcp_tool_name,cnc_tool_layer,cases,successes,success_rate,avg_duration_ms,avg_loop_count,avg_thinking_duration_ms,avg_thinking_char_count,avg_answer_char_count
+tool_train_forecast,training,11,11,1.0,83679.9,2.0,49707.6,1467.7,443.4
+tool_data_status,data,11,11,1.0,54985.7,2.0,20107.4,789.9,649.9
+tool_train_anomaly_detection,training,11,11,1.0,48622.5,2.0,31668.3,900.1,612.5
+tool_check_anomaly,anomaly,11,11,1.0,46422.9,2.0,32581.4,1361.6,424.0
+tool_update_data,data,11,11,1.0,20906.7,2.0,13956.1,828.6,158.7
+tool_run_state_analysis,state,11,10,0.9091,69437.2,1.909,27300.7,1318.3,480.8
+tool_forecast_future,forecast,11,10,0.9091,56251.2,1.909,37835.9,2043.3,367.6

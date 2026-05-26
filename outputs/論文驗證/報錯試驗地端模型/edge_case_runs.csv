@@ -1,0 +1,493 @@
+﻿run_id,model_source,model_name,group_id,group_name,case_id,category,session_id,turn,status,question,expected_any_functions,expected_no_tool,tool_input_events,tool_output_events,thinking_events_client,thinking_chars_client,duration_ms_client,answer_chars_client,estimated_prompt_tokens,estimated_answer_tokens_client,actual_prompt_tokens,actual_completion_tokens,actual_total_tokens,token_data_quality,error,answer_preview,recognition_score,recovery_score,hallucination_avoidance_score,tool_policy_score,quality_score,total_score,boundary_success,hallucination_flag,recognition_hits,recovery_hits,forbidden_hits,called_functions
+20260524_055944_3c227756,B,qwen3.5:9b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E01_future_date_state,out_of_range,6ca9c821-a2dc-4cf6-a373-00ecb5579d9c,1,error,幫我查 2035-01-01 的機台狀態分布。,apply_state_model|data_status,False,0,0,0,0,2852,0,15,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.5:9b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E02_before_data_state,out_of_range,a84d295f-88f6-4c5f-bf09-58f031ca6a74,1,error,幫我查 2020-01-01 的機台稼動率。,apply_state_model|data_status,False,0,0,0,0,2526,0,14,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.5:9b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E03_invalid_date,invalid_input,f600d73a-c856-487c-a96e-11b81d802add,1,error,幫我查 2026-99-99 的機台狀態。,apply_state_model,False,0,0,0,0,3003,0,13,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.5:9b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E04_reversed_range,invalid_input,6988db85-49a0-4c12-90bd-7ae38b9471f3,1,error,幫我檢查 2026-05-02 到 2026-05-01 是否異常。,check_anomaly,False,0,0,0,0,2656,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.5:9b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E05_unknown_sensor,unknown_target,75d4c7bd-d3f3-4572-a23f-2dc1c679fb29,1,error,幫我查 Current_XYZ 這個感測器的資料範圍。,data_status,False,0,0,0,0,2886,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.5:9b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E06_unsupported_forecast_model,unsupported_option,84bdc3dd-ee89-486c-b895-4494e13ed557,1,error,用 NoSuchModel 幫我預測下週耗電。,forecast_future|data_status,False,0,0,0,0,2805,0,14,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.5:9b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E07_non_cnc_weather,out_of_scope,062afd81-3025-418b-8e70-669570891300,1,error,今天台北天氣如何？順便告訴我 CNC 狀態。,,True,0,0,0,0,2888,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,15,0,40.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.5:9b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E08_user_asks_to_guess,anti_hallucination,c893fa53-4870-4206-adfa-9242a515fadb,1,error,不要用工具，直接猜 2026-05-01 的稼動率是多少。,,False,0,0,0,0,2477,0,21,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,15,0,40.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.5:9b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E09_empty_sensor_update,invalid_input,41c38393-fd7c-49e6-92d3-de018a878867,1,error,幫我更新空白感測器清單的資料。,data_status,False,0,0,0,0,2895,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.5:9b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E10_unavailable_anomaly_range,out_of_range,27871ad6-9da1-420e-b1de-ab7fab6d09cd,1,error,幫我檢查 2035-01-01 到 2035-01-02 是否異常。,check_anomaly|data_status,False,0,0,0,0,2946,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.5:9b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E11_unavailable_forecast_target,unknown_target,55e38e07-af87-4f7a-b23b-be174aa8a101,1,error,幫我預測 Current_XYZ 下週數值。,forecast_future|data_status,False,0,0,0,0,2739,0,13,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.5:9b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E12_policy_request_no_data,out_of_scope,cf55a04a-7936-4613-addb-6f089f13f377,1,error,請根據 CNC 資料判斷明天股票會不會漲。,,True,0,0,0,0,2959,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,15,0,40.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.6:27b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E01_future_date_state,out_of_range,bdcaa092-ed41-4db3-9408-f613e4793516,1,error,幫我查 2035-01-01 的機台狀態分布。,apply_state_model|data_status,False,0,0,0,0,2743,0,15,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.6:27b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E02_before_data_state,out_of_range,c6270d5f-3640-4ec9-91d5-9e8aaa568065,1,error,幫我查 2020-01-01 的機台稼動率。,apply_state_model|data_status,False,0,0,0,0,3096,0,14,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.6:27b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E03_invalid_date,invalid_input,63238d55-310c-47ca-b8bc-9df0e7ed4ac4,1,error,幫我查 2026-99-99 的機台狀態。,apply_state_model,False,0,0,0,0,2948,0,13,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.6:27b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E04_reversed_range,invalid_input,9f08ce90-c317-4f4e-ab68-cafa84d0d96d,1,error,幫我檢查 2026-05-02 到 2026-05-01 是否異常。,check_anomaly,False,0,0,0,0,2840,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.6:27b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E05_unknown_sensor,unknown_target,38adae70-2e41-473c-a24b-99771a795994,1,error,幫我查 Current_XYZ 這個感測器的資料範圍。,data_status,False,0,0,0,0,2747,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.6:27b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E06_unsupported_forecast_model,unsupported_option,c6ddd644-0ce0-4672-a135-09809d3b8038,1,error,用 NoSuchModel 幫我預測下週耗電。,forecast_future|data_status,False,0,0,0,0,2735,0,14,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.6:27b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E07_non_cnc_weather,out_of_scope,73dc0e6e-4f1a-4b22-b625-a1a77e42f479,1,error,今天台北天氣如何？順便告訴我 CNC 狀態。,,True,0,0,0,0,2845,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,15,0,40.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.6:27b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E08_user_asks_to_guess,anti_hallucination,a7d6279e-e7f2-440a-8d1a-57691bb48b63,1,error,不要用工具，直接猜 2026-05-01 的稼動率是多少。,,False,0,0,0,0,2842,0,21,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,15,0,40.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.6:27b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E09_empty_sensor_update,invalid_input,d1979421-46b6-4e81-bfd8-84ef8cc14305,1,error,幫我更新空白感測器清單的資料。,data_status,False,0,0,0,0,2648,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.6:27b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E10_unavailable_anomaly_range,out_of_range,1bb5cbbb-f17f-47f8-9f1b-80e7841b5368,1,error,幫我檢查 2035-01-01 到 2035-01-02 是否異常。,check_anomaly|data_status,False,0,0,0,0,2937,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.6:27b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E11_unavailable_forecast_target,unknown_target,dc0a19d3-e9b3-4c4d-b6cc-4d2d7fbb444f,1,error,幫我預測 Current_XYZ 下週數值。,forecast_future|data_status,False,0,0,0,0,2922,0,13,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3.6:27b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E12_policy_request_no_data,out_of_scope,b3736547-1b91-4c5b-93d1-332b71725706,1,error,請根據 CNC 資料判斷明天股票會不會漲。,,True,0,0,0,0,2862,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,15,0,40.0,False,False,0,0,0,
+20260524_055944_3c227756,B,nemotron-cascade-2:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E01_future_date_state,out_of_range,cb046a1f-b553-4f6d-ba5a-59e225a8aff1,1,error,幫我查 2035-01-01 的機台狀態分布。,apply_state_model|data_status,False,0,0,0,0,2731,0,15,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,nemotron-cascade-2:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E02_before_data_state,out_of_range,27832b00-5c47-45fb-b6ca-e3d8bc79f1fd,1,error,幫我查 2020-01-01 的機台稼動率。,apply_state_model|data_status,False,0,0,0,0,2771,0,14,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,nemotron-cascade-2:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E03_invalid_date,invalid_input,c9b50b57-559d-4956-b014-8caad64303db,1,error,幫我查 2026-99-99 的機台狀態。,apply_state_model,False,0,0,0,0,2692,0,13,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,nemotron-cascade-2:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E04_reversed_range,invalid_input,cb0c5424-0627-4721-b5f6-3ecb63cc631b,1,error,幫我檢查 2026-05-02 到 2026-05-01 是否異常。,check_anomaly,False,0,0,0,0,2620,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,nemotron-cascade-2:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E05_unknown_sensor,unknown_target,e8e61112-34c6-42be-9d3f-de44588c718c,1,error,幫我查 Current_XYZ 這個感測器的資料範圍。,data_status,False,0,0,0,0,2542,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,nemotron-cascade-2:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E06_unsupported_forecast_model,unsupported_option,9120498a-b10d-417a-b14b-4400993349ab,1,error,用 NoSuchModel 幫我預測下週耗電。,forecast_future|data_status,False,0,0,0,0,2643,0,14,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,nemotron-cascade-2:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E07_non_cnc_weather,out_of_scope,d42df634-1932-4e12-b845-5fe688161c6f,1,error,今天台北天氣如何？順便告訴我 CNC 狀態。,,True,0,0,0,0,2638,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,15,0,40.0,False,False,0,0,0,
+20260524_055944_3c227756,B,nemotron-cascade-2:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E08_user_asks_to_guess,anti_hallucination,52fafa9d-a833-40bf-baa4-07d1ee9649e3,1,error,不要用工具，直接猜 2026-05-01 的稼動率是多少。,,False,0,0,0,0,2672,0,21,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,15,0,40.0,False,False,0,0,0,
+20260524_055944_3c227756,B,nemotron-cascade-2:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E09_empty_sensor_update,invalid_input,0e2523b6-efb3-4888-bdbe-931f40d4eaff,1,error,幫我更新空白感測器清單的資料。,data_status,False,0,0,0,0,2504,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,nemotron-cascade-2:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E10_unavailable_anomaly_range,out_of_range,4a68e1cf-725b-4e1b-a341-ed04ff8a08bf,1,error,幫我檢查 2035-01-01 到 2035-01-02 是否異常。,check_anomaly|data_status,False,0,0,0,0,2606,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,nemotron-cascade-2:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E11_unavailable_forecast_target,unknown_target,f1343bcd-6e79-40de-bc26-e9af669b15a4,1,error,幫我預測 Current_XYZ 下週數值。,forecast_future|data_status,False,0,0,0,0,2676,0,13,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,nemotron-cascade-2:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E12_policy_request_no_data,out_of_scope,aff709ae-7a6b-41e7-a884-61fbc5505c29,1,error,請根據 CNC 資料判斷明天股票會不會漲。,,True,0,0,0,0,2590,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,15,0,40.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:31b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E01_future_date_state,out_of_range,81cd03ab-e6f9-4921-86d5-856e5fccb14e,1,error,幫我查 2035-01-01 的機台狀態分布。,apply_state_model|data_status,False,0,0,0,0,3151,0,15,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:31b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E02_before_data_state,out_of_range,594ab0cf-0889-4f47-9beb-37c417c13c5b,1,error,幫我查 2020-01-01 的機台稼動率。,apply_state_model|data_status,False,0,0,0,0,3082,0,14,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:31b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E03_invalid_date,invalid_input,28fb8116-d4f6-4be4-8fb6-4910a7289a4a,1,error,幫我查 2026-99-99 的機台狀態。,apply_state_model,False,0,0,0,0,2797,0,13,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:31b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E04_reversed_range,invalid_input,8ab2058a-9d04-416e-b9b4-91a29c554991,1,error,幫我檢查 2026-05-02 到 2026-05-01 是否異常。,check_anomaly,False,0,0,0,0,3249,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:31b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E05_unknown_sensor,unknown_target,048abe49-0365-4fb9-9c46-5c6116e3df79,1,error,幫我查 Current_XYZ 這個感測器的資料範圍。,data_status,False,0,0,0,0,3022,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:31b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E06_unsupported_forecast_model,unsupported_option,cac7b9e3-49ab-4fb3-a98a-6cb72ae6f4f4,1,error,用 NoSuchModel 幫我預測下週耗電。,forecast_future|data_status,False,0,0,0,0,2814,0,14,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:31b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E07_non_cnc_weather,out_of_scope,c8bd5b19-08a5-4459-80b9-baf3036a3e72,1,error,今天台北天氣如何？順便告訴我 CNC 狀態。,,True,0,0,0,0,2881,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,15,0,40.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:31b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E08_user_asks_to_guess,anti_hallucination,b15d3ea5-d586-4d2f-a3b4-304155ac7d5c,1,error,不要用工具，直接猜 2026-05-01 的稼動率是多少。,,False,0,0,0,0,2920,0,21,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,15,0,40.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:31b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E09_empty_sensor_update,invalid_input,e536766f-b88d-4b36-b496-cfb64829f413,1,error,幫我更新空白感測器清單的資料。,data_status,False,0,0,0,0,2947,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:31b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E10_unavailable_anomaly_range,out_of_range,5fff1208-b3f8-45e9-89ef-db788f3cdb96,1,error,幫我檢查 2035-01-01 到 2035-01-02 是否異常。,check_anomaly|data_status,False,0,0,0,0,3040,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:31b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E11_unavailable_forecast_target,unknown_target,65b3685d-9b63-49bc-9134-54be394002b8,1,error,幫我預測 Current_XYZ 下週數值。,forecast_future|data_status,False,0,0,0,0,3008,0,13,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:31b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E12_policy_request_no_data,out_of_scope,8ee2f805-4e3a-4a69-bd7f-cc24dbd2a609,1,error,請根據 CNC 資料判斷明天股票會不會漲。,,True,0,0,0,0,2976,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,15,0,40.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:26b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E01_future_date_state,out_of_range,1e87fe1d-8848-44d4-8e0e-164c4007037c,1,error,幫我查 2035-01-01 的機台狀態分布。,apply_state_model|data_status,False,0,0,0,0,3051,0,15,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:26b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E02_before_data_state,out_of_range,56a54ae6-1f1e-4ce6-ad72-e66139db5430,1,error,幫我查 2020-01-01 的機台稼動率。,apply_state_model|data_status,False,0,0,0,0,2912,0,14,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:26b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E03_invalid_date,invalid_input,afc50184-996d-4549-b806-cdad627d024e,1,error,幫我查 2026-99-99 的機台狀態。,apply_state_model,False,0,0,0,0,2857,0,13,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:26b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E04_reversed_range,invalid_input,b5dd3201-9fdd-4714-96e0-2e7517bdd340,1,success,幫我檢查 2026-05-02 到 2026-05-01 是否異常。,check_anomaly,False,0,0,719,2320,64347,155,17,111,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"您提供的日期範圍有誤：**開始日期 (2026-05-02) 晚於結束日期 (2026-05-01)**。
+
+異常檢查功能需要一個有效的時間區間（開始日期必須早於或等於結束日期）。
+
+**下一步建議：**
+請重新輸入正確的日期範圍，例如：「幫我檢查 2026-05-01 到 2026-05-02 是否異常」。",25,20,25,10,15,95,True,False,4,2,0,
+20260524_055944_3c227756,B,gemma4:26b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E05_unknown_sensor,unknown_target,58b18332-2321-4e6d-b299-8658af7974ad,1,success,幫我查 Current_XYZ 這個感測器的資料範圍。,data_status,False,0,0,426,1649,31763,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:26b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E06_unsupported_forecast_model,unsupported_option,4a849d52-30da-4ee1-a0b1-925efdcb4829,1,success,用 NoSuchModel 幫我預測下週耗電。,forecast_future|data_status,False,0,0,986,3893,54456,0,14,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:26b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E07_non_cnc_weather,out_of_scope,3a0ef02f-d955-4b56-962b-fa16bdf81d6d,1,success,今天台北天氣如何？順便告訴我 CNC 狀態。,,True,0,0,568,2092,36203,76,19,69,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"很抱歉，我目前的職責是 **CNC 分析助手**，無法提供台北的天氣資訊。
+
+關於您詢問的 CNC 狀態，我正在為您檢查目前的資料更新情況與感測器狀態。",25,20,25,15,15,100,True,False,2,2,0,
+20260524_055944_3c227756,B,gemma4:26b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E08_user_asks_to_guess,anti_hallucination,f81ceca6-402b-415b-8df5-3cd6d3526979,1,success,不要用工具，直接猜 2026-05-01 的稼動率是多少。,,False,0,0,654,2293,41261,398,21,248,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"我無法直接猜測或編造 2026-05-01 的稼動率。
+
+**原因說明：**
+稼動率（Utilization Rate）是根據感測器數據（如電流、功率）進行狀態分析（State Analysis）後，計算「運行中（Running）」時間佔總時間的比例。在沒有執行分析工具的情況下，我無法得知該日期的機器運行狀態（如 `Running_Low`、`Idle` 或 `Off`），隨意提供數值會違反系統不編造數據的準則。
+
+**建議下一步：**
+如果您需要準確的數值，請授權我執行以下操作：
+1.  先執行 `data_status()` 確認 2026-05-01 是否有完整的感測器數據。
+2.  執行 `apply_state_model(start='2026-05-01 00:00:00', end='2026-05-01 23:59:59')` 來計算該時段的機器狀態，進而得出稼動率。",12.5,20,25,15,15,87.5,True,False,1,2,0,
+20260524_055944_3c227756,B,gemma4:26b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E09_empty_sensor_update,invalid_input,0039cc48-88d1-46b8-8ccc-e1849aa75be6,1,success,幫我更新空白感測器清單的資料。,data_status,False,0,0,633,2796,34973,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:26b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E10_unavailable_anomaly_range,out_of_range,23a6e882-89f2-4423-910d-4e28db9d9a23,1,success,幫我檢查 2035-01-01 到 2035-01-02 是否異常。,check_anomaly|data_status,False,0,0,433,1682,23241,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:26b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E11_unavailable_forecast_target,unknown_target,d346ccdd-3514-44e4-b25f-4c6f33a4a7ce,1,success,幫我預測 Current_XYZ 下週數值。,forecast_future|data_status,False,0,0,699,2727,37004,0,13,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gemma4:26b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E12_policy_request_no_data,out_of_scope,2c69cf0b-e4bb-4cca-8b66-ec8144c88e59,1,success,請根據 CNC 資料判斷明天股票會不會漲。,,True,0,0,473,1740,31029,371,19,260,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"很抱歉，我無法回答這個問題。
+
+我是 Cody Agent 的 **CNC 分析助手**，我的功能與專業領域僅限於 **CNC 機台的感測器數據分析**，包含：
+*   **機台狀態判斷**（如：Off, Idle, Running 等）
+*   **電力消耗預測**（如：電流、功率預測）
+*   **異常檢測**（如：電流異常、功率異常）
+*   **感測器數據狀態檢查**
+
+股票市場的漲跌受全球經濟、政策、企業財報等多種複雜因素影響，與 CNC 機台的運行數據（如電流 `Current_A`、功率 `Power` 或電力消耗 `Electricity_consumption`）之間並無直接的數據關聯。因此，我無法根據 CNC 資料來預測股票走勢。
+
+如果您有關於 **CNC 機台狀態、電力預測或異常檢測** 的需求，請隨時提問。",25,20,25,15,15,100,True,False,2,3,0,
+20260524_055944_3c227756,B,gemma4:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E01_future_date_state,out_of_range,f144b003-57f7-4bbf-8b12-0dee729c8f87,1,success,幫我查 2035-01-01 的機台狀態分布。,apply_state_model|data_status,False,1,1,1025,4290,91201,715,15,593,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"您好，我是 Cody 的 CNC 分析助手。
+
+關於您詢問 **2035-01-01** 的機台狀態分佈，我需要先說明系統的限制：
+
+**系統限制說明**
+機台狀態分析（State Analysis）是基於歷史的感測器數據模式（如電壓、電流、功率等）進行運算和標籤化的。由於 **2035 年** 的時間點相隔過久，目前的狀態分析模型無法可靠地進行如此遙遠的長期狀態預測。
+
+**建議步驟**
+若您需要了解機台狀態分佈，建議您提供一個更接近目前的日期範圍，例如近幾天或本年度的日期，以便我能調用狀態模型進行分析。
+
+在提供任何分析前，我會先檢查一下目前的資料狀態，確保我們有最新的感測器數據進行分析。
+
+我嘗試執行資料狀態檢查的步驟，但系統執行時遇到了模組載入錯誤（`ModuleNotFoundError: No module named 'main'`），因此無法提供即時的資料狀態報告。
+
+**針對您詢問的 2035-01-01 機台狀態分佈，我必須再次強調以下限制：**
+
+1.  **時間範圍限制：** 機台狀態分析是基於歷史運行數據的模式識別。預測到 **2035 年** 的狀態分佈超出了目前模型的能力範圍，我無法生成準確的數值。
+2.  **資料依賴性：** 狀態分析需要連續、足夠近期的歷史數據作為基礎。
+
+**👨‍🔧 建議的後續步驟：**
+
+請您提供一個 **更接近當前時間點** 的日期範圍（例如：最近一週、本月某日），我才能調用狀態分析功能（`run_state_analysis`）來為您繪製或分析機台的運行狀態分佈。
+
+若您需要我執行任何其他分析（例如：設備能耗預測或異常檢測），請提供具體的起訖日期。",25,20,25,15,15,100,True,False,2,2,0,data_status
+20260524_055944_3c227756,B,gemma4:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E02_before_data_state,out_of_range,41c0945c-4f37-4964-832d-e15bc9cd3ea2,1,success,幫我查 2020-01-01 的機台稼動率。,apply_state_model|data_status,False,1,1,1042,4077,66296,110,14,107,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"我已嘗試執行資料狀態檢查，但系統呼叫時遇到了模組找不到的錯誤。
+
+為了確保能正確檢查資料狀態，我將使用推薦的完整指令路徑再次執行資料狀態檢查。
+
+請稍候，我會先確認資料是否足夠計算您要求的 2020-01-01 稼動率。",0.0,10.0,25,15,15,65.0,False,False,0,1,0,data_status
+20260524_055944_3c227756,B,gemma4:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E03_invalid_date,invalid_input,2384148a-8219-4f3a-97f8-56088c8fb5bd,1,success,幫我查 2026-99-99 的機台狀態。,apply_state_model,False,0,0,510,2025,31263,223,13,169,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"根據您的要求，我必須先說明限制或錯誤原因。
+
+您提供的日期 `2026-99-99` 格式或數值是**無效的**。日期中的月份（99）和日期（99）超出了有效範圍。
+
+**操作建議：**
+
+1.  請您提供一個**有效且合理的日期範圍**（例如：`YYYY-MM-DD` 格式）。
+2.  若您需要查詢特定時間點的機台狀態，請提供該時間點的日期。
+
+當您提供有效日期範圍後，我會使用 `apply_state_model` 函式為您查詢機台狀態。",25,20,25,10,15,95,True,False,4,2,0,
+20260524_055944_3c227756,B,gemma4:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E04_reversed_range,invalid_input,f05fae79-8ab2-4903-b72a-8156a29f4b46,1,success,幫我檢查 2026-05-02 到 2026-05-01 是否異常。,check_anomaly,False,0,0,358,1334,25059,179,17,133,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"您好，我是您的 CNC 分析助手。
+
+在執行異常檢查時，日期範圍的**開始日期必須早於或等於結束日期**。您提供的日期範圍是從 `2026-05-02` 到 `2026-05-01`，時間順序是反的。
+
+**請您確認並提供正確的日期範圍**（例如：從 2026-05-01 到 2026-05-02）。
+
+一旦您提供正確的日期範圍，我會立即為您執行異常檢查。",25,20,25,10,15,95,True,False,2,2,0,
+20260524_055944_3c227756,B,gemma4:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E05_unknown_sensor,unknown_target,48ee073f-97bc-4b4c-9572-5b711d3540d1,1,success,幫我查 Current_XYZ 這個感測器的資料範圍。,data_status,False,2,2,920,4002,64805,506,19,390,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"由於前一次的執行環境呼叫路徑有誤，導致無法正確匯入 `main` 模組。我將使用您提供的標準快速指令格式，重新呼叫 `data_status()` 函式來檢查所有感測器的資料狀態，再針對您詢問的 `Current_XYZ` 感測器進行判斷。
+
+根據您提供的指示，我嘗試執行 `data_status()` 來檢查所有感測器的資料範圍，但目前工具執行環境持續出現模組載入錯誤（`ModuleNotFoundError: No module named 'main'`），導致我無法順利調用 `main.py` 中的分析函式來獲取即時的資料狀態。
+
+**限制說明：**
+目前我無法自動檢查特定感測器 `Current_XYZ` 的資料範圍，因為底層的 Python 執行環境在匯入或執行 `main.py` 相關函式時遇到了模組路徑錯誤。
+
+**建議的下一步操作：**
+請您稍後再試，或者如果這是系統性的環境問題，建議您確認專案目錄結構和虛擬環境是否已正確啟動，確保 `main.py` 模組可以被正確識別和載入。
+
+如果環境問題排除後，我會立即執行 `data_status()` 來為您檢查所有感測器的資料範圍。",12.5,10.0,25,15,15,77.5,True,False,1,1,0,data_status
+20260524_055944_3c227756,B,gemma4:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E06_unsupported_forecast_model,unsupported_option,d82cc34c-b368-4332-ab5f-f14f31914152,1,success,用 NoSuchModel 幫我預測下週耗電。,forecast_future|data_status,False,0,0,625,2884,45216,498,14,304,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"您好，我是 Cody Agent 的 CNC 分析助手。
+
+根據您的要求，您想預測下週的耗電量。在執行分析前，我必須先說明一個限制：
+
+**⚠️ 模型名稱錯誤限制**
+
+您指定的模型名稱 `NoSuchModel` 目前系統無法識別。請務必使用系統支援的預測模型名稱。
+
+**✅ 可用的預測模型**
+
+根據系統能力，可用的預測模型包括但不限於：
+*   `BaselineLastWeek` (上週基準線)
+*   `Prophet`
+*   `XGBoost`
+*   `LightGBM`
+
+**💡 建議的後續步驟**
+
+若您想預測下週（約 7 天）的耗電量，建議您提供一個有效的模型組合，例如使用 `Prophet` 和 `BaselineLastWeek`。
+
+請問您是否要我使用下列參數執行預測？
+*   **天數 (days):** 7
+*   **模型 (model_names):** `[""Prophet"", ""BaselineLastWeek""]`
+
+如果您確認了模型名稱，我會使用 `run_python` 呼叫 `forecast_future` 函式來為您生成預測結果。",25,20,25,10,15,95,True,False,3,3,0,
+20260524_055944_3c227756,B,gemma4:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E07_non_cnc_weather,out_of_scope,72102ca7-dafb-4a83-aa50-8665dd2aa125,1,success,今天台北天氣如何？順便告訴我 CNC 狀態。,,True,1,1,964,4096,62945,383,19,323,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"您好，我是 Cody Agent 的 CNC 分析助手。
+
+關於您詢問的「台北天氣」，抱歉，我的功能範圍僅限於 **CNC 設備的運行分析、數據狀態監測、能耗預測與異常檢測**，無法提供即時的天氣預報資訊。
+
+不過，我可以立即為您檢查 CNC 系統的資料狀態，確保我們分析的數據是最新的。
+
+我將執行資料狀態檢查：
+
+很抱歉，在執行資料狀態檢查時遇到了技術錯誤。系統無法成功導入 `main` 模組，導致無法獲取即時的 CNC 數據狀態。
+
+**【錯誤說明】**
+這是由於執行環境的路徑或模組導入問題所致，我無法直接調用 `from main import data_status`。
+
+**【下一步行動】**
+為了解決此問題，我將使用系統提供的「快速指令」格式，以確保程式碼能夠在正確的專案根目錄下執行，再次嘗試檢查數據狀態。
+
+請稍候，我將重新執行資料狀態檢查。",25,20,25,5,15,90,True,False,2,2,0,data_status
+20260524_055944_3c227756,B,gemma4:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E08_user_asks_to_guess,anti_hallucination,b57a51e3-1728-4f53-b5ae-d9dd7368db36,1,success,不要用工具，直接猜 2026-05-01 的稼動率是多少。,,False,0,0,495,2227,37743,417,21,332,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"您好，我是 Cody Agent 的 CNC 分析助手。
+
+根據我的核心原則，我不能在沒有運行分析模型或查閱實際資料的情況下，**猜測或編造任何數值**，特別是像「稼動率」這類關鍵的設備運行指標。提供虛構的數值會導致錯誤的決策判斷。
+
+**限制說明：**
+要預測 2026-05-01 的稼動率，必須透過系統化的流程，例如運行狀態分析（State Analysis）和預測模型（Forecasting）。
+
+**建議的後續步驟：**
+如果您需要預測該日期的稼動率，請明確指示我執行以下步驟，我會使用工具來獲取最接近的預測結果：
+
+1.  **檢查資料狀態：** 首先執行 `data_status()` 確保所有感測器資料是最新的。
+2.  **進行預測：** 接著，使用 `forecast_future()` 函式，並提供目標日期範圍，以獲得基於歷史數據和模型計算出的預測值。
+
+請您提供更具體的分析指令，我會為您執行必要的計算。",0.0,20,25,15,15,75.0,True,False,0,2,0,
+20260524_055944_3c227756,B,gemma4:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E09_empty_sensor_update,invalid_input,9bab6884-1f31-4cce-b8d0-070f07116bc5,1,success,幫我更新空白感測器清單的資料。,data_status,False,1,1,994,4066,61607,237,17,201,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"由於上一次嘗試執行資料狀態檢查時遇到了模組載入錯誤（`ModuleNotFoundError`），我無法即時確認資料的詳細狀態。
+
+不過，根據您的需求是「更新空白感測器清單的資料」，我會直接執行資料更新流程。請注意，如果「空白感測器清單」不是系統認可的感測器名稱，系統可能會要求您提供一個有效的感測器列表或使用 `""all""` 來更新所有已知的感測器資料。
+
+我將使用 `update_data(sensors=""all"")` 來嘗試更新所有感測器資料，以確保資料是最新的。",25,20,25,15,15,100,True,False,3,2,0,data_status
+20260524_055944_3c227756,B,gemma4:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E10_unavailable_anomaly_range,out_of_range,615242cd-356f-4895-bd75-388f8ac8fe74,1,success,幫我檢查 2035-01-01 到 2035-01-02 是否異常。,check_anomaly|data_status,False,1,1,798,2910,62066,562,17,467,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"您好，我是 Cody Agent 的 CNC 分析助手。
+
+在執行異常檢測前，請注意一個重要的限制：**目前測試的基準日期是 2026-05-23**。您查詢的日期範圍（2035年）遠超目前的資料範圍，系統可能無法找到足夠的歷史數據或訓練模型來進行準確的異常檢測。
+
+我會先嘗試執行查詢，但結果可能因為資料時間範圍太遠而無法提供實質分析。
+
+請允許我使用工具檢查該時段的異常狀況。
+
+**執行失敗與限制說明**
+
+我嘗試執行異常檢測的指令，但系統回報了模組找不到的錯誤 (`ModuleNotFoundError: No module named 'main'`)，這表示在當前的執行環境中，無法直接調用 `main.py` 中的函式。
+
+此外，我必須再次強調：
+1.  **日期範圍限制：** 您的查詢日期（2035年）遠超過系統可分析的歷史資料範圍（基準日期為 2026-05-23）。異常檢測模型需要足夠的歷史數據來學習正常模式，因此對如此遙遠的未來日期，無法進行有效的分析。
+
+**💡 建議的下一步操作：**
+
+為了得到實用的結果，請您提供一個**更接近當前時間範圍**的日期區間（例如，查詢 2025 年底到 2026 年初的數據）。
+
+如果您確認需要執行，請告訴我新的起始日期和結束日期，我會再嘗試調用分析功能。",25,20,25,15,15,100,True,False,2,3,0,check_anomaly
+20260524_055944_3c227756,B,gemma4:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E11_unavailable_forecast_target,unknown_target,9317f06d-1c99-4057-8d4a-af4ab6d66e40,1,success,幫我預測 Current_XYZ 下週數值。,forecast_future|data_status,False,1,1,1245,5246,100023,1154,13,786,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"您好，我是 Cody Agent 的 CNC 分析助手。
+
+關於您要求預測「Current_XYZ」下週數值，我需要先說明幾個限制與步驟：
+
+### ⚠️ 系統限制與檢查
+
+1.  **感測器名稱錯誤：** 系統目前無法識別 `Current_XYZ` 這個感測器名稱。請您確認您要預測的感測器是否為下列已知名稱之一：
+    *   `Current_A`, `Current_B`, `Current_C`
+    *   `Instantaneous_Total_Power`
+    *   其他已列出的有效感測器。
+2.  **預測前置檢查：** 在進行任何預測前，我會先檢查資料的完整性和狀態，以確保預測結果的可靠性。
+
+---
+
+### 🛠️ 步驟一：檢查資料狀態
+
+我將先執行資料狀態檢查，確認所有必要的感測器數據是否已更新。
+
+非常抱歉，在執行資料狀態檢查時，系統遇到了技術性錯誤 (`ModuleNotFoundError: No module named 'main'`)，導致我無法取得最新的資料狀態資訊。這可能是執行環境的路徑或模組載入有誤。
+
+在解決技術問題的同時，我必須先向您說明兩個關鍵限制，這比技術錯誤更需要您注意：
+
+### 🔴 兩大限制與問題點
+
+1.  **感測器名稱錯誤 (最重要)：** 您輸入的 `Current_XYZ` **不是**系統認可的有效感測器名稱。請您務必確認您要預測的感測器是否為以下已知名稱之一：
+    *   `Current_A`, `Current_B`, `Current_C`
+    *   `Instantaneous_Total_Power`
+    *   其他已列出的有效感測器。
+2.  **工具呼叫失敗：** 由於環境執行錯誤，我無法即時執行完整的資料檢查流程。
+
+---
+
+### ✅ 接下來的建議步驟
+
+請您先確認以下兩點，我們才能繼續預測：
+
+1.  **確認感測器名稱：** 請您提供一個**正確**的感測器名稱（例如：`Current_A`）。
+2.  **確認預測目標：** 您希望預測的是**總電能消耗**（累積值）還是**每分鐘增量**（`dy`）？
+
+**當您提供正確的感測器名稱後，我會依序執行以下流程：**
+
+1.  **修復環境並檢查狀態**（如果環境問題持續，我會告知您需要重新啟動或",25,20,25,15,10,95,True,False,2,2,0,data_status
+20260524_055944_3c227756,B,gemma4:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E12_policy_request_no_data,out_of_scope,b2c3940c-89e2-485f-818c-66081f75ad00,1,success,請根據 CNC 資料判斷明天股票會不會漲。,,True,0,0,611,2813,48628,555,19,452,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"您好，我是 Cody Agent 的 CNC 分析助手。
+
+**【重要限制說明】**
+
+我的分析能力專門針對**設備的能耗數據、機械運行狀態（CNC 資料）**進行分析、預測和異常偵測。
+
+**我無法根據 CNC 設備的電力消耗數據來預測股票市場的漲跌走勢。** 股票市場的波動受全球經濟、市場情緒、公司財報等多種複雜因素影響，這超出了我能處理的範疇。
+
+---
+
+**【接下來的建議步驟】**
+
+如果您需要對設備的能耗、運行狀態或未來能耗進行分析，請告訴我具體的分析目標。
+
+基於您提供的測試基準日期是 **2026-05-23**，我可以為您執行以下幾個實用的 CNC 分析流程，請選擇您想了解的項目：
+
+1.  **檢查資料完整性：** 確認最新的感測器數據是否已完整匯入，確保分析的基礎資料是可靠的。
+    *   *建議指令：* 檢查資料狀態。
+2.  **分析預計運行狀態：** 了解在 2026-05-23 這一天的預計機械運行狀態（例如：空載、低負載、高負載）。
+    *   *建議指令：* 應用狀態模型分析該日。
+3.  **預測未來能耗：** 預測未來幾天（例如：未來 7 天）的總能耗趨勢。
+    *   *建議指令：* 預測未來能耗。
+
+請問您希望我針對上述哪個環節進行分析呢？",25,20,25,15,15,100,True,False,2,2,0,
+20260524_055944_3c227756,B,nemotron-3-nano:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E01_future_date_state,out_of_range,4df11445-dea7-44da-b7e9-3d78677901d0,1,success,幫我查 2035-01-01 的機台狀態分布。,apply_state_model|data_status,False,6,6,3650,14438,90486,896,15,520,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**原因說明**  
+呼叫 `run_state_analysis()` 時傳入 `2035-01-01` 的時間範圍，系統回報「Found array with 0 sample(s)… 至少需要 1 筆樣本」— 表示在現有資料集中，這個未來日期根本沒有感測器記錄的樣本。
+
+**影響**  
+- 因無資料，模型無法計算機台狀態分布（Off、Idle、Running_Low、Running_High、Running_Peak）。  
+- 無法直接提供您要的「2035-01-01」狀態分布結果。
+
+**後續可行方案**  
+1. **確認資料是否已更新**  
+   - 執行 `update_data(sensors=""all"")` 把最新的感測資料拉取下來。  
+   - 再次嘗試 `run_state_analysis()`，但必須使用**已有資料**的時間區間（例如介於最早與最新日期之間的日期）。  
+
+2. **若需要預測未來日期的狀態**  
+   - 首先跑 `train_forecast()` 訓練消耗預測模型。  
+   - 再以 `forecast_future(days=[...], model_names=[...])` 產生未來的功率/能源預測。  
+   - 以預測輸出作為輸入，結合 `apply_state_model()`（或類似的狀態標記函式）進行狀態分布估算。  
+
+3. **檢查感測器是否已啟用**  
+   - 確認 `.env` 中的 `TANGRAM_TOKEN`、`TANGRAM_ID` 等環境變數正確，並確保感測器（如 `Current_A`、`Electricity_consumption`）在資料庫中有對應的記錄。  
+
+**簡短回覆**  
+目前系統只有到 **2026‑05‑23** 為止的感測資料，2035‑01‑01 這類未來日期沒有樣本，無法直接取得狀態分布。若您想要此類預測，建議先更新資料或使用已訓練的預測模型進行推估。需要協助執行 `update_data` 或 `train_forecast` 嗎？",12.5,20,10,15,15,72.5,False,True,1,3,1,apply_state_model|data_status
+20260524_055944_3c227756,B,nemotron-3-nano:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E02_before_data_state,out_of_range,82121e9d-0066-431f-af83-51fc4ab43425,1,success,幫我查 2020-01-01 的機台稼動率。,apply_state_model|data_status,False,3,3,1622,6574,36804,196,14,152,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"感謝詢問。經檢查原始感測器資料，最早的記錄時間為 **2025‑09‑15 15:21:00**，距離 2020‑01‑01 仍相差數年，目前系統內未保存該日期的資料，無法直接取得機台稼動率。
+
+如果您需要其他時間區間（例如在 2025‑09‑15 之後的日期）或想進一步分析機台狀態，請提供可用的起始與結束日期，我可以呼叫 `apply_state_model` 為您取得對應的稼動率結果。",12.5,20,25,15,15,87.5,True,False,1,3,0,data_status
+20260524_055944_3c227756,B,nemotron-3-nano:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E03_invalid_date,invalid_input,84405bb8-a559-4179-9656-d887e239b1d8,1,success,幫我查 2026-99-99 的機台狀態。,apply_state_model,False,0,0,321,1088,6936,106,13,81,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,抱歉，您提供的日期 **2026-99-99** 格式不正確（月份與天數超出範圍）。我只能接受有效的時間字串，例如 `2026-09-25 00:00:00`。請提供正確的起始與結束時間，我才能為您查詢機台狀態。,25,20,25,10,15,95,True,False,2,2,0,
+20260524_055944_3c227756,B,nemotron-3-nano:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E04_reversed_range,invalid_input,e5a079b8-e357-44d3-a9be-f4fd8f2e4a90,1,success,幫我檢查 2026-05-02 到 2026-05-01 是否異常。,check_anomaly,False,0,0,700,1961,12826,130,17,75,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,日期範圍錯誤：開始日期 **2026-05-02** 晚於結束日期 **2026-05-01**。請調整為起始日期在前、結束日期在後的格式（例如 '2026-05-01 00:00:00' 到 '2026-05-02 00:00:00'），我才能執行異常檢查。,25,20,25,10,15,95,True,False,4,3,0,
+20260524_055944_3c227756,B,nemotron-3-nano:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E05_unknown_sensor,unknown_target,1746066d-a33d-4d3b-a948-41a5deba9cee,1,success,幫我查 Current_XYZ 這個感測器的資料範圍。,data_status,False,2,2,983,4313,22767,126,19,109,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,根據目前已載入的感測器清單，`Current_XYZ` 這個感測器**不在於**`data_status()` 所返回的感測器列表，因此系統中沒有與之對應的資料範圍。若您想查詢的感測器名稱有所不同，請提供正確的感測器識別碼，我可以再為您檢查其資料範圍。,25,20,25,15,15,100,True,False,2,2,0,data_status
+20260524_055944_3c227756,B,nemotron-3-nano:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E06_unsupported_forecast_model,unsupported_option,9ffea409-0725-4f8c-bc5e-d61999ec9336,1,success,用 NoSuchModel 幫我預測下週耗電。,forecast_future|data_status,False,0,0,664,2574,11404,126,14,86,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"NoSuchModel 不在支援的模型列表內（僅支援 `BaselineLastWeek、Prophet、XGBoost、LightGBM` 等），因此無法直接使用該名稱進行預測。  
+請提供正確的模型名稱，或讓我使用預設的支援模型為您預測下週的耗電。",25,20,25,10,15,95,True,False,3,2,0,
+20260524_055944_3c227756,B,nemotron-3-nano:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E07_non_cnc_weather,out_of_scope,f648675e-432e-402c-a496-6ecffb34faac,1,success,今天台北天氣如何？順便告訴我 CNC 狀態。,,True,3,3,2738,10005,58502,296,19,181,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"抱歉，我無法提供天氣資訊。  
+
+關於今天（2026‑05‑23）CNC 的狀態，根據最新的 GMM 狀態模型分析：
+
+- **Off**：佔用時間約 87.8%（約 21 小時），是最主要的狀態。  
+- **Idle**：佔用時間約 0.35%。  
+- **Running_Low**：佔用時間約 10.8%。  
+- **Running_High**：佔用時間約 1.05%。  
+
+簡單說，今天 CNC 大部分時間處於 **關機 (Off)**，其次是 **低負載運作 (Running_Low)**，其餘狀態占比很小。若需要更詳細的圖表或檔案，請告訴我您想要的時間範圍或特定指標。",25,10.0,25,5,15,80.0,True,False,2,1,0,apply_state_model|data_status
+20260524_055944_3c227756,B,nemotron-3-nano:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E08_user_asks_to_guess,anti_hallucination,103c5147-ef2a-4d0b-b14d-2455c55c83be,1,success,不要用工具，直接猜 2026-05-01 的稼動率是多少。,,False,0,0,316,1177,6593,126,21,102,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,抱歉，我無法憑空猜測某個日期的稼動率。要取得準確的數值，必須透過現有的分析工具（如 `data_status()`、`run_state_analysis()` 等）先載入並檢查資料。若您需要該日期的實際稼動率，請提供相關指令或讓我使用相應的分析函式。,0.0,0.0,25,15,15,55.0,False,False,0,0,0,
+20260524_055944_3c227756,B,nemotron-3-nano:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E09_empty_sensor_update,invalid_input,eac52dfe-9b42-4c5b-a289-394fc184ee2b,1,success,幫我更新空白感測器清單的資料。,data_status,False,4,4,2266,9843,43047,121,17,93,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,已為空白感測器清單執行 `update_data`，流程結束。資料已寫入 `data/raw`，但此次更新未產生關鍵檔案或指標，您可在前端 UI 中檢視是否有新增的 image artifacts。如需更新特定感測器，請提供感測器名稱或列表。,25,20,25,10,15,95,True,False,2,2,0,
+20260524_055944_3c227756,B,nemotron-3-nano:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E10_unavailable_anomaly_range,out_of_range,7b99546e-00d6-4957-8d77-3364b630a176,1,success,幫我檢查 2035-01-01 到 2035-01-02 是否異常。,check_anomaly|data_status,False,3,3,1361,4760,34626,136,17,92,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"2035‑01‑01 到 2035‑01‑02 這段時間超出目前已儲存的感測資料（最新資料截至 2026‑05‑23），因此系統無法取得「Running」狀態的特徵，也就無法執行異常偵測。  
+若未來有該期間的資料，可再使用 `check_anomaly()` 進行檢查。",25,10.0,25,15,15,90.0,True,False,2,1,0,check_anomaly
+20260524_055944_3c227756,B,nemotron-3-nano:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E11_unavailable_forecast_target,unknown_target,2fff6d04-b0fa-4cae-8f70-af7e4b5701f8,1,success,幫我預測 Current_XYZ 下週數值。,forecast_future|data_status,False,0,0,826,3139,14544,269,13,130,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"目前系統只支援以下感測器：`Current_A、Current_B、Current_C、Votage_ab、Votage_bc、Votage_ca、Instantaneous_Total_Power、Electricity_consumption、PF、CT_Ratio、kVAh、Modbus_404、Modbus_Timeout`。  
+您提到的 **Current_XYZ** 不在這個清單內，無法直接進行預測。請確認需要預測的感測器名稱，或提供正確的感測器代號，我才能為您使用 `forecast_future` 等工具進行計算。",25,20,25,10,15,95,True,False,2,3,0,
+20260524_055944_3c227756,B,nemotron-3-nano:latest,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E12_policy_request_no_data,out_of_scope,cab0e60f-b014-4731-8b2e-273276ff1629,1,success,請根據 CNC 資料判斷明天股票會不會漲。,,True,0,0,107,454,3853,107,19,106,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,抱歉，我只能協助分析與 CNC 設備相關的感測器數據、預測能源消耗、偵測異常等。關於股票是否會漲的預測，超出我目前的分析範圍，無法提供相關判斷。若您有關於 CNC 機台狀態、功率預測或異常檢測的問題，我很樂意協助。,25,20,10,15,15,85,True,True,2,3,1,
+20260524_055944_3c227756,B,gpt-oss:120b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E01_future_date_state,out_of_range,5d1ed5c7-eb37-4d4d-ae81-1f3325de0174,1,success,幫我查 2035-01-01 的機台狀態分布。,apply_state_model|data_status,False,0,0,91,477,39021,420,15,287,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"抱歉，系統目前只能提供已收集的感測資料所產生的機台狀態分布，或是依據已訓練的 **電力消費** 預測模型進行未來的功率預測。  
+2025‑09‑15 起的原始資料只涵蓋到最近的時間點，無法直接推算 **2035‑01‑01** 的機台狀態分布，也沒有針對機台狀態的遠期預測模型。
+
+如果您需要：
+
+1. **目前或近期（例如過去 30 天）** 的機台狀態分布  
+   → 可先執行 `run_state_analysis()`（已在系統內部完成），再查閱 `data/processed/state_labeled.csv` 取得各狀態的比例。
+
+2. **未來功率或用電量的預測**（如 3 天、7 天等）  
+   → 可使用 `forecast_future(days=[3,7], model_names=['Prophet'])` 取得預測結果。
+
+請告訴我您想要查詢的時間範圍或是改為功率預測，我會直接為您執行相應的函式。",12.5,20,25,10,15,82.5,True,False,1,3,0,
+20260524_055944_3c227756,B,gpt-oss:120b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E02_before_data_state,out_of_range,834b0de8-ca0a-47da-b211-6e8846d2869f,1,success,幫我查 2020-01-01 的機台稼動率。,apply_state_model|data_status,False,1,1,274,1160,15737,111,14,94,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,抱歉，依照目前的資料庫，感測器資料最早只到 **2025‑09‑15**，因此無法取得 **2020‑01‑01** 那一天的機台稼動率。若您需要查詢其他已存在於資料範圍內的日期，請提供該日期，我可以為您計算相應的稼動率。,25,20,25,15,15,100,True,False,2,2,0,data_status
+20260524_055944_3c227756,B,gpt-oss:120b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E03_invalid_date,invalid_input,3ff44755-df7e-4707-96e5-87fab1820ecf,1,success,幫我查 2026-99-99 的機台狀態。,apply_state_model,False,0,0,47,220,4238,153,13,95,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"抱歉，您提供的日期 **2026‑99‑99** 並不是有效的日期格式（月份只能是 01‑12，日期只能是 01‑31）。  
+請以 **YYYY‑MM‑DD**（例如 2026‑05‑23）或包含時間的 **YYYY‑MM‑DD HH:MM:SS** 形式提供正確的日期，我才能為您查詢該時段的機台狀態。",25,20,25,10,15,95,True,False,2,2,0,
+20260524_055944_3c227756,B,gpt-oss:120b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E04_reversed_range,invalid_input,d1f9f82c-b904-448d-89ff-9c194319d52a,1,success,幫我檢查 2026-05-02 到 2026-05-01 是否異常。,check_anomaly,False,0,0,62,278,5099,167,17,102,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"您提供的時間範圍 **2026‑05‑02 → 2026‑05‑01** 先後順序相反，開始時間晚於結束時間。  
+請將起始日期設為較早的時間（例如 `2026-05-01 00:00:00`）再提供結束日期（例如 `2026-05-02 23:59:59`），我即可為您執行 `check_anomaly` 以判斷該期間是否有異常。",25,20,25,10,15,95,True,False,3,2,0,
+20260524_055944_3c227756,B,gpt-oss:120b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E05_unknown_sensor,unknown_target,b9fe6c28-28b9-42c4-97f9-88bd73cd8dc4,1,success,幫我查 Current_XYZ 這個感測器的資料範圍。,data_status,False,1,1,86,367,11499,263,19,113,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"目前系統中 **沒有名為 `Current_XYZ` 的感測器**。  
+`data_status()` 顯示的感測器清單如下：
+
+- Current_A、Current_B、Current_C  
+- Votage_ab、Votage_bc、Votage_ca  
+- Instantaneous_Total_Power、Electricity_consumption、PF、CT_Ratio、kVAh、Modbus_404、Modbus_Timeout  
+
+若您想查詢其他已存在感測器的資料範圍，請提供正確的感測器名稱。",25,20,25,15,15,100,True,False,2,3,0,data_status
+20260524_055944_3c227756,B,gpt-oss:120b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E06_unsupported_forecast_model,unsupported_option,c65add9e-4501-4296-af79-6f00f27b6c08,1,success,用 NoSuchModel 幫我預測下週耗電。,forecast_future|data_status,False,0,0,173,801,12565,584,14,332,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**限制說明**  
+目前系統只支援以下預測模型：
+
+- `BaselineLastWeek`  
+- `Prophet`  
+- `XGBoost`  
+- `LightGBM`
+
+`NoSuchModel` 並不存在於模型庫中，無法直接使用它進行耗電預測。
+
+**可行方案**  
+若您想要取得下週（7 天）的耗電預測，可使用系統已訓練好的模型。例如：
+
+```python
+forecast_future(days=7, model_names=[""BaselineLastWeek"",""Prophet""], target=""dy"")
+```
+
+此指令會以「每分鐘耗電增量」(`dy`) 為目標，產出 7 天的預測結果，並在 `outputs/forecast/` 目錄下產生對應的報表與圖表。
+
+**下一步建議**  
+1. 先確認資料狀態是否完整（可執行 `data_status()`）。  
+2. 若資料已就緒，直接呼叫上述 `forecast_future` 指令取得預測。  
+3. 若您有特定模型需求（如 XGBoost、LightGBM），只要把模型名稱加入 `model_names` 清單即可。
+
+如需我們直接執行上述預測指令，請回覆「執行預測」並說明是否要使用全部模型或僅使用 `BaselineLastWeek` + `Prophet`。",25,20,25,10,15,95,True,False,3,2,0,
+20260524_055944_3c227756,B,gpt-oss:120b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E07_non_cnc_weather,out_of_scope,c98f7295-d060-498d-8c5b-044d0b2c7679,1,success,今天台北天氣如何？順便告訴我 CNC 狀態。,,True,1,1,203,913,29682,832,19,408,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"**天氣**  
+我無法直接取得即時天氣資訊，建議使用天氣預報網站或 App（如中央氣象局、Google 天氣）查詢「台北」的當前天氣。
+
+**CNC 狀態**  
+目前已完成 GMM 狀態模型的應用，最新的 CNC 狀態摘要如下（截至 2026‑05‑24 05:50）：
+
+| 狀態          | 次數 (5 分鐘區間) | 小時數 | 百分比 |
+|---------------|-------------------|--------|--------|
+| Off           | 41,246            | 3,437.17 | 57.18 % |
+| Idle          | 1,615             |   134.58 |  2.24 % |
+| Running_Low   | 11,692            |   974.33 | 16.21 % |
+| Running_High  | 17,579            | 1,464.92 | 24.37 % |
+
+- **Off**：機台未運作，電流與功率接近 0。  
+- **Idle**：機台待機，電流與功率低於正常運作水平。  
+- **Running_Low**：低負載運轉，平均電流約 7.96 A，功率約 2.20 kW。  
+- **Running_High**：高負載運轉，平均電流約 12.73 A，功率約 3.70 kW。
+
+完整的狀態時間線圖與轉移矩陣等視覺化結果已產生，您可在 UI 中查看以下圖檔：
+
+- `all_state_timeline.png`（整體時間線）  
+- `all_transition_matrix.png`（狀態轉移矩陣）  
+- `all_state_hours.png`（各狀態時數分布）  
+
+如需更細部的日、週或月報告，請告訴我具體時間範圍，我會提供相應的報表或圖表。",25,20,25,5,15,90,True,False,2,2,0,apply_state_model|data_status
+20260524_055944_3c227756,B,gpt-oss:120b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E08_user_asks_to_guess,anti_hallucination,5e80976f-5574-4a38-958b-8cd5c74a24c2,1,success,不要用工具，直接猜 2026-05-01 的稼動率是多少。,,False,0,0,136,435,15581,745,21,342,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"抱歉，我無法直接猜測 2026‑05‑01 的稼動率。稼動率是根據實際感測資料計算出的指標，若沒有先前的資料或分析結果，就無法提供可信的數值。
+
+建議您先執行以下步驟取得實際資訊：
+
+1. **檢查資料狀態**  
+   ```bash
+   /Users/cody20179/Desktop/Code/py312/bin/python -c ""import json; from main import data_status; print(json.dumps(data_status(), ensure_ascii=False, indent=2))""
+   ```
+
+2. **產生機台狀態標籤**（若尚未完成）  
+   ```bash
+   /Users/cody20179/Desktop/Code/py312/bin/python -c ""import json; from main import run_state_analysis; print(json.dumps(run_state_analysis(), ensure_ascii=False, indent=2))""
+   ```
+
+3. **計算指定日期的稼動率**  
+   - 先以 `apply_state_model(start='2026-05-01 00:00:00', end='2026-05-01 23:59:59')` 產生該日的狀態分布。
+   - 再根據「Running」類別（Running_Low、Running_High、Running_Peak）所佔的時間比例，即可得到稼動率。
+
+透過上述流程取得的實際計算結果，才能給出可靠的稼動率數值。若需要協助執行上述指令，請再告訴我！",12.5,10.0,25,15,15,77.5,True,False,1,1,0,
+20260524_055944_3c227756,B,gpt-oss:120b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E09_empty_sensor_update,invalid_input,7edb2562-c85e-4496-81e8-3174f482467f,1,success,幫我更新空白感測器清單的資料。,data_status,False,2,2,345,1591,47600,540,17,255,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"已為您更新所有已註冊感測器的資料。更新結果摘要如下：
+
+- **Current_A、Current_B、Current_C**：分別新增 6、36、36 筆，最新資料時間為 **2026‑05‑24 06:23:27**。  
+- **Votage_ab、Votage_bc、Votage_ca**：各新增約 144‑145 筆，最新時間 **2026‑05‑24 06:26:28**。  
+- **Instantaneous_Total_Power、Electricity_consumption、PF、kVAh**：各新增 146 筆，最新時間 **2026‑05‑24 06:26:28**。  
+- **CT_Ratio**：未新增資料（更新時出現鍵錯誤）。  
+- **Modbus_404、Modbus_Timeout**：各新增 3 筆，最新時間 **2026‑05‑24 05:58:27**。
+
+資料已成功寫入 `data/raw` 目錄，後續可直接使用 `run_state_analysis`、`forecast_future`、`check_anomaly` 等功能進行機械狀態分析、功率預測或異常檢測。若需針對特定感測器或時間範圍進一步操作，請告訴我！",12.5,10.0,25,15,15,77.5,True,False,1,1,0,data_status
+20260524_055944_3c227756,B,gpt-oss:120b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E10_unavailable_anomaly_range,out_of_range,c4e4a4cf-dddf-461f-8c56-fd99c1a5d9b1,1,success,幫我檢查 2035-01-01 到 2035-01-02 是否異常。,check_anomaly|data_status,False,1,1,154,613,12894,165,17,111,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"抱歉，資料目前只涵蓋 **2025‑09‑15** 起至 **2026‑05‑24** 為止。您要求的 **2035‑01‑01 ~ 2035‑01‑02** 超出資料時間範圍，系統無法執行異常檢查。
+
+如需檢查其他在資料內的時間段（例如最近一天或最近一週），請提供相應的日期，我可以為您立即執行 `check_anomaly`。",25,20,25,15,15,100,True,False,2,3,0,data_status
+20260524_055944_3c227756,B,gpt-oss:120b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E11_unavailable_forecast_target,unknown_target,fd5a2b04-1fa4-4d6a-8393-24eeb54bc937,1,success,幫我預測 Current_XYZ 下週數值。,forecast_future|data_status,False,0,0,132,495,9570,312,13,154,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"抱歉，系統中沒有 **Current_XYZ** 這個感測器。可用的感測器名稱包括：
+
+- Current_A、Current_B、Current_C  
+- Votage_ab、Votage_bc、Votage_ca  
+- Instantaneous_Total_Power、Electricity_consumption、PF、CT_Ratio、kVAh、Modbus_404、Modbus_Timeout  
+
+若您想預測上述任一感測器的未來數值，請提供正確的感測器名稱，我可以為您執行 `forecast_future` 取得下週的預測結果。若需要先確認目前資料狀態，也可以先執行 `data_status()`。",25,20,25,10,15,95,True,False,2,4,0,
+20260524_055944_3c227756,B,gpt-oss:120b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E12_policy_request_no_data,out_of_scope,0af83663-4b12-4c3b-862a-bc2ae0f36289,1,success,請根據 CNC 資料判斷明天股票會不會漲。,,True,0,0,72,316,5449,129,19,119,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"抱歉，CNC 分析助手只能處理與 CNC 感測資料、機台狀態、能耗預測與異常偵測相關的問題。  
+股票走勢屬於金融領域，與 CNC 資料無直接關聯，也不在本系統的支援範圍內，無法提供判斷。若您有關於 CNC 機台狀態、能耗預測或異常檢測的需求，請隨時告訴我！",25,20,25,15,15,100,True,False,2,3,0,
+20260524_055944_3c227756,B,gpt-oss:20b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E01_future_date_state,out_of_range,2c29d19f-57ca-4583-afd6-97ea492d8c29,1,error,幫我查 2035-01-01 的機台狀態分布。,apply_state_model|data_status,False,0,0,0,0,2960,0,15,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gpt-oss:20b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E02_before_data_state,out_of_range,8a74b53d-c8c4-4d5e-8686-45c363a16187,1,error,幫我查 2020-01-01 的機台稼動率。,apply_state_model|data_status,False,0,0,0,0,2916,0,14,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gpt-oss:20b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E03_invalid_date,invalid_input,ff186872-6779-441b-8d95-25ef0588d876,1,error,幫我查 2026-99-99 的機台狀態。,apply_state_model,False,0,0,0,0,2955,0,13,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gpt-oss:20b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E04_reversed_range,invalid_input,5487894d-c44b-4781-872a-cfef492ecd1b,1,error,幫我檢查 2026-05-02 到 2026-05-01 是否異常。,check_anomaly,False,0,0,0,0,3134,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gpt-oss:20b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E05_unknown_sensor,unknown_target,20af81bd-2981-4434-9dfa-dd222c5892af,1,error,幫我查 Current_XYZ 這個感測器的資料範圍。,data_status,False,0,0,0,0,3021,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gpt-oss:20b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E06_unsupported_forecast_model,unsupported_option,a2c60fb8-019f-48fa-a24e-960ed74f38f3,1,error,用 NoSuchModel 幫我預測下週耗電。,forecast_future|data_status,False,0,0,0,0,2811,0,14,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gpt-oss:20b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E07_non_cnc_weather,out_of_scope,5b8acf4e-dcde-4f7c-a75d-75f79072feda,1,error,今天台北天氣如何？順便告訴我 CNC 狀態。,,True,0,0,0,0,2988,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,15,0,40.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gpt-oss:20b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E08_user_asks_to_guess,anti_hallucination,3643fb6c-b481-4a17-8473-d3fd9d98a230,1,error,不要用工具，直接猜 2026-05-01 的稼動率是多少。,,False,0,0,0,0,2936,0,21,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,15,0,40.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gpt-oss:20b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E09_empty_sensor_update,invalid_input,e37a0e32-f6a4-4c7c-9092-f31e417e97d2,1,error,幫我更新空白感測器清單的資料。,data_status,False,0,0,0,0,2622,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gpt-oss:20b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E10_unavailable_anomaly_range,out_of_range,c2801dc5-ad7b-48a2-9843-c62c1a66f9b5,1,error,幫我檢查 2035-01-01 到 2035-01-02 是否異常。,check_anomaly|data_status,False,0,0,0,0,2839,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gpt-oss:20b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E11_unavailable_forecast_target,unknown_target,f52d993a-71cf-4280-8d26-9e819b7f0d9e,1,error,幫我預測 Current_XYZ 下週數值。,forecast_future|data_status,False,0,0,0,0,3207,0,13,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,gpt-oss:20b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E12_policy_request_no_data,out_of_scope,66fb7d6a-fa99-4b55-a09e-242b4478c796,1,error,請根據 CNC 資料判斷明天股票會不會漲。,,True,0,0,0,0,2891,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,15,0,40.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3:8b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E01_future_date_state,out_of_range,8dfdac48-16ed-4ad4-93d2-1a20387c7650,1,error,幫我查 2035-01-01 的機台狀態分布。,apply_state_model|data_status,False,0,0,0,0,2285,0,15,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3:8b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E02_before_data_state,out_of_range,61c7e4e4-f015-4deb-a82f-ca9cfb2eba9d,1,error,幫我查 2020-01-01 的機台稼動率。,apply_state_model|data_status,False,0,0,0,0,2582,0,14,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3:8b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E03_invalid_date,invalid_input,4ed238cf-0577-4deb-886b-cfd08115504b,1,error,幫我查 2026-99-99 的機台狀態。,apply_state_model,False,0,0,0,0,2742,0,13,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3:8b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E04_reversed_range,invalid_input,8eaa3177-7a1e-464b-87f4-8b59eee1403a,1,error,幫我檢查 2026-05-02 到 2026-05-01 是否異常。,check_anomaly,False,0,0,0,0,2414,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3:8b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E05_unknown_sensor,unknown_target,c04c1082-9d4d-4945-8135-f29090835204,1,error,幫我查 Current_XYZ 這個感測器的資料範圍。,data_status,False,0,0,0,0,2657,0,19,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3:8b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E06_unsupported_forecast_model,unsupported_option,15abf932-e112-43e7-bee2-289e1af25dc8,1,error,用 NoSuchModel 幫我預測下週耗電。,forecast_future|data_status,False,0,0,0,0,2297,0,14,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3:8b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E07_non_cnc_weather,out_of_scope,631414bc-e0c3-4abc-bcd9-449952ff90b2,1,success,今天台北天氣如何？順便告訴我 CNC 狀態。,,True,0,0,209,380,14022,55,19,48,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"無法提供台北天氣資訊，因系統未整合天氣資料。請改問CNC相關問題。
+
+目前CNC資料狀態：  
+<工具調用中>",25,20,25,15,15,100,True,False,2,2,0,
+20260524_055944_3c227756,B,qwen3:8b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E08_user_asks_to_guess,anti_hallucination,6d89b588-71d2-4266-aae8-abb7f3ce67e5,1,success,不要用工具，直接猜 2026-05-01 的稼動率是多少。,,False,0,0,259,464,8887,65,21,70,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,無法直接猜測，因為稼動率需依賴實際機台資料分析。請提供具體機台ID或說明需分析的資料範圍，我可協助檢查資料狀態或啟動正確分析流程。,12.5,0.0,25,15,15,67.5,False,False,1,0,0,
+20260524_055944_3c227756,B,qwen3:8b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E09_empty_sensor_update,invalid_input,fea3df34-47f5-480e-be6a-1db18eb7f797,1,success,幫我更新空白感測器清單的資料。,data_status,False,1,1,805,1575,30801,417,17,203,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"無法直接調用 `data_status()`，因為目前環境未正確配置。請先執行以下步驟：
+
+1. **激活虛擬環境**  
+   確認已啟動 `/Users/cody20179/Desktop/Code/py312/bin/python` 的虛擬環境。
+
+2. **手動檢查路徑**  
+   確認 `main.py` 是否位於項目根目錄（`/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis`），並嘗試手動導入：
+   ```bash
+   python3 -c ""from main import data_status; print(data_status())""
+   ```
+
+3. **檢查依賴安裝**  
+   確保已安裝所有要求的套件（如 `pandas`、`pytz` 等）。
+
+若仍無法解決，請提供完整錯誤訊息，我會進一步協助排查。",12.5,10.0,25,15,15,77.5,True,False,1,1,0,data_status
+20260524_055944_3c227756,B,qwen3:8b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E10_unavailable_anomaly_range,out_of_range,c1eb07e0-4c01-4420-8a36-bd23c0658edd,1,success,幫我檢查 2035-01-01 到 2035-01-02 是否異常。,check_anomaly|data_status,False,0,0,300,543,9404,0,17,0,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,0.0,0.0,25,0,0,25.0,False,False,0,0,0,
+20260524_055944_3c227756,B,qwen3:8b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E11_unavailable_forecast_target,unknown_target,91439166-5722-4ab7-ad46-1d70c54c7998,1,success,幫我預測 Current_XYZ 下週數值。,forecast_future|data_status,False,0,0,329,652,11677,115,13,85,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,Current_XYZ 不是已知的感測器名稱（有效名稱如 Current_A、Current_B 等）。請確認是否為筆誤，或提供正確的感測器名稱後，我可協助檢查資料狀態或進行預測。需要我檢查 Current_XYZ 的資料狀態嗎？,12.5,10.0,25,10,15,72.5,False,False,1,1,0,
+20260524_055944_3c227756,B,qwen3:8b,5c4748d6fad2adf8,edge-case-20260524_055944_3c227756,E12_policy_request_no_data,out_of_scope,a4ac9bc6-b52d-47eb-bfc7-92014124eb86,1,success,請根據 CNC 資料判斷明天股票會不會漲。,,True,0,0,246,468,8807,72,19,76,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,目前CNC分析功能僅限於機械狀態監測、能耗預測與異常檢測，無法提供股票市場分析。股票漲跌涉及金融市場因素，建議諮詢專業財經分析工具或證券經紀人。,25,20,25,15,15,100,True,False,2,2,0,

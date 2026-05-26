@@ -1,0 +1,81 @@
+﻿model_label,cnc_tool_name,functional_success
+deepseek-v4-flash (Cloud),check_anomaly,1.0
+deepseek-v4-flash (Cloud),data_status,1.0
+deepseek-v4-flash (Cloud),forecast_future,1.0
+deepseek-v4-flash (Cloud),run_all,1.0
+deepseek-v4-flash (Cloud),run_state_analysis,1.0
+deepseek-v4-flash (Cloud),train_anomaly_detection,1.0
+deepseek-v4-flash (Cloud),train_forecast,1.0
+deepseek-v4-flash (Cloud),update_data,1.0
+gemma4:latest,check_anomaly,0.0
+gemma4:latest,data_status,0.0
+gemma4:latest,forecast_future,0.0
+gemma4:latest,run_all,0.0
+gemma4:latest,run_state_analysis,0.0
+gemma4:latest,train_anomaly_detection,0.0
+gemma4:latest,train_forecast,0.0
+gemma4:latest,update_data,0.0
+glm-5.1 (Cloud),check_anomaly,1.0
+glm-5.1 (Cloud),data_status,1.0
+glm-5.1 (Cloud),forecast_future,1.0
+glm-5.1 (Cloud),run_all,1.0
+glm-5.1 (Cloud),run_state_analysis,1.0
+glm-5.1 (Cloud),train_anomaly_detection,1.0
+glm-5.1 (Cloud),train_forecast,1.0
+glm-5.1 (Cloud),update_data,1.0
+gpt-oss:20b,check_anomaly,1.0
+gpt-oss:20b,data_status,1.0
+gpt-oss:20b,forecast_future,1.0
+gpt-oss:20b,run_all,1.0
+gpt-oss:20b,run_state_analysis,1.0
+gpt-oss:20b,train_anomaly_detection,1.0
+gpt-oss:20b,train_forecast,1.0
+gpt-oss:20b,update_data,1.0
+kimi-k2.6 (Cloud),check_anomaly,1.0
+kimi-k2.6 (Cloud),data_status,1.0
+kimi-k2.6 (Cloud),forecast_future,1.0
+kimi-k2.6 (Cloud),run_all,1.0
+kimi-k2.6 (Cloud),run_state_analysis,1.0
+kimi-k2.6 (Cloud),train_anomaly_detection,1.0
+kimi-k2.6 (Cloud),train_forecast,1.0
+kimi-k2.6 (Cloud),update_data,1.0
+nemotron-3-nano:latest,check_anomaly,1.0
+nemotron-3-nano:latest,data_status,1.0
+nemotron-3-nano:latest,forecast_future,1.0
+nemotron-3-nano:latest,run_all,1.0
+nemotron-3-nano:latest,run_state_analysis,1.0
+nemotron-3-nano:latest,train_anomaly_detection,1.0
+nemotron-3-nano:latest,train_forecast,1.0
+nemotron-3-nano:latest,update_data,1.0
+nemotron-cascade-2:latest,check_anomaly,1.0
+nemotron-cascade-2:latest,data_status,1.0
+nemotron-cascade-2:latest,forecast_future,1.0
+nemotron-cascade-2:latest,run_all,1.0
+nemotron-cascade-2:latest,run_state_analysis,1.0
+nemotron-cascade-2:latest,train_anomaly_detection,1.0
+nemotron-cascade-2:latest,train_forecast,1.0
+nemotron-cascade-2:latest,update_data,1.0
+qwen3-vl:8b,check_anomaly,1.0
+qwen3-vl:8b,data_status,1.0
+qwen3-vl:8b,forecast_future,1.0
+qwen3-vl:8b,run_all,1.0
+qwen3-vl:8b,run_state_analysis,1.0
+qwen3-vl:8b,train_anomaly_detection,1.0
+qwen3-vl:8b,train_forecast,1.0
+qwen3-vl:8b,update_data,1.0
+qwen3.5:9b,check_anomaly,1.0
+qwen3.5:9b,data_status,0.6666666666666666
+qwen3.5:9b,forecast_future,1.0
+qwen3.5:9b,run_all,0.6666666666666666
+qwen3.5:9b,run_state_analysis,1.0
+qwen3.5:9b,train_anomaly_detection,1.0
+qwen3.5:9b,train_forecast,1.0
+qwen3.5:9b,update_data,0.3333333333333333
+qwen3:8b,check_anomaly,1.0
+qwen3:8b,data_status,1.0
+qwen3:8b,forecast_future,1.0
+qwen3:8b,run_all,1.0
+qwen3:8b,run_state_analysis,1.0
+qwen3:8b,train_anomaly_detection,1.0
+qwen3:8b,train_forecast,1.0
+qwen3:8b,update_data,1.0

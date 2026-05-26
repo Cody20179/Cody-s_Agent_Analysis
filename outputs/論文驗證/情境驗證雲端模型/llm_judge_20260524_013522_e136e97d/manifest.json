@@ -1,0 +1,20 @@
+{
+  "judge_run_id": "20260524_013522_e136e97d",
+  "generated_at": "2026-05-24T01:51:09",
+  "scenario_dir": "outputs/validation/scenario_qa_agent/20260523_233125_77a5e057",
+  "output_dir": "outputs/validation/scenario_qa_agent/20260523_233125_77a5e057/llm_judge_20260524_013522_e136e97d",
+  "judge_model": "glm-5.1",
+  "rows": 72,
+  "rubric": {
+    "correctness": "數值、狀態、時間區間是否符合標準答案。",
+    "completeness": "是否回答使用者問題需要的主要資訊與結論。",
+    "readability": "工廠使用者是否容易讀懂，表格或條列是否清楚。",
+    "practicality": "是否給出可落地的判讀、提醒或下一步。",
+    "hallucination_risk": "是否編造標準答案或工具紀錄沒有支持的資訊；0 代表低風險，5 代表高風險。"
+  },
+  "answer_source_priority": [
+    "System API full assistant message",
+    "scenario_qa_runs.csv answer_preview"
+  ],
+  "actual_provider_token_usage_available": false
+}

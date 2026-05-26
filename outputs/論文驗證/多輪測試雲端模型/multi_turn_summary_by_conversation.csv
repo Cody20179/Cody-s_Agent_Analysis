@@ -1,0 +1,10 @@
+﻿conversation_id,model_name,turns,avg_total_score,min_total_score,context_drift_rate,avg_duration_s
+anomaly_to_state_followup,deepseek-v4-flash,5,67.334,40.0,0.0,37.802
+anomaly_to_state_followup,glm-5.1,5,57.334,35.0,0.2,22.08
+anomaly_to_state_followup,kimi-k2.6,5,70.334,35.0,0.0,13.973
+forecast_followup,deepseek-v4-flash,5,54.5,37.5,0.2,29.262
+forecast_followup,glm-5.1,5,83.0,75.0,0.0,25.536
+forecast_followup,kimi-k2.6,5,68.5,45.0,0.2,26.4
+state_followup,deepseek-v4-flash,5,79.5,75.0,0.0,16.991
+state_followup,glm-5.1,5,72.666,63.33,0.0,28.463
+state_followup,kimi-k2.6,5,68.166,57.5,0.0,18.792

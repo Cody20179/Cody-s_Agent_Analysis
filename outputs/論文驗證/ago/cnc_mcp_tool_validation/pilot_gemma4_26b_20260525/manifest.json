@@ -1,0 +1,10 @@
+{
+  "model_name": "gemma4:26b",
+  "provider": "ollama",
+  "group_id": "f55c530535b4865d",
+  "cases": 8,
+  "successes": 8,
+  "success_rate": 1.0,
+  "output_dir": "/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/論文驗證/cnc_mcp_tool_validation/pilot_gemma4_26b_20260525",
+  "created_at": "2026-05-25T16:42:53"
+}

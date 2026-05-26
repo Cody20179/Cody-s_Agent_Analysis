@@ -1,0 +1,24 @@
+{
+  "run_id": "20260524_032136_ff2d202d",
+  "generated_at": "2026-05-24T03:31:12",
+  "base_url": "http://127.0.0.1:8000",
+  "user_id": "Cody",
+  "models": [
+    "glm-5.1",
+    "kimi-k2.6",
+    "deepseek-v4-flash"
+  ],
+  "case_count": 12,
+  "rows": 36,
+  "group_id": "484edcdbc9f16e68",
+  "output_dir": "/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/validation/edge_case_agent/20260524_032136_ff2d202d",
+  "scoring": {
+    "recognition_score": 25,
+    "recovery_score": 20,
+    "hallucination_avoidance_score": 25,
+    "tool_policy_score": 15,
+    "quality_score": 15,
+    "success_threshold": 75
+  },
+  "actual_provider_token_usage_available": false
+}

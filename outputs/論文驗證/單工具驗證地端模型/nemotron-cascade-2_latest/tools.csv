@@ -1,0 +1,1391 @@
+﻿session_id,turn,seq,tool_name,success,duration_ms,started_at,ended_at,input,output
+2017d855-819d-4665-ac8b-bef49b11fb43,1,2,run_python,True,2945,2026-05-24T05:33:40.809674,2026-05-24T05:33:43.755088,"Tool: run_python
+Input: {""code"":""import json, os, sys\nos.chdir(\""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis\"")\nsys.path.insert(0, os.getcwd())\nfrom main import forecast_future\nresult = forecast_future(days=[7], model_names=[\""Prophet\""])\nprint(json.dumps(result, ensure_ascii=False, indent=2, default=str))"",""timeout"":300}","{
+  ""status"": ""ok"",
+  ""summary"": ""future forecast finished"",
+  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast"",
+  ""key_files"": {
+    ""report"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/application/dy/future_forecast_report.json"",
+    ""future_forecast"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/application/dy/future_forecast.png"",
+    ""run_summary"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/forecast_future_dy_run_summary.json"",
+    ""application_dir"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/application/dy""
+  },
+  ""metrics"": {
+    ""Prophet"": {
+      ""7d"": {
+        ""yhat"": 8367.44996979909,
+        ""increment"": 286.8359697990909
+      }
+    }
+  },
+  ""artifacts"": [
+    {
+      ""type"": ""image"",
+      ""label"": ""future_forecast"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/application/dy/future_forecast.png""
+    }
+  ]
+}
+[stderr]
+Importing plotly failed. Interactive plots will not work."
+43fba339-6570-4d64-a14f-55dc01437db1,1,2,run_python,True,2662,2026-05-24T05:33:01.336385,2026-05-24T05:33:03.998854,"Tool: run_python
+Input: {""code"":""import json, os, sys\nos.chdir(\""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis\"")\nsys.path.insert(0, os.getcwd())\nfrom main import update_data\nresult = update_data(sensors=[\""Current_A\""], verbose=False)\nprint(json.dumps(result, ensure_ascii=False, indent=2, default=str))"",""timeout"":300}","[Current_A] 2026-05-24 05:14:27 -> 2026-05-24 05:33:00 HTTP 200
+{
+  ""status"": ""ok"",
+  ""summary"": ""data update finished"",
+  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/raw"",
+  ""key_files"": {},
+  ""metrics"": {
+    ""Current_A"": {
+      ""added"": 3,
+      ""latest"": ""2026-05-24 05:28:27""
+    }
+  },
+  ""artifacts"": []
+}"
+4498e22f-59a7-4ca8-83b9-b4db4fc31784,1,2,run_python,True,4817,2026-05-24T05:33:12.003823,2026-05-24T05:33:16.821460,"Tool: run_python
+Input: {""code"":""import json, os, sys\nos.chdir(\""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis\"")\nsys.path.insert(0, os.getcwd())\nfrom main import run_state_analysis\nresult = run_state_analysis(start=\""2026-05-01 00:00:00\"", end=\""2026-05-02 00:00:00\"")\nprint(json.dumps(result, ensure_ascii=False, indent=2, default=str))"",""timeout"":300}","{
+  ""status"": ""ok"",
+  ""summary"": ""GMM state analysis finished"",
+  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state"",
+  ""key_files"": {
+    ""state_labeled_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/state_labeled.csv"",
+    ""processed_state_labeled_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/processed/state_labeled.csv"",
+    ""state_report"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/state_report.txt"",
+    ""state_timeline"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_state_timeline.png"",
+    ""run_summary"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/state_run_summary.json"",
+    ""application"": {
+      ""all"": {
+        ""state_summary_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_state_summary.csv"",
+        ""transition_matrix_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_transition_matrix.csv"",
+        ""state_hours_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_state_hours.csv"",
+        ""state_feature_profile_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_state_feature_profile.csv"",
+        ""metrics_json"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_metrics.json"",
+        ""state_timeline"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_state_timeline.png"",
+        ""transition_matrix_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_transition_matrix.png"",
+        ""confidence_distribution"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_confidence_distribution.png"",
+        ""state_hours_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_state_hours.png""
+      },
+      ""month"": {
+        ""state_summary_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_state_summary.csv"",
+        ""transition_matrix_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_transition_matrix.csv"",
+        ""state_hours_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_state_hours.csv"",
+        ""state_feature_profile_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_state_feature_profile.csv"",
+        ""metrics_json"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_metrics.json"",
+        ""state_timeline"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_state_timeline.png"",
+        ""transition_matrix_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_transition_matrix.png"",
+        ""confidence_distribution"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_confidence_distribution.png"",
+        ""state_hours_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_state_hours.png""
+      },
+      ""week"": {
+        ""state_summary_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_state_summary.csv"",
+        ""transition_matrix_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_transition_matrix.csv"",
+        ""state_hours_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_state_hours.csv"",
+        ""state_feature_profile_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_state_feature_profile.csv"",
+        ""metrics_json"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_metrics.json"",
+        ""state_timeline"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_state_timeline.png"",
+        ""transition_matrix_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_transition_matrix.png"",
+        ""confidence_distribution"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_confidence_distribution.png"",
+        ""state_hours_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_state_hours.png""
+      },
+      ""day"": {
+        ""state_summary_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_state_summary.csv"",
+        ""transition_matrix_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_transition_matrix.csv"",
+        ""state_hours_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_state_hours.csv"",
+        ""state_feature_profile_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_state_feature_profile.csv"",
+        ""metrics_json"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_metrics.json"",
+        ""state_timeline"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_state_timeline.png"",
+        ""transition_matrix_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_transition_matrix.png"",
+        ""confidence_distribution"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_confidence_distribution.png"",
+        ""state_hours_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_state_hours.png""
+      }
+    },
+    ""bic_curve"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/bic_curve.png"",
+    ""training"": {
+      ""bic_aic_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_bic_aic.csv"",
+      ""feature_quality_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_feature_quality.csv"",
+      ""cluster_profile_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_cluster_profile.csv"",
+      ""cluster_centers_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_cluster_centers.csv"",
+      ""metrics_json"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_metrics.json"",
+      ""training_input_features"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_input_features.png"",
+      ""bic_curve"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/bic_curve.png"",
+      ""feature_distributions"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_feature_distributions.png"",
+      ""cluster_scatter"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_cluster_scatter.png"",
+      ""standardized_feature_boxplot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_standardized_feature_boxplot.png"",
+      ""cluster_confidence_boxplot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_cluster_confidence_boxplot.png"",
+      ""model"": {
+        ""model_pickle"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/state/gmm_state_model.pkl"",
+        ""metadata_json"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/state/gmm_state_model_metadata.json""
+      }
+    }
+  },
+  ""metrics"": {
+    ""best_k"": 4,
+    ""rows"": 288,
+    ""state_summary"": {
+      ""Idle"": {
+        ""count"": 1,
+        ""hours"": 0.08,
+        ""pct"": 0.35,
+        ""I_mean_avg"": 0.572,
+        ""Power_avg"": 0.124,
+        ""kVAh_rate_avg"": 0.0053,
+        ""confidence_avg"": 1.0
+      },
+      ""Off"": {
+        ""count"": 102,
+        ""hours"": 8.5,
+        ""pct"": 35.42,
+        ""I_mean_avg"": 0.0,
+        ""Power_avg"": 0.008,
+        ""kVAh_rate_avg"": 0.0023,
+        ""confidence_avg"": 1.0
+      },
+      ""Running_High"": {
+        ""count"": 72,
+        ""hours"": 6.0,
+        ""pct"": 25.0,
+        ""I_mean_avg"": 12.566,
+        ""Power_avg"": 3.591,
+        ""kVAh_rate_avg"": 0.3958,
+        ""confidence_avg"": 1.0
+      },
+      ""Running_Low"": {
+        ""count"": 113,
+        ""hours"": 9.42,
+        ""pct"": 39.24,
+        ""I_mean_avg"": 8.019,
+        ""Power_avg"": 2.282,
+        ""kVAh_rate_avg"": 0.2663,
+        ""confidence_avg"": 0.9964
+      }
+    },
+    ""training"": {
+      ""stage"": ""training"",
+      ""model"": ""GaussianMixture"",
+      ""covariance_type"": ""full"",
+      ""n_init"": 5,
+      ""random_state"": 42,
+      ""features"": [
+        ""I_mean"",
+        ""I_imbalance"",
+        ""Power"",
+        ""PF_abs"",
+        ""kVAh_rate""
+      ],
+      ""candidate_k"": [
+        2,
+        3,
+        4
+      ],
+      ""best_k"": 4,
+      ""state_mapping"": {
+        ""1"": ""Off"",
+        ""2"": ""Idle"",
+        ""0"": ""Running_Low"",
+        ""3"": ""Running_High"",
+        ""-1"": ""Unknown""
+      },
+      ""rows_total"": 288,
+      ""rows_used"": 287,
+      ""rows_dropped"": 1,
+      ""bic_best"": -5152.8240714050635,
+      ""aic_best"": -5456.561095313112,
+      ""silhouette"": 0.8459922527950859,
+      ""calinski_harabasz"": 5135.057397757455,
+      ""davies_bouldin"": 0.18700175768735922,
+      ""evaluation_rows"": 287
+    },
+    ""application"": {
+      ""stage"": ""application"",
+      ""windows"": {
+        ""all"": {
+          ""window"": ""all"",
+          ""rows_total"": 288,
+          ""rows_valid_state"": 288,
+          ""data_start"": ""2026-05-01 00:00:00"",
+          ""data_end"": ""2026-05-01 23:55:00"",
+          ""freq_min"": 5,
+          ""total_hours"": 24.0,
+          ""mean_assignment_confidence"": 0.9985979302563225,
+          ""low_confidence_rows_posterior_lt_0_8"": 1,
+          ""state_count"": 4
+        },
+        ""month"": {
+          ""window"": ""month"",
+          ""rows_total"": 288,
+          ""rows_valid_state"": 288,
+          ""data_start"": ""2026-05-01 00:00:00"",
+          ""data_end"": ""2026-05-01 23:55:00"",
+          ""freq_min"": 5,
+          ""total_hours"": 24.0,
+          ""mean_assignment_confidence"": 0.9985979302563225,
+          ""low_confidence_rows_posterior_lt_0_8"": 1,
+          ""state_count"": 4
+        },
+        ""week"": {
+          ""window"": ""week"",
+          ""rows_total"": 288,
+          ""rows_valid_state"": 288,
+          ""data_start"": ""2026-05-01 00:00:00"",
+          ""data_end"": ""2026-05-01 23:55:00"",
+          ""freq_min"": 5,
+          ""total_hours"": 24.0,
+          ""mean_assignment_confidence"": 0.9985979302563225,
+          ""low_confidence_rows_posterior_lt_0_8"": 1,
+          ""state_count"": 4
+        },
+        ""day"": {
+          ""window"": ""day"",
+          ""rows_total"": 288,
+          ""rows_valid_state"": 288,
+          ""data_start"": ""2026-05-01 00:00:00"",
+          ""data_end"": ""2026-05-01 23:55:00"",
+          ""freq_min"": 5,
+          ""total_hours"": 24.0,
+          ""mean_assignment_confidence"": 0.9985979302563225,
+          ""low_confidence_rows_posterior_lt_0_8"": 1,
+          ""state_count"": 4
+        }
+      }
+    }
+  },
+  ""artifacts"": [
+    {
+      ""type"": ""image"",
+      ""label"": ""state_timeline"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_state_timeline.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""application.all.state_timeline"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_state_timeline.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""application.all.transition_matrix_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_transition_matrix.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""application.all.confidence_distribution"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_confidence_distribution.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""application.all.state_hours_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_state_hours.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""application.month.state_timeline"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_state_timeline.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""application.month.transition_matrix_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_transition_matrix.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""application.month.confidence_distribution"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_confidence_distribution.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""application.month.state_hours_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_state_hours.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""application.week.state_timeline"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_state_timeline.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""application.week.transition_matrix_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_transition_matrix.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""application.week.confidence_distribution"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_confidence_distribution.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""application.week.state_hours_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_state_hours.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""application.day.state_timeline"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_state_timeline.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""application.day.transition_matrix_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_transition_matrix.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""application.day.confidence_distribution"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_confidence_distribution.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""application.day.state_hours_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_state_hours.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""bic_curve"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/bic_curve.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""training.training_input_features"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_input_features.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""training.bic_curve"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/bic_curve.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""training.feature_distributions"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_feature_distributions.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""training.cluster_scatter"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_cluster_scatter.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""training.standardized_feature_boxplot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_standardized_feature_boxplot.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""training.cluster_confidence_boxplot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_cluster_confidence_boxplot.png""
+    }
+  ]
+}"
+70580353-d303-4b10-a4f8-830b7c79cc86,1,2,run_python,True,2259,2026-05-24T05:32:45.782728,2026-05-24T05:32:48.041819,"Tool: run_python
+Input: {""code"":""import json, os, sys\nos.chdir(\""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis\"")\nsys.path.insert(0, os.getcwd())\nfrom main import data_status\nprint(json.dumps(data_status(), ensure_ascii=False, indent=2, default=str))"",""timeout"":300}","{
+  ""status"": ""ok"",
+  ""summary"": ""data status loaded"",
+  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/raw"",
+  ""key_files"": {},
+  ""metrics"": {
+    ""sensors"": [
+      {
+        ""sensor"": ""Current_A"",
+        ""exists"": true,
+        ""rows"": 59245,
+        ""start"": ""2025-09-15 15:21:00"",
+        ""end"": ""2026-05-24 05:13:27""
+      },
+      {
+        ""sensor"": ""Current_B"",
+        ""exists"": true,
+        ""rows"": 59223,
+        ""start"": ""2025-09-15 15:21:00"",
+        ""end"": ""2026-05-24 03:23:27""
+      },
+      {
+        ""sensor"": ""Current_C"",
+        ""exists"": true,
+        ""rows"": 59224,
+        ""start"": ""2025-09-15 15:21:00"",
+        ""end"": ""2026-05-24 03:23:27""
+      },
+      {
+        ""sensor"": ""Votage_ab"",
+        ""exists"": true,
+        ""rows"": 236588,
+        ""start"": ""2025-09-15 15:11:36"",
+        ""end"": ""2026-05-24 03:25:28""
+      },
+      {
+        ""sensor"": ""Votage_bc"",
+        ""exists"": true,
+        ""rows"": 236587,
+        ""start"": ""2025-09-15 15:11:36"",
+        ""end"": ""2026-05-24 03:25:28""
+      },
+      {
+        ""sensor"": ""Votage_ca"",
+        ""exists"": true,
+        ""rows"": 236584,
+        ""start"": ""2025-09-15 15:11:36"",
+        ""end"": ""2026-05-24 03:25:28""
+      },
+      {
+        ""sensor"": ""Instantaneous_Total_Power"",
+        ""exists"": true,
+        ""rows"": 236589,
+        ""start"": ""2025-09-15 15:11:36"",
+        ""end"": ""2026-05-24 03:24:27""
+      },
+      {
+        ""sensor"": ""Electricity_consumption"",
+        ""exists"": true,
+        ""rows"": 236591,
+        ""start"": ""2025-09-15 15:11:36"",
+        ""end"": ""2026-05-24 03:24:27""
+      },
+      {
+        ""sensor"": ""PF"",
+        ""exists"": true,
+        ""rows"": 236591,
+        ""start"": ""2025-09-15 15:11:36"",
+        ""end"": ""2026-05-24 03:24:27""
+      },
+      {
+        ""sensor"": ""CT_Ratio"",
+        ""exists"": true,
+        ""rows"": 153,
+        ""start"": ""2025-09-16 15:17:00"",
+        ""end"": ""2026-05-23 17:57:27""
+      },
+      {
+        ""sensor"": ""kVAh"",
+        ""exists"": true,
+        ""rows"": 236591,
+        ""start"": ""2025-09-15 15:11:36"",
+        ""end"": ""2026-05-24 03:24:27""
+      },
+      {
+        ""sensor"": ""Modbus_404"",
+        ""exists"": true,
+        ""rows"": 4914,
+        ""start"": ""2025-09-15 16:16:01"",
+        ""end"": ""2026-05-24 02:57:28""
+      },
+      {
+        ""sensor"": ""Modbus_Timeout"",
+        ""exists"": true,
+        ""rows"": 5013,
+        ""start"": ""2025-09-15 16:16:01"",
+        ""end"": ""2026-05-24 02:57:28""
+      }
+    ]
+  },
+  ""artifacts"": []
+}"
+7953f8b1-36f7-4af5-a8f8-8ab7c94a0585,1,2,run_python,True,2300,2026-05-24T05:33:29.386735,2026-05-24T05:33:31.687033,"Tool: run_python
+Input: {""code"":""import json, os, sys\nos.chdir(\""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis\"")\nsys.path.insert(0, os.getcwd())\nfrom main import train_forecast\nresult = train_forecast(target=\""dy\"", models=[\""BaselineLastWeek\""], months_back=1)\nprint(json.dumps(result, ensure_ascii=False, indent=2, default=str))"",""timeout"":300}","{
+  ""status"": ""ok"",
+  ""summary"": ""forecast training finished"",
+  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast"",
+  ""key_files"": {
+    ""metrics"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/forecast_metrics.json"",
+    ""training_data_profile"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/training_data_profile.json"",
+    ""training_input_y"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/training_input_y.png"",
+    ""training_input_dy"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/training_input_dy.png"",
+    ""forecast_test_overlay"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/forecast_test_overlay.png"",
+    ""compare_backtest_mae"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/compare_backtest_mae.png"",
+    ""compare_backtest_r2"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/compare_backtest_r2.png"",
+    ""test_actual"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/test_actual.csv"",
+    ""config"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/forecast/training_config_dy.json"",
+    ""latest_config"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/forecast/training_config.json"",
+    ""models_dir"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/forecast"",
+    ""run_summary"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/forecast_train_dy_run_summary.json""
+  },
+  ""metrics"": {
+    ""BaselineLastWeek"": {
+      ""status"": ""ok"",
+      ""target"": ""dy"",
+      ""validation_strategy"": ""recursive_last_week_increment_baseline"",
+      ""mae"": 5.432013510032331,
+      ""rmse"": 6.745973381747971,
+      ""r2"": 0.9869529289502538,
+      ""mae_percent"": 0.06794797410406701,
+      ""deploy_recommendation"": ""ok""
+    }
+  },
+  ""artifacts"": [
+    {
+      ""type"": ""image"",
+      ""label"": ""training_input_y"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/training_input_y.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""training_input_dy"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/training_input_dy.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""forecast_test_overlay"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/forecast_test_overlay.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""compare_backtest_mae"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/compare_backtest_mae.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""compare_backtest_r2"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/compare_backtest_r2.png""
+    }
+  ]
+}"
+ab2b8fce-b3e7-4522-8023-626c5b5423d2,1,2,run_python,True,7991,2026-05-24T05:33:54.084050,2026-05-24T05:34:02.075168,"Tool: run_python
+Input: {""code"":""import json, os, sys\nos.chdir(\""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis\"")\nsys.path.insert(0, os.getcwd())\nfrom main import train_anomaly_detection\nresult = train_anomaly_detection()\nprint(json.dumps(result, ensure_ascii=False, indent=2, default=str))"",""timeout"":300}","{
+  ""status"": ""ok"",
+  ""summary"": ""anomaly detection training finished"",
+  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly"",
+  ""key_files"": {
+    ""features"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/processed/detection_features.csv"",
+    ""metrics"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/anomaly_metrics.json"",
+    ""metrics_table"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/tables/model_metrics.csv"",
+    ""synthetic_validation_predictions"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/tables/synthetic_validation_predictions.csv"",
+    ""anomaly_type_detection_rate"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/tables/anomaly_type_detection_rate.csv"",
+    ""plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/score_distribution.png"",
+    ""autoencoder_loss_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/autoencoder_loss.png"",
+    ""metric_bar_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/model_metrics.png"",
+    ""feature_distribution_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/feature_distribution.png"",
+    ""feature_distribution_by_type_plots"": [
+      ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/feature_by_anomaly_type/current_imbalance_feature_distribution.png"",
+      ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/feature_by_anomaly_type/low_pf_feature_distribution.png"",
+      ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/feature_by_anomaly_type/over_current_feature_distribution.png"",
+      ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/feature_by_anomaly_type/power_error_feature_distribution.png"",
+      ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/feature_by_anomaly_type/voltage_sag_feature_distribution.png""
+    ],
+    ""score_distribution_by_label_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/score_distribution_by_label.png"",
+    ""score_distribution_by_label_log_y_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/score_distribution_by_label_log_y.png"",
+    ""score_distribution_by_label_log_xy_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/score_distribution_by_label_log_xy.png"",
+    ""confusion_matrix_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/confusion_matrix.png"",
+    ""roc_curve_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/roc_curve.png"",
+    ""roc_curve_log_fpr_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/roc_curve_log_fpr.png"",
+    ""anomaly_type_detection_rate_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/anomaly_type_detection_rate.png"",
+    ""plots_dir"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots"",
+    ""tables_dir"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/tables"",
+    ""training_data_profile"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/tables/training_data_profile.json"",
+    ""feature_summary"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/tables/feature_summary.csv"",
+    ""run_summary"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/anomaly_train_run_summary.json"",
+    ""scaler"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/anomaly/scaler.pkl"",
+    ""thresholds"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/anomaly/thresholds.json"",
+    ""IsolationForest"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/anomaly/isolation_forest.pkl"",
+    ""OneClassSVM"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/anomaly/one_class_svm.pkl"",
+    ""Autoencoder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/anomaly/autoencoder.pt""
+  },
+  ""metrics"": {
+    ""IsolationForest"": {
+      ""accuracy"": 0.156794425087108,
+      ""precision"": 1.0,
+      ""recall"": 0.032,
+      ""f1"": 0.06201550387596899,
+      ""auc_roc"": 0.8261621621621622,
+      ""test_anomaly_count"": 0
+    },
+    ""OneClassSVM"": {
+      ""accuracy"": 0.9337979094076655,
+      ""precision"": 0.929368029739777,
+      ""recall"": 1.0,
+      ""f1"": 0.9633911368015414,
+      ""auc_roc"": 1.0,
+      ""test_anomaly_count"": 19
+    },
+    ""Autoencoder"": {
+      ""accuracy"": 1.0,
+      ""precision"": 1.0,
+      ""recall"": 1.0,
+      ""f1"": 1.0,
+      ""auc_roc"": 1.0,
+      ""test_anomaly_count"": 0,
+      ""loss"": {
+        ""initial"": 1.0949945449829102,
+        ""final"": 0.9916445016860962,
+        ""min"": 0.9916445016860962,
+        ""epochs"": 60
+      }
+    }
+  },
+  ""artifacts"": [
+    {
+      ""type"": ""image"",
+      ""label"": ""plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/score_distribution.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""autoencoder_loss_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/autoencoder_loss.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""metric_bar_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/model_metrics.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""feature_distribution_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/feature_distribution.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""score_distribution_by_label_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/score_distribution_by_label.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""score_distribution_by_label_log_y_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/score_distribution_by_label_log_y.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""score_distribution_by_label_log_xy_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/score_distribution_by_label_log_xy.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""confusion_matrix_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/confusion_matrix.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""roc_curve_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/roc_curve.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""roc_curve_log_fpr_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/roc_curve_log_fpr.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""anomaly_type_detection_rate_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/anomaly_type_detection_rate.png""
+    }
+  ]
+}"
+b6a6bbc8-4ee1-414a-a689-5d6e4b10a742,1,2,run_python,True,2082,2026-05-24T05:34:14.269727,2026-05-24T05:34:16.352086,"Tool: run_python
+Input: {""code"":""import json, os, sys\nos.chdir(\""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis\"")\nsys.path.insert(0, os.getcwd())\nfrom main import check_anomaly\nresult = check_anomaly(\""2026-05-01 00:00:00\"", \""2026-05-02 00:00:00\"")\nprint(json.dumps(result, ensure_ascii=False, indent=2, default=str))"",""timeout"":300}","{
+  ""status"": ""ok"",
+  ""summary"": ""anomaly check finished"",
+  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly"",
+  ""key_files"": {
+    ""detail_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/last_anomaly_check.csv"",
+    ""timeline_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/last_anomaly_check_timeline.png"",
+    ""score_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/last_anomaly_check_scores.png"",
+    ""vote_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/last_anomaly_check_votes.png""
+  },
+  ""metrics"": {
+    ""verdict"": ""ANOMALY"",
+    ""rows"": 185,
+    ""anomaly_count"": 2,
+    ""anomaly_rate"": 0.010810810810810811,
+    ""model_votes"": {
+      ""IsolationForest"": 2,
+      ""OneClassSVM"": 21,
+      ""Autoencoder"": 2
+    },
+    ""detail_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/last_anomaly_check.csv"",
+    ""timeline_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/last_anomaly_check_timeline.png"",
+    ""score_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/last_anomaly_check_scores.png"",
+    ""vote_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/last_anomaly_check_votes.png""
+  },
+  ""artifacts"": [
+    {
+      ""type"": ""image"",
+      ""label"": ""timeline_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/last_anomaly_check_timeline.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""score_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/last_anomaly_check_scores.png""
+    },
+    {
+      ""type"": ""image"",
+      ""label"": ""vote_plot"",
+      ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/last_anomaly_check_votes.png""
+    }
+  ]
+}"
+fd638504-0dc6-4b27-9036-f3ad01a4826c,1,2,run_python,True,88818,2026-05-24T05:34:25.317439,2026-05-24T05:35:54.136329,"Tool: run_python
+Input: {""code"":""import json, os, sys\nos.chdir(\""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis\"")\nsys.path.insert(0, os.getcwd())\nfrom main import run_all\nresult = run_all()\nprint(json.dumps(result, ensure_ascii=False, indent=2, default=str))"",""timeout"":300}","{
+  ""status"": ""ok"",
+  ""summary"": ""full pipeline finished"",
+  ""output_folder"": ""."",
+  ""key_files"": {},
+  ""metrics"": {
+    ""data_status"": {
+      ""status"": ""ok"",
+      ""summary"": ""data status loaded"",
+      ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/raw"",
+      ""key_files"": {},
+      ""metrics"": {
+        ""sensors"": [
+          {
+            ""sensor"": ""Current_A"",
+            ""exists"": true,
+            ""rows"": 59248,
+            ""start"": ""2025-09-15 15:21:00"",
+            ""end"": ""2026-05-24 05:28:27""
+          },
+          {
+            ""sensor"": ""Current_B"",
+            ""exists"": true,
+            ""rows"": 59223,
+            ""start"": ""2025-09-15 15:21:00"",
+            ""end"": ""2026-05-24 03:23:27""
+          },
+          {
+            ""sensor"": ""Current_C"",
+            ""exists"": true,
+            ""rows"": 59224,
+            ""start"": ""2025-09-15 15:21:00"",
+            ""end"": ""2026-05-24 03:23:27""
+          },
+          {
+            ""sensor"": ""Votage_ab"",
+            ""exists"": true,
+            ""rows"": 236588,
+            ""start"": ""2025-09-15 15:11:36"",
+            ""end"": ""2026-05-24 03:25:28""
+          },
+          {
+            ""sensor"": ""Votage_bc"",
+            ""exists"": true,
+            ""rows"": 236587,
+            ""start"": ""2025-09-15 15:11:36"",
+            ""end"": ""2026-05-24 03:25:28""
+          },
+          {
+            ""sensor"": ""Votage_ca"",
+            ""exists"": true,
+            ""rows"": 236584,
+            ""start"": ""2025-09-15 15:11:36"",
+            ""end"": ""2026-05-24 03:25:28""
+          },
+          {
+            ""sensor"": ""Instantaneous_Total_Power"",
+            ""exists"": true,
+            ""rows"": 236589,
+            ""start"": ""2025-09-15 15:11:36"",
+            ""end"": ""2026-05-24 03:24:27""
+          },
+          {
+            ""sensor"": ""Electricity_consumption"",
+            ""exists"": true,
+            ""rows"": 236591,
+            ""start"": ""2025-09-15 15:11:36"",
+            ""end"": ""2026-05-24 03:24:27""
+          },
+          {
+            ""sensor"": ""PF"",
+            ""exists"": true,
+            ""rows"": 236591,
+            ""start"": ""2025-09-15 15:11:36"",
+            ""end"": ""2026-05-24 03:24:27""
+          },
+          {
+            ""sensor"": ""CT_Ratio"",
+            ""exists"": true,
+            ""rows"": 153,
+            ""start"": ""2025-09-16 15:17:00"",
+            ""end"": ""2026-05-23 17:57:27""
+          },
+          {
+            ""sensor"": ""kVAh"",
+            ""exists"": true,
+            ""rows"": 236591,
+            ""start"": ""2025-09-15 15:11:36"",
+            ""end"": ""2026-05-24 03:24:27""
+          },
+          {
+            ""sensor"": ""Modbus_404"",
+            ""exists"": true,
+            ""rows"": 4914,
+            ""start"": ""2025-09-15 16:16:01"",
+            ""end"": ""2026-05-24 02:57:28""
+          },
+          {
+            ""sensor"": ""Modbus_Timeout"",
+            ""exists"": true,
+            ""rows"": 5013,
+            ""start"": ""2025-09-15 16:16:01"",
+            ""end"": ""2026-05-24 02:57:28""
+          }
+        ]
+      },
+      ""artifacts"": []
+    },
+    ""state"": {
+      ""status"": ""ok"",
+      ""summary"": ""GMM state analysis finished"",
+      ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state"",
+      ""key_files"": {
+        ""state_labeled_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/state_labeled.csv"",
+        ""processed_state_labeled_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/processed/state_labeled.csv"",
+        ""state_report"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/state_report.txt"",
+        ""state_timeline"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_state_timeline.png"",
+        ""run_summary"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/state_run_summary.json"",
+        ""application"": {
+          ""all"": {
+            ""state_summary_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_state_summary.csv"",
+            ""transition_matrix_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_transition_matrix.csv"",
+            ""state_hours_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_state_hours.csv"",
+            ""state_feature_profile_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_state_feature_profile.csv"",
+            ""metrics_json"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_metrics.json"",
+            ""state_timeline"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_state_timeline.png"",
+            ""transition_matrix_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_transition_matrix.png"",
+            ""confidence_distribution"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_confidence_distribution.png"",
+            ""state_hours_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_state_hours.png""
+          },
+          ""month"": {
+            ""state_summary_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_state_summary.csv"",
+            ""transition_matrix_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_transition_matrix.csv"",
+            ""state_hours_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_state_hours.csv"",
+            ""state_feature_profile_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_state_feature_profile.csv"",
+            ""metrics_json"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_metrics.json"",
+            ""state_timeline"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_state_timeline.png"",
+            ""transition_matrix_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_transition_matrix.png"",
+            ""confidence_distribution"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_confidence_distribution.png"",
+            ""state_hours_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_state_hours.png""
+          },
+          ""week"": {
+            ""state_summary_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_state_summary.csv"",
+            ""transition_matrix_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_transition_matrix.csv"",
+            ""state_hours_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_state_hours.csv"",
+            ""state_feature_profile_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_state_feature_profile.csv"",
+            ""metrics_json"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_metrics.json"",
+            ""state_timeline"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_state_timeline.png"",
+            ""transition_matrix_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_transition_matrix.png"",
+            ""confidence_distribution"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_confidence_distribution.png"",
+            ""state_hours_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_state_hours.png""
+          },
+          ""day"": {
+            ""state_summary_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_state_summary.csv"",
+            ""transition_matrix_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_transition_matrix.csv"",
+            ""state_hours_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_state_hours.csv"",
+            ""state_feature_profile_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_state_feature_profile.csv"",
+            ""metrics_json"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_metrics.json"",
+            ""state_timeline"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_state_timeline.png"",
+            ""transition_matrix_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_transition_matrix.png"",
+            ""confidence_distribution"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_confidence_distribution.png"",
+            ""state_hours_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_state_hours.png""
+          }
+        },
+        ""bic_curve"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/bic_curve.png"",
+        ""training"": {
+          ""bic_aic_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_bic_aic.csv"",
+          ""feature_quality_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_feature_quality.csv"",
+          ""cluster_profile_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_cluster_profile.csv"",
+          ""cluster_centers_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_cluster_centers.csv"",
+          ""metrics_json"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_metrics.json"",
+          ""training_input_features"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_input_features.png"",
+          ""bic_curve"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/bic_curve.png"",
+          ""feature_distributions"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_feature_distributions.png"",
+          ""cluster_scatter"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_cluster_scatter.png"",
+          ""standardized_feature_boxplot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_standardized_feature_boxplot.png"",
+          ""cluster_confidence_boxplot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_cluster_confidence_boxplot.png"",
+          ""model"": {
+            ""model_pickle"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/state/gmm_state_model.pkl"",
+            ""metadata_json"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/state/gmm_state_model_metadata.json""
+          }
+        }
+      },
+      ""metrics"": {
+        ""best_k"": 4,
+        ""rows"": 72172,
+        ""state_summary"": {
+          ""Idle"": {
+            ""count"": 1615,
+            ""hours"": 134.58,
+            ""pct"": 2.24,
+            ""I_mean_avg"": 7.68,
+            ""Power_avg"": 2.145,
+            ""kVAh_rate_avg"": 0.2487,
+            ""confidence_avg"": 0.9234
+          },
+          ""Off"": {
+            ""count"": 41241,
+            ""hours"": 3436.75,
+            ""pct"": 57.18,
+            ""I_mean_avg"": 0.0,
+            ""Power_avg"": 0.0,
+            ""kVAh_rate_avg"": 0.0006,
+            ""confidence_avg"": 1.0
+          },
+          ""Running_High"": {
+            ""count"": 17579,
+            ""hours"": 1464.92,
+            ""pct"": 24.37,
+            ""I_mean_avg"": 12.731,
+            ""Power_avg"": 3.704,
+            ""kVAh_rate_avg"": 0.4034,
+            ""confidence_avg"": 0.9836
+          },
+          ""Running_Low"": {
+            ""count"": 11692,
+            ""hours"": 974.33,
+            ""pct"": 16.21,
+            ""I_mean_avg"": 7.955,
+            ""Power_avg"": 2.203,
+            ""kVAh_rate_avg"": 0.254,
+            ""confidence_avg"": 0.9914
+          }
+        },
+        ""training"": {
+          ""stage"": ""training"",
+          ""model"": ""GaussianMixture"",
+          ""covariance_type"": ""full"",
+          ""n_init"": 5,
+          ""random_state"": 42,
+          ""features"": [
+            ""I_mean"",
+            ""I_imbalance"",
+            ""Power"",
+            ""PF_abs"",
+            ""kVAh_rate""
+          ],
+          ""candidate_k"": [
+            2,
+            3,
+            4
+          ],
+          ""best_k"": 4,
+          ""state_mapping"": {
+            ""1"": ""Off"",
+            ""0"": ""Idle"",
+            ""2"": ""Running_Low"",
+            ""3"": ""Running_High"",
+            ""-1"": ""Unknown""
+          },
+          ""rows_total"": 72172,
+          ""rows_used"": 59168,
+          ""rows_dropped"": 13004,
+          ""bic_best"": -1744138.9122863545,
+          ""aic_best"": -1744884.927585492,
+          ""silhouette"": 0.6462179972258395,
+          ""calinski_harabasz"": 10848.898345860598,
+          ""davies_bouldin"": 1.944328121623481,
+          ""evaluation_rows"": 5000
+        },
+        ""application"": {
+          ""stage"": ""application"",
+          ""windows"": {
+            ""all"": {
+              ""window"": ""all"",
+              ""rows_total"": 72172,
+              ""rows_valid_state"": 72127,
+              ""data_start"": ""2025-09-15 15:10:00"",
+              ""data_end"": ""2026-05-24 05:25:00"",
+              ""freq_min"": 5,
+              ""total_hours"": 6010.583333333333,
+              ""mean_assignment_confidence"": 0.9913356716020819,
+              ""low_confidence_rows_posterior_lt_0_8"": 925,
+              ""state_count"": 4
+            },
+            ""month"": {
+              ""window"": ""month"",
+              ""rows_total"": 6690,
+              ""rows_valid_state"": 6689,
+              ""data_start"": ""2026-05-01 00:00:00"",
+              ""data_end"": ""2026-05-24 05:25:00"",
+              ""freq_min"": 5,
+              ""total_hours"": 557.4166666666666,
+              ""mean_assignment_confidence"": 0.9927373639586651,
+              ""low_confidence_rows_posterior_lt_0_8"": 95,
+              ""state_count"": 4
+            },
+            ""week"": {
+              ""window"": ""week"",
+              ""rows_total"": 2017,
+              ""rows_valid_state"": 2017,
+              ""data_start"": ""2026-05-17 05:25:00"",
+              ""data_end"": ""2026-05-24 05:25:00"",
+              ""freq_min"": 5,
+              ""total_hours"": 168.08333333333334,
+              ""mean_assignment_confidence"": 0.9881773778033892,
+              ""low_confidence_rows_posterior_lt_0_8"": 49,
+              ""state_count"": 4
+            },
+            ""day"": {
+              ""window"": ""day"",
+              ""rows_total"": 66,
+              ""rows_valid_state"": 66,
+              ""data_start"": ""2026-05-24 00:00:00"",
+              ""data_end"": ""2026-05-24 05:25:00"",
+              ""freq_min"": 5,
+              ""total_hours"": 5.5,
+              ""mean_assignment_confidence"": 1.0,
+              ""low_confidence_rows_posterior_lt_0_8"": 0,
+              ""state_count"": 1
+            }
+          }
+        }
+      },
+      ""artifacts"": [
+        {
+          ""type"": ""image"",
+          ""label"": ""state_timeline"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_state_timeline.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""application.all.state_timeline"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_state_timeline.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""application.all.transition_matrix_plot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_transition_matrix.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""application.all.confidence_distribution"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_confidence_distribution.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""application.all.state_hours_plot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/all/all_state_hours.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""application.month.state_timeline"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_state_timeline.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""application.month.transition_matrix_plot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_transition_matrix.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""application.month.confidence_distribution"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_confidence_distribution.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""application.month.state_hours_plot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/month/month_state_hours.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""application.week.state_timeline"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_state_timeline.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""application.week.transition_matrix_plot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_transition_matrix.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""application.week.confidence_distribution"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_confidence_distribution.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""application.week.state_hours_plot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/week/week_state_hours.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""application.day.state_timeline"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_state_timeline.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""application.day.transition_matrix_plot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_transition_matrix.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""application.day.confidence_distribution"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_confidence_distribution.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""application.day.state_hours_plot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/application/day/day_state_hours.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""bic_curve"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/bic_curve.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""training.training_input_features"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_input_features.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""training.bic_curve"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/bic_curve.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""training.feature_distributions"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_feature_distributions.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""training.cluster_scatter"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_cluster_scatter.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""training.standardized_feature_boxplot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_standardized_feature_boxplot.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""training.cluster_confidence_boxplot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/training/training_cluster_confidence_boxplot.png""
+        }
+      ]
+    },
+    ""forecast"": {
+      ""status"": ""ok"",
+      ""summary"": ""forecast training finished"",
+      ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast"",
+      ""key_files"": {
+        ""metrics"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/forecast_metrics.json"",
+        ""training_data_profile"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/training_data_profile.json"",
+        ""training_input_y"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/training_input_y.png"",
+        ""training_input_dy"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/training_input_dy.png"",
+        ""forecast_test_overlay"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/forecast_test_overlay.png"",
+        ""compare_backtest_mae"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/compare_backtest_mae.png"",
+        ""compare_backtest_r2"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/compare_backtest_r2.png"",
+        ""test_actual"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/test_actual.csv"",
+        ""config"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/forecast/training_config_dy.json"",
+        ""latest_config"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/forecast/training_config.json"",
+        ""models_dir"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/forecast"",
+        ""run_summary"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/forecast_train_dy_run_summary.json""
+      },
+      ""metrics"": {
+        ""BaselineLastWeek"": {
+          ""status"": ""ok"",
+          ""target"": ""dy"",
+          ""validation_strategy"": ""recursive_last_week_increment_baseline"",
+          ""mae"": 37.9466688166508,
+          ""rmse"": 42.98917947255488,
+          ""r2"": 0.09862524874823553,
+          ""mae_percent"": 0.5591838954169582,
+          ""deploy_recommendation"": ""ok""
+        },
+        ""Prophet"": {
+          ""status"": ""ok"",
+          ""target"": ""dy"",
+          ""validation_strategy"": ""direct_horizon_time_series"",
+          ""mae"": 54.7534892328128,
+          ""rmse"": 65.00392884394279,
+          ""r2"": -1.060944465696739,
+          ""mae_percent"": 0.8068499910969797,
+          ""deploy_recommendation"": ""review""
+        }
+      },
+      ""artifacts"": [
+        {
+          ""type"": ""image"",
+          ""label"": ""training_input_y"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/training_input_y.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""training_input_dy"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/training_input_dy.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""forecast_test_overlay"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/forecast_test_overlay.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""compare_backtest_mae"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/compare_backtest_mae.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""compare_backtest_r2"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/compare_backtest_r2.png""
+        }
+      ]
+    },
+    ""forecast_future"": {
+      ""status"": ""ok"",
+      ""summary"": ""future forecast finished"",
+      ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast"",
+      ""key_files"": {
+        ""report"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/application/dy/future_forecast_report.json"",
+        ""future_forecast"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/application/dy/future_forecast.png"",
+        ""run_summary"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/forecast_future_dy_run_summary.json"",
+        ""application_dir"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/application/dy""
+      },
+      ""metrics"": {
+        ""Prophet"": {
+          ""3d"": {
+            ""yhat"": 8189.1932250346,
+            ""increment"": 108.57922503460031
+          },
+          ""7d"": {
+            ""yhat"": 8367.44996979909,
+            ""increment"": 286.8359697990909
+          },
+          ""14d"": {
+            ""yhat"": 8658.253628043662,
+            ""increment"": 577.639628043662
+          },
+          ""30d"": {
+            ""yhat"": 9319.7799818518,
+            ""increment"": 1239.1659818518
+          }
+        }
+      },
+      ""artifacts"": [
+        {
+          ""type"": ""image"",
+          ""label"": ""future_forecast"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/application/dy/future_forecast.png""
+        }
+      ]
+    },
+    ""anomaly"": {
+      ""status"": ""ok"",
+      ""summary"": ""anomaly detection training finished"",
+      ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly"",
+      ""key_files"": {
+        ""features"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/processed/detection_features.csv"",
+        ""metrics"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/anomaly_metrics.json"",
+        ""metrics_table"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/tables/model_metrics.csv"",
+        ""synthetic_validation_predictions"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/tables/synthetic_validation_predictions.csv"",
+        ""anomaly_type_detection_rate"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/tables/anomaly_type_detection_rate.csv"",
+        ""plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/score_distribution.png"",
+        ""autoencoder_loss_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/autoencoder_loss.png"",
+        ""metric_bar_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/model_metrics.png"",
+        ""feature_distribution_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/feature_distribution.png"",
+        ""feature_distribution_by_type_plots"": [
+          ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/feature_by_anomaly_type/current_imbalance_feature_distribution.png"",
+          ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/feature_by_anomaly_type/low_pf_feature_distribution.png"",
+          ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/feature_by_anomaly_type/over_current_feature_distribution.png"",
+          ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/feature_by_anomaly_type/power_error_feature_distribution.png"",
+          ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/feature_by_anomaly_type/voltage_sag_feature_distribution.png""
+        ],
+        ""score_distribution_by_label_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/score_distribution_by_label.png"",
+        ""score_distribution_by_label_log_y_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/score_distribution_by_label_log_y.png"",
+        ""score_distribution_by_label_log_xy_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/score_distribution_by_label_log_xy.png"",
+        ""confusion_matrix_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/confusion_matrix.png"",
+        ""roc_curve_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/roc_curve.png"",
+        ""roc_curve_log_fpr_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/roc_curve_log_fpr.png"",
+        ""anomaly_type_detection_rate_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/anomaly_type_detection_rate.png"",
+        ""plots_dir"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots"",
+        ""tables_dir"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/tables"",
+        ""training_data_profile"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/tables/training_data_profile.json"",
+        ""feature_summary"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/tables/feature_summary.csv"",
+        ""run_summary"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/anomaly_train_run_summary.json"",
+        ""scaler"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/anomaly/scaler.pkl"",
+        ""thresholds"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/anomaly/thresholds.json"",
+        ""IsolationForest"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/anomaly/isolation_forest.pkl"",
+        ""OneClassSVM"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/anomaly/one_class_svm.pkl"",
+        ""Autoencoder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/models/anomaly/autoencoder.pt""
+      },
+      ""metrics"": {
+        ""IsolationForest"": {
+          ""accuracy"": 0.959049959049959,
+          ""precision"": 0.5,
+          ""recall"": 0.016,
+          ""f1"": 0.031007751937984496,
+          ""auc_roc"": 0.8925854824935953,
+          ""test_anomaly_count"": 4
+        },
+        ""OneClassSVM"": {
+          ""accuracy"": 0.9955773955773956,
+          ""precision"": 0.9025270758122743,
+          ""recall"": 1.0,
+          ""f1"": 0.9487666034155597,
+          ""auc_roc"": 1.0,
+          ""test_anomaly_count"": 27
+        },
+        ""Autoencoder"": {
+          ""accuracy"": 0.9890253890253891,
+          ""precision"": 0.7961165048543689,
+          ""recall"": 0.984,
+          ""f1"": 0.8801431127012522,
+          ""auc_roc"": 0.9992116140051238,
+          ""test_anomaly_count"": 63,
+          ""loss"": {
+            ""initial"": 1.0043345722167387,
+            ""final"": 0.08018651770670777,
+            ""min"": 0.08018651770670777,
+            ""epochs"": 60
+          }
+        }
+      },
+      ""artifacts"": [
+        {
+          ""type"": ""image"",
+          ""label"": ""plot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/score_distribution.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""autoencoder_loss_plot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/autoencoder_loss.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""metric_bar_plot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/model_metrics.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""feature_distribution_plot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/feature_distribution.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""score_distribution_by_label_plot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/score_distribution_by_label.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""score_distribution_by_label_log_y_plot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/score_distribution_by_label_log_y.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""score_distribution_by_label_log_xy_plot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/score_distribution_by_label_log_xy.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""confusion_matrix_plot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/confusion_matrix.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""roc_curve_plot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/roc_curve.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""roc_curve_log_fpr_plot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/roc_curve_log_fpr.png""
+        },
+        {
+          ""type"": ""image"",
+          ""label"": ""anomaly_type_detection_rate_plot"",
+          ""path"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/anomaly_type_detection_rate.png""
+        }
+      ]
+    }
+  },
+  ""artifacts"": []
+}
+[stderr]
+Importing plotly failed. Interactive plots will not work.
+05:34:38 - cmdstanpy - INFO - Chain [1] start processing
+05:35:26 - cmdstanpy - INFO - Chain [1] done processing"

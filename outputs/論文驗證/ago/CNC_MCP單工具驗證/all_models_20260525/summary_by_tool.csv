@@ -1,0 +1,9 @@
+﻿cnc_mcp_tool_name,cnc_tool_layer,runs,models,success_rate,avg_duration_s,avg_estimated_tool_output_tokens
+tool_check_anomaly,anomaly,13,13,0.462,9.763,255.769
+tool_data_status,data,13,13,0.538,24.354,354.308
+tool_forecast_future,forecast,13,13,0.462,15.763,134.769
+tool_run_all,workflow,13,13,0.462,58.427,4211.615
+tool_run_state_analysis,state,13,13,0.538,47.057,2416.615
+tool_train_anomaly_detection,training,13,13,0.462,11.815,908.692
+tool_train_forecast,training,13,13,0.462,14.069,387.692
+tool_update_data,data,13,13,0.538,10.547,46.0

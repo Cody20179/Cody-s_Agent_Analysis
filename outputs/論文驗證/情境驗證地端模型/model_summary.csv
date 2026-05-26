@@ -1,0 +1,11 @@
+﻿model_name,runs,avg_total_score,pass_rate,avg_duration_s
+gemma4:26b,8,23.75,0.0,55.845375
+gemma4:31b,8,42.5,0.0,148.489625
+gemma4:latest,8,53.125,0.0,177.93625
+gpt-oss:120b,8,86.75,0.625,32.29075
+gpt-oss:20b,8,79.5625,0.5,31.21675
+nemotron-3-nano:latest,8,88.125,0.75,68.49675
+nemotron-cascade-2:latest,8,83.9375,0.625,46.425375
+qwen3.5:9b,8,69.375,0.5,91.334875
+qwen3.6:27b,8,72.0625,0.375,233.25675
+qwen3:8b,8,23.75,0.0,16.132

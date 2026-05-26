@@ -1,0 +1,111 @@
+﻿session_id,turn,seq,tool_name,success,duration_ms,started_at,ended_at,input,output
+7d688e7d-320f-4ce4-a5f5-7bef272e007d,1,2,run_python,True,24,2026-05-25T14:16:12.877204,2026-05-25T14:16:12.901387,"Tool: run_python
+Input: {""code"":""import json, os, sys\nos.chdir(\""/Users/cody2019/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis\"")\nsys.path.insert(0, os.getcwd())\nfrom main import data_status\nprint(json.dumps(data_status(), ensure_ascii=False, indent=2, default=str))"",""timeout"":300}","[stderr]
+Traceback (most recent call last):
+  File ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_System/python/tmp67xo7gne.py"", line 2, in <module>
+    os.chdir(""/Users/cody2019/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis"")
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/cody2019/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis'
+[exit code: 1]"
+7d688e7d-320f-4ce4-a5f5-7bef272e007d,1,4,run_python,True,2882,2026-05-25T14:16:17.924637,2026-05-25T14:16:20.806810,"Tool: run_python
+Input: {""code"":""import json, os, sys\nos.chdir(\""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis\"")\nsys.path.insert(0, os.getcwd())\nfrom main import data_status\nprint(json.dumps(data_status(), ensure_ascii=False, indent=2, default=str))"",""timeout"":300}","{
+  ""status"": ""ok"",
+  ""summary"": ""data status loaded"",
+  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/raw"",
+  ""key_files"": {},
+  ""metrics"": {
+    ""sensors"": [
+      {
+        ""sensor"": ""Current_A"",
+        ""exists"": true,
+        ""rows"": 59259,
+        ""start"": ""2025-09-15 15:21:00"",
+        ""end"": ""2026-05-24 06:23:27""
+      },
+      {
+        ""sensor"": ""Current_B"",
+        ""exists"": true,
+        ""rows"": 59259,
+        ""start"": ""2025-09-15 15:21:00"",
+        ""end"": ""2026-05-24 06:23:27""
+      },
+      {
+        ""sensor"": ""Current_C"",
+        ""exists"": true,
+        ""rows"": 59260,
+        ""start"": ""2025-09-15 15:21:00"",
+        ""end"": ""2026-05-24 06:23:27""
+      },
+      {
+        ""sensor"": ""Votage_ab"",
+        ""exists"": true,
+        ""rows"": 236733,
+        ""start"": ""2025-09-15 15:11:36"",
+        ""end"": ""2026-05-24 06:26:28""
+      },
+      {
+        ""sensor"": ""Votage_bc"",
+        ""exists"": true,
+        ""rows"": 236732,
+        ""start"": ""2025-09-15 15:11:36"",
+        ""end"": ""2026-05-24 06:26:28""
+      },
+      {
+        ""sensor"": ""Votage_ca"",
+        ""exists"": true,
+        ""rows"": 236728,
+        ""start"": ""2025-09-15 15:11:36"",
+        ""end"": ""2026-05-24 06:26:28""
+      },
+      {
+        ""sensor"": ""Instantaneous_Total_Power"",
+        ""exists"": true,
+        ""rows"": 236735,
+        ""start"": ""2025-09-15 15:11:36"",
+        ""end"": ""2026-05-24 06:26:28""
+      },
+      {
+        ""sensor"": ""Electricity_consumption"",
+        ""exists"": true,
+        ""rows"": 236737,
+        ""start"": ""2025-09-15 15:11:36"",
+        ""end"": ""2026-05-24 06:26:28""
+      },
+      {
+        ""sensor"": ""PF"",
+        ""exists"": true,
+        ""rows"": 236737,
+        ""start"": ""2025-09-15 15:11:36"",
+        ""end"": ""2026-05-24 06:26:28""
+      },
+      {
+        ""sensor"": ""CT_Ratio"",
+        ""exists"": true,
+        ""rows"": 153,
+        ""start"": ""2025-09-16 15:17:00"",
+        ""end"": ""2026-05-23 17:57:27""
+      },
+      {
+        ""sensor"": ""kVAh"",
+        ""exists"": true,
+        ""rows"": 236737,
+        ""start"": ""2025-09-15 15:11:36"",
+        ""end"": ""2026-05-24 06:26:28""
+      },
+      {
+        ""sensor"": ""Modbus_404"",
+        ""exists"": true,
+        ""rows"": 4917,
+        ""start"": ""2025-09-15 16:16:01"",
+        ""end"": ""2026-05-24 05:58:27""
+      },
+      {
+        ""sensor"": ""Modbus_Timeout"",
+        ""exists"": true,
+        ""rows"": 5016,
+        ""start"": ""2025-09-15 16:16:01"",
+        ""end"": ""2026-05-24 05:58:27""
+      }
+    ]
+  },
+  ""artifacts"": []
+}"

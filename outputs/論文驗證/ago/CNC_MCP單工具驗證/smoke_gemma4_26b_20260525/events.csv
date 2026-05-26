@@ -1,0 +1,387 @@
+﻿run_id,model_name,case_id,session_id,tag,chunk
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,agent,cnc-mcp-tool_data_status
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,info,model=gemma4:26b
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,The
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, user
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, wants
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, me
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, to
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, call
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, the
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, `
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,tool
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,_
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,data
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,_
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,status
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,`
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, tool
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, directly
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, (
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,without
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, using
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, `
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,run
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,_
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,python
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,`).
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+After"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, the
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, tool
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, execution
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,","
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, I
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, need
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, to
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, provide
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, a
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, short
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, response
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, in
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, Traditional
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, Chinese
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, covering
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,:
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+1"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,.
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, Data
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, coverage
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, range
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, (
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,資料
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,覆
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,蓋
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,範圍
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,).
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+2"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,.
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, Number
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, of
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, sensors
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, (
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,感
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,測
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,器
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,數量
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,).
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+3"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,.
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, Success
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, status
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, (
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,是否
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,成功
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,).
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+
+Plan"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,:
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+1"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,.
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, Call
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, `
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,tool
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,_
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,data
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,_
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,status
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,`.
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+2"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,.
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, Parse
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, the
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, output
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,.
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+3"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,.
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, Format
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, the
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, response
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, in
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, Traditional
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, Chinese
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, as
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, requested
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,.
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,tool_input,"Tool: tool_data_status
+Input: {}"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,tool_output,"[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""data status loaded"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/raw"",\n  ""key_files"": {},\n  ""metrics"": {\n    ""sensors"": [\n      {\n        ""sensor"": ""Current_A"",\n        ""exists"": true,\n        ""rows"": 59668,\n        ""start"": ""2025-09-15 15:21:00"",\n        ""end"": ""2026-05-25 16:27:29""\n      },\n      {\n        ""sensor"": ""Current_B"",\n        ""exists"": true,\n        ""rows"": 59259,\n        ""start"": ""2025-09-15 15:21:00"",\n        ""end"": ""2026-05-24 06:23:27""\n      },\n      {\n        ""sensor"": ""Current_C"",\n        ""exists"": true,\n        ""rows"": 59260,\n        ""start"": ""2025-09-15 15:21:00"",\n        ""end"": ""2026-05-24 06:23:27""\n      },\n      {\n        ""sensor"": ""Votage_ab"",\n        ""exists"": true,\n        ""rows"": 236733,\n        ""start"": ""2025-09-15 15:11:36"",\n        ""end"": ""2026-05-24 06:26:28""\n      },\n      {\n        ""sensor"": ""Votage_bc"",\n        ""exists"": true,\n        ""rows"": 236732,\n        ""start"": ""2025-09-15 15:11:36"",\n        ""end"": ""2026-05-24 06:26:28""\n      },\n      {\n        ""sensor"": ""Votage_ca"",\n        ""exists"": true,\n        ""rows"": 236728,\n        ""start"": ""2025-09-15 15:11:36"",\n        ""end"": ""2026-05-24 06:26:28""\n      },\n      {\n        ""sensor"": ""Instantaneous_Total_Power"",\n        ""exists"": true,\n        ""rows"": 236735,\n        ""start"": ""2025-09-15 15:11:36"",\n        ""end"": ""2026-05-24 06:26:28""\n      },\n      {\n        ""sensor"": ""Electricity_consumption"",\n        ""exists"": true,\n        ""rows"": 236737,\n        ""start"": ""2025-09-15 15:11:36"",\n        ""end"": ""2026-05-24 06:26:28""\n      },\n      {\n        ""sensor"": ""PF"",\n        ""exists"": true,\n        ""rows"": 236737,\n        ""start"": ""2025-09-15 15:11:36"",\n        ""end"": ""2026-05-24 06:26:28""\n      },\n      {\n        ""sensor"": ""CT_Ratio"",\n        ""exists"": true,\n        ""rows"": 153,\n        ""start"": ""2025-09-16 "
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,info,model=gemma4:26b
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,The
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, user
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, wants
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, a
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, summary
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, of
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, the
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, `
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,tool
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,_
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,data
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,_
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,status
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,`
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, output
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, in
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, Traditional
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, Chinese
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,.
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+The"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, summary
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, should
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, include
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,:
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+1"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,.
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,  Data
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, coverage
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, range
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, (
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,資料
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,覆
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,蓋
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,範圍
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,).
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+2"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,.
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,  Number
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, of
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, sensors
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, (
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,感
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,測
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,器
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,數量
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,).
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+3"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,.
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,  Success
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, status
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, (
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,是否
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,成功
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,).
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+
+From"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, the
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, tool
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, output
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,:
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+-"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, `
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,status
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,`:
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking," """
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,ok
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,""""
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, (
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,Success
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,)
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+-"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, `
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,sensors
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,`
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, list
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, contains
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, 1
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,3
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, sensors
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,.
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+-"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, Date
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, range
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,:
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, The
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, earliest
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, start
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, date
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, across
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, all
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, sensors
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, is
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, `
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,2
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,0
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,2
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,5
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,-
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,0
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,9
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,-
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,1
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,5
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, 1
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,5
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,:
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,1
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,1
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,:
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,3
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,6
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,`
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, (
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,from
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, `
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,V
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,otage
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,_
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,ab
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,`
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, etc
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,.)
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, and
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, the
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, latest
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, end
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, date
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, is
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, `
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,2
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,0
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,2
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,6
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,-
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,0
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,5
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,-
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,2
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,5
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, 1
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,6
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,:
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,2
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,7
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,:
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,2
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,9
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,`
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, (
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,from
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, `
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,Current
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,_
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,A
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,`).
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+
+Summary"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, construction
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,:
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+-"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, 是否
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,成功
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,：
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,成功
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+-"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, 感
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,測
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,器
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,數量
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,：
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,1
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,3
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, 個
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,"
+-"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, 資料
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,覆
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,蓋
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,範圍
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,：
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,2
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,0
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,2
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,5
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,-
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,0
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,9
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,-
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,1
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,5
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, 至
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking, 2
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,0
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,2
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,6
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,-
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,0
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,5
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,-
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,2
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,thinking,5
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,查詢
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,成功
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,。
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,"
+
+"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,*
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result, **
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,是否
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,成功
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,**
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,：
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,成功
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,"
+"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,*
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result, **
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,感
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,測
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,器
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,數量
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,**
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,：
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,1
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,3
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result, 個
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,"
+"
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,*
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result, **
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,資料
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,覆
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,蓋
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,範圍
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,**
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,：
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,2
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,0
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,2
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,5
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,-
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,0
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,9
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,-
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,1
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,5
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result, 至
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result, 
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,2
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,0
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,2
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,6
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,-
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,0
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,5
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,-
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,2
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,result,5
+20260525_165739,gemma4:26b,tool_data_status,7d4e3b79-68ea-4419-bae6-fa2bf078f664,done,

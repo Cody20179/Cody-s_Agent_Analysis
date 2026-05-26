@@ -1,0 +1,401 @@
+﻿codex_judge_run_id,codex_model,judge_item_id,agent_model,scenario_id,category,repeat_index,session_id,question,answer_source,answer_chars,agent_duration_ms,tool_input_events,rule_based_qa_score,called_functions,missing_expectations,correctness,completeness,readability,practicality,hallucination_risk,overall,codex_reason,batch_duration_ms,estimated_answer_tokens,codex_judge_error
+20260526_012656_824e1a0c,gpt-5.5,J0001,qwen3.5:9b,S01_data_coverage,data_query,1,0a6c22f6-d6f8-475d-9bf5-7f4723dd1c3f,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,csv_preview,338,44819,3,100.0,data_status,,0.0,0.0,0.0,0.0,0.0,0.0,,357,197,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.883083Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.884798Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0002,qwen3.5:9b,S02_period_state_distribution,state_query,1,09031f94-0946-40ce-a376-3ca68f66a3d4,幫我查 2026-05-01 的機台狀態分布。,csv_preview,632,47929,2,100.0,apply_state_model|data_status,,0.0,0.0,0.0,0.0,0.0,0.0,,357,241,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.883083Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.884798Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0003,qwen3.5:9b,S03_period_utilization,state_query,1,6d9522db-de65-4307-962b-3febc3cb14d2,幫我看 2026-05-01 的機台稼動率。,csv_preview,388,99993,7,35.0,data_status,running_hours|total_hours|utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,357,178,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.883083Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.884798Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0004,qwen3.5:9b,S04_last_week_runtime,state_query,1,cd6ce02b-e0c7-4b7d-9662-f6fd084b75ce,幫我看上週機台運轉與停機時數。,csv_preview,0,300163,10,35.0,data_status|forecast_future,running_hours|off_hours|total_hours|utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,357,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.883083Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.884798Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0005,qwen3.5:9b,S05_this_week_status,state_query,1,ee0a429b-73bd-4525-98d4-b46fcf647a8f,幫我看本週機台狀態。,csv_preview,0,37206,2,35.0,,running_hours|off_hours|total_hours|utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,357,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.883083Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.884798Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0006,qwen3.5:9b,S06_next_week_power,forecast,1,cf0928a9-4242-4987-8727-f7d119c3c166,幫我預測下週耗電量。,csv_preview,526,50292,2,100.0,data_status|forecast_future,,0.0,0.0,0.0,0.0,0.0,0.0,,357,203,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.883083Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.884798Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0007,qwen3.5:9b,S07_next_month_cost,forecast,1,c4e19f5c-8297-4777-a03b-d7653a7067ab,幫我預測下個月電費，電價用每度 4 元。,csv_preview,0,118218,3,50.0,data_status|forecast_future,forecast_30d_increment|estimated_30d_cost,0.0,0.0,0.0,0.0,0.0,0.0,,357,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.883083Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.884798Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0008,qwen3.5:9b,S08_period_anomaly,anomaly,1,20dc8ef8-0ecd-44bd-9287-afa9f0fe6328,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,csv_preview,286,32059,2,100.0,check_anomaly,,0.0,0.0,0.0,0.0,0.0,0.0,,357,133,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.883083Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.884798Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0009,qwen3.6:27b,S01_data_coverage,data_query,1,6f95d89f-1eb0-470c-950d-5c5dab9947c3,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,csv_preview,899,153738,1,100.0,data_status,,0.0,0.0,0.0,0.0,0.0,0.0,,357,404,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.883083Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.884798Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0010,qwen3.6:27b,S02_period_state_distribution,state_query,1,2a5ec28d-9109-4779-88bf-9ec039ebdd1b,幫我查 2026-05-01 的機台狀態分布。,csv_preview,880,187715,1,69.0,,running_high_hours,0.0,0.0,0.0,0.0,0.0,0.0,,357,460,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.883083Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.884798Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0011,qwen3.6:27b,S03_period_utilization,state_query,1,a0f1931d-b561-432d-b098-0cd7f3371fc9,幫我看 2026-05-01 的機台稼動率。,csv_preview,94,300038,5,30.0,,running_hours|total_hours|utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,69,56,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.964037Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.964059Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0012,qwen3.6:27b,S04_last_week_runtime,state_query,1,fb030594-a2ee-469a-9298-6ba983bca7b0,幫我看上週機台運轉與停機時數。,csv_preview,608,151063,1,75.0,,,0.0,0.0,0.0,0.0,0.0,0.0,,69,300,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.964037Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.964059Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0013,qwen3.6:27b,S05_this_week_status,state_query,1,ac9e7d04-689a-4ae4-865d-404ce33b94fb,幫我看本週機台狀態。,csv_preview,624,298789,1,92.5,apply_state_model,running_hours,0.0,0.0,0.0,0.0,0.0,0.0,,69,376,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.964037Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.964059Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0014,qwen3.6:27b,S06_next_week_power,forecast,1,653ca109-5ec3-41fb-bb74-2efbe6bc1fde,幫我預測下週耗電量。,csv_preview,0,300061,3,60.0,data_status|forecast_future,forecast_7d_increment,0.0,0.0,0.0,0.0,0.0,0.0,,69,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.964037Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.964059Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0015,qwen3.6:27b,S07_next_month_cost,forecast,1,d6fda678-1e1a-4b1d-85d5-f7cbe2e6fa3d,幫我預測下個月電費，電價用每度 4 元。,csv_preview,0,312434,3,50.0,data_status|forecast_future,forecast_30d_increment|estimated_30d_cost,0.0,0.0,0.0,0.0,0.0,0.0,,69,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.964037Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.964059Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0016,qwen3.6:27b,S08_period_anomaly,anomaly,1,ef0b5cfa-7279-4020-98c3-83dcdfcdbc9f,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,csv_preview,379,162216,1,100.0,check_anomaly,,0.0,0.0,0.0,0.0,0.0,0.0,,69,211,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.964037Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.964059Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0017,nemotron-cascade-2:latest,S01_data_coverage,data_query,1,cc3461fc-08b4-4274-94b1-301eb1135e47,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,csv_preview,1000,67875,2,70.0,data_status,sensor_count,0.0,0.0,0.0,0.0,0.0,0.0,,69,291,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.964037Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.964059Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0018,nemotron-cascade-2:latest,S02_period_state_distribution,state_query,1,42155b9b-7624-461b-8a3f-af44a08f776a,幫我查 2026-05-01 的機台狀態分布。,csv_preview,952,31688,2,84.0,apply_state_model,rows,0.0,0.0,0.0,0.0,0.0,0.0,,69,378,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.964037Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.964059Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0019,nemotron-cascade-2:latest,S03_period_utilization,state_query,1,d37053a8-33d7-4ba7-8148-49d3d5d7e130,幫我看 2026-05-01 的機台稼動率。,csv_preview,1000,69666,7,100.0,apply_state_model|check_anomaly|data_status|forecast_future,,0.0,0.0,0.0,0.0,0.0,0.0,,69,343,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.964037Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.964059Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0020,nemotron-cascade-2:latest,S04_last_week_runtime,state_query,1,ecdec49a-2865-464f-be09-6d569de0b7c9,幫我看上週機台運轉與停機時數。,csv_preview,753,33822,2,92.5,apply_state_model,total_hours,0.0,0.0,0.0,0.0,0.0,0.0,,69,341,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:56.964037Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:56.964059Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0021,nemotron-cascade-2:latest,S05_this_week_status,state_query,1,49a8aef5-aed4-4c9c-b63c-7d581df8f4f7,幫我看本週機台狀態。,csv_preview,1000,36245,2,85.0,apply_state_model,running_hours|utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,71,338,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.036384Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.036412Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0022,nemotron-cascade-2:latest,S06_next_week_power,forecast,1,19c2a53e-ed56-4993-9a29-c1e949d94aba,幫我預測下週耗電量。,csv_preview,944,59987,2,70.0,forecast_future,forecast_7d_increment,0.0,0.0,0.0,0.0,0.0,0.0,,71,463,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.036384Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.036412Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0023,nemotron-cascade-2:latest,S07_next_month_cost,forecast,1,0859d4a3-edb7-4b77-822d-efbcaba721d7,幫我預測下個月電費，電價用每度 4 元。,csv_preview,786,49228,4,70.0,forecast_future,forecast_30d_increment|estimated_30d_cost,0.0,0.0,0.0,0.0,0.0,0.0,,71,372,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.036384Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.036412Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0024,nemotron-cascade-2:latest,S08_period_anomaly,anomaly,1,f15e9a36-8c97-473e-95b5-f659a3e6ee01,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,csv_preview,617,22892,2,100.0,check_anomaly,,0.0,0.0,0.0,0.0,0.0,0.0,,71,252,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.036384Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.036412Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0025,gemma4:31b,S01_data_coverage,data_query,1,dcffda9d-6e37-4a48-a07f-73523d2665be,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,csv_preview,0,121093,0,35.0,,sensor_count,0.0,0.0,0.0,0.0,0.0,0.0,,71,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.036384Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.036412Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0026,gemma4:31b,S02_period_state_distribution,state_query,1,18daad2f-fcd5-4636-b5a0-7e5fd9f7600c,幫我查 2026-05-01 的機台狀態分布。,csv_preview,0,105241,0,25.0,,rows|off_hours|running_high_hours|running_low_hours|idle_hours,0.0,0.0,0.0,0.0,0.0,0.0,,71,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.036384Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.036412Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0027,gemma4:31b,S03_period_utilization,state_query,1,6cb96083-369f-4157-8d72-4b40b8b2075c,幫我看 2026-05-01 的機台稼動率。,csv_preview,0,189223,1,60.0,apply_state_model,running_hours|total_hours|utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,71,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.036384Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.036412Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0028,gemma4:31b,S04_last_week_runtime,state_query,1,5697e9ce-e90d-4d9c-8a9e-96665b50f56d,幫我看上週機台運轉與停機時數。,csv_preview,0,110035,0,25.0,,running_hours|off_hours|total_hours|utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,71,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.036384Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.036412Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0029,gemma4:31b,S05_this_week_status,state_query,1,59245a4d-8143-4635-ace7-046ef20d9bdc,幫我看本週機台狀態。,csv_preview,0,172012,1,60.0,apply_state_model,running_hours|off_hours|total_hours|utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,71,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.036384Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.036412Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0030,gemma4:31b,S06_next_week_power,forecast,1,38a2ffaf-afd4-4280-83a2-73700f449304,幫我預測下週耗電量。,csv_preview,0,162789,1,60.0,forecast_future,forecast_7d_increment,0.0,0.0,0.0,0.0,0.0,0.0,,71,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.036384Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.036412Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0031,gemma4:31b,S07_next_month_cost,forecast,1,47e2bac0-f2bb-4a58-ac05-f3bcc15e1d25,幫我預測下個月電費，電價用每度 4 元。,csv_preview,171,273916,2,70.0,forecast_future,forecast_30d_increment|estimated_30d_cost,0.0,0.0,0.0,0.0,0.0,0.0,,73,96,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.111027Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.111048Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0032,gemma4:31b,S08_period_anomaly,anomaly,1,37608560-e0c9-4911-b18e-a94b90cc8a86,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,csv_preview,0,53608,0,5.0,,rows|anomaly_count|anomaly_rate|verdict,0.0,0.0,0.0,0.0,0.0,0.0,,73,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.111027Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.111048Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0033,gemma4:26b,S01_data_coverage,data_query,1,267ad524-edbb-4140-b005-9e37054ecc97,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,csv_preview,0,45885,0,35.0,,sensor_count,0.0,0.0,0.0,0.0,0.0,0.0,,73,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.111027Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.111048Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0034,gemma4:26b,S02_period_state_distribution,state_query,1,9b04a4b6-b381-450d-81e5-381b5d2b787a,幫我查 2026-05-01 的機台狀態分布。,csv_preview,0,49091,0,25.0,,rows|off_hours|running_high_hours|running_low_hours|idle_hours,0.0,0.0,0.0,0.0,0.0,0.0,,73,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.111027Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.111048Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0035,gemma4:26b,S03_period_utilization,state_query,1,3f15ea30-b734-4a3a-a6a0-eed66adf0226,幫我看 2026-05-01 的機台稼動率。,csv_preview,0,61474,0,25.0,,running_hours|total_hours|utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,73,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.111027Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.111048Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0036,gemma4:26b,S04_last_week_runtime,state_query,1,683e5cfd-7b8f-4212-b2ad-e4d156d04615,幫我看上週機台運轉與停機時數。,csv_preview,0,87677,0,25.0,,running_hours|off_hours|total_hours|utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,73,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.111027Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.111048Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0037,gemma4:26b,S05_this_week_status,state_query,1,00a5794a-c424-408b-9db9-073cf52a0df5,幫我看本週機台狀態。,csv_preview,0,59361,0,25.0,,running_hours|off_hours|total_hours|utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,73,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.111027Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.111048Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0038,gemma4:26b,S06_next_week_power,forecast,1,d6f58336-2c0a-446a-9a84-9a882a902a4a,幫我預測下週耗電量。,csv_preview,0,49249,0,25.0,,forecast_7d_increment,0.0,0.0,0.0,0.0,0.0,0.0,,73,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.111027Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.111048Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0039,gemma4:26b,S07_next_month_cost,forecast,1,0b76754c-7a0d-4814-80df-b0232cd1bbf7,幫我預測下個月電費，電價用每度 4 元。,csv_preview,0,60327,0,25.0,,forecast_30d_increment|estimated_30d_cost,0.0,0.0,0.0,0.0,0.0,0.0,,73,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.111027Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.111048Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0040,gemma4:26b,S08_period_anomaly,anomaly,1,c09bfafd-990b-4c69-8a01-656411a76fe3,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,csv_preview,0,33699,0,5.0,,rows|anomaly_count|anomaly_rate|verdict,0.0,0.0,0.0,0.0,0.0,0.0,,73,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.111027Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.111048Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0041,gemma4:latest,S01_data_coverage,data_query,1,0d5cb3da-43a3-4e3f-8027-73bcf425d766,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,csv_preview,586,134016,3,70.0,data_status,sensor_count,0.0,0.0,0.0,0.0,0.0,0.0,,69,338,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.182166Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.182187Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0042,gemma4:latest,S02_period_state_distribution,state_query,1,314db2c8-4477-4882-bb89-63aadd792bb3,幫我查 2026-05-01 的機台狀態分布。,csv_preview,0,54127,1,25.0,,rows|off_hours|running_high_hours|running_low_hours|idle_hours,0.0,0.0,0.0,0.0,0.0,0.0,,69,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.182166Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.182187Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0043,gemma4:latest,S03_period_utilization,state_query,1,39e50b86-0244-4b6c-9607-71d808166d82,幫我看 2026-05-01 的機台稼動率。,csv_preview,536,300051,7,55.0,apply_state_model,running_hours|total_hours|utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,69,321,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.182166Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.182187Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0044,gemma4:latest,S04_last_week_runtime,state_query,1,062c71ff-50aa-466c-9164-dc8ce988a08a,幫我看上週機台運轉與停機時數。,csv_preview,0,210029,5,60.0,apply_state_model,running_hours|off_hours|total_hours|utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,69,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.182166Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.182187Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0045,gemma4:latest,S05_this_week_status,state_query,1,cfe6d272-de0c-4bc8-bddf-b1f9c65106d6,幫我看本週機台狀態。,csv_preview,0,31241,0,25.0,,running_hours|off_hours|total_hours|utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,69,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.182166Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.182187Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0046,gemma4:latest,S06_next_week_power,forecast,1,a0cbb1b4-fdf9-4fb5-9fad-69476d5ae1be,幫我預測下週耗電量。,csv_preview,112,300003,9,70.0,forecast_future,forecast_7d_increment,0.0,0.0,0.0,0.0,0.0,0.0,,69,65,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.182166Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.182187Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0047,gemma4:latest,S07_next_month_cost,forecast,1,ce6c4eb5-4efa-4ae5-b7a6-9a8483916ed4,幫我預測下個月電費，電價用每度 4 元。,csv_preview,245,94005,1,60.0,forecast_future,forecast_30d_increment|estimated_30d_cost,0.0,0.0,0.0,0.0,0.0,0.0,,69,190,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.182166Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.182187Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0048,gemma4:latest,S08_period_anomaly,anomaly,1,4aaeda19-09f8-4be1-bd34-d7c7dfdc3bdc,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,csv_preview,1000,300018,6,60.0,check_anomaly,rows|verdict,0.0,0.0,0.0,0.0,0.0,0.0,,69,556,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.182166Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.182187Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0049,nemotron-3-nano:latest,S01_data_coverage,data_query,1,c67d84d8-f972-4eee-aa52-59f415387df6,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,csv_preview,1000,53830,2,100.0,data_status,,0.0,0.0,0.0,0.0,0.0,0.0,,69,282,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.182166Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.182187Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0050,nemotron-3-nano:latest,S02_period_state_distribution,state_query,1,a330713b-c1a7-4715-b22c-cf2cc3e4364e,幫我查 2026-05-01 的機台狀態分布。,csv_preview,982,61749,6,90.0,apply_state_model,,0.0,0.0,0.0,0.0,0.0,0.0,,69,373,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.182166Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.182187Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0051,nemotron-3-nano:latest,S03_period_utilization,state_query,1,5b5f3a8a-2408-4314-94fe-4909e533a094,幫我看 2026-05-01 的機台稼動率。,csv_preview,395,61254,3,90.0,apply_state_model,,0.0,0.0,0.0,0.0,0.0,0.0,,67,152,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.251405Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.251425Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0052,nemotron-3-nano:latest,S04_last_week_runtime,state_query,1,6b464ecb-d274-49f6-8df7-108bfa61f4e6,幫我看上週機台運轉與停機時數。,csv_preview,418,56415,2,92.5,apply_state_model,utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,67,190,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.251405Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.251425Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0053,nemotron-3-nano:latest,S05_this_week_status,state_query,1,b1ef06e0-3194-4d37-958b-ff183f19c7ae,幫我看本週機台狀態。,csv_preview,1000,99020,7,92.5,apply_state_model,running_hours,0.0,0.0,0.0,0.0,0.0,0.0,,67,387,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.251405Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.251425Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0054,nemotron-3-nano:latest,S06_next_week_power,forecast,1,e3acc3c8-aab9-47f0-aaca-69c37842f1bc,幫我預測下週耗電量。,csv_preview,472,105005,3,70.0,forecast_future,forecast_7d_increment,0.0,0.0,0.0,0.0,0.0,0.0,,67,190,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.251405Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.251425Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0055,nemotron-3-nano:latest,S07_next_month_cost,forecast,1,98076424-ce62-4423-b49e-d8fef306e913,幫我預測下個月電費，電價用每度 4 元。,csv_preview,431,76303,5,70.0,forecast_future,forecast_30d_increment|estimated_30d_cost,0.0,0.0,0.0,0.0,0.0,0.0,,67,197,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.251405Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.251425Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0056,nemotron-3-nano:latest,S08_period_anomaly,anomaly,1,31ebb8d6-78dc-499d-8ca6-4922ed33876a,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,csv_preview,629,34398,3,100.0,check_anomaly,,0.0,0.0,0.0,0.0,0.0,0.0,,67,229,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.251405Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.251425Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0057,gpt-oss:120b,S01_data_coverage,data_query,1,e1e97132-39f8-4b81-b1e6-b1317dca2957,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,csv_preview,1000,51290,2,100.0,data_status,,0.0,0.0,0.0,0.0,0.0,0.0,,67,282,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.251405Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.251425Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0058,gpt-oss:120b,S02_period_state_distribution,state_query,1,1cde4ee2-3582-4ed2-924a-a4288471c141,幫我查 2026-05-01 的機台狀態分布。,csv_preview,726,28411,2,94.0,apply_state_model,rows,0.0,0.0,0.0,0.0,0.0,0.0,,67,261,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.251405Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.251425Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0059,gpt-oss:120b,S03_period_utilization,state_query,1,f2f47e2d-2a81-4a74-9d99-657a1d86e7cb,幫我看 2026-05-01 的機台稼動率。,csv_preview,490,23240,1,90.0,apply_state_model,total_hours,0.0,0.0,0.0,0.0,0.0,0.0,,67,184,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.251405Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.251425Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0060,gpt-oss:120b,S04_last_week_runtime,state_query,1,c7e60e4f-df83-4eab-a5b6-d5bd0a4dc76f,幫我看上週機台運轉與停機時數。,csv_preview,439,22183,1,77.5,apply_state_model,running_hours|total_hours|utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,67,179,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.251405Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.251425Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0061,gpt-oss:120b,S05_this_week_status,state_query,1,4017a841-1b59-44ba-9310-c1e5ebef81a2,幫我看本週機台狀態。,csv_preview,935,33143,2,92.5,apply_state_model,running_hours,0.0,0.0,0.0,0.0,0.0,0.0,,72,366,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.325019Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.325044Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0062,gpt-oss:120b,S06_next_week_power,forecast,1,e9ff3514-3181-4d8b-995f-6626e8734387,幫我預測下週耗電量。,csv_preview,195,27434,3,70.0,forecast_future,forecast_7d_increment,0.0,0.0,0.0,0.0,0.0,0.0,,72,108,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.325019Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.325044Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0063,gpt-oss:120b,S07_next_month_cost,forecast,1,a362fc35-8819-49d6-8512-5c1969cbe4d2,幫我預測下個月電費，電價用每度 4 元。,csv_preview,279,51979,4,70.0,forecast_future,forecast_30d_increment|estimated_30d_cost,0.0,0.0,0.0,0.0,0.0,0.0,,72,158,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.325019Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.325044Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0064,gpt-oss:120b,S08_period_anomaly,anomaly,1,8ea90145-c5be-4a3a-964d-0e58f17dedaa,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,csv_preview,374,20646,2,100.0,check_anomaly,,0.0,0.0,0.0,0.0,0.0,0.0,,72,177,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.325019Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.325044Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0065,gpt-oss:20b,S01_data_coverage,data_query,1,925130cd-6a41-4785-a797-27d4d4f0dae4,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,csv_preview,1000,30142,2,100.0,data_status,,0.0,0.0,0.0,0.0,0.0,0.0,,72,275,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.325019Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.325044Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0066,gpt-oss:20b,S02_period_state_distribution,state_query,1,33c8ad2e-4e70-4fc5-88cf-92523131b9f1,幫我查 2026-05-01 的機台狀態分布。,csv_preview,711,23617,2,84.0,apply_state_model,rows,0.0,0.0,0.0,0.0,0.0,0.0,,72,279,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.325019Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.325044Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0067,gpt-oss:20b,S03_period_utilization,state_query,1,c2b7da76-1e05-4248-8538-6692f801fa4d,幫我看 2026-05-01 的機台稼動率。,csv_preview,413,87008,15,55.0,apply_state_model|data_status,running_hours|total_hours|utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,72,104,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.325019Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.325044Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0068,gpt-oss:20b,S04_last_week_runtime,state_query,1,601c388a-0562-4bfa-9176-0ef2b146c693,幫我看上週機台運轉與停機時數。,csv_preview,499,20379,2,92.5,apply_state_model,utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,72,215,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.325019Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.325044Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0069,gpt-oss:20b,S05_this_week_status,state_query,1,edc9ae68-6428-462c-9b3a-ba297dbcd702,幫我看本週機台狀態。,csv_preview,828,27037,2,100.0,apply_state_model,,0.0,0.0,0.0,0.0,0.0,0.0,,72,318,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.325019Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.325044Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0070,gpt-oss:20b,S06_next_week_power,forecast,1,85bb7963-a797-4afa-8258-4094c11259f5,幫我預測下週耗電量。,csv_preview,0,16278,2,60.0,forecast_future,forecast_7d_increment,0.0,0.0,0.0,0.0,0.0,0.0,,72,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.325019Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.325044Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0071,gpt-oss:20b,S07_next_month_cost,forecast,1,baf412e2-b266-4ccf-b3c7-8f8819f14cde,幫我預測下個月電費，電價用每度 4 元。,csv_preview,495,30697,3,70.0,forecast_future,forecast_30d_increment|estimated_30d_cost,0.0,0.0,0.0,0.0,0.0,0.0,,70,212,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.397036Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.397056Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0072,gpt-oss:20b,S08_period_anomaly,anomaly,1,1d2f840b-fa14-493c-a608-8af540c7bebc,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,csv_preview,376,14576,2,75.0,check_anomaly,verdict,0.0,0.0,0.0,0.0,0.0,0.0,,70,158,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.397036Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.397056Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0073,qwen3:8b,S01_data_coverage,data_query,1,56a0f7dc-195a-4e54-b1c8-b88822c6e761,目前 CNC 有哪些感測器資料？資料時間範圍到哪？,csv_preview,0,10910,0,35.0,,sensor_count,0.0,0.0,0.0,0.0,0.0,0.0,,70,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.397036Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.397056Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0074,qwen3:8b,S02_period_state_distribution,state_query,1,bdba9b42-1fd0-449e-b84e-367b248ab1ce,幫我查 2026-05-01 的機台狀態分布。,csv_preview,0,15334,0,25.0,,rows|off_hours|running_high_hours|running_low_hours|idle_hours,0.0,0.0,0.0,0.0,0.0,0.0,,70,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.397036Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.397056Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0075,qwen3:8b,S03_period_utilization,state_query,1,0e0d4709-545c-4c1c-8eea-057b406c1552,幫我看 2026-05-01 的機台稼動率。,csv_preview,0,20858,0,25.0,,running_hours|total_hours|utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,70,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.397036Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.397056Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0076,qwen3:8b,S04_last_week_runtime,state_query,1,3f112c66-45e7-4a66-bb0e-1e5aa9115453,幫我看上週機台運轉與停機時數。,csv_preview,0,12977,0,25.0,,running_hours|off_hours|total_hours|utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,70,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.397036Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.397056Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0077,qwen3:8b,S05_this_week_status,state_query,1,ca28c910-1508-4f65-ade6-952702528bf4,幫我看本週機台狀態。,csv_preview,0,12257,0,25.0,,running_hours|off_hours|total_hours|utilization_percent,0.0,0.0,0.0,0.0,0.0,0.0,,70,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.397036Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.397056Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0078,qwen3:8b,S06_next_week_power,forecast,1,7ca5d307-2ff8-4fde-9ff4-cd8417bfe96f,幫我預測下週耗電量。,csv_preview,0,21468,0,25.0,,forecast_7d_increment,0.0,0.0,0.0,0.0,0.0,0.0,,70,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.397036Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.397056Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0079,qwen3:8b,S07_next_month_cost,forecast,1,2a146a4d-b792-4f81-b415-06bcb93debbc,幫我預測下個月電費，電價用每度 4 元。,csv_preview,0,26834,0,25.0,,forecast_30d_increment|estimated_30d_cost,0.0,0.0,0.0,0.0,0.0,0.0,,70,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.397036Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.397056Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
+20260526_012656_824e1a0c,gpt-5.5,J0080,qwen3:8b,S08_period_anomaly,anomaly,1,38adce70-433d-44ad-8b33-de636f0f57e6,幫我檢查 2026-05-01 到 2026-05-02 是否異常。,csv_preview,0,8418,0,5.0,,rows|anomaly_count|anomaly_rate|verdict,0.0,0.0,0.0,0.0,0.0,0.0,,70,0,"WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)
+2026-05-25T17:26:57.397036Z  WARN codex_state::runtime: failed to open state db at /Users/cody20179/.codex/state_5.sqlite: error returned from database: (code: 8) attempt to write a readonly database
+2026-05-25T17:26:57.397056Z  WARN codex_rollout::state_db: failed to initialize state runtime: failed to initialize state runtime at /Users/cody20179/.codex: error returned from database: (code: 8) attempt to write a readonly database
+Error: failed to initialize in-process app-server client: Operation not permitted (os error 1)
+"
