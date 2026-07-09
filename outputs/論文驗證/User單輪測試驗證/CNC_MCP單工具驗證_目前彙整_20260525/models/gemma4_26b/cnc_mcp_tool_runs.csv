@@ -1,0 +1,104 @@
+﻿run_id,model_source,model_deployment,model_name,model_label,case_id,cnc_mcp_tool_name,cnc_tool_layer,session_id,status,functional_success,expected_tool_called,tool_output_status_ok,tool_output_error_detected,tool_input_events,tool_output_events,event_count,duration_ms_client,answer_chars,tool_output_chars,estimated_answer_tokens,estimated_tool_output_tokens,error,answer_preview,tool_input_preview,tool_output_preview,source_dataset,validation_origin,manual_judgement_note,loop_count,first_response_ms,thinking_event_count,thinking_char_count,thinking_duration_ms,answer_char_count,tool_duration_ms_total,tool_duration_ms_avg
+user_singletool_20260525,User,Local,gemma4:26b,gemma4:26b (Local),tool_data_status,tool_data_status,data,8fca7e82-f9c2-4595-a49a-d2ba9983dff7,success,True,True,True,False,1,1,3,71077,1157,2632,290,658,,"目前的 CNC 感測器資料狀態如下：
+
+### 1. 總覽
+* **感測器總數**：13 個
+* **可用性**：所有感測器皆為**可用** (`exists: true`)。
+
+### 2. 資料覆蓋範圍
+資料範圍依感測器類型略有不同，主要可分為以下三類：
+
+* **主要電力參數** (包含 `Votage`, `Power`, `Electricity_consumption`, `PF`, `kVAh` 等)：
+  * **範圍**：`2025-09-15 15:11:36` 至 `2026-05-24 06:26:28`
+* **電流參數** (`Current_A`, `Current_B`, `Current_C`)：
+  * **範圍**：`2025-09-15 15:21:00` 起，其中 `Current_A` 的資料最完整，延伸至 `2026-05-25 17:38:28`。
+* **通訊與輔助參數** (`Modbus_404`, `Modbus_Timeout`)：
+  * **範圍**：`2025-09-15 16:16:01` 至 `2026-05-24 0","Tool: tool_data_status
+Input: {}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""data status loaded"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/raw"",\n  ""key_files"": {},\n  ""metrics"": {\n    ""sensors"": [\n      {\n        ""sensor"": ""Current_A"",\n        ""exists"": true,\n        ""rows"": 59682,\n        ""start"": ""2025-09-15 15:21:00"",\n        ""end"": ""2026-05-25 17:38:28""\n      },\n      {\n        ""sensor"": ""Current_B"",\n        ""exists"": true,\n        ""ro",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,34568,417,1474,31912,1157,1075,1075
+user_singletool_20260525,User,Local,gemma4:26b,gemma4:26b (Local),tool_update_data,tool_update_data,data,0ab6a007-d1ed-4a81-b14c-de51092a1ba5,success,True,True,True,False,1,1,3,23102,187,342,47,86,,"更新成功！
+
+以下是本次更新的詳細資訊：
+* **更新狀態**：成功
+* **更新感測器**：`Current_A`（新增了 7 筆資料，最新時間為 `2026-05-25 18:13:28`）
+* **輸出資料夾**：`/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/raw`","Tool: tool_update_data
+Input: {""sensors"":""Current_A""}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""data update finished"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/raw"",\n  ""key_files"": {},\n  ""metrics"": {\n    ""Current_A"": {\n      ""added"": 7,\n      ""latest"": ""2026-05-25 18:13:28""\n    }\n  },\n  ""artifacts"": []\n}'}]",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,18077,236,898,15307,187,1587,1587
+user_singletool_20260525,User,Local,gemma4:26b,gemma4:26b (Local),tool_run_state_analysis,tool_run_state_analysis,state,87fab6f9-3822-4669-9d7c-50da610a186a,success,True,True,True,False,1,1,3,142111,536,17952,134,4488,,"機台狀態分析已**成功**完成。以下是 2026-05-01 00:00:00 至 2026-05-02 00:00:00 期間的狀態分布摘要：
+
+### 📊 機台狀態分布
+在分析的 24 小時內（共 288 個數據點），機台各狀態的分布如下：
+
+*   **Running_Low (低負載運行):** **39.24%** (約 9.42 小時)
+*   **Off (關機/停止):** **35.42%** (約 8.50 小時)
+*   **Running_High (高負載運行):** **25.00%** (約 6.00 小時)
+*   **Idle (待機):** **0.35%** (約 0.08 小時)
+
+### 🔍 分析摘要
+*   **分析狀態**: 成功 (Status: OK)
+*   **平均分類信心度**: **99.86%** (顯示狀態分類非常準確)
+*   **最佳分群數 (K)**: 4 (模型自動判定最適合的狀態數量)
+
+相關的狀態時間軸圖表 (`state_timeline`) 與狀態轉換矩陣 (`transition_matrix`) 等視覺化","Tool: tool_run_state_analysis
+Input: {""end"":""2026-05-02 00:00:00"",""start"":""2026-05-01 00:00:00""}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""GMM state analysis finished"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state"",\n  ""key_files"": {\n    ""state_labeled_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/state_labeled.csv"",\n    ""processed_state_labeled_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/processed/state_labeled.csv"",\n    ""state_",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,121285,524,1642,118599,536,4119,4119
+user_singletool_20260525,User,Local,gemma4:26b,gemma4:26b (Local),tool_train_forecast,tool_train_forecast,training,5c5d5aa3-15b8-4132-9be7-a100ec4c90e3,success,True,True,True,False,1,1,3,53122,451,3360,113,840,,"`BaselineLastWeek` 模型訓練已完成，目標欄位為 `dy`，資料範圍為最近 1 個月。
+
+### 訓練結果摘要
+模型表現非常穩定，其 $R^2$ 達到了 **0.986**，顯示預測與實際值高度吻合。
+
+* **MAE (平均絕對誤差):** 5.48
+* **RMSE (均方根誤差):** 6.75
+* **MAE % (誤差百分比):** 6.85%
+* **部署建議:** `ok` (可直接用於預測)
+
+### 相關圖表
+您可以在 UI 中查看以下視覺化結果：
+* **預測與實際值對照圖** (`forecast_test_overlay.png`)
+* **訓練資料趨勢圖** (`training_input_dy.png`)
+* **誤差分析圖** (`compare_backtest_mae.png` / `compare_backtest_r2.png`)
+
+**下一步建議：**
+如果您需要預測未來的用電量，可以執行 `forecast_future` 指令。","Tool: tool_train_forecast
+Input: {""models"":""BaselineLastWeek"",""months_back"":1,""target"":""dy""}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""forecast training finished"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast"",\n  ""key_files"": {\n    ""metrics"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/forecast_metrics.json"",\n    ""training_data_profile"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/training_data",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,41387,343,1370,29573,451,1285,1285
+user_singletool_20260525,User,Local,gemma4:26b,gemma4:26b (Local),tool_forecast_future,tool_forecast_future,forecast,e65efa75-4da4-404d-acbe-b4fc55dc5f64,success,True,True,True,False,1,1,3,52305,431,1170,108,293,,"未來 7 天的耗電量預測已完成（使用 Prophet 模型）。以下是預測摘要與相關輸出檔案：
+
+### 📊 預測摘要 (Prophet)
+* **預測總量 (yhat):** 約 8,374.01 kWh
+* **每日預期增量 (increment):** 約 293.40 kWh
+
+### 📂 輸出檔案
+* **預測圖表:** `future_forecast.png` (已在 UI 中顯示)
+* **預測報告:** `future_forecast_report.json`
+* **執行摘要:** `forecast_future_dy_run_summary.json`
+* **輸出目錄:** `/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/application/dy`
+
+相關的預測圖表已在介面中呈現，您可以直接查看趨勢。","Tool: tool_forecast_future
+Input: {""days"":""7"",""model_names"":""Prophet""}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""future forecast finished"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast"",\n  ""key_files"": {\n    ""report"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/application/dy/future_forecast_report.json"",\n    ""future_forecast"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/application/dy/future_for",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,42828,734,2864,40582,431,2167,2167
+user_singletool_20260525,User,Local,gemma4:26b,gemma4:26b (Local),tool_train_anomaly_detection,tool_train_anomaly_detection,training,244692ae-2a81-4831-8bb6-2134b7cef271,success,True,True,True,False,1,1,3,65349,578,7875,145,1969,,"---
+異常偵測模型訓練已**成功完成**。
+
+以下是訓練結果摘要：
+
+*   **訓練模型數量**：3 個 (IsolationForest, OneClassSVM, Autoencoder)
+*   **主要輸出檔案**：
+    *   **特徵資料**：`data/processed/detection_features.csv`
+    *   **模型權重**：
+        *   `models/anomaly/isolation_forest.pkl`
+        *   `models/anomaly/one_class_svm.pkl`
+        *   `models/anomaly/autoencoder.pt`
+        *   以及標準化器 (`scaler.pkl`) 與閾值設定 (`thresholds.json`)
+    *   **評估指標**：`outputs/anomaly/anomaly_metrics.json`
+    *   **視覺化圖表**：包含混淆矩陣 (Confusion Matrix)、ROC 曲線、特徵","Tool: tool_train_anomaly_detection
+Input: {}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""anomaly detection training finished"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly"",\n  ""key_files"": {\n    ""features"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/processed/detection_features.csv"",\n    ""metrics"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/anomaly_metrics.json"",\n    ""metrics_table"":",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,40959,323,1287,50046,578,7328,7328
+user_singletool_20260525,User,Local,gemma4:26b,gemma4:26b (Local),tool_check_anomaly,tool_check_anomaly,anomaly,d9ba59fa-e469-4aa9-b8a5-abbc12681f52,success,True,True,True,False,1,1,3,50826,320,2219,80,555,,"檢查結果顯示在該時段內**偵測到異常 (ANOMALY)**。
+
+以下是詳細摘要：
+
+*   **異常統計**：
+    *   **異常次數**：2 筆
+    *   **異常率**：約 1.08% (總共檢查了 185 筆資料)
+*   **模型投票結果**：
+    *   `OneClassSVM` 偵測到 21 筆異常。
+    *   `IsolationForest` 與 `Autoencoder` 各偵測到 2 筆異常。
+    *   根據您設定的 `min_models=2` 規則，最終判定為異常。
+
+相關的視覺化圖表（時間軸、異常分數、投票分布）與詳細數據 CSV 已產生，您可以在 UI 中的相關附件中查看。","Tool: tool_check_anomaly
+Input: {""end"":""2026-05-02 00:00:00"",""min_models"":2,""start"":""2026-05-01 00:00:00""}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""anomaly check finished"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly"",\n  ""key_files"": {\n    ""detail_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/last_anomaly_check.csv"",\n    ""timeline_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/last_anomaly_check_timeline.png"",\n    ""sc",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,42073,416,1328,30161,320,1234,1234

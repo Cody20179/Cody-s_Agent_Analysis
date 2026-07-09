@@ -1,0 +1,4 @@
+﻿agent_model,runs,avg_overall,avg_correctness,avg_completeness,avg_readability,avg_practicality,avg_hallucination_risk,avg_duration_s,avg_tool_calls,avg_estimated_answer_tokens
+deepseek-v4-flash,24,4.342,4.367,4.571,4.858,4.288,2.042,35.132,2.25,362.417
+glm-5.1,24,3.679,3.679,4.008,4.667,3.833,2.521,35.526,3.125,383.583
+kimi-k2.6,24,3.646,3.65,3.946,4.325,3.658,2.246,28.124,1.542,276.208

@@ -1,0 +1,4 @@
+﻿model_name,turns,avg_total_score,pass_rate,context_drift_rate,avg_context_score,avg_duration_s,avg_tool_calls,avg_thinking_chars
+deepseek-v4-flash,15,67.111,0.2,0.067,19.333,28.018,0.667,1025.933
+glm-5.1,15,71.0,0.2,0.067,18.667,25.36,1.533,861.267
+kimi-k2.6,15,69.0,0.2,0.067,18.667,19.722,1.133,1187.0

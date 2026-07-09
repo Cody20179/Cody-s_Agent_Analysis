@@ -1,0 +1,70 @@
+﻿run_id,model_source,model_deployment,model_name,model_label,case_id,cnc_mcp_tool_name,cnc_tool_layer,session_id,status,functional_success,expected_tool_called,tool_output_status_ok,tool_output_error_detected,tool_input_events,tool_output_events,event_count,duration_ms_client,answer_chars,tool_output_chars,estimated_answer_tokens,estimated_tool_output_tokens,error,answer_preview,tool_input_preview,tool_output_preview,source_dataset,validation_origin,manual_judgement_note,loop_count,first_response_ms,thinking_event_count,thinking_char_count,thinking_duration_ms,answer_char_count,tool_duration_ms_total,tool_duration_ms_avg
+user_singletool_20260525,User,Local,nemotron-3-nano:latest,nemotron-3-nano:latest (Local),tool_data_status,tool_data_status,data,0ac1288b-0c23-489e-a5d3-7d3fe6e8c962,success,True,True,True,False,1,1,3,26374,1321,2632,331,658,,"以下是目前 CNC 感測器資料的狀態概覽：
+
+| 感測器 | 是否存在 | 資料筆數 | 資料範圍 (起始 – 結束) |
+|--------|----------|----------|------------------------|
+| Current_A | ✅ | 59,704 | 2025‑09‑15 15:21:00 – 2026‑05‑25 19:28:28 |
+| Current_B | ✅ | 59,259 | 2025‑09‑15 15:21:00 – 2026‑05‑24 06:23:27 |
+| Current_C | ✅ | 59,260 | 2025‑09‑15 15:21:00 – 2026‑05‑24 06:23:27 |
+| Votage_ab | ✅ | 236,733 | 2025‑09‑15 15:11:36 – 2026‑05‑24 06:26:28 |
+| Votage_bc | ✅ | 236,732 | 2025‑09‑15 15:11:36 – 2026‑05‑24 06:26:28 |
+| Votage_ca | ✅ | 236,7","Tool: tool_data_status
+Input: {}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""data status loaded"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/raw"",\n  ""key_files"": {},\n  ""metrics"": {\n    ""sensors"": [\n      {\n        ""sensor"": ""Current_A"",\n        ""exists"": true,\n        ""rows"": 59704,\n        ""start"": ""2025-09-15 15:21:00"",\n        ""end"": ""2026-05-25 19:28:28""\n      },\n      {\n        ""sensor"": ""Current_B"",\n        ""exists"": true,\n        ""ro",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,11191,349,1423,8321,1321,1029,1029
+user_singletool_20260525,User,Local,nemotron-3-nano:latest,nemotron-3-nano:latest (Local),tool_update_data,tool_update_data,data,0517e697-aeab-40cc-9852-2e2a8faa40bf,success,True,True,True,False,1,1,3,19752,194,342,49,86,,"已成功更新感測器 **Current_A**。  
+- **更新的感測器**：Current_A  
+- **輸出資料夾**：`/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/raw`  
+
+資料更新完成，最新時間為 2026‑05‑25 19:33:28。如需進一步分析，請告知下一步需求。","Tool: tool_update_data
+Input: {""sensors"":""Current_A""}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""data update finished"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/raw"",\n  ""key_files"": {},\n  ""metrics"": {\n    ""Current_A"": {\n      ""added"": 1,\n      ""latest"": ""2026-05-25 19:33:28""\n    }\n  },\n  ""artifacts"": []\n}'}]",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,17963,851,3768,15389,194,1518,1518
+user_singletool_20260525,User,Local,nemotron-3-nano:latest,nemotron-3-nano:latest (Local),tool_run_state_analysis,tool_run_state_analysis,state,e24b1faa-e74e-4a05-8da6-f37ba14c47aa,success,True,True,True,False,1,1,3,49291,1694,17952,424,4488,,"**分析結果概述**  
+- 執行 `run_state_analysis` 於 `2026‑05‑01 00:00:00` ~ `2026‑05‑02 00:00:00` 完成，回傳 `status: ok`，表示流程成功結束。  
+- 共處理 **288 筆** 5 分鐘樣本，依 GMM 演算法分為四個機台狀態：`Off`、`Idle`、`Running_Low`、`Running_High`（以及少量 `Unknown`）。
+
+**狀態分布（依 `state_summary` 統計）**
+
+| 狀態          | 樣本數 (rows) | 總時數 (hours) | 占比 (%) | I_mean avg | Power avg | kVAh_rate avg | 平均信心度 |
+|---------------|--------------|---------------|----------|------------|-----------|---------------|------------|
+| **Off**       | 102          | 8","Tool: tool_run_state_analysis
+Input: {""start"":""2026-05-01 00:00:00"",""end"":""2026-05-02 00:00:00""}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""GMM state analysis finished"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state"",\n  ""key_files"": {\n    ""state_labeled_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/state/state_labeled.csv"",\n    ""processed_state_labeled_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/processed/state_labeled.csv"",\n    ""state_",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,36161,1718,6803,33648,1694,3675,3675
+user_singletool_20260525,User,Local,nemotron-3-nano:latest,nemotron-3-nano:latest (Local),tool_train_forecast,tool_train_forecast,training,1f91bbcb-a3bb-46a2-883d-c00255431b37,success,True,True,True,False,1,1,3,36070,313,3360,79,840,,"訓練已完成，`BaselineLastWeek` 模型已針對 **dy** 目標欄位、最近 1 個月的資料進行訓練。
+
+- **關鍵輸出**：  
+  - `outputs/forecast/training/dy/forecast_metrics.json`（含 MAE、RMSE、R² 等指標）  
+  - 圖形化結果（訓練輸入分布、預測覆蓋圖、回測誤差圖等）已自動在 UI 中呈現，您可直接查看。  
+
+- **模型 artefacts**：模型檔案已儲存至 `models/forecast/` 之下，供後續預測使用。
+
+如需進行未來功率預測或進一步分析，可告訴我需要預測的天數或其他設定，我會為您呼叫相應的預測工具。","Tool: tool_train_forecast
+Input: {""target"":""dy"",""models"":""BaselineLastWeek"",""months_back"":1}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""forecast training finished"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast"",\n  ""key_files"": {\n    ""metrics"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/forecast_metrics.json"",\n    ""training_data_profile"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/forecast/training/dy/training_data",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,32691,1777,7718,29847,313,1179,1179
+user_singletool_20260525,User,Local,nemotron-3-nano:latest,nemotron-3-nano:latest (Local),tool_forecast_future,tool_forecast_future,forecast,f909dd05-8e33-48ea-9052-36736fa3d83f,success,False,False,False,False,0,0,2,31425,0,0,0,0,,,,,Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,user_marked_question_5_fail,1,0,2035,9015,28762,0,0,0
+user_singletool_20260525,User,Local,nemotron-3-nano:latest,nemotron-3-nano:latest (Local),tool_train_anomaly_detection,tool_train_anomaly_detection,training,4ff704c2-4a61-445e-9902-f51b0641eaa7,success,True,True,True,False,1,1,3,31383,1134,7877,284,1970,,"✅ **訓練結果**：異常偵測模型訓練完成，系統回報狀態為 **ok**。
+
+🧩 **模型數量**：共訓練出 **3 個模型**  
+- IsolationForest  
+- OneClassSVM  
+- Autoencoder  
+
+📁 **主要輸出檔案**（皆已自動產生，前端 UI 會直接呈現圖片與表格）：
+
+| 類別 | 檔案路徑 |
+|------|----------|
+| **資料與特徵** | `data/processed/detection_features.csv` |
+| **指標與指標表** | `outputs/anomaly/anomaly_metrics.json`、`outputs/anomaly/tables/model_metrics.csv` |
+| **模型文件** | `models/anomaly/scaler.pkl`、`models/anomaly/thresholds.json`、`models/anomaly/isolation_forest.pkl`、`models/anomaly/one_class_svm.pkl`、`mod","Tool: tool_train_anomaly_detection
+Input: {}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""anomaly detection training finished"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly"",\n  ""key_files"": {\n    ""features"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/data/processed/detection_features.csv"",\n    ""metrics"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/anomaly_metrics.json"",\n    ""metrics_table"":",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,22764,723,2989,19982,1134,6794,6794
+user_singletool_20260525,User,Local,nemotron-3-nano:latest,nemotron-3-nano:latest (Local),tool_check_anomaly,tool_check_anomaly,anomaly,abc4aa0e-bb1b-4053-8fbe-062001801ad8,success,True,True,True,False,1,1,3,41151,709,2219,178,555,,"在 **2026‑05‑01 00:00:00** 至 **2026‑05‑02 00:00:00** 這個時間段內，異常偵測結果顯示 **有異常**（`ANOMALY`），共偵測到 **2 筆異常紀錄**（約 1.08% 的資料）。
+
+### 重要資訊
+- **判定結果**：`ANOMALY`  
+- **異常筆數**：2 筆  
+- **異常率**：約 1.08%  
+- **模型票數**（需至少 2 個模型同意才算異常）  
+  - IsolationForest：2 票  
+  - OneClassSVM：21 票  
+  - Autoencoder：2 票  
+
+### 可查看的圖像與檔案
+- **時間線圖**：`outputs/anomaly/plots/last_anomaly_check_timeline.png`  
+- **得分分布圖**：`outputs/anomaly/plots/last_anomaly_check_scores.png`  
+- **票數分布圖**：`outputs/anomaly/plots/last_anomaly_check_votes","Tool: tool_check_anomaly
+Input: {""start"":""2026-05-01 00:00:00"",""end"":""2026-05-02 00:00:00"",""min_models"":2}","[{'type': 'input_text', 'text': '{\n  ""status"": ""ok"",\n  ""summary"": ""anomaly check finished"",\n  ""output_folder"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly"",\n  ""key_files"": {\n    ""detail_csv"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/last_anomaly_check.csv"",\n    ""timeline_plot"": ""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/anomaly/plots/last_anomaly_check_timeline.png"",\n    ""sc",Cody-s_Agent_System/data/agent.db user_id=SingleTool,manual_ui_session_current,,2,34360,1910,7505,31260,709,1092,1092

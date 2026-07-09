@@ -1,0 +1,32 @@
+{
+  "run_id": "20260524_055944_3c227756",
+  "generated_at": "2026-05-24T06:31:09",
+  "base_url": "http://127.0.0.1:8000",
+  "user_id": "Cody",
+  "models": [
+    "qwen3.5:9b",
+    "qwen3.6:27b",
+    "nemotron-cascade-2:latest",
+    "gemma4:31b",
+    "gemma4:26b",
+    "gemma4:latest",
+    "nemotron-3-nano:latest",
+    "gpt-oss:120b",
+    "gpt-oss:20b",
+    "qwen3:8b"
+  ],
+  "model_scope": "local-language",
+  "case_count": 12,
+  "rows": 120,
+  "group_id": "5c4748d6fad2adf8",
+  "output_dir": "outputs/validation/edge_case_agent/local_language_20260524_050245_local_language_onepass",
+  "scoring": {
+    "recognition_score": 25,
+    "recovery_score": 20,
+    "hallucination_avoidance_score": 25,
+    "tool_policy_score": 15,
+    "quality_score": 15,
+    "success_threshold": 75
+  },
+  "actual_provider_token_usage_available": false
+}

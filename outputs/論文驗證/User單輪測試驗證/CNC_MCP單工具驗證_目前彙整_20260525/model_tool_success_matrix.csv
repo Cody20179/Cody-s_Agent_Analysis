@@ -1,0 +1,12 @@
+﻿model_name,tool_data_status,tool_update_data,tool_run_state_analysis,tool_train_forecast,tool_forecast_future,tool_train_anomaly_detection,tool_check_anomaly
+glm-5.1,1,1,1,1,1,1,1
+kimi-k2.6,1,1,1,1,1,1,1
+deepseek-v4-flash,1,1,1,1,1,1,1
+qwen3.5:9b,1,1,1,1,1,1,1
+qwen3.6:27b,1,1,1,1,1,1,1
+nemotron-cascade-2:latest,1,1,1,1,1,1,1
+gemma4:26b,1,1,1,1,1,1,1
+qwen3:8b,1,1,1,1,1,1,1
+nemotron-3-nano:latest,1,1,1,1,0,1,1
+gemma4:31b,1,1,0,1,1,1,1
+gpt-oss:20b,1,1,1,1,1,1,1

@@ -1,0 +1,14 @@
+﻿model_label,tool_check_anomaly,tool_data_status,tool_forecast_future,tool_run_all,tool_run_state_analysis,tool_train_anomaly_detection,tool_train_forecast,tool_update_data
+deepseek-v4-flash (Cloud),1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+gemma4:26b (Local),0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+gemma4:31b (Local),0.0,1.0,0.0,0.0,1.0,0.0,0.0,1.0
+gemma4:latest (Local),0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+glm-5.1 (Cloud),1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+gpt-oss:120b (Local),0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+gpt-oss:20b (Local),0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+kimi-k2.6 (Cloud),1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+nemotron-3-nano:latest (Local),0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+nemotron-cascade-2:latest (Local),1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+qwen3.5:9b (Local),1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+qwen3.6:27b (Local),1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+qwen3:8b (Local),0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0

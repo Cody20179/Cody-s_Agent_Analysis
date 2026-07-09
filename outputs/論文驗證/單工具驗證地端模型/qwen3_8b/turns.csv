@@ -1,0 +1,96 @@
+﻿id,session_id,turn,user_id,user_message,assistant_answer,status,started_at,ended_at,duration_ms,tool_call_count,tool_output_count,artifact_count,error_message,created_at,loop_count,first_response_ms,thinking_event_count,thinking_char_count,thinking_duration_ms,answer_char_count,tool_duration_ms_total,tool_duration_ms_avg,model_name,group_id,group_name,flow,task
+798,c567f24f-f20f-43ee-83f0-2c094a25248e,1,Cody,"請只用一次 run_python 執行 Cody-s_Agent_Analysis/main.py 的 run_all()。run_python 的 code 請使用下列程式碼，不要改用其他函式；timeout 設為 300 秒。
+
+```python
+import json, os, sys
+os.chdir(""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis"")
+sys.path.insert(0, os.getcwd())
+from main import run_all
+result = run_all()
+print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+```
+
+執行後請用中文簡短回覆：完整管線各步驟是否成功，若有錯誤請列出步驟。",,error,2026-05-24T05:59:17.920934,2026-05-24T05:59:20.275614,2354,0,0,0,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",2026-05-24T05:59:20.275623,1,0,0,0,0,0,0,0,qwen3:8b,334c5852ae4bbbc1,cnc-tool-20260524_050245_ebebc715-qwen3_8b,"[{'seq': 1, 'type': 'agent', 'name': 'cnc-tool-run_all', 'duration_ms': 0, 'success': False}]",other
+797,a3fc46e6-2d79-4bfb-bbfc-c1788cc7acde,1,Cody,"請只用一次 run_python 執行 Cody-s_Agent_Analysis/main.py 的 check_anomaly('2026-05-01 00:00:00', '2026-05-02 00:00:00')。run_python 的 code 請使用下列程式碼，不要改用其他函式；timeout 設為 300 秒。
+
+```python
+import json, os, sys
+os.chdir(""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis"")
+sys.path.insert(0, os.getcwd())
+from main import check_anomaly
+result = check_anomaly(""2026-05-01 00:00:00"", ""2026-05-02 00:00:00"")
+print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+```
+
+執行後請用中文簡短回覆：是否異常、票數或 verdict、輸出檔案與是否成功。",,error,2026-05-24T05:59:15.393392,2026-05-24T05:59:17.895137,2501,0,0,0,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",2026-05-24T05:59:17.895149,1,0,0,0,0,0,0,0,qwen3:8b,334c5852ae4bbbc1,cnc-tool-20260524_050245_ebebc715-qwen3_8b,"[{'seq': 1, 'type': 'agent', 'name': 'cnc-tool-check_anomaly', 'duration_ms': 0, 'success': False}]",anomaly
+796,3c2423b5-9699-44c2-a029-cb6ce3e08276,1,Cody,"請只用一次 run_python 執行 Cody-s_Agent_Analysis/main.py 的 train_anomaly_detection()。run_python 的 code 請使用下列程式碼，不要改用其他函式；timeout 設為 300 秒。
+
+```python
+import json, os, sys
+os.chdir(""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis"")
+sys.path.insert(0, os.getcwd())
+from main import train_anomaly_detection
+result = train_anomaly_detection()
+print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+```
+
+執行後請用中文簡短回覆：異常偵測訓練是否成功、模型數與輸出檔案。",,error,2026-05-24T05:59:13.038857,2026-05-24T05:59:15.359977,2321,0,0,0,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",2026-05-24T05:59:15.359992,1,0,0,0,0,0,0,0,qwen3:8b,334c5852ae4bbbc1,cnc-tool-20260524_050245_ebebc715-qwen3_8b,"[{'seq': 1, 'type': 'agent', 'name': 'cnc-tool-train_anomaly_detection', 'duration_ms': 0, 'success': False}]",anomaly
+795,60cce810-4218-4501-ad61-4df153c9f924,1,Cody,"請只用一次 run_python 執行 Cody-s_Agent_Analysis/main.py 的 forecast_future(days=[7], model_names=['Prophet'])。run_python 的 code 請使用下列程式碼，不要改用其他函式；timeout 設為 300 秒。
+
+```python
+import json, os, sys
+os.chdir(""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis"")
+sys.path.insert(0, os.getcwd())
+from main import forecast_future
+result = forecast_future(days=[7], model_names=[""Prophet""])
+print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+```
+
+執行後請用中文簡短回覆：7 天預測是否成功、預測摘要與輸出檔案。",,error,2026-05-24T05:59:10.472368,2026-05-24T05:59:13.007195,2534,0,0,0,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",2026-05-24T05:59:13.007213,1,0,0,0,0,0,0,0,qwen3:8b,334c5852ae4bbbc1,cnc-tool-20260524_050245_ebebc715-qwen3_8b,"[{'seq': 1, 'type': 'agent', 'name': 'cnc-tool-forecast_future', 'duration_ms': 0, 'success': False}]",forecast
+794,9d08d01a-5aae-46b2-ba34-1579044ccb5f,1,Cody,"請只用一次 run_python 執行 Cody-s_Agent_Analysis/main.py 的 train_forecast(target='dy', models=['BaselineLastWeek'], months_back=1)。run_python 的 code 請使用下列程式碼，不要改用其他函式；timeout 設為 300 秒。
+
+```python
+import json, os, sys
+os.chdir(""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis"")
+sys.path.insert(0, os.getcwd())
+from main import train_forecast
+result = train_forecast(target=""dy"", models=[""BaselineLastWeek""], months_back=1)
+print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+```
+
+執行後請用中文簡短回覆：訓練是否成功、使用模型與輸出檔案。",,error,2026-05-24T05:59:08.034150,2026-05-24T05:59:10.445525,2411,0,0,0,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",2026-05-24T05:59:10.445535,1,0,0,0,0,0,0,0,qwen3:8b,334c5852ae4bbbc1,cnc-tool-20260524_050245_ebebc715-qwen3_8b,"[{'seq': 1, 'type': 'agent', 'name': 'cnc-tool-train_forecast', 'duration_ms': 0, 'success': False}]",forecast
+793,f3e1414c-5930-40bc-b71d-b2f4f3c22f26,1,Cody,"請只用一次 run_python 執行 Cody-s_Agent_Analysis/main.py 的 run_state_analysis(start='2026-05-01 00:00:00', end='2026-05-02 00:00:00')。run_python 的 code 請使用下列程式碼，不要改用其他函式；timeout 設為 300 秒。
+
+```python
+import json, os, sys
+os.chdir(""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis"")
+sys.path.insert(0, os.getcwd())
+from main import run_state_analysis
+result = run_state_analysis(start=""2026-05-01 00:00:00"", end=""2026-05-02 00:00:00"")
+print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+```
+
+執行後請用中文簡短回覆：GMM 狀態分析是否成功、資料筆數與狀態摘要。",,error,2026-05-24T05:59:05.428394,2026-05-24T05:59:07.994630,2566,0,0,0,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",2026-05-24T05:59:07.994663,1,0,0,0,0,0,0,0,qwen3:8b,334c5852ae4bbbc1,cnc-tool-20260524_050245_ebebc715-qwen3_8b,"[{'seq': 1, 'type': 'agent', 'name': 'cnc-tool-run_state_analysis', 'duration_ms': 0, 'success': False}]",state_analysis
+792,3bdc5210-3e49-4859-bc66-31fe94d6506f,1,Cody,"請只用一次 run_python 執行 Cody-s_Agent_Analysis/main.py 的 update_data(sensors=['Current_A'], verbose=False)。run_python 的 code 請使用下列程式碼，不要改用其他函式；timeout 設為 300 秒。
+
+```python
+import json, os, sys
+os.chdir(""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis"")
+sys.path.insert(0, os.getcwd())
+from main import update_data
+result = update_data(sensors=[""Current_A""], verbose=False)
+print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+```
+
+執行後請用中文簡短回覆：更新是否成功、更新感測器與輸出資料夾。",,error,2026-05-24T05:59:03.098521,2026-05-24T05:59:05.402594,2304,0,0,0,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",2026-05-24T05:59:05.402604,1,0,0,0,0,0,0,0,qwen3:8b,334c5852ae4bbbc1,cnc-tool-20260524_050245_ebebc715-qwen3_8b,"[{'seq': 1, 'type': 'agent', 'name': 'cnc-tool-update_data', 'duration_ms': 0, 'success': False}]",other
+791,28f950ba-138f-4535-ad3d-84efaa97a369,1,Cody,"請只用一次 run_python 執行 Cody-s_Agent_Analysis/main.py 的 data_status()。run_python 的 code 請使用下列程式碼，不要改用其他函式；timeout 設為 300 秒。
+
+```python
+import json, os, sys
+os.chdir(""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis"")
+sys.path.insert(0, os.getcwd())
+from main import data_status
+print(json.dumps(data_status(), ensure_ascii=False, indent=2, default=str))
+```
+
+執行後請用中文簡短回覆：資料覆蓋範圍、感測器數量與是否成功。",,error,2026-05-24T05:59:00.679691,2026-05-24T05:59:03.072731,2393,0,0,0,"Error code: 500 - {'error': {'message': 'model failed to load, this may be due to resource limitations or an internal error, check ollama server logs for details', 'type': 'api_error', 'param': None, 'code': None}}",2026-05-24T05:59:03.072740,1,0,0,0,0,0,0,0,qwen3:8b,334c5852ae4bbbc1,cnc-tool-20260524_050245_ebebc715-qwen3_8b,"[{'seq': 1, 'type': 'agent', 'name': 'cnc-tool-data_status', 'duration_ms': 0, 'success': False}]",other

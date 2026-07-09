@@ -1,0 +1,4 @@
+﻿agent_model,runs,avg_overall,avg_correctness,avg_completeness,avg_readability,avg_practicality,avg_hallucination_risk,avg_judge_duration_s
+deepseek-v4-flash,24,4.25,4.25,4.708,5.0,4.542,0.333,13.781
+glm-5.1,24,3.417,3.375,3.917,4.792,4.167,1.458,12.626
+kimi-k2.6,24,3.0,2.917,3.917,4.708,4.083,1.792,12.994

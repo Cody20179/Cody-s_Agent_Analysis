@@ -1,0 +1,2 @@
+﻿model_deployment,model_name,runs,success_rate,avg_duration_s,avg_tool_input_events,avg_tool_output_events,avg_estimated_tool_output_tokens
+Local,gemma4:26b,1,1.0,44.604,1.0,1.0,658.0

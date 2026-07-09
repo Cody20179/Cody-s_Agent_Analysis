@@ -1,0 +1,11 @@
+﻿agent_model,runs,avg_overall,avg_correctness,avg_completeness,avg_readability,avg_practicality,avg_hallucination_risk,avg_duration_s,avg_tool_calls,avg_estimated_answer_tokens
+gemma4:26b,8,0.0,0.0,0.0,0.0,0.0,0.0,55.845,0.0,0.0
+gemma4:31b,8,0.0,0.0,0.0,0.0,0.0,0.0,148.49,0.625,12.0
+gemma4:latest,8,0.0,0.0,0.0,0.0,0.0,0.0,177.936,4.0,183.75
+gpt-oss:120b,8,0.0,0.0,0.0,0.0,0.0,0.0,32.291,2.125,214.375
+gpt-oss:20b,8,0.0,0.0,0.0,0.0,0.0,0.0,31.217,3.75,195.125
+nemotron-3-nano:latest,8,0.0,0.0,0.0,0.0,0.0,0.0,68.497,3.875,250.0
+nemotron-cascade-2:latest,8,0.0,0.0,0.0,0.0,0.0,0.0,46.425,2.875,347.25
+qwen3.5:9b,8,0.0,0.0,0.0,0.0,0.0,0.0,91.335,3.875,119.0
+qwen3.6:27b,8,0.0,0.0,0.0,0.0,0.0,0.0,233.257,2.0,225.875
+qwen3:8b,8,0.0,0.0,0.0,0.0,0.0,0.0,16.132,0.0,0.0

@@ -1,0 +1,4 @@
+﻿model_name,cases,avg_total_score,boundary_success_rate,hallucination_rate,avg_recognition_score,avg_recovery_score,avg_hallucination_avoidance_score,avg_tool_policy_score,avg_duration_s,avg_tool_calls,avg_thinking_chars
+deepseek-v4-flash,12,93.542,0.917,0.0,21.875,18.333,25.0,13.75,21.827,0.833,549.417
+glm-5.1,12,90.625,1.0,0.083,21.875,17.5,23.75,12.5,14.504,0.667,333.083
+kimi-k2.6,12,94.167,0.917,0.0,22.917,18.333,25.0,12.917,11.533,0.75,855.833

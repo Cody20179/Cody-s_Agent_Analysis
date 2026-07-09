@@ -1,0 +1,7 @@
+﻿category,cases,avg_total_score,boundary_success_rate,hallucination_rate,avg_duration_s
+anti_hallucination,10,56.25,0.3,0.0,12.391
+invalid_input,30,49.667,0.367,0.0,13.944
+out_of_range,30,44.083,0.233,0.033,17.86
+out_of_scope,20,67.25,0.5,0.05,16.382
+unknown_target,20,48.0,0.3,0.0,16.754
+unsupported_option,10,46.0,0.3,0.0,13.975

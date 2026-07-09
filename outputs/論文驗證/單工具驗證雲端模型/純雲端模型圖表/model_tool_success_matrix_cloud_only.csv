@@ -1,0 +1,25 @@
+﻿model_label_cloud,cnc_tool_name,functional_success
+DeepSeek-V4-Flash (Cloud),check_anomaly,100.0
+DeepSeek-V4-Flash (Cloud),data_status,100.0
+DeepSeek-V4-Flash (Cloud),forecast_future,100.0
+DeepSeek-V4-Flash (Cloud),run_all,100.0
+DeepSeek-V4-Flash (Cloud),run_state_analysis,100.0
+DeepSeek-V4-Flash (Cloud),train_anomaly_detection,100.0
+DeepSeek-V4-Flash (Cloud),train_forecast,100.0
+DeepSeek-V4-Flash (Cloud),update_data,100.0
+GLM-5.1 (Cloud),check_anomaly,100.0
+GLM-5.1 (Cloud),data_status,100.0
+GLM-5.1 (Cloud),forecast_future,100.0
+GLM-5.1 (Cloud),run_all,100.0
+GLM-5.1 (Cloud),run_state_analysis,100.0
+GLM-5.1 (Cloud),train_anomaly_detection,100.0
+GLM-5.1 (Cloud),train_forecast,100.0
+GLM-5.1 (Cloud),update_data,100.0
+Kimi-K2.6 (Cloud),check_anomaly,100.0
+Kimi-K2.6 (Cloud),data_status,100.0
+Kimi-K2.6 (Cloud),forecast_future,100.0
+Kimi-K2.6 (Cloud),run_all,100.0
+Kimi-K2.6 (Cloud),run_state_analysis,100.0
+Kimi-K2.6 (Cloud),train_anomaly_detection,100.0
+Kimi-K2.6 (Cloud),train_forecast,100.0
+Kimi-K2.6 (Cloud),update_data,100.0

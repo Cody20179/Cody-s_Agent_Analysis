@@ -1,0 +1,17 @@
+﻿executed_system_tools,cnc_tool_name,runs,avg_system_tool_call_count,avg_system_tool_duration_s
+,check_anomaly,5,0.0,0.0
+,data_status,5,0.0,0.0
+,forecast_future,5,0.0,0.0
+,run_all,5,0.0,0.0
+,run_state_analysis,5,0.0,0.0
+,train_anomaly_detection,5,0.0,0.0
+,train_forecast,5,0.0,0.0
+,update_data,5,0.0,0.0
+run_python,check_anomaly,5,1.0,2.1212
+run_python,data_status,5,1.0,2.447
+run_python,forecast_future,5,1.0,3.0
+run_python,run_all,5,1.0,88.8634
+run_python,run_state_analysis,5,1.0,4.91
+run_python,train_anomaly_detection,5,1.0,8.1282
+run_python,train_forecast,5,1.0,2.3152
+run_python,update_data,5,1.2,2.8358000000000003

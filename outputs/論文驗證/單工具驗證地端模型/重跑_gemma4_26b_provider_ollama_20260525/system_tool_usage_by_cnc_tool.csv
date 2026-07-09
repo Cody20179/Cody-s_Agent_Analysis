@@ -1,0 +1,9 @@
+﻿executed_system_tools,cnc_tool_name,runs,avg_system_tool_call_count,avg_system_tool_duration_s
+,check_anomaly,1,0.0,0.0
+,data_status,1,0.0,0.0
+,forecast_future,1,0.0,0.0
+,run_all,1,0.0,0.0
+,run_state_analysis,1,0.0,0.0
+,train_anomaly_detection,1,0.0,0.0
+,train_forecast,1,0.0,0.0
+,update_data,1,0.0,0.0

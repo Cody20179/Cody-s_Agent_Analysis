@@ -1,0 +1,64 @@
+{
+  "created_at": "2026-05-25T20:37:38",
+  "purpose": "CNC MCP single-tool validation comparison folder updated with finished manual UI tests.",
+  "output_dir": "/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/論文驗證/User單輪測試驗證/CNC_MCP單工具驗證_目前彙整_20260525",
+  "included_tools": [
+    "tool_data_status",
+    "tool_update_data",
+    "tool_run_state_analysis",
+    "tool_train_forecast",
+    "tool_forecast_future",
+    "tool_train_anomaly_detection",
+    "tool_check_anomaly"
+  ],
+  "excluded_tools": [
+    "tool_run_all"
+  ],
+  "old_source_csv": "/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis/outputs/論文驗證/ago/CNC_MCP單工具驗證/all_models_20260525/cnc_mcp_tool_runs.csv",
+  "old_models_reused": [
+    "glm-5.1",
+    "kimi-k2.6",
+    "deepseek-v4-flash",
+    "qwen3.5:9b",
+    "qwen3.6:27b",
+    "nemotron-cascade-2:latest"
+  ],
+  "manual_ui_models": [
+    "gemma4:26b",
+    "qwen3:8b",
+    "nemotron-3-nano:latest",
+    "gemma4:31b",
+    "gpt-oss:20b"
+  ],
+  "manual_failure_overrides": [
+    {
+      "model_name": "nemotron-3-nano:latest",
+      "tool": "tool_forecast_future",
+      "note": "user_marked_question_5_fail"
+    },
+    {
+      "model_name": "gemma4:31b",
+      "tool": "tool_run_state_analysis",
+      "note": "user_marked_question_3_fail"
+    }
+  ],
+  "row_count": 77,
+  "model_count": 11,
+  "source_rule": "Old six models reused from ago folder; finished UI sessions read from Cody-s_Agent_System SQLite DB for user_id=SingleTool.",
+  "selection_rule": "One group per model/question; when a group has multiple sessions, latest session is used as representative and all events are retained in manual_ui_session_events.csv.",
+  "updated_at": "2026-05-25T20:48:54",
+  "chart_sort_rule": "Every chart is sorted by its own plotted value from high to low.",
+  "added_metrics": [
+    "loop_count",
+    "thinking_duration_ms",
+    "thinking_char_count",
+    "answer_char_count",
+    "first_response_ms",
+    "tool_duration_ms_total"
+  ],
+  "added_outputs": [
+    "tool_model_metrics.csv",
+    "charts/by_deployment/*.png",
+    "charts/per_tool/<tool>/*.png"
+  ]
+}

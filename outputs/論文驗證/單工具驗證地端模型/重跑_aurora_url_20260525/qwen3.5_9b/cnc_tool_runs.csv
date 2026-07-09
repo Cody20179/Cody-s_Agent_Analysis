@@ -1,0 +1,104 @@
+﻿run_id,model_source,model_deployment,model_name,model_label,group_id,group_name,case_id,cnc_tool_name,cnc_tool_layer,repeat_index,session_id,turn,status,expected_system_tool,system_tool_called,expected_system_tool_called,tool_output_status_ok,tool_output_error_detected,functional_success,tool_input_events,tool_output_events,duration_ms_client,answer_chars_client,estimated_prompt_tokens,estimated_answer_tokens_client,estimated_visible_tokens_client,actual_prompt_tokens,actual_completion_tokens,actual_total_tokens,token_data_quality,error,answer_preview,prompt
+20260525_141703_19fa71b9,B,Local,qwen3.5:9b,qwen3.5:9b,43f84a39e0603ecf,cnc-tool-20260525_141703_19fa71b9-qwen3.5_9b,data_status,data_status,data,1,ff7ad330-4574-4903-88b3-7b79f5e710d1,1,success,run_python,run_python|run_python,True,True,True,False,2,2,19985,0,151,0,151,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,"請只用一次 run_python 執行 Cody-s_Agent_Analysis/main.py 的 data_status()。run_python 的 code 請使用下列程式碼，不要改用其他函式；timeout 設為 300 秒。
+
+```python
+import json, os, sys
+os.chdir(""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis"")
+sys.path.insert(0, os.getcwd())
+from main import data_status
+print(json.dumps(data_status(), ensure_ascii=False, indent=2, default=str))
+```
+
+執行後請用中文簡短回覆：資料覆蓋範圍、感測器數量與是否成功。"
+20260525_141703_19fa71b9,B,Local,qwen3.5:9b,qwen3.5:9b,43f84a39e0603ecf,cnc-tool-20260525_141703_19fa71b9-qwen3.5_9b,update_data,update_data,data,1,35addc95-3c5e-45b2-ab1b-2d849cd86c48,1,success,run_python,run_python,True,True,False,True,1,1,12136,0,174,0,174,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,"請只用一次 run_python 執行 Cody-s_Agent_Analysis/main.py 的 update_data(sensors=['Current_A'], verbose=False)。run_python 的 code 請使用下列程式碼，不要改用其他函式；timeout 設為 300 秒。
+
+```python
+import json, os, sys
+os.chdir(""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis"")
+sys.path.insert(0, os.getcwd())
+from main import update_data
+result = update_data(sensors=[""Current_A""], verbose=False)
+print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+```
+
+執行後請用中文簡短回覆：更新是否成功、更新感測器與輸出資料夾。"
+20260525_141703_19fa71b9,B,Local,qwen3.5:9b,qwen3.5:9b,43f84a39e0603ecf,cnc-tool-20260525_141703_19fa71b9-qwen3.5_9b,run_state_analysis,run_state_analysis,training_application,1,c59d0b0c-a106-4ac6-8913-a6730769bb9e,1,success,run_python,run_python,True,True,False,True,1,1,24291,0,189,0,189,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,"請只用一次 run_python 執行 Cody-s_Agent_Analysis/main.py 的 run_state_analysis(start='2026-05-01 00:00:00', end='2026-05-02 00:00:00')。run_python 的 code 請使用下列程式碼，不要改用其他函式；timeout 設為 300 秒。
+
+```python
+import json, os, sys
+os.chdir(""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis"")
+sys.path.insert(0, os.getcwd())
+from main import run_state_analysis
+result = run_state_analysis(start=""2026-05-01 00:00:00"", end=""2026-05-02 00:00:00"")
+print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+```
+
+執行後請用中文簡短回覆：GMM 狀態分析是否成功、資料筆數與狀態摘要。"
+20260525_141703_19fa71b9,B,Local,qwen3.5:9b,qwen3.5:9b,43f84a39e0603ecf,cnc-tool-20260525_141703_19fa71b9-qwen3.5_9b,train_forecast,train_forecast,training,1,73779003-7c16-4bf7-b8b5-373c956b17b5,1,success,run_python,run_python,True,True,False,True,1,1,12908,0,183,0,183,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,"請只用一次 run_python 執行 Cody-s_Agent_Analysis/main.py 的 train_forecast(target='dy', models=['BaselineLastWeek'], months_back=1)。run_python 的 code 請使用下列程式碼，不要改用其他函式；timeout 設為 300 秒。
+
+```python
+import json, os, sys
+os.chdir(""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis"")
+sys.path.insert(0, os.getcwd())
+from main import train_forecast
+result = train_forecast(target=""dy"", models=[""BaselineLastWeek""], months_back=1)
+print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+```
+
+執行後請用中文簡短回覆：訓練是否成功、使用模型與輸出檔案。"
+20260525_141703_19fa71b9,B,Local,qwen3.5:9b,qwen3.5:9b,43f84a39e0603ecf,cnc-tool-20260525_141703_19fa71b9-qwen3.5_9b,forecast_future,forecast_future,application,1,8f8a10e4-356e-4705-9424-1b7158c1e300,1,success,run_python,run_python,True,True,False,True,1,1,16034,0,175,0,175,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,"請只用一次 run_python 執行 Cody-s_Agent_Analysis/main.py 的 forecast_future(days=[7], model_names=['Prophet'])。run_python 的 code 請使用下列程式碼，不要改用其他函式；timeout 設為 300 秒。
+
+```python
+import json, os, sys
+os.chdir(""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis"")
+sys.path.insert(0, os.getcwd())
+from main import forecast_future
+result = forecast_future(days=[7], model_names=[""Prophet""])
+print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+```
+
+執行後請用中文簡短回覆：7 天預測是否成功、預測摘要與輸出檔案。"
+20260525_141703_19fa71b9,B,Local,qwen3.5:9b,qwen3.5:9b,43f84a39e0603ecf,cnc-tool-20260525_141703_19fa71b9-qwen3.5_9b,train_anomaly_detection,train_anomaly_detection,training,1,167d6169-826b-489f-85bf-390ca3f30c6b,1,success,run_python,run_python,True,True,False,True,1,1,22602,0,166,0,166,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,"請只用一次 run_python 執行 Cody-s_Agent_Analysis/main.py 的 train_anomaly_detection()。run_python 的 code 請使用下列程式碼，不要改用其他函式；timeout 設為 300 秒。
+
+```python
+import json, os, sys
+os.chdir(""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis"")
+sys.path.insert(0, os.getcwd())
+from main import train_anomaly_detection
+result = train_anomaly_detection()
+print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+```
+
+執行後請用中文簡短回覆：異常偵測訓練是否成功、模型數與輸出檔案。"
+20260525_141703_19fa71b9,B,Local,qwen3.5:9b,qwen3.5:9b,43f84a39e0603ecf,cnc-tool-20260525_141703_19fa71b9-qwen3.5_9b,check_anomaly,check_anomaly,application,1,31aa5660-6173-442d-9bea-1ebaea15ef0e,1,success,run_python,run_python,True,True,False,True,1,1,17375,0,180,0,180,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,,"請只用一次 run_python 執行 Cody-s_Agent_Analysis/main.py 的 check_anomaly('2026-05-01 00:00:00', '2026-05-02 00:00:00')。run_python 的 code 請使用下列程式碼，不要改用其他函式；timeout 設為 300 秒。
+
+```python
+import json, os, sys
+os.chdir(""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis"")
+sys.path.insert(0, os.getcwd())
+from main import check_anomaly
+result = check_anomaly(""2026-05-01 00:00:00"", ""2026-05-02 00:00:00"")
+print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+```
+
+執行後請用中文簡短回覆：是否異常、票數或 verdict、輸出檔案與是否成功。"
+20260525_141703_19fa71b9,B,Local,qwen3.5:9b,qwen3.5:9b,43f84a39e0603ecf,cnc-tool-20260525_141703_19fa71b9-qwen3.5_9b,run_all,run_all,workflow,1,72762cc4-ee14-4d10-bd12-e6ea9fbe4d59,1,success,run_python,run_python|run_python,True,True,True,False,2,2,117880,305,156,168,324,,,,estimated_from_text_length; actual provider usage not exposed by System benchmark API,,"完整管線各步驟均成功執行，無錯誤：
+
+1. **資料狀態檢查 (data_status)** ✅ 正常
+2. **狀態分析 (state)** ✅ 完成，最佳 K=4，產生狀態標籤與圖表
+3. **預測訓練 (forecast)** ✅ 完成，訓練 BaselineLastWeek 與 Prophet 模型
+4. **未來預測 (forecast_future)** ✅ 完成，產生未來電力預測圖
+5. **異常檢測訓練 (anomaly)** ✅ 完成，訓練 IsolationForest、OneClassSVM、Autoencoder 三種模型
+
+所有輸出檔案與圖表已產生，相關影像可在 UI 中查看。","請只用一次 run_python 執行 Cody-s_Agent_Analysis/main.py 的 run_all()。run_python 的 code 請使用下列程式碼，不要改用其他函式；timeout 設為 300 秒。
+
+```python
+import json, os, sys
+os.chdir(""/Users/cody20179/Desktop/Code/Git_My_Project/Cody-s_Agent_Analysis"")
+sys.path.insert(0, os.getcwd())
+from main import run_all
+result = run_all()
+print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+```
+
+執行後請用中文簡短回覆：完整管線各步驟是否成功，若有錯誤請列出步驟。"

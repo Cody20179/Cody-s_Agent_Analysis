@@ -1,0 +1,30 @@
+{
+  "run_id": "20260525_174159",
+  "scope": "local-language",
+  "api": "http://127.0.0.1:8000",
+  "user_id": "Cody",
+  "group_id": "e93544195cc13288",
+  "mcp_names": [
+    "CNC_Analysis"
+  ],
+  "tool_names": [],
+  "models": [
+    {
+      "source": "B",
+      "deployment": "Local",
+      "provider": "ollama",
+      "model_name": "gemma4:26b"
+    }
+  ],
+  "cases": [
+    "tool_data_status",
+    "tool_update_data",
+    "tool_run_state_analysis",
+    "tool_train_forecast",
+    "tool_forecast_future",
+    "tool_train_anomaly_detection",
+    "tool_check_anomaly",
+    "tool_run_all"
+  ],
+  "started_at": "2026-05-25T17:41:59"
+}

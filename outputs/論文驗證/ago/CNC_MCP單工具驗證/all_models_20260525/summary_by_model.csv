@@ -1,0 +1,14 @@
+﻿model_deployment,model_name,runs,success_rate,avg_duration_s,avg_tool_input_events,avg_tool_output_events,avg_estimated_tool_output_tokens
+Cloud,deepseek-v4-flash,8,1.0,30.564,1.0,1.0,2250.875
+Cloud,glm-5.1,8,1.0,36.132,1.0,1.0,2251.625
+Cloud,kimi-k2.6,8,1.0,28.986,1.0,1.0,2251.5
+Local,gemma4:26b,8,0.0,0.0,0.0,0.0,0.0
+Local,gemma4:31b,8,0.375,81.488,0.375,0.375,654.0
+Local,gemma4:latest,8,0.0,0.0,0.0,0.0,0.0
+Local,gpt-oss:120b,8,0.0,0.0,0.0,0.0,0.0
+Local,gpt-oss:20b,8,0.0,0.0,0.0,0.0,0.0
+Local,nemotron-3-nano:latest,8,0.0,0.0,0.0,0.0,0.0
+Local,nemotron-cascade-2:latest,8,1.0,27.818,1.0,1.0,2251.125
+Local,qwen3.5:9b,8,1.0,28.938,1.0,1.0,2251.75
+Local,qwen3.6:27b,8,1.0,77.742,1.0,1.0,2251.75
+Local,qwen3:8b,8,0.0,0.0,0.0,0.0,0.0

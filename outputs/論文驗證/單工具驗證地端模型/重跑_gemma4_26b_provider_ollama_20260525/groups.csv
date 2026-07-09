@@ -1,0 +1,2 @@
+﻿model_name,model_source,group_id,user_id,name,description,created_at,session_count
+gemma4:26b,A,2d811de09dc5e0a0,Cody,cnc-tool-20260525_161555_89e90851-gemma4_26b,CNC tool validation for gemma4:26b; repeat=1,2026-05-25T16:15:55.117460,0

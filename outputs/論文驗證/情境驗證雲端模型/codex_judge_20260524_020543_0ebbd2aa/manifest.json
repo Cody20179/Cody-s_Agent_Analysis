@@ -1,0 +1,22 @@
+{
+  "codex_judge_run_id": "20260524_020543_0ebbd2aa",
+  "generated_at": "2026-05-24T02:09:38",
+  "scenario_dir": "outputs/validation/scenario_qa_agent/20260523_233125_77a5e057",
+  "output_dir": "outputs/validation/scenario_qa_agent/20260523_233125_77a5e057/codex_judge_20260524_020543_0ebbd2aa",
+  "codex_model": "gpt-5.5",
+  "rows": 72,
+  "batch_size": 12,
+  "rubric": {
+    "correctness": "0-5: 數值、狀態、日期、時間區間是否符合標準答案。",
+    "completeness": "0-5: 是否回答使用者問題需要的主要資訊與結論。",
+    "readability": "0-5: 工廠使用者是否容易讀懂。",
+    "practicality": "0-5: 是否有可落地的判讀、提醒或下一步。",
+    "hallucination_risk": "0-5: 是否編造標準答案沒有支持的資訊；0 最低，5 最高。",
+    "overall": "0-5: 以 correctness 為優先，再看完整性、可讀性與實用性。"
+  },
+  "answer_source_priority": [
+    "System API full assistant message",
+    "scenario_qa_runs.csv answer_preview"
+  ],
+  "cost_note": "No provider dollar cost is stored. Efficiency frontier uses response time as runtime cost proxy."
+}

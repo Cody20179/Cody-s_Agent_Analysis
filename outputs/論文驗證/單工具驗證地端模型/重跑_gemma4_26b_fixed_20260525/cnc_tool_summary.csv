@@ -1,0 +1,9 @@
+﻿cnc_tool_name,cnc_tool_layer,runs,models,functional_success_rate,expected_system_tool_call_rate,avg_duration_s,avg_benchmark_duration_s,avg_first_response_s,avg_loop_count,avg_tool_call_count,avg_tool_output_count,avg_system_tool_call_count,avg_system_tool_duration_s,avg_thinking_event_count,avg_thinking_duration_s,avg_thinking_chars,avg_answer_chars,avg_estimated_prompt_tokens,avg_estimated_answer_tokens,avg_estimated_thinking_tokens,avg_estimated_total_text_tokens
+check_anomaly,application,1,1,0.0,0.0,31.038,31.036,0.0,1.0,0.0,0.0,0.0,0.0,509.0,23.197,1715.0,0.0,180.0,0.0,429.0,609.0
+data_status,data,1,1,0.0,0.0,31.294,31.29,0.0,1.0,0.0,0.0,0.0,0.0,426.0,18.822,1539.0,0.0,151.0,0.0,385.0,536.0
+forecast_future,application,1,1,0.0,0.0,14.358,14.354,0.0,1.0,0.0,0.0,0.0,0.0,168.0,6.884,650.0,0.0,175.0,0.0,163.0,338.0
+run_all,workflow,1,1,0.0,0.0,15.375,15.373,0.0,1.0,0.0,0.0,0.0,0.0,197.0,9.756,787.0,0.0,156.0,0.0,197.0,353.0
+run_state_analysis,training_application,1,1,0.0,0.0,13.243,13.238,0.0,1.0,0.0,0.0,0.0,0.0,133.0,5.388,562.0,0.0,189.0,0.0,141.0,330.0
+train_anomaly_detection,training,1,1,0.0,0.0,22.489,22.484,0.0,1.0,0.0,0.0,0.0,0.0,354.0,16.243,1372.0,0.0,166.0,0.0,343.0,509.0
+train_forecast,training,1,1,0.0,0.0,25.499,25.496,0.0,1.0,0.0,0.0,0.0,0.0,422.0,18.954,1616.0,0.0,183.0,0.0,404.0,587.0
+update_data,data,1,1,0.0,0.0,20.511,20.509,0.0,1.0,0.0,0.0,0.0,0.0,283.0,14.538,1106.0,0.0,174.0,0.0,277.0,451.0
